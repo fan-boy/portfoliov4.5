@@ -11,9 +11,6 @@ import ChatBox from './components/chatbox';
 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Lock scroll in layout-level, as context cannot use effects for this purpose.
-  // We'll use a ChatOpen wrapper in ChatBox below.
-
   return (
     <html lang="en">
        <head>

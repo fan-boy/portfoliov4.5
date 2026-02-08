@@ -19,26 +19,26 @@ const DynamicWorkflows: React.FC = () => {
   return (
     <TransitionWrapper>
       {!chatOpen && (
-        <AnimatedBlobs expanded={false} loading={false} />
+        <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       <DefaultPage>
-        <article className="w-full">
+        <article className="w-full z-2">
           
           {/* ============================================
               HERO SECTION
               ============================================ */}
           <motion.section 
-            className="w-full pt-40 pb-24"
+            className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
             variants={stagger}
           >
             {/* Metadata */}
             <motion.div 
-              className="max-w-5xl mx-auto px-6 mb-8"
+              className="max-w-4xl mx-auto px-6 mb-6"
               variants={fadeIn}
             >
-              <div className="flex items-center gap-4 text-fonttertiary text-sm tracking-wide">
+              <div className="flex flex-wrap items-center gap-3 text-fonttertiary text-sm tracking-wide">
                 <span>Dune Security</span>
                 <span className="w-1 h-1 rounded-full bg-fontmuted"></span>
                 <span>2024 to Present</span>
@@ -49,10 +49,10 @@ const DynamicWorkflows: React.FC = () => {
 
             {/* Title */}
             <motion.div 
-              className="max-w-5xl mx-auto px-6 mb-16"
+              className="max-w-4xl mx-auto px-6 mb-12"
               variants={fadeIn}
             >
-              <h1 className="text-display text-fontprimary leading-[1.1] tracking-tight max-w-4xl">
+              <h1 className="text-display">
                 Turning Dashboards Into Decision-Makers
               </h1>
             </motion.div>
@@ -62,7 +62,7 @@ const DynamicWorkflows: React.FC = () => {
               className="w-full px-6"
               variants={fadeIn}
             >
-              <div className="max-w-7xl mx-auto">
+              <div className="max-w-6xl mx-auto">
                 <div className="relative w-full rounded-2xl overflow-hidden bg-amber-50">
                   <Image
                     src={OrgDashboard}
@@ -85,7 +85,7 @@ const DynamicWorkflows: React.FC = () => {
                 Most security products surface information and leave decisions to overloaded humans. 
                 <span className="font-medium"> I designed a system that takes action automatically.</span>
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed mt-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mt-8">
                 Dynamic Workflows wasn&apos;t just a feature. It was a strategic pivot that transformed Dune from &quot;risk reporting&quot; to &quot;User Risk OS.&quot; I identified the opportunity, built the business case, and designed a system that became our primary competitive differentiator.
               </p>
             </div>
@@ -94,16 +94,16 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE OPPORTUNITY
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
+          <section className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Opportunity</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 &quot;If the system knows who&apos;s risky, why isn&apos;t it doing more?&quot;
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 After redesigning Dune&apos;s risk model and experience, this question kept surfacing in customer conversations. I recognized it as a strategic opportunity, not just a feature request.
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed">
+              <p className="text-lg text-fontsecondary leading-relaxed">
                 The market was crowded with dashboards. Nobody was doing automated remediation well.
               </p>
             </div>
@@ -115,10 +115,10 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Business Case</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Quantifying the opportunity
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 I used customer research to build the case for making workflows our next major investment.
               </p>
             </div>
@@ -141,7 +141,7 @@ const DynamicWorkflows: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <p className="text-xl text-fontsecondary leading-relaxed">
+              <p className="text-lg text-fontsecondary leading-relaxed">
                 This became the foundation for roadmap prioritization. Workflows jumped ahead of planned features because the strategic upside was clear.
               </p>
             </div>
@@ -150,28 +150,28 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE PROBLEM
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
+          <section className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Powerful enough to matter, safe enough to trust
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed">
+              <p className="text-lg text-fontsecondary leading-relaxed">
                 I interviewed security admins and CISOs about their current workflow when they spotted a high-risk user. The same themes emerged:
               </p>
             </div>
 
             {/* Pain points - stacked */}
             <div className="max-w-3xl mx-auto px-6 mt-16 space-y-6">
-              <div className="p-8 bg-white rounded-xl border border-gray-200">
+              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                 <p className="text-lg text-fontprimary font-medium mb-2">&quot;By the time I act, it&apos;s too late&quot;</p>
                 <p className="text-fontsecondary">Manual review cycles meant high-risk users could go weeks before anyone intervened. Attackers don&apos;t wait.</p>
               </div>
-              <div className="p-8 bg-white rounded-xl border border-gray-200">
+              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                 <p className="text-lg text-fontprimary font-medium mb-2">&quot;I can&apos;t scale this process&quot;</p>
                 <p className="text-fontsecondary">What works for 100 users doesn&apos;t work for 10,000. Security teams needed force multiplication, not more headcount.</p>
               </div>
-              <div className="p-8 bg-white rounded-xl border border-gray-200">
+              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                 <p className="text-lg text-fontprimary font-medium mb-2">&quot;I&apos;m nervous about automation&quot;</p>
                 <p className="text-fontsecondary">Past experiences with aggressive automated systems made admins wary. They wanted control, not a black box.</p>
               </div>
@@ -184,10 +184,10 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Solution</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Workflows as policies
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 I designed workflows as if/then rules that security teams define once and the system enforces continuously. A workflow answers three questions:
               </p>
             </div>
@@ -195,17 +195,17 @@ const DynamicWorkflows: React.FC = () => {
             {/* Workflow structure */}
             <div className="max-w-5xl mx-auto px-6">
               <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
-                <div className="text-center px-8 py-6 bg-gray-50 rounded-xl flex-1">
+                <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
                   <div className="text-2xl font-light text-amber-600 mb-2">Trigger</div>
                   <p className="text-fontsecondary text-sm">Who does this apply to?</p>
                 </div>
                 <div className="text-fontmuted text-2xl">→</div>
-                <div className="text-center px-8 py-6 bg-gray-50 rounded-xl flex-1">
+                <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
                   <div className="text-2xl font-light text-amber-600 mb-2">Actions</div>
                   <p className="text-fontsecondary text-sm">What should happen?</p>
                 </div>
                 <div className="text-fontmuted text-2xl">→</div>
-                <div className="text-center px-8 py-6 bg-gray-50 rounded-xl flex-1">
+                <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
                   <div className="text-2xl font-light text-amber-600 mb-2">Notify</div>
                   <p className="text-fontsecondary text-sm">Who needs to know?</p>
                 </div>
@@ -227,13 +227,13 @@ const DynamicWorkflows: React.FC = () => {
 
           {/* Video */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6">
               <video 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full rounded-2xl"
+                className="w-full"
               >
                 <source src="/assets/Dune/KeyPivots.mp4" type="video/mp4" />
               </video>
@@ -246,10 +246,10 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Designing for Trust</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Preview, Protect, Prove
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 Automation in security is high-stakes. Users needed to trust the system before they&apos;d turn it on. I designed around three principles:
               </p>
 
@@ -290,10 +290,10 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               STRATEGIC IMPACT
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
+          <section className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Strategic Impact</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 From dashboard to platform
               </h2>
             </div>
@@ -348,8 +348,8 @@ const DynamicWorkflows: React.FC = () => {
 
           {/* Architecture */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="relative w-full rounded-2xl overflow-hidden bg-gray-100">
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
                 <Image
                   src={architecture}
                   alt="User Risk OS architecture"
@@ -366,10 +366,10 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">My Role</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 This wasn&apos;t a feature I was asked to design
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 I drove this from insight to implementation:
               </p>
 
@@ -428,7 +428,7 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-12">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
@@ -467,10 +467,10 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
-            <div className="max-w-3xl mx-auto px-6 text-center">
+          <section className="w-full py-24 bg-bg-secondary">
+            <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/risk-platform" className="text-h2 text-fontprimary hover:text-amber-600 transition-colors">
+              <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-amber-600 transition-colors">
                 Risk Platform →
               </a>
             </div>

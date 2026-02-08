@@ -28,7 +28,7 @@ export default function Contact() {
   return (
     <main className="h-[70vh] flex flex-col justify-center items-center  px-6">
        {!chatOpen && (
-              <AnimatedBlobs expanded={false} loading={false} />
+              <AnimatedBlobs expanded={false} loading={false} move={true} />
             )}
       <ul className="flex flex-col md:flex-row gap-6 w-full max-w-2xl justify-center items-center z-10">
         {links.map(({ href, label, icon: Icon }) => (

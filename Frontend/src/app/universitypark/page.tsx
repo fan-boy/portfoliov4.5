@@ -21,26 +21,26 @@ const UniversityPark: React.FC = () => {
   return (
     <TransitionWrapper>
       {!chatOpen && (
-        <AnimatedBlobs expanded={false} loading={false} />
+        <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       <DefaultPage>
-        <article className="w-full">
+        <article className="w-full z-2">
           
           {/* ============================================
               HERO SECTION
               ============================================ */}
           <motion.section 
-            className="w-full pt-40 pb-24"
+            className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
             variants={stagger}
           >
             {/* Metadata */}
             <motion.div 
-              className="max-w-5xl mx-auto px-6 mb-8"
+              className="max-w-4xl mx-auto px-6 mb-6"
               variants={fadeIn}
             >
-              <div className="flex items-center gap-4 text-fonttertiary text-sm tracking-wide">
+              <div className="flex flex-wrap items-center gap-3 text-fonttertiary text-sm tracking-wide">
                 <span>University Park</span>
                 <span className="w-1 h-1 rounded-full bg-fontmuted"></span>
                 <span>2023 to 2024</span>
@@ -51,10 +51,10 @@ const UniversityPark: React.FC = () => {
 
             {/* Title */}
             <motion.div 
-              className="max-w-5xl mx-auto px-6 mb-16"
+              className="max-w-4xl mx-auto px-6 mb-12"
               variants={fadeIn}
             >
-              <h1 className="text-display text-fontprimary leading-[1.1] tracking-tight max-w-4xl">
+              <h1 className="text-display">
                 Turning Sustainability From Awareness Into Habit
               </h1>
             </motion.div>
@@ -64,8 +64,8 @@ const UniversityPark: React.FC = () => {
               className="w-full px-6"
               variants={fadeIn}
             >
-              <div className="max-w-7xl mx-auto">
-                <div className="relative w-full rounded-2xl overflow-hidden bg-green-50">
+              <div className="max-w-6xl mx-auto">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5 bg-green-50">
                   <Image
                     src={HeroImage}
                     alt="University Park Sustainability Platform"
@@ -87,7 +87,7 @@ const UniversityPark: React.FC = () => {
                 Most sustainability initiatives fail at the same point: the gap between knowing and doing.
                 <span className="font-medium"> University Park had educated residents for years, but awareness wasn&apos;t converting to action.</span>
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed mt-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mt-8">
                 As lead designer, I didn&apos;t just design screens. I defined the product strategy, ran the research that uncovered what was actually blocking behavior change, and built admin tools that let non-technical committee members manage the platform independently.
               </p>
             </div>
@@ -96,16 +96,16 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               THE CHALLENGE
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
+          <section className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Information wasn&apos;t the problem
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 University Park&apos;s Sustainability Committee had the usual toolkit: newsletters, workshops, flyers. Awareness was high. Action was low.
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed">
+              <p className="text-lg text-fontsecondary leading-relaxed">
                 The gap between &quot;I know I should compost&quot; and &quot;I actually compost&quot; wasn&apos;t an information problem. It was a behavior design problem.
               </p>
             </div>
@@ -117,25 +117,25 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Research</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Understanding the real barriers
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 I spent the first sprint doing what most projects skip: understanding the real barriers through expert interviews, resident conversations, and committee workshops.
               </p>
             </div>
 
             {/* Research findings */}
             <div className="max-w-3xl mx-auto px-6 space-y-6">
-              <div className="p-8 bg-white rounded-xl border border-gray-200">
+              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                 <p className="text-lg text-fontprimary font-medium mb-2">&quot;I know what I should do. I just don&apos;t do it&quot;</p>
                 <p className="text-fontsecondary">Residents weren&apos;t lacking information. They were lacking triggers, accountability, and a sense that their individual actions mattered.</p>
               </div>
-              <div className="p-8 bg-white rounded-xl border border-gray-200">
+              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                 <p className="text-lg text-fontprimary font-medium mb-2">&quot;The committee can&apos;t see what&apos;s working&quot;</p>
                 <p className="text-fontsecondary">There was no feedback loop. The committee had no visibility into which initiatives were gaining traction and which were being ignored.</p>
               </div>
-              <div className="p-8 bg-white rounded-xl border border-gray-200">
+              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                 <p className="text-lg text-fontprimary font-medium mb-2">&quot;One size fits none&quot;</p>
                 <p className="text-fontsecondary">A platform designed for sustainability enthusiasts would alienate beginners. A platform for beginners would bore experts. We needed progressive depth.</p>
               </div>
@@ -152,8 +152,8 @@ const UniversityPark: React.FC = () => {
 
           {/* Research visual */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="relative w-full rounded-2xl overflow-hidden">
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
                 <Image
                   src={Research}
                   alt="User research personas"
@@ -170,13 +170,13 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Gamification grounded in behavioral science
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 Gamification has a bad reputation for good reason. Most implementations are shallow. Points and badges bolted onto experiences that don&apos;t need them.
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 But behavior change research says something different: when designed well, game mechanics align with how habits actually form.
               </p>
 
@@ -216,8 +216,8 @@ const UniversityPark: React.FC = () => {
 
           {/* Gamification visual */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="relative w-full rounded-2xl overflow-hidden bg-gray-50">
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="relative w-full rounded-2xl overflow-hidden bg-bg-secondary">
                 <Image
                   src={Gamification}
                   alt="Gamification system with badges and points"
@@ -231,10 +231,10 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               DESIGN DECISIONS
               ============================================ */}
-          <section className="w-full py-32 bg-gray-50">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Key Decisions</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-12">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
                 What we built differently
               </h2>
 
@@ -272,13 +272,13 @@ const UniversityPark: React.FC = () => {
 
           {/* Community post video */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6">
               <video 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full rounded-2xl"
+                className="w-full"
               >
                 <source src="/assets/UniversityPark/communitypost.mp4" type="video/mp4" />
               </video>
@@ -291,13 +291,13 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Information Architecture</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Life contexts, not environmental categories
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 I ran card sorting sessions with residents to understand their mental models. How did they categorize sustainable practices? What groupings felt intuitive?
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed">
+              <p className="text-lg text-fontsecondary leading-relaxed">
                 The results surprised me. Residents didn&apos;t think in environmental categories (energy, water, waste). They thought in <span className="text-fontprimary font-medium">life contexts</span> (home, yard, shopping, community).
               </p>
             </div>
@@ -321,7 +321,7 @@ const UniversityPark: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <p className="text-xl text-fontsecondary leading-relaxed">
+              <p className="text-lg text-fontsecondary leading-relaxed">
                 This reduced cognitive load. Users navigate by context, not by learning our taxonomy.
               </p>
             </div>
@@ -329,8 +329,8 @@ const UniversityPark: React.FC = () => {
 
           {/* Wireframes */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="relative w-full rounded-2xl overflow-hidden">
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
                 <Image
                   src={MidFi}
                   alt="Mid-fidelity wireframes"
@@ -344,29 +344,29 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               ADMIN TOOLS
               ============================================ */}
-          <section className="w-full py-32 bg-gray-50">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Admin Tools</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Designing for non-technical maintainers
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 The Sustainability Committee would maintain this platform for years. But committee members aren&apos;t developers. If updating content required code, the platform would rot.
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 I designed a WYSIWYG admin dashboard that treated content management as a first-class design problem, not an afterthought.
               </p>
 
               <div className="space-y-6">
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <p className="text-lg text-fontprimary font-medium mb-2">Visual content editing</p>
                   <p className="text-fontsecondary">Admins see exactly what residents will see. No preview button, no mental translation from backend to frontend.</p>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <p className="text-lg text-fontprimary font-medium mb-2">Metrics that matter</p>
                   <p className="text-fontsecondary">Actionable data: which practices have the most completions, which challenges are gaining traction, where engagement is dropping. Not vanity metrics. Decision-support data.</p>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <p className="text-lg text-fontprimary font-medium mb-2">Guardrails, not freedom</p>
                   <p className="text-fontsecondary">Admins work within templates. This prevents accidental design breakage while still allowing content flexibility.</p>
                 </div>
@@ -376,8 +376,8 @@ const UniversityPark: React.FC = () => {
 
           {/* Admin visual */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="relative w-full rounded-2xl overflow-hidden bg-gray-100">
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
                 <Image
                   src={Admin}
                   alt="Admin dashboard interface"
@@ -394,10 +394,10 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Iteration</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Testing with real residents
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 I ran usability sessions with 7 residents across different personas: enthusiasts, skeptics, beginners, tech-savvy, tech-averse.
               </p>
 
@@ -449,13 +449,13 @@ const UniversityPark: React.FC = () => {
 
           {/* Onboarding video */}
           <section className="w-full py-8">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6">
               <video 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full rounded-2xl"
+                className="w-full"
               >
                 <source src="/assets/UniversityPark/OnboardingFlow.mp4" type="video/mp4" />
               </video>
@@ -465,26 +465,26 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
+          <section className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 From awareness to action
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 The platform demonstrated that civic technology doesn&apos;t have to be clunky or condescending. By treating residents as real users, not just recipients of information, we built something people actually wanted to use.
               </p>
 
               <div className="space-y-6">
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <p className="text-lg text-fontprimary font-medium mb-2">Resident adoption</p>
                   <p className="text-fontsecondary">Majority of targeted households engaged with the platform within first quarter</p>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <p className="text-lg text-fontprimary font-medium mb-2">Committee independence</p>
                   <p className="text-fontsecondary">Non-technical admins managing platform independently within days of handoff. No developer dependency.</p>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <p className="text-lg text-fontprimary font-medium mb-2">Replicable model</p>
                   <p className="text-fontsecondary">Other municipalities expressed interest in adapting the approach for their communities</p>
                 </div>
@@ -498,7 +498,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-12">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
@@ -537,10 +537,10 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
-            <div className="max-w-3xl mx-auto px-6 text-center">
+          <section className="w-full py-24 bg-bg-secondary">
+            <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/risk-platform" className="text-h2 text-fontprimary hover:text-green-600 transition-colors">
+              <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-green-600 transition-colors">
                 Dune Risk Platform →
               </a>
             </div>

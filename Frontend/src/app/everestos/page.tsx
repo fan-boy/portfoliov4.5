@@ -14,26 +14,26 @@ const EverestOS: React.FC = () => {
   return (
     <TransitionWrapper>
       {!chatOpen && (
-        <AnimatedBlobs expanded={false} loading={false} />
+        <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       <DefaultPage>
-        <article className="w-full">
+        <article className="w-full z-2">
           
           {/* ============================================
               HERO SECTION
               ============================================ */}
           <motion.section 
-            className="w-full pt-40 pb-24"
+            className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
             variants={stagger}
           >
             {/* Metadata */}
             <motion.div 
-              className="max-w-5xl mx-auto px-6 mb-8"
+              className="max-w-4xl mx-auto px-6 mb-6"
               variants={fadeIn}
             >
-              <div className="flex items-center gap-4 text-fonttertiary text-sm tracking-wide">
+              <div className="flex flex-wrap items-center gap-3 text-fonttertiary text-sm tracking-wide">
                 <span>EverestOS</span>
                 <span className="w-1 h-1 rounded-full bg-fontmuted"></span>
                 <span>2023</span>
@@ -44,10 +44,10 @@ const EverestOS: React.FC = () => {
 
             {/* Title */}
             <motion.div 
-              className="max-w-5xl mx-auto px-6 mb-16"
+              className="max-w-4xl mx-auto px-6 mb-12"
               variants={fadeIn}
             >
-              <h1 className="text-display text-fontprimary leading-[1.1] tracking-tight max-w-4xl">
+              <h1 className="text-display">
                 Reimagining the Desktop Experience
               </h1>
             </motion.div>
@@ -57,7 +57,7 @@ const EverestOS: React.FC = () => {
               className="w-full px-6"
               variants={fadeIn}
             >
-              <div className="max-w-7xl mx-auto">
+              <div className="max-w-6xl mx-auto">
                 <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-cyan-200 aspect-video flex items-center justify-center">
                   <p className="text-blue-600 text-xl">Conceptual OS Design</p>
                 </div>
@@ -73,7 +73,7 @@ const EverestOS: React.FC = () => {
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 A conceptual exploration of what a modern operating system could look like.
               </p>
-              <p className="text-xl text-fontsecondary leading-relaxed mt-8">
+              <p className="text-lg text-fontsecondary leading-relaxed mt-8">
                 Focused on high visual polish, consistency, and building a cohesive design language that could work across all system components.
               </p>
             </div>
@@ -82,13 +82,13 @@ const EverestOS: React.FC = () => {
           {/* ============================================
               RESEARCH
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
+          <section className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Research</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-8">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
                 Evolution of OS design
               </h2>
-              <p className="text-xl text-fontsecondary leading-relaxed mb-12">
+              <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 First step was understanding how operating systems have evolved visually over the decades.
               </p>
             </div>
@@ -139,7 +139,7 @@ const EverestOS: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-12">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
                 Design principles
               </h2>
 
@@ -180,12 +180,12 @@ const EverestOS: React.FC = () => {
           {/* ============================================
               DESIGN SYSTEM
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
+          <section className="w-full py-24 bg-bg-secondary">
             <div className="max-w-5xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase mb-8 block">Design System</span>
               
               <div className="grid md:grid-cols-3 gap-8">
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <h4 className="text-lg text-fontprimary font-medium mb-4">Color</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Light and dark modes</li>
@@ -193,7 +193,7 @@ const EverestOS: React.FC = () => {
                     <li>Accessible contrast ratios</li>
                   </ul>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <h4 className="text-lg text-fontprimary font-medium mb-4">Typography</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>System font stack</li>
@@ -201,7 +201,7 @@ const EverestOS: React.FC = () => {
                     <li>Readable at all sizes</li>
                   </ul>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <h4 className="text-lg text-fontprimary font-medium mb-4">Components</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Buttons and inputs</li>
@@ -209,7 +209,7 @@ const EverestOS: React.FC = () => {
                     <li>Navigation elements</li>
                   </ul>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <h4 className="text-lg text-fontprimary font-medium mb-4">Icons</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Consistent style</li>
@@ -217,7 +217,7 @@ const EverestOS: React.FC = () => {
                     <li>System and app icons</li>
                   </ul>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <h4 className="text-lg text-fontprimary font-medium mb-4">Motion</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Easing curves</li>
@@ -225,7 +225,7 @@ const EverestOS: React.FC = () => {
                     <li>Micro-interactions</li>
                   </ul>
                 </div>
-                <div className="p-8 bg-white rounded-xl border border-gray-200">
+                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <h4 className="text-lg text-fontprimary font-medium mb-4">Layout</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Spacing scale</li>
@@ -243,7 +243,7 @@ const EverestOS: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-h1 text-fontprimary mt-4 mb-12">
+              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
@@ -275,10 +275,10 @@ const EverestOS: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-gray-50">
-            <div className="max-w-3xl mx-auto px-6 text-center">
+          <section className="w-full py-24 bg-bg-secondary">
+            <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/workflows" className="text-h2 text-fontprimary hover:text-blue-600 transition-colors">
+              <a href="/dune/workflows" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-blue-600 transition-colors">
                 Dynamic Workflows →
               </a>
             </div>

@@ -29,7 +29,7 @@ const DuneSecurity: React.FC = () => {
   
   <TransitionWrapper>
       {!chatOpen && (
-                  <AnimatedBlobs expanded={false} loading={false} />
+                  <AnimatedBlobs expanded={false} loading={false} move={true} />
                 )}
     <DefaultPage>
       {/* Header */}

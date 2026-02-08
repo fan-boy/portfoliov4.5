@@ -46,7 +46,7 @@ export default function AboutPage() {
 
     <main className="min-h-screen text-gray-900 px-6 py-16 flex flex-col items-center">
        {!chatOpen && (
-        <AnimatedBlobs expanded={false} loading={false} />
+        <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       <section className="max-w-3xl w-full flex flex-col gap-10 items-start z-10">
         {/* Profile Image Section */}

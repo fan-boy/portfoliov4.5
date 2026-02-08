@@ -477,3 +477,40 @@ a:hover {
 /* Remove custom cursor on body if not needed */
 /* Uncomment below to disable custom cursor */
 /* body, * { cursor: auto !important; } */
+
+/* ============================================
+   SUBTLE BLOB MOVEMENT ANIMATIONS
+   ============================================ */
+
+@keyframes blobMove1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 25px) scale(0.96); }
+  75% { transform: translate(25px, 10px) scale(1.03); }
+}
+
+@keyframes blobMove2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  20% { transform: translate(-25px, 15px) scale(1.04); }
+  40% { transform: translate(35px, -15px) scale(0.95); }
+  60% { transform: translate(-15px, -25px) scale(1.06); }
+  80% { transform: translate(20px, 20px) scale(0.98); }
+}
+
+@keyframes blobMove3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, 15px) scale(0.97); }
+  66% { transform: translate(-30px, -20px) scale(1.05); }
+}
+
+.blob-move-1 {
+  animation: blobMove1 25s ease-in-out infinite;
+}
+
+.blob-move-2 {
+  animation: blobMove2 30s ease-in-out infinite;
+}
+
+.blob-move-3 {
+  animation: blobMove3 22s ease-in-out infinite;
+}

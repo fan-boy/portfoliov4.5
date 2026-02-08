@@ -106,7 +106,7 @@ export default function Home() {
   return (
     <TransitionWrapper>
       {!chatOpen && (
-        <AnimatedBlobs expanded={false} loading={false} />
+        <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       <DefaultPage>
         
@@ -114,12 +114,12 @@ export default function Home() {
             HERO SECTION
             ============================================ */}
         <motion.section 
-          className="w-full pt-40 pb-32"
+          className="w-full pt-40 pb-32 z-2"
           initial="hidden"
           animate="visible"
           variants={staggerSlow}
         >
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6 ">
             <motion.p 
               className="text-fonttertiary text-base tracking-wider uppercase mb-6"
               variants={fadeIn}
