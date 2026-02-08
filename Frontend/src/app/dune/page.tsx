@@ -1,39 +1,27 @@
 'use client'
-import React, { useEffect } from "react";
+import React from "react";
 
 import TransitionWrapper from "../components/TransitionWrapper";
 import DefaultPage from "../components/Pages/DefaultPage";
 import OrgDashboard from "../../../public/assets/Dune/dashboard.webp";
 import architecture from "../../../public/assets/Dune/architecture.webp";
-//import battlecard from "../../../public/assets/Dune/battlecard.webp";
 import DesignSystem from "../../../public/assets/Dune/DesignSystem.webp";
 import OldDashboard from "../../../public/assets/Dune/OldOrganization.webp";
 import Customers from "../../../public/assets/Dune/customers.webp";
 
-
 import { ArrowUp, ArrowDown, ArrowsOutLineVertical, Timer } from "phosphor-react";
-
 
 import PageSection from "../components/Pages/PageSection";
 import FullImage from "../components/Miscelaneous/FullImage";
 import Divider from "../components/Miscelaneous/Divider";
 import FullMedia from "../components/Miscelaneous/UnifiedMedia";
 import BeforeAfterSlider from "../components/Miscelaneous/BeforeAfterSlider";
-import { useChat } from "../context/ChatContext";
 import AnimatedBlobs from "../components/AnimatedBlobs";
+import { useChatOverflow } from "../lib/hooks/useChatOverflow";
 
-
-
-// --- Main Page ---
 const DuneSecurity: React.FC = () => {
-   const { chatOpen } = useChat()
-        useEffect(() => {
-          if (chatOpen) document.body.style.overflow = 'hidden';
-          else document.body.style.overflow = '';
-          return () => { document.body.style.overflow = '' };
-        }, [chatOpen]);
-
-        const duneGradient = "indigo-200/50";
+  const { chatOpen } = useChatOverflow();
+  const duneGradient = "indigo-200/50";
 
   
   

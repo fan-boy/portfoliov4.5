@@ -1,10 +1,9 @@
-// app/contact/page.jsx
+// app/contact/page.tsx
 "use client";
 import { Mail, Linkedin, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedBlobs from "../components/AnimatedBlobs";
-import { useChat } from '../context/ChatContext';
-import { useEffect } from "react";
+import { useChatOverflow } from "../lib/hooks/useChatOverflow";
 
 const links = [
   {
@@ -25,12 +24,7 @@ const links = [
 ];
 
 export default function Contact() {
-   const { chatOpen } = useChat()
-      useEffect(() => {
-        if (chatOpen) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = '';
-        return () => { document.body.style.overflow = '' };
-      }, [chatOpen]);
+  const { chatOpen } = useChatOverflow();
   return (
     <main className="h-[70vh] flex flex-col justify-center items-center  px-6">
        {!chatOpen && (

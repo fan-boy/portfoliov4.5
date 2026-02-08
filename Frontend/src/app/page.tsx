@@ -2,166 +2,262 @@
 import Link from "next/link";
 import TransitionWrapper from "./components/TransitionWrapper";
 import AnimatedBlobs from "./components/AnimatedBlobs";
-import { useChat } from './context/ChatContext';
-import { useEffect } from "react";
 import DuneOrgDashboard from "../../public/assets/Dune/dashboard.webp";
+import DuneDesignSystem from "../../public/assets/Dune/DesignSystem.webp";
+import DuneArchitecture from "../../public/assets/Dune/architecture.webp";
 import UniversityParkUserProfile from "../../public/assets/UniversityPark/userprofile.webp";
+import ChainReactiveHero from "../../public/assets/ChainReactive/hero.webp";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import DefaultPage from "./components/Pages/DefaultPage";
+import { fadeIn, staggerSlow } from "./lib/animations";
+import { useChatOverflow } from "./lib/hooks/useChatOverflow";
 
-const projects = [
+interface Project {
+  title: string;
+  subtitle: string;
+  href: string;
+  image: StaticImageData;
+  imageAlt: string;
+  company: string;
+  year: string;
+}
+
+interface OtherProject {
+  title: string;
+  subtitle: string;
+  href: string;
+  company: string;
+  year: string;
+}
+
+const projects: Project[] = [
   {
-    title: "Dune Security",
-    subtitle: "Redefining user-adaptive risk management ",
-    href: "/dune",
+    title: "Risk Platform",
+    subtitle: "Making security risk understandable and actionable",
+    href: "/dune/risk-platform",
     image: DuneOrgDashboard,
-    imageAlt: "Dune Security dashboard preview",
+    imageAlt: "Dune Security risk platform dashboard",
+    company: "Dune Security",
+    year: "2024",
+  },
+  {
+    title: "Stillsuit Design System",
+    subtitle: "Building infrastructure for speed and consistency",
+    href: "/dune/stillsuit",
+    image: DuneDesignSystem,
+    imageAlt: "Stillsuit design system components",
+    company: "Dune Security",
+    year: "2024",
   },
   {
     title: "University Park",
-    subtitle: "Desigining for sustainability and community enrichment",
+    subtitle: "Turning sustainability from awareness into habit",
     href: "/universitypark",
     image: UniversityParkUserProfile,
     imageAlt: "University Park platform preview",
+    company: "Civic Tech",
+    year: "2023",
   },
-  // {
-  //   title: "ChainReactive",
-  //   subtitle: "Empowering small restaurants with seamless online ordering",
-  //   href: "/chainreactive",
-  //   image: DuneOrgDashboard,
-  //   imageAlt: "ChainReactive ordering system preview",
-  // },
+  {
+    title: "Chain Reactive",
+    subtitle: "Capturing a $60M market opportunity for small businesses",
+    href: "/chainreactive",
+    image: ChainReactiveHero,
+    imageAlt: "Chain Reactive ordering platform",
+    company: "Startup",
+    year: "2020",
+  },
+];
+
+const otherProjects: OtherProject[] = [
+  {
+    title: "Cadence",
+    subtitle: "Interactive art installation that reacts to movement",
+    href: "/cadence",
+    company: "NextNow Fest",
+    year: "2024",
+  },
+  {
+    title: "Crashr",
+    subtitle: "Multi-brand design system for gaming platforms",
+    href: "/crashr",
+    company: "Freelance",
+    year: "2023",
+  },
+  {
+    title: "EverestOS",
+    subtitle: "Conceptual operating system design exploration",
+    href: "/everestos",
+    company: "Personal",
+    year: "2023",
+  },
+  {
+    title: "Dynamic Workflows",
+    subtitle: "Turning dashboards into decision-makers",
+    href: "/dune/workflows",
+    company: "Dune Security",
+    year: "2024",
+  },
 ];
 
 export default function Home() {
-  const { chatOpen } = useChat();
-  useEffect(() => {
-    if (chatOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = '' };
-  }, [chatOpen]);
+  const { chatOpen } = useChatOverflow();
 
   return (
-    <>
-      <div>
-        <TransitionWrapper>
-          
-          {/* Hero Section */}
-          {!chatOpen && (
-            <AnimatedBlobs expanded={false} loading={false} />
-          )}
-          <DefaultPage>
-          <section className="w-full mt-48 ">
-            <div className="max-w-3xl mx-auto px-6 flex flex-col items-start gap-6 font-sans">
-              <span className="flex flex-col gap-6">
-                <h3 className="text-fontsecondary font-regular tracking-wide">
-                  Aaditya Shete
-                </h3>
-                <h1 className="tracking-tight text-fontprimary font-medium leading-tight">
-                  Designing systems that scale with clarity.
-                </h1>
-                <div className="text-fontsecondary">
-                  <h4>
-                    A product designer blending visual clarity with AI-first workflows.
-                  </h4>
-                  <h4>
-                    Currently at{" "}
-                    <span className="font-medium text-fontprimary">
-                      Dune Security
-                    </span>
-                    
-                  </h4>
-                </div>
-              </span>
-              <div className="mt-2 bg-yellow-100 rounded-full px-4">
-  <span className="text-sm text-yellow-800  font-light">
-    This portfolio is currently in beta
-  </span>
-</div>
-            </div>
-          </section>
+    <TransitionWrapper>
+      {!chatOpen && (
+        <AnimatedBlobs expanded={false} loading={false} />
+      )}
+      <DefaultPage>
+        
+        {/* ============================================
+            HERO SECTION
+            ============================================ */}
+        <motion.section 
+          className="w-full pt-40 pb-32"
+          initial="hidden"
+          animate="visible"
+          variants={staggerSlow}
+        >
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.p 
+              className="text-fonttertiary text-base tracking-wider uppercase mb-6"
+              variants={fadeIn}
+            >
+              Aaditya Shete
+            </motion.p>
+            
+            <motion.h1 
+              className="text-display text-fontprimary leading-[1.15] tracking-tight max-w-4xl mb-10"
+              variants={fadeIn}
+            >
+              Designing systems that scale with clarity.
+            </motion.h1>
+            
+            <motion.div 
+              className="flex flex-col gap-3"
+              variants={fadeIn}
+            >
+              <p className="text-xl text-fontsecondary leading-relaxed">
+                Product designer blending visual clarity with AI-first workflows.
+              </p>
+              <p className="text-xl text-fontsecondary leading-relaxed">
+                Currently at <span className="text-fontprimary font-medium">Dune Security</span>.
+              </p>
+            </motion.div>
+          </div>
+        </motion.section>
 
-          {/* Projects Section */}
-          <section className="w-full mt-24 py-16">
-            <div className="flex flex-col gap-32 max-w-6xl mx-auto px-6">
-              {projects.map((project) => (
+        {/* ============================================
+            FEATURED PROJECTS SECTION
+            ============================================ */}
+        <section className="w-full pb-32">
+          <div className="max-w-6xl mx-auto px-6">
+            <motion.div 
+              className="flex flex-col gap-32"
+              initial="hidden"
+              animate="visible"
+              variants={staggerSlow}
+            >
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  whileHover="hover"
-                  initial="initial"
-                  className="group"
+                  variants={fadeIn}
                 >
-                  <Link href={project.href} style={{ textDecoration: "none" }}>
-                    <div className="flex flex-col gap-8 w-full">
-                      {/* Text Block */}
-                      <div className="flex flex-col md:flex-row justify-between items-start md:pt-8">
-                        <h2 className="text-2xl md:text-3xl text-fontsecondary">
-                          {project.title}
-                        </h2>
-                        <p className="text-2xl md:text-3xl font-light text-fontprimary md:w-3/5">
-                          {project.subtitle}
-                        </p>
-                      </div>
-                      {/* Card */}
-                      <div className="w-full">
-                        <motion.div
-                          className={
-                            "relative w-full flex items-end justify-end  rounded-2xl inset-shadow-[0_5px_25px_rgba(0,0,0,0.25)] inset-shadow-indigo-200/50 overflow-hidden bg-indigo-100/70"
-                          }
-                          style={{
-                            minHeight: "320px",
-                            //height:"320px",
-                            paddingTop: "4.5rem",
-                            paddingLeft: "2.5rem",
-                            //transition: "box-shadow .2s"
-                            //boxShadow: "inset 0 8px 32px 0px rgba(80,180,80,0.18), inset 0 2px 12px 0px rgba(0,0,0,0.12)"
-                          }}
-                         
-                          
-                        >
-                          <motion.div
-                            initial={{
-                              scale: 1,
-          
-                            }}
-                            whileHover={{ scale: 1.025 }}
-                            className="w-full  max-w-5xl rounded-tl-lg overflow-hidden"
-                            transition={{ type: "spring", stiffness: 320, damping: 24 }}
-                          >
-                            <Image
-                              src={project.image}
-                              alt={project.imageAlt}
-                              className="w-full rounded-tl-lg shadow-sm"
-                              draggable={false}
-                              priority
-                              style={{ objectFit: "contain", background: "white" }}
-                            />
-                          </motion.div>
-                        </motion.div>
-                      </div>
+                  <Link href={project.href} className="group block">
+                    {/* Image - Full width, no container */}
+                    <div className="relative w-full overflow-hidden rounded-lg mb-8">
+                      <Image
+                        src={project.image}
+                        alt={project.imageAlt}
+                        className="w-full transition-transform duration-700 group-hover:scale-[1.03]"
+                        style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}
+                        draggable={false}
+                        priority={index < 2}
+                      />
+                    </div>
+
+                    {/* Text */}
+                    <div className="max-w-3xl">
+                      <p className="text-fonttertiary text-base tracking-wide mb-4">
+                        {project.company} · {project.year}
+                      </p>
+                      <h2 className="text-h1 text-fontprimary mb-4 group-hover:text-fontsecondary transition-colors duration-300">
+                        {project.title}
+                      </h2>
+                      <p className="text-xl text-fontsecondary leading-relaxed">
+                        {project.subtitle}
+                      </p>
                     </div>
                   </Link>
                 </motion.div>
               ))}
-            </div>
-          </section>
+            </motion.div>
+          </div>
+        </section>
 
-          {/* Contact Section */}
-          <section className="w-full mt-24 py-16">
-            <div className="max-w-3xl mx-auto px-6 flex flex-col items-center gap-2">
-              <p className="text-base md:text-lg text-fontprimary text-center">
-                Interested in my work?{" "}
-                <Link href="/contact" className="underline hover:text-fontsecondary">
-                  Contact me
-                </Link>
-                .
-              </p>
-            </div>
-          </section>
-          </DefaultPage>
-        </TransitionWrapper>
-      </div>
-    </>
+        {/* ============================================
+            OTHER PROJECTS SECTION
+            ============================================ */}
+        <section className="w-full py-24 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-6">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={staggerSlow}
+            >
+              <motion.h2 
+                className="text-h2 text-fontprimary mb-12"
+                variants={fadeIn}
+              >
+                Other Work
+              </motion.h2>
+              
+              <motion.div 
+                className="grid md:grid-cols-2 gap-8"
+                variants={fadeIn}
+              >
+                {otherProjects.map((project) => (
+                  <Link 
+                    key={project.title}
+                    href={project.href} 
+                    className="group block p-8 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-colors"
+                  >
+                    <p className="text-fonttertiary text-sm tracking-wide mb-3">
+                      {project.company} · {project.year}
+                    </p>
+                    <h3 className="text-xl text-fontprimary font-medium mb-2 group-hover:text-fontsecondary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-fontsecondary">
+                      {project.subtitle}
+                    </p>
+                  </Link>
+                ))}
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ============================================
+            CONTACT SECTION
+            ============================================ */}
+        <section className="w-full py-24">
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <p className="text-xl text-fontprimary mb-2">
+              Interested in working together?
+            </p>
+            <Link 
+              href="/contact" 
+              className="text-h2 text-fontprimary hover:text-fontsecondary transition-colors"
+            >
+              Get in touch →
+            </Link>
+          </div>
+        </section>
+
+      </DefaultPage>
+    </TransitionWrapper>
   );
 }

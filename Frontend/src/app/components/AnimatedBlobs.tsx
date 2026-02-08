@@ -3,15 +3,16 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const HERO_BLOBS = [
-  { left: "10vw", top: "-8vw", width: "22vw", height: "22vw", opacity: 0.55, filter: "blur(46px)" },
-  { left: "33vw", top: "-12vw", width: "30vw", height: "22vw", opacity: 0.59, filter: "blur(48px)" },
-  { left: "58vw", top: "-6vw", width: "26vw", height: "24vw", opacity: 0.58, filter: "blur(36px)" }
+  { left: "8vw", top: "-6vw", width: "28vw", height: "26vw", opacity: 0.6, filter: "blur(60px)" },
+  { left: "30vw", top: "-10vw", width: "34vw", height: "28vw", opacity: 0.55, filter: "blur(70px)" },
+  { left: "55vw", top: "-4vw", width: "30vw", height: "28vw", opacity: 0.5, filter: "blur(55px)" }
 ];
 
+// Refined, sophisticated color palette
 const COLORS = [
-  "radial-gradient(circle at 35% 35%, #ffb7e5 10%, #ff6b9d 90%)",
-  "radial-gradient(circle at 70% 20%, #8de9fc 30%, #00b4d8 100%)",
-  "radial-gradient(circle at 40% 80%, #f9fcb7 0%, #cafcb7 90%)"
+  "radial-gradient(circle at 35% 35%, #E0D4FC 10%, #B8A4E8 90%)",    // Soft lavender
+  "radial-gradient(circle at 70% 20%, #C5E8F7 30%, #8DCAE8 100%)",   // Soft sky blue
+  "radial-gradient(circle at 40% 80%, #FEE8D6 0%, #FCCFA8 90%)"      // Warm peach/cream
 ];
 
 // Helper for smooth return, only when loading becomes false.
@@ -42,7 +43,7 @@ export default function AnimatedBlobs({
   }, [loading]);
 
   const containerClass = expanded
-    ? "fixed inset-0 z-50 pointer-events-none"
+    ? "fixed inset-0 z-0 pointer-events-none"
     : "absolute inset-0 z-0 pointer-events-none";
 
   return (
@@ -59,15 +60,14 @@ export default function AnimatedBlobs({
           return (
             <div
               key={i}
-              className={`absolute z-0 blob-float${i+1} rounded-[44%_60%_64%_48%/66%_49%_70%_45%]`}
+              className={`absolute blob-float${i+1} rounded-[44%_60%_64%_48%/66%_49%_70%_45%]`}
               style={{
                 background: color,
                 mixBlendMode: "lighten",
                 opacity: HERO_BLOBS[i].opacity,
                 width: HERO_BLOBS[i].width,
                 height: HERO_BLOBS[i].height,
-                // widths etc will be continuously transformed by keyframes!
-                filter: HERO_BLOBS[i].filter
+                filter: HERO_BLOBS[i].filter,
               }}
             />
           );
@@ -77,7 +77,7 @@ export default function AnimatedBlobs({
           return (
             <motion.div
               key={i}
-              className="absolute z-0 rounded-[44%_60%_64%_48%/66%_49%_70%_45%]"
+              className="absolute rounded-[44%_60%_64%_48%/66%_49%_70%_45%]"
               initial={false}
               animate={HERO_BLOBS[i]}
               transition={transition}
@@ -85,7 +85,7 @@ export default function AnimatedBlobs({
                 background: color,
                 opacity: HERO_BLOBS[i].opacity,
                 filter: HERO_BLOBS[i].filter,
-                mixBlendMode: "lighten"
+                mixBlendMode: "lighten",
               }}
             />
           );
@@ -94,7 +94,7 @@ export default function AnimatedBlobs({
         return (
           <div
             key={i}
-            className="absolute z-0 rounded-[44%_60%_64%_48%/66%_49%_70%_45%]"
+            className="absolute rounded-[44%_60%_64%_48%/66%_49%_70%_45%]"
             style={{
               background: color,
               left: HERO_BLOBS[i].left,
@@ -103,7 +103,7 @@ export default function AnimatedBlobs({
               height: HERO_BLOBS[i].height,
               opacity: HERO_BLOBS[i].opacity,
               filter: HERO_BLOBS[i].filter,
-              mixBlendMode: "lighten"
+              mixBlendMode: "lighten",
             }}
           />
         );
