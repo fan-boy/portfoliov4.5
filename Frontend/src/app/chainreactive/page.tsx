@@ -9,10 +9,7 @@ import AnimatedBlobs from "../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../lib/animations";
 import { useChatOverflow } from "../lib/hooks/useChatOverflow";
 
-import HeroImage from "../../../public/assets/ChainReactive/hero.webp";
 import MenuExample from "../../../public/assets/ChainReactive/menu-example.webp";
-import OrderFlow from "../../../public/assets/ChainReactive/order-flow.webp";
-import AdminDashboard from "../../../public/assets/ChainReactive/admin-dashboard.webp";
 import ThaiExample from "../../../public/assets/ChainReactive/thai-example.webp";
 import CafeExample from "../../../public/assets/ChainReactive/cafe-example.webp";
 

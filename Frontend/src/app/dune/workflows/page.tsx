@@ -98,10 +98,10 @@ const DynamicWorkflows: React.FC = () => {
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Opportunity</span>
               <h2 className="text-h1 text-fontprimary mt-4 mb-8">
-                "If the system knows who's risky, why isn't it doing more?"
+                &quot;If the system knows who&apos;s risky, why isn&apos;t it doing more?&quot;
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-8">
-                After redesigning Dune's risk model and experience, this question kept surfacing in customer conversations. I recognized it as a strategic opportunity, not just a feature request.
+                After redesigning Dune&apos;s risk model and experience, this question kept surfacing in customer conversations. I recognized it as a strategic opportunity, not just a feature request.
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed">
                 The market was crowded with dashboards. Nobody was doing automated remediation well.
@@ -164,15 +164,15 @@ const DynamicWorkflows: React.FC = () => {
             {/* Pain points - stacked */}
             <div className="max-w-3xl mx-auto px-6 mt-16 space-y-6">
               <div className="p-8 bg-white rounded-xl border border-gray-200">
-                <p className="text-lg text-fontprimary font-medium mb-2">"By the time I act, it's too late"</p>
-                <p className="text-fontsecondary">Manual review cycles meant high-risk users could go weeks before anyone intervened. Attackers don't wait.</p>
+                <p className="text-lg text-fontprimary font-medium mb-2">&quot;By the time I act, it&apos;s too late&quot;</p>
+                <p className="text-fontsecondary">Manual review cycles meant high-risk users could go weeks before anyone intervened. Attackers don&apos;t wait.</p>
               </div>
               <div className="p-8 bg-white rounded-xl border border-gray-200">
-                <p className="text-lg text-fontprimary font-medium mb-2">"I can't scale this process"</p>
-                <p className="text-fontsecondary">What works for 100 users doesn't work for 10,000. Security teams needed force multiplication, not more headcount.</p>
+                <p className="text-lg text-fontprimary font-medium mb-2">&quot;I can&apos;t scale this process&quot;</p>
+                <p className="text-fontsecondary">What works for 100 users doesn&apos;t work for 10,000. Security teams needed force multiplication, not more headcount.</p>
               </div>
               <div className="p-8 bg-white rounded-xl border border-gray-200">
-                <p className="text-lg text-fontprimary font-medium mb-2">"I'm nervous about automation"</p>
+                <p className="text-lg text-fontprimary font-medium mb-2">&quot;I&apos;m nervous about automation&quot;</p>
                 <p className="text-fontsecondary">Past experiences with aggressive automated systems made admins wary. They wanted control, not a black box.</p>
               </div>
             </div>
@@ -216,7 +216,7 @@ const DynamicWorkflows: React.FC = () => {
               <div className="p-8 bg-amber-50 rounded-xl border border-amber-100">
                 <p className="text-fonttertiary text-sm uppercase tracking-wide mb-3">Example Workflow</p>
                 <p className="text-xl text-fontprimary leading-relaxed">
-                  "If a user has <span className="font-medium">high business impact</span> AND <span className="font-medium">fails multiple phishing simulations</span> → restrict their IAM access, assign targeted training, and notify their manager."
+                  &quot;If a user has <span className="font-medium">high business impact</span> AND <span className="font-medium">fails multiple phishing simulations</span> → restrict their IAM access, assign targeted training, and notify their manager.&quot;
                 </p>
                 <p className="text-fontsecondary mt-4">
                   Previously required a human to notice, investigate, decide, and act. Now it happens automatically, consistently, at scale.
@@ -250,7 +250,7 @@ const DynamicWorkflows: React.FC = () => {
                 Preview, Protect, Prove
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-12">
-                Automation in security is high-stakes. Users needed to trust the system before they'd turn it on. I designed around three principles:
+                Automation in security is high-stakes. Users needed to trust the system before they&apos;d turn it on. I designed around three principles:
               </p>
 
               <div className="space-y-12">
@@ -260,7 +260,7 @@ const DynamicWorkflows: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Preview</h4>
-                    <p className="text-fontsecondary leading-relaxed">Before any workflow goes live, users see exactly how many people would be affected and who they are. "Wait, that's hitting the entire finance team" is something you want to catch before activation.</p>
+                    <p className="text-fontsecondary leading-relaxed">Before any workflow goes live, users see exactly how many people would be affected and who they are. &quot;Wait, that&apos;s hitting the entire finance team&quot; is something you want to catch before activation.</p>
                   </div>
                 </div>
 
@@ -305,7 +305,7 @@ const DynamicWorkflows: React.FC = () => {
                   <ul className="space-y-4">
                     <li className="text-fontsecondary flex items-start gap-3">
                       <span className="text-fontmuted">→</span>
-                      "Another security dashboard"
+                      &quot;Another security dashboard&quot;
                     </li>
                     <li className="text-fontsecondary flex items-start gap-3">
                       <span className="text-fontmuted">→</span>
@@ -313,7 +313,7 @@ const DynamicWorkflows: React.FC = () => {
                     </li>
                     <li className="text-fontsecondary flex items-start gap-3">
                       <span className="text-fontmuted">→</span>
-                      "See your risk data"
+                      &quot;See your risk data&quot;
                     </li>
                     <li className="text-fontsecondary flex items-start gap-3">
                       <span className="text-fontmuted">→</span>
@@ -326,7 +326,7 @@ const DynamicWorkflows: React.FC = () => {
                   <ul className="space-y-4">
                     <li className="text-fontprimary flex items-start gap-3">
                       <span className="text-amber-500">→</span>
-                      "User Risk OS" — measures, decides, AND acts
+                      &quot;User Risk OS&quot;: measures, decides, AND acts
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
                       <span className="text-amber-500">→</span>
@@ -334,7 +334,7 @@ const DynamicWorkflows: React.FC = () => {
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
                       <span className="text-amber-500">→</span>
-                      "Reduce risk automatically"
+                      &quot;Reduce risk automatically&quot;
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
                       <span className="text-amber-500">→</span>
@@ -367,7 +367,7 @@ const DynamicWorkflows: React.FC = () => {
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">My Role</span>
               <h2 className="text-h1 text-fontprimary mt-4 mb-8">
-                This wasn't a feature I was asked to design
+                This wasn&apos;t a feature I was asked to design
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-12">
                 I drove this from insight to implementation:
@@ -450,14 +450,14 @@ const DynamicWorkflows: React.FC = () => {
                 <div>
                   <h3 className="text-xl text-fontprimary font-medium mb-3">Automation needs to feel controllable</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    Users don't trust magic. They trust tools they can inspect, adjust, and override. Preview, Protect, Prove addressed the #1 objection in sales calls.
+                    Users don&apos;t trust magic. They trust tools they can inspect, adjust, and override. Preview, Protect, Prove addressed the #1 objection in sales calls.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl text-fontprimary font-medium mb-3">Own the outcome, not just the output</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    I tracked activation rates, gathered feedback, iterated on templates, and worked with customer success. At the leadership level, you're accountable for whether the work succeeds, not just whether it ships.
+                    I tracked activation rates, gathered feedback, iterated on templates, and worked with customer success. At the leadership level, you&apos;re accountable for whether the work succeeds, not just whether it ships.
                   </p>
                 </div>
               </div>

@@ -101,7 +101,7 @@ const RiskPlatform: React.FC = () => {
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
               <h2 className="text-h1 text-fontprimary mt-4 mb-8">
-                "I can't tell which users are putting us most at risk."
+                &quot;I can&apos;t tell which users are putting us most at risk.&quot;
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed">
                 I spent my first weeks talking to CISOs, security admins, and our sales team. The same themes kept emerging: everyone had phishing results and training completion rates. Nobody had a unified view of which people were actually dangerous to the business.
@@ -111,16 +111,16 @@ const RiskPlatform: React.FC = () => {
             {/* Insight Cards - Stacked, not grid */}
             <div className="max-w-3xl mx-auto px-6 mt-16 space-y-6">
               <div className="p-8 bg-white rounded-xl border border-gray-200">
-                <p className="text-lg text-fontprimary font-medium mb-2">No clear picture of who's risky</p>
+                <p className="text-lg text-fontprimary font-medium mb-2">No clear picture of who&apos;s risky</p>
                 <p className="text-fontsecondary">Everyone had data. Nobody had a unified view of which people were actually dangerous to the business.</p>
               </div>
               <div className="p-8 bg-white rounded-xl border border-gray-200">
-                <p className="text-lg text-fontprimary font-medium mb-2">Training wasn't targeted</p>
+                <p className="text-lg text-fontprimary font-medium mb-2">Training wasn&apos;t targeted</p>
                 <p className="text-fontsecondary">Security teams care about the small set of high-risk users. They wanted focus, not floods of data for everyone.</p>
               </div>
               <div className="p-8 bg-white rounded-xl border border-gray-200">
-                <p className="text-lg text-fontprimary font-medium mb-2">Couldn't explain to the board</p>
-                <p className="text-fontsecondary">CISOs needed a risk story they could communicate upward. Opaque scores don't survive executive scrutiny.</p>
+                <p className="text-lg text-fontprimary font-medium mb-2">Couldn&apos;t explain to the board</p>
+                <p className="text-fontsecondary">CISOs needed a risk story they could communicate upward. Opaque scores don&apos;t survive executive scrutiny.</p>
               </div>
             </div>
           </section>
@@ -135,7 +135,7 @@ const RiskPlatform: React.FC = () => {
                 Designing a credit score for user risk
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-8">
-                The original risk score combined multiple signals in ways that were mathematically valid but impossible to explain. When customers asked "why is this person high-risk?" we couldn't give a clear answer.
+                The original risk score combined multiple signals in ways that were mathematically valid but impossible to explain. When customers asked &quot;why is this person high-risk?&quot; we couldn&apos;t give a clear answer.
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed">
                 I pushed for a constraint: <span className="text-fontprimary font-medium">the model had to be explainable in four factors or fewer</span>. Credit scores are read one at a time. Security admins look at thousands of users at once. Cognitive load matters.
@@ -169,7 +169,7 @@ const RiskPlatform: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Business Impact</h4>
-                    <p className="text-fontsecondary leading-relaxed">Role, access level, what's at stake if this person is compromised. A CFO clicking a phishing link is different from an intern.</p>
+                    <p className="text-fontsecondary leading-relaxed">Role, access level, what&apos;s at stake if this person is compromised. A CFO clicking a phishing link is different from an intern.</p>
                   </div>
                 </div>
 
@@ -199,7 +199,7 @@ const RiskPlatform: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Cyber Hygiene</h4>
-                    <p className="text-fontsecondary leading-relaxed">Signals from connected tools—sign-in patterns, device posture, password behavior. The daily habits that indicate risk.</p>
+                    <p className="text-fontsecondary leading-relaxed">Signals from connected tools: sign-in patterns, device posture, password behavior. The daily habits that indicate risk.</p>
                   </div>
                 </div>
               </div>
@@ -288,7 +288,7 @@ const RiskPlatform: React.FC = () => {
                 One language, every zoom level
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed">
-                A CISO needs the org-wide view. A security admin needs the individual user view. The same data, different depths. I designed a consistent drilldown pattern where risk scores look the same whether you're viewing 10,000 people or one person.
+                A CISO needs the org-wide view. A security admin needs the individual user view. The same data, different depths. I designed a consistent drilldown pattern where risk scores look the same whether you&apos;re viewing 10,000 people or one person.
               </p>
             </div>
           </section>
@@ -329,7 +329,7 @@ const RiskPlatform: React.FC = () => {
                 <div className="text-fontmuted text-2xl">→</div>
                 <div className="text-center px-8">
                   <div className="text-4xl font-light text-indigo-600 mb-2">Factor</div>
-                  <p className="text-fonttertiary text-sm">Why they're risky</p>
+                  <p className="text-fonttertiary text-sm">Why they&apos;re risky</p>
                 </div>
               </div>
             </div>
@@ -425,7 +425,7 @@ const RiskPlatform: React.FC = () => {
                 <div>
                   <h3 className="text-xl text-fontprimary font-medium mb-3">Explainability beats sophistication</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    We could have built a more complex model with more factors. It would have been more "accurate." But accuracy that can't be explained is useless in enterprise software. The constraint of four factors forced clarity.
+                    We could have built a more complex model with more factors. It would have been more &quot;accurate.&quot; But accuracy that can&apos;t be explained is useless in enterprise software. The constraint of four factors forced clarity.
                   </p>
                 </div>
 

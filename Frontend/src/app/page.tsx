@@ -4,7 +4,6 @@ import TransitionWrapper from "./components/TransitionWrapper";
 import AnimatedBlobs from "./components/AnimatedBlobs";
 import DuneOrgDashboard from "../../public/assets/Dune/dashboard.webp";
 import DuneDesignSystem from "../../public/assets/Dune/DesignSystem.webp";
-import DuneArchitecture from "../../public/assets/Dune/architecture.webp";
 import UniversityParkUserProfile from "../../public/assets/UniversityPark/userprofile.webp";
 import ChainReactiveHero from "../../public/assets/ChainReactive/hero.webp";
 import { motion } from "framer-motion";

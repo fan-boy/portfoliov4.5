@@ -6,10 +6,7 @@ import Image from "next/image";
 import TransitionWrapper from "../../components/TransitionWrapper";
 import DefaultPage from "../../components/Pages/DefaultPage";
 import DesignSystem from "../../../../public/assets/Dune/DesignSystem.webp";
-import OldDashboard from "../../../../public/assets/Dune/OldOrganization.webp";
-
 import AnimatedBlobs from "../../components/AnimatedBlobs";
-import BeforeAfterSlider from "../../components/Miscelaneous/BeforeAfterSlider";
 import { fadeIn, stagger } from "../../lib/animations";
 import { useChatOverflow } from "../../lib/hooks/useChatOverflow";
 
@@ -82,7 +79,7 @@ const StillsuitDesignSystem: React.FC = () => {
           <section className="w-full py-24">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
-                As the sole designer at an early-stage startup, I couldn't afford to rebuild components from scratch every sprint. 
+                As the sole designer at an early-stage startup, I couldn&apos;t afford to rebuild components from scratch every sprint. 
                 <span className="font-medium"> I created Stillsuit: a practical design system built for speed.</span>
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed mt-8">
@@ -98,13 +95,13 @@ const StillsuitDesignSystem: React.FC = () => {
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Decision</span>
               <h2 className="text-h1 text-fontprimary mt-4 mb-8">
-                Why build a design system when you're the only designer?
+                Why build a design system when you&apos;re the only designer?
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-8">
-                I'm cautious about design systems. They're often created too early, easily overcomplicated, and become maintenance burdens that slow teams down instead of speeding them up.
+                I&apos;m cautious about design systems. They&apos;re often created too early, easily overcomplicated, and become maintenance burdens that slow teams down instead of speeding them up.
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed">
-                At Dune, I didn't think we needed one at first. But I was thinking ahead.
+                At Dune, I didn&apos;t think we needed one at first. But I was thinking ahead.
               </p>
             </div>
 
@@ -213,7 +210,7 @@ const StillsuitDesignSystem: React.FC = () => {
                 Token architecture
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-12">
-                I started with design tokens—the foundational layer that everything else builds on. Getting this right meant the rebrand could happen by changing values in one place.
+                I started with design tokens, the foundational layer that everything else builds on. Getting this right meant the rebrand could happen by changing values in one place.
               </p>
             </div>
 
@@ -259,7 +256,7 @@ const StillsuitDesignSystem: React.FC = () => {
                 Color earns its place
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-8">
-                The old product used color decoratively. Dark backgrounds, gradient accents, colorful cards. It looked "sophisticated" but made the interface noisy and risk states hard to spot.
+                The old product used color decoratively. Dark backgrounds, gradient accents, colorful cards. It looked &quot;sophisticated&quot; but made the interface noisy and risk states hard to spot.
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed">
                 In the new system, <span className="text-fontprimary font-medium">saturated colors are reserved for risk and status</span>. This means when something is red, it actually means something.
@@ -349,7 +346,7 @@ const StillsuitDesignSystem: React.FC = () => {
                 Documentation that engineers actually use
               </h2>
               <p className="text-xl text-fontsecondary leading-relaxed mb-8">
-                Documentation that lives in a separate wiki gets stale. Documentation that's too sparse doesn't help. I needed something that engineers would actually use.
+                Documentation that lives in a separate wiki gets stale. Documentation that&apos;s too sparse doesn&apos;t help. I needed something that engineers would actually use.
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed">
                 My solution: <span className="text-fontprimary font-medium">documentation lives directly in Figma, attached to components</span>. When an engineer inspects a component, the usage guidelines are right there.
@@ -359,7 +356,7 @@ const StillsuitDesignSystem: React.FC = () => {
             <div className="max-w-3xl mx-auto px-6 mt-16">
               <div className="p-8 bg-teal-50 rounded-xl border border-teal-100">
                 <p className="text-xl text-fontprimary leading-relaxed">
-                  Engineers stopped asking "what's the padding here?" The answer was always <span className="font-medium">"check the component."</span>
+                  Engineers stopped asking &quot;what&apos;s the padding here?&quot; The answer was always <span className="font-medium">&quot;check the component.&quot;</span>
                 </p>
               </div>
             </div>
@@ -392,7 +389,7 @@ const StillsuitDesignSystem: React.FC = () => {
                 </div>
                 <div className="p-12 bg-white rounded-2xl border border-gray-200 text-center">
                   <div className="text-6xl font-light text-teal-600 mb-4">↓↓</div>
-                  <p className="text-fontsecondary">Visual bugs and "doesn't match" tickets</p>
+                  <p className="text-fontsecondary">Visual bugs and &quot;doesn&apos;t match&quot; tickets</p>
                 </div>
               </div>
             </div>
@@ -412,7 +409,7 @@ const StillsuitDesignSystem: React.FC = () => {
                 <div>
                   <h3 className="text-xl text-fontprimary font-medium mb-3">Infrastructure is a leadership decision</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    Building a design system when you're the only designer feels indulgent. But at the staff level, you think about what the team will need in 12 months, not just what you need today.
+                    Building a design system when you&apos;re the only designer feels indulgent. But at the staff level, you think about what the team will need in 12 months, not just what you need today.
                   </p>
                 </div>
 
@@ -424,9 +421,9 @@ const StillsuitDesignSystem: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-xl text-fontprimary font-medium mb-3">Document for the person who isn't here yet</h3>
+                  <h3 className="text-xl text-fontprimary font-medium mb-3">Document for the person who isn&apos;t here yet</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    Every piece of documentation was written for the engineer or designer who would join in 6 months and need to understand "why is it this way?"
+                    Every piece of documentation was written for the engineer or designer who would join in 6 months and need to understand &quot;why is it this way?&quot;
                   </p>
                 </div>
 

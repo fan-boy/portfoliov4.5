@@ -14,7 +14,6 @@ import Research from "../../../public/assets/UniversityPark/research.webp";
 import MidFi from "../../../public/assets/UniversityPark/mid-fi.webp";
 import Gamification from "../../../public/assets/UniversityPark/gamification.webp";
 import Admin from "../../../public/assets/UniversityPark/admin.webp";
-import CardSort from "../../../public/assets/UniversityPark/cardsort.webp";
 
 const UniversityPark: React.FC = () => {
   const { chatOpen } = useChatOverflow();

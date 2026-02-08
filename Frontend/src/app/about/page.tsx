@@ -11,12 +11,12 @@ const experience = [
   {
     company: "Dune Security",
     title: "Head of Product Design",
-    years: "2024–Present",
+    years: "2024 to Present",
   },
   {
     company: "University Park",
     title: "Product Designer (0→1 Product)",
-    years: "2023–Present",
+    years: "2023 to Present",
   },
   {
     company: "Crashr",
@@ -26,12 +26,12 @@ const experience = [
   {
     company: "Chain Reactive LLC",
     title: "Lead Product Designer & Full-Stack Developer",
-    years: "2021–2022",
+    years: "2021 to 2022",
   },
   {
     company: "Ingram Micro India SSC",
     title: "Product Design Specialist & Software Engineer",
-    years: "2018–2021",
+    years: "2018 to 2021",
   },
 ];
 
@@ -68,13 +68,13 @@ export default function AboutPage() {
             I design digital products that turn complexity into clarity. My sweet spot? Building 0→1 products and scaling design systems for teams that want to move fast <span className="text-gray-500">(but never break things that matter)</span>.
           </p>
           <p className="text-fontsecondary mb-4">
-            I've led design for AI-powered security platforms, gamified sustainability apps, and food tech tools for small businesses. Whether I'm sketching flows, running workshops, or obsessing over micro-interactions, I'm happiest when I'm helping teams ship work that's both beautiful and useful.
+            I&apos;ve led design for AI-powered security platforms, gamified sustainability apps, and food tech tools for small businesses. Whether I&apos;m sketching flows, running workshops, or obsessing over micro-interactions, I&apos;m happiest when I&apos;m helping teams ship work that&apos;s both beautiful and useful.
           </p>
           <p className="text-fontsecondary mb-4">
             My journey has taken me from Mumbai to Maryland to New York—across startups, enterprise, and everything in between. I thrive in ambiguity, love a good whiteboard session, and believe that the best products are built by teams who listen deeply and iterate relentlessly.
           </p>
           <p className="text-fontsecondary mb-4">
-            Outside of work, you'll find me exploring new cities, reading about behavioral science, or searching for the perfect cup of coffee.
+            Outside of work, you&apos;ll find me exploring new cities, reading about behavioral science, or searching for the perfect cup of coffee.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function AboutPage() {
         <div className="w-full">
           <h3 className="text-xl font-semibold mb-2">Design Philosophy</h3>
           <p className="text-base text-gray-700">
-            I believe great design is equal parts empathy, rigor, and craft. I'm driven by the challenge of making the complex feel simple, and I'm energized by collaborating with ambitious teams to build products that matter.
+            I believe great design is equal parts empathy, rigor, and craft. I&apos;m driven by the challenge of making the complex feel simple, and I&apos;m energized by collaborating with ambitious teams to build products that matter.
           </p>
         </div>
       </section>
