@@ -52,6 +52,7 @@ export default function ChatBox() {
     // Use capture phase to intercept before other handlers
     window.addEventListener('keydown', handler, true);
     return () => window.removeEventListener('keydown', handler, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatOpen]);
 
   // Auto-focus input when chat opens
