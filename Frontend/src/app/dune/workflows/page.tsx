@@ -437,7 +437,7 @@ const DynamicWorkflows: React.FC = () => {
                 <div>
                   <h3 className="text-xl text-fontprimary font-medium mb-3">Features can be strategy</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    Workflows wasn&apos;t just a product feature. It was a strategic repositioning of the entire company. At the staff level, you recognize when a design opportunity is actually a business opportunity.
+                    Workflows wasn&apos;t just a product feature. It was a strategic repositioning of the entire company. Recognizing when a design opportunity is actually a business opportunity is what separates feature work from product strategy.
                   </p>
                 </div>
 

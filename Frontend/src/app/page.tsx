@@ -40,7 +40,7 @@ const projects: Project[] = [
   },
   {
     title: "University Park",
-    subtitle: "Gamified sustainability platform that changed real behavior",
+    subtitle: "Behavior change platform adopted by majority of households in first quarter",
     href: "/universitypark",
     image: UniversityParkUserProfile,
     company: "University Park",
