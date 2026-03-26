@@ -40,10 +40,10 @@ const projects: Project[] = [
   },
   {
     title: "University Park",
-    subtitle: "Gamified sustainability that changed real behavior on campus",
+    subtitle: "Gamified sustainability platform that changed real behavior",
     href: "/universitypark",
     image: UniversityParkUserProfile,
-    company: "Civic Tech",
+    company: "University Park",
     year: "2023–2024",
   },
   // Hidden for launch - keeping code intact

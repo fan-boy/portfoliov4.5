@@ -408,7 +408,7 @@ const StillsuitDesignSystem: React.FC = () => {
                 <div>
                   <h3 className="text-lg text-fontprimary font-normal mb-2">Infrastructure is a leadership decision</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    Building a design system when you&apos;re the only designer feels indulgent. But at the staff level, you think about what the team will need in 12 months, not just what you need today.
+                    Building a design system when you&apos;re the only designer feels indulgent. But I was thinking about what the team would need in 12 months, not just what I needed that week.
                   </p>
                 </div>
 
@@ -429,7 +429,7 @@ const StillsuitDesignSystem: React.FC = () => {
                 <div>
                   <h3 className="text-lg text-fontprimary font-normal mb-2">Make the case with math</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    Leadership approved the investment because I showed the ROI. Staff designers speak in business outcomes, not just design quality.
+                    Leadership approved the investment because I showed the ROI. Speaking in business outcomes, not just design quality, is how you get buy-in.
                   </p>
                 </div>
               </div>
