@@ -66,7 +66,7 @@ const UniversityPark: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5 bg-green-50">
+                <div className="relative rounded-2xl overflow-hidden" >
                   <Image
                     src={HeroImage}
                     alt="University Park Sustainability Platform"
@@ -143,7 +143,7 @@ const UniversityPark: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <div className="p-8 bg-green-50 rounded-xl border border-green-100">
+              <div className="p-8 rounded-xl" >
                 <p className="text-xl text-fontprimary leading-relaxed">
                   These insights reframed the project. We weren&apos;t building an educational resource. We were building a <span className="font-medium">behavior change system</span>.
                 </p>
@@ -154,7 +154,7 @@ const UniversityPark: React.FC = () => {
           {/* Research visual */}
           <section className="w-full py-8">
             <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+              <div className="relative rounded-2xl overflow-hidden" >
                 <Image
                   src={Research}
                   alt="User research personas"
@@ -274,15 +274,17 @@ const UniversityPark: React.FC = () => {
           {/* Community post video */}
           <section className="w-full py-8">
             <div className="max-w-6xl mx-auto px-6">
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="w-full"
-              >
-                <source src="/assets/UniversityPark/communitypost.mp4" type="video/mp4" />
-              </video>
+              <div className="rounded-2xl overflow-hidden" >
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full"
+                >
+                  <source src="/assets/UniversityPark/communitypost.mp4" type="video/mp4" />
+                </video>
+              </div>
             </div>
           </section>
 
@@ -331,7 +333,7 @@ const UniversityPark: React.FC = () => {
           {/* Wireframes */}
           <section className="w-full py-8">
             <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+              <div className="relative rounded-2xl overflow-hidden" >
                 <Image
                   src={MidFi}
                   alt="Mid-fidelity wireframes"
@@ -378,7 +380,7 @@ const UniversityPark: React.FC = () => {
           {/* Admin visual */}
           <section className="w-full py-8">
             <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+              <div className="relative rounded-2xl overflow-hidden" >
                 <Image
                   src={Admin}
                   alt="Admin dashboard interface"
@@ -451,15 +453,17 @@ const UniversityPark: React.FC = () => {
           {/* Onboarding video */}
           <section className="w-full py-8">
             <div className="max-w-6xl mx-auto px-6">
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="w-full"
-              >
-                <source src="/assets/UniversityPark/OnboardingFlow.mp4" type="video/mp4" />
-              </video>
+              <div className="rounded-2xl overflow-hidden" >
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full"
+                >
+                  <source src="/assets/UniversityPark/OnboardingFlow.mp4" type="video/mp4" />
+                </video>
+              </div>
             </div>
           </section>
 
@@ -541,7 +545,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-green-600 transition-colors">
+              <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-accent transition-colors">
                 Dune Risk Platform →
               </a>
             </div>

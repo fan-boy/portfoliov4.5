@@ -61,7 +61,7 @@ const StillsuitDesignSystem: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5 bg-teal-50">
+                <div className="relative rounded-2xl overflow-hidden bg-accent-soft">
                   <Image
                     src={DesignSystem}
                     alt="Stillsuit Design System"
@@ -139,7 +139,7 @@ const StillsuitDesignSystem: React.FC = () => {
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 I made the case to leadership that investing 3-4 weeks in a design system would pay back 10x over the next year.
               </p>
-              <div className="p-6 bg-teal-50 rounded-xl border border-teal-100">
+              <div className="p-6 bg-accent-soft rounded-xl border border-accent-soft">
                 <p className="text-lg text-fontprimary leading-relaxed">
                   We were planning to ship <span className="font-medium">12+ major features</span>. If each saved <span className="font-medium">3-4 days</span> of design/eng overhead, the system paid for itself by <span className="font-medium">feature #3</span>.
                 </p>
@@ -159,8 +159,8 @@ const StillsuitDesignSystem: React.FC = () => {
 
               <div className="space-y-10">
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-semibold text-sm">1</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-accent font-semibold text-sm">1</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">Speed over completeness</h4>
@@ -169,8 +169,8 @@ const StillsuitDesignSystem: React.FC = () => {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-semibold text-sm">2</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-accent font-semibold text-sm">2</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">Engineer-first documentation</h4>
@@ -179,8 +179,8 @@ const StillsuitDesignSystem: React.FC = () => {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-semibold text-sm">3</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-accent font-semibold text-sm">3</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">Flexible but opinionated</h4>
@@ -189,8 +189,8 @@ const StillsuitDesignSystem: React.FC = () => {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-semibold text-sm">4</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-accent font-semibold text-sm">4</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">One source of truth</h4>
@@ -219,21 +219,21 @@ const StillsuitDesignSystem: React.FC = () => {
             <div className="max-w-4xl mx-auto px-6">
               <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
                 <div className="text-center px-6 py-5 bg-bg-secondary rounded-xl flex-1 w-full md:w-auto">
-                  <div className="text-xl font-light text-teal-600 mb-1">Primitives</div>
+                  <div className="text-xl font-light text-accent mb-1">Primitives</div>
                   <p className="text-fonttertiary text-xs">Raw values</p>
                   <p className="text-fontsecondary text-xs mt-1">gray-100, space-4</p>
                 </div>
                 <div className="text-fontmuted text-xl hidden md:block">→</div>
                 <div className="text-fontmuted text-xl md:hidden">↓</div>
                 <div className="text-center px-6 py-5 bg-bg-secondary rounded-xl flex-1 w-full md:w-auto">
-                  <div className="text-xl font-light text-teal-600 mb-1">Semantic</div>
+                  <div className="text-xl font-light text-accent mb-1">Semantic</div>
                   <p className="text-fonttertiary text-xs">Contextual meaning</p>
                   <p className="text-fontsecondary text-xs mt-1">color-bg-primary</p>
                 </div>
                 <div className="text-fontmuted text-xl hidden md:block">→</div>
                 <div className="text-fontmuted text-xl md:hidden">↓</div>
                 <div className="text-center px-6 py-5 bg-bg-secondary rounded-xl flex-1 w-full md:w-auto">
-                  <div className="text-xl font-light text-teal-600 mb-1">Component</div>
+                  <div className="text-xl font-light text-accent mb-1">Component</div>
                   <p className="text-fonttertiary text-xs">Specific usage</p>
                   <p className="text-fontsecondary text-xs mt-1">button-padding-x</p>
                 </div>
@@ -241,7 +241,7 @@ const StillsuitDesignSystem: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <div className="p-6 bg-teal-50 rounded-xl border border-teal-100">
+              <div className="p-6 bg-accent-soft rounded-xl border border-accent-soft">
                 <p className="text-lg text-fontprimary leading-relaxed">
                   When we flipped from dark to light mode, I changed the semantic token mappings. <span className="font-medium">Every component updated automatically.</span>
                 </p>
@@ -353,7 +353,7 @@ const StillsuitDesignSystem: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <div className="p-6 bg-teal-50 rounded-xl border border-teal-100">
+              <div className="p-6 bg-accent-soft rounded-xl border border-accent-soft">
                 <p className="text-lg text-fontprimary leading-relaxed">
                   Engineers stopped asking &quot;what&apos;s the padding here?&quot; The answer was always <span className="font-medium">&quot;check the component.&quot;</span>
                 </p>
@@ -375,19 +375,19 @@ const StillsuitDesignSystem: React.FC = () => {
             <div className="max-w-4xl mx-auto px-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="p-8 bg-bg-secondary rounded-xl">
-                  <div className="text-5xl font-light text-teal-600 mb-3">50%</div>
+                  <div className="text-5xl font-light text-accent mb-3">50%</div>
                   <p className="text-fontsecondary text-sm">Faster engineer onboarding</p>
                 </div>
                 <div className="p-8 bg-bg-secondary rounded-xl">
-                  <div className="text-5xl font-light text-teal-600 mb-3">2 wks</div>
+                  <div className="text-5xl font-light text-accent mb-3">2 wks</div>
                   <p className="text-fontsecondary text-sm">Rebrand execution (vs. 6 estimated)</p>
                 </div>
                 <div className="p-8 bg-bg-secondary rounded-xl">
-                  <div className="text-5xl font-light text-teal-600 mb-3">30%</div>
+                  <div className="text-5xl font-light text-accent mb-3">30%</div>
                   <p className="text-fontsecondary text-sm">Faster average feature shipping</p>
                 </div>
                 <div className="p-8 bg-bg-secondary rounded-xl">
-                  <div className="text-5xl font-light text-teal-600 mb-3">↓↓</div>
+                  <div className="text-5xl font-light text-accent mb-3">↓↓</div>
                   <p className="text-fontsecondary text-sm">Visual bugs and &quot;doesn&apos;t match&quot; tickets</p>
                 </div>
               </div>
@@ -442,8 +442,8 @@ const StillsuitDesignSystem: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/workflows" className="text-2xl md:text-3xl text-fontprimary hover:text-teal-600 transition-colors tracking-tight">
-                Dynamic Workflows →
+              <a href="/universitypark" className="text-2xl md:text-3xl text-fontprimary hover:text-accent transition-colors tracking-tight">
+                University Park →
               </a>
             </div>
           </section>

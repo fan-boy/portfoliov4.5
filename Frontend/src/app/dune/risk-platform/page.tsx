@@ -67,7 +67,7 @@ const RiskPlatform: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+                <div className="relative rounded-2xl overflow-hidden ">
                   <video 
                     autoPlay 
                     loop 
@@ -225,7 +225,7 @@ const RiskPlatform: React.FC = () => {
 
             {/* Before/After Slider */}
             <div className="max-w-6xl mx-auto px-6 mt-16">
-              <div className="rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+              <div className="rounded-2xl overflow-hidden ">
                 <BeforeAfterSlider beforeImage={OldDashboard} afterImage={OrgDashboard} />
               </div>
             </div>
@@ -295,7 +295,7 @@ const RiskPlatform: React.FC = () => {
 
             {/* Drilldown Visual */}
             <div className="max-w-6xl mx-auto px-6 mt-16">
-              <div className="rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+              <div className="rounded-2xl overflow-hidden ">
                 <video 
                   autoPlay 
                   loop 
@@ -447,7 +447,7 @@ const RiskPlatform: React.FC = () => {
           <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/stillsuit" className="text-2xl md:text-3xl text-fontprimary hover:text-indigo-600 transition-colors tracking-tight">
+              <a href="/dune/stillsuit" className="text-2xl md:text-3xl text-fontprimary hover:text-accent transition-colors tracking-tight">
                 Stillsuit Design System →
               </a>
             </div>
