@@ -19,10 +19,10 @@
   --text-muted: #8A8A8A;
 
   /* Accent Colors */
-  --accent-primary: #D97706;
-  --accent-primary-soft: #FEF3C7;
-  --accent-secondary: #0D9488;
-  --accent-secondary-soft: #CCFBF1;
+  --accent-primary: #6366F1;
+  --accent-primary-soft: #EEF2FF;
+  --accent-secondary: #4F46E5;
+  --accent-secondary-soft: #E0E7FF;
 
   /* Semantic Colors */
   --color-success: #16A34A;

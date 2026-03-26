@@ -17,15 +17,6 @@ interface Project {
   subtitle: string;
   href: string;
   image: StaticImageData;
-  imageAlt: string;
-  company: string;
-  year: string;
-}
-
-interface OtherProject {
-  title: string;
-  subtitle: string;
-  href: string;
   company: string;
   year: string;
 }
@@ -36,7 +27,6 @@ const projects: Project[] = [
     subtitle: "Designed the risk model that closed a $6M seed round",
     href: "/dune/risk-platform",
     image: DuneOrgDashboard,
-    imageAlt: "Dune Security risk platform dashboard",
     company: "Dune Security",
     year: "2024",
   },
@@ -45,7 +35,6 @@ const projects: Project[] = [
     subtitle: "50% faster engineer onboarding. Full rebrand in 2 weeks.",
     href: "/dune/stillsuit",
     image: DuneDesignSystem,
-    imageAlt: "Stillsuit design system components",
     company: "Dune Security",
     year: "2024",
   },
@@ -54,7 +43,6 @@ const projects: Project[] = [
     subtitle: "Gamified sustainability that changed real behavior on campus",
     href: "/universitypark",
     image: UniversityParkUserProfile,
-    imageAlt: "University Park platform preview",
     company: "Civic Tech",
     year: "2023–2024",
   },
@@ -63,16 +51,15 @@ const projects: Project[] = [
     subtitle: "Capturing a $60M market opportunity for small businesses",
     href: "/chainreactive",
     image: ChainReactiveHero,
-    imageAlt: "Chain Reactive ordering platform",
     company: "Startup",
     year: "2021",
   },
 ];
 
-const otherProjects: OtherProject[] = [
+const selectedWork = [
   {
     title: "Dynamic Workflows",
-    subtitle: "Saved security teams 40+ hours/month with automated remediation",
+    subtitle: "Automated remediation saving 40+ hours/month",
     href: "/dune/workflows",
     company: "Dune Security",
     year: "2024",
@@ -84,21 +71,6 @@ const otherProjects: OtherProject[] = [
     company: "Freelance",
     year: "2023",
   },
-  // Hidden for now — keeping files intact
-  // {
-  //   title: "Cadence",
-  //   subtitle: "Interactive art installation that reacts to movement",
-  //   href: "/cadence",
-  //   company: "NextNow Fest",
-  //   year: "2024",
-  // },
-  // {
-  //   title: "EverestOS",
-  //   subtitle: "Conceptual operating system design exploration",
-  //   href: "/everestos",
-  //   company: "Personal",
-  //   year: "2023",
-  // },
 ];
 
 export default function Home() {
@@ -112,15 +84,15 @@ export default function Home() {
       <DefaultPage>
         
         {/* ============================================
-            HERO SECTION
+            HERO
             ============================================ */}
         <motion.section 
-          className="w-full pt-40 pb-32 z-2"
+          className="w-full pt-40 pb-32 relative z-10"
           initial="hidden"
           animate="visible"
           variants={staggerSlow}
         >
-          <div className="max-w-5xl mx-auto px-6 ">
+          <div className="max-w-5xl mx-auto px-6">
             <motion.p 
               className="text-fonttertiary text-base tracking-wider uppercase mb-6"
               variants={fadeIn}
@@ -150,108 +122,95 @@ export default function Home() {
         </motion.section>
 
         {/* ============================================
-            FEATURED PROJECTS SECTION
+            WORK
             ============================================ */}
-        <section className="w-full pb-40">
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.div 
-              className="flex flex-col gap-40"
-              initial="hidden"
-              animate="visible"
-              variants={staggerSlow}
-            >
+        <section className="w-full pb-32">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="flex flex-col gap-32 lg:gap-40">
               {projects.map((project, index) => (
-                <motion.div
+                <motion.article
                   key={project.title}
-                  variants={fadeIn}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: index * 0.1,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                 >
                   <Link href={project.href} className="group block">
-                    {/* Image - Full width with hover lift */}
-                    <div className="relative w-full overflow-hidden rounded-xl mb-8 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/10 group-hover:-translate-y-1" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}>
-                      <Image
-                        src={project.image}
-                        alt={project.imageAlt}
-                        className="w-full transition-transform duration-700 group-hover:scale-[1.02]"
-                        style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}
-                        draggable={false}
-                        priority={index < 2}
-                      />
-                    </div>
-
-                    {/* Text */}
-                    <div className="max-w-3xl">
-                      <p className="text-fonttertiary text-base tracking-wide mb-4">
-                        {project.company} · {project.year}
-                      </p>
-                      <h2 className="text-h1 text-fontprimary mb-4 group-hover:text-fontsecondary transition-colors duration-300">
+                    {/* Header - Title left, subtitle right */}
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+                      <h2 className="text-2xl text-fontprimary group-hover:text-fontsecondary transition-colors duration-200">
                         {project.title}
                       </h2>
-                      <p className="text-xl text-fontsecondary leading-relaxed">
+                      <p className="text-base text-fonttertiary">
                         {project.subtitle}
                       </p>
                     </div>
+
+                    {/* Image in colored container with hover effect */}
+                    <div className="rounded-2xl pt-8 pl-8 sm:pt-12 sm:pl-12 overflow-hidden" style={{ backgroundColor: '#F0F1F8' }}>
+                      <div className="relative overflow-hidden rounded-tl-lg">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full rounded-tl-lg origin-top-left scale-[1.05] group-hover:scale-100 transition-all duration-700"
+                          style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}
+                          draggable={false}
+                          priority={index < 2}
+                        />
+                      </div>
+                    </div>
                   </Link>
-                </motion.div>
+                </motion.article>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ============================================
-            SELECTED WORK SECTION
+            SELECTED WORK - Just a simple list
             ============================================ */}
-        <section className="w-full py-32 bg-bg-secondary border-t border-gray-200/60">
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerSlow}
-            >
-              <motion.h2 
-                className="text-h2 text-fontprimary mb-12"
-                variants={fadeIn}
-              >
-                Selected Work
-              </motion.h2>
-              
-              <motion.div 
-                className="grid md:grid-cols-2 gap-8"
-                variants={fadeIn}
-              >
-                {otherProjects.map((project) => (
-                  <Link 
-                    key={project.title}
-                    href={project.href} 
-                    className="group block p-8 bg-white rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300"
-                    style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}
-                  >
-                    <p className="text-fonttertiary text-sm tracking-wide mb-3">
-                      {project.company} · {project.year}
-                    </p>
-                    <h3 className="text-xl text-fontprimary font-medium mb-2 group-hover:text-fontsecondary transition-colors">
+        <section className="w-full py-24 border-t border-gray-100">
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-8">
+              Selected Work
+            </p>
+            
+            <div className="flex flex-col">
+              {selectedWork.map((project) => (
+                <Link 
+                  key={project.title}
+                  href={project.href}
+                  className="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between py-4 border-b border-gray-100 last:border-b-0"
+                >
+                  <div>
+                    <span className="text-fontprimary group-hover:text-fontsecondary transition-colors">
                       {project.title}
-                    </h3>
-                    <p className="text-fontsecondary">
+                    </span>
+                    <span className="text-fonttertiary mx-2">—</span>
+                    <span className="text-fonttertiary">
                       {project.subtitle}
-                    </p>
-                  </Link>
-                ))}
-              </motion.div>
-            </motion.div>
+                    </span>
+                  </div>
+                  <span className="text-sm text-fontmuted">
+                    {project.year}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ============================================
-            CONTACT SECTION
+            CONTACT
             ============================================ */}
         <section className="w-full py-32">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-xl text-fontprimary mb-2">
-              Interested in working together?
-            </p>
+          <div className="max-w-4xl mx-auto px-6">
             <Link 
               href="/contact" 
-              className="text-h2 text-fontprimary hover:text-fontsecondary transition-colors"
+              className="text-4xl md:text-5xl text-fontprimary hover:text-accent transition-colors duration-300"
             >
               Get in touch →
             </Link>
