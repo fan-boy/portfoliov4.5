@@ -33,7 +33,7 @@ interface OtherProject {
 const projects: Project[] = [
   {
     title: "Risk Platform",
-    subtitle: "Making security risk understandable and actionable",
+    subtitle: "Designed the risk model that closed a $6M seed round",
     href: "/dune/risk-platform",
     image: DuneOrgDashboard,
     imageAlt: "Dune Security risk platform dashboard",
@@ -42,7 +42,7 @@ const projects: Project[] = [
   },
   {
     title: "Stillsuit Design System",
-    subtitle: "Building infrastructure for speed and consistency",
+    subtitle: "50% faster engineer onboarding. Full rebrand in 2 weeks.",
     href: "/dune/stillsuit",
     image: DuneDesignSystem,
     imageAlt: "Stillsuit design system components",
@@ -51,12 +51,12 @@ const projects: Project[] = [
   },
   {
     title: "University Park",
-    subtitle: "Turning sustainability from awareness into habit",
+    subtitle: "Gamified sustainability that changed real behavior on campus",
     href: "/universitypark",
     image: UniversityParkUserProfile,
     imageAlt: "University Park platform preview",
     company: "Civic Tech",
-    year: "2023",
+    year: "2023–2024",
   },
   {
     title: "Chain Reactive",
@@ -65,16 +65,16 @@ const projects: Project[] = [
     image: ChainReactiveHero,
     imageAlt: "Chain Reactive ordering platform",
     company: "Startup",
-    year: "2020",
+    year: "2021",
   },
 ];
 
 const otherProjects: OtherProject[] = [
   {
-    title: "Cadence",
-    subtitle: "Interactive art installation that reacts to movement",
-    href: "/cadence",
-    company: "NextNow Fest",
+    title: "Dynamic Workflows",
+    subtitle: "Saved security teams 40+ hours/month with automated remediation",
+    href: "/dune/workflows",
+    company: "Dune Security",
     year: "2024",
   },
   {
@@ -84,20 +84,21 @@ const otherProjects: OtherProject[] = [
     company: "Freelance",
     year: "2023",
   },
-  {
-    title: "EverestOS",
-    subtitle: "Conceptual operating system design exploration",
-    href: "/everestos",
-    company: "Personal",
-    year: "2023",
-  },
-  {
-    title: "Dynamic Workflows",
-    subtitle: "Turning dashboards into decision-makers",
-    href: "/dune/workflows",
-    company: "Dune Security",
-    year: "2024",
-  },
+  // Hidden for now — keeping files intact
+  // {
+  //   title: "Cadence",
+  //   subtitle: "Interactive art installation that reacts to movement",
+  //   href: "/cadence",
+  //   company: "NextNow Fest",
+  //   year: "2024",
+  // },
+  // {
+  //   title: "EverestOS",
+  //   subtitle: "Conceptual operating system design exploration",
+  //   href: "/everestos",
+  //   company: "Personal",
+  //   year: "2023",
+  // },
 ];
 
 export default function Home() {
@@ -128,10 +129,10 @@ export default function Home() {
             </motion.p>
             
             <motion.h1 
-              className="text-display text-fontprimary leading-[1.15] tracking-tight max-w-4xl mb-10"
+              className="text-display text-fontprimary leading-[1.05] tracking-tight max-w-4xl mb-10"
               variants={fadeIn}
             >
-              Designing systems that scale with clarity.
+              Building products where complexity feels effortless.
             </motion.h1>
             
             <motion.div 
@@ -142,7 +143,7 @@ export default function Home() {
                 Product designer blending visual clarity with AI-first workflows.
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed">
-                Currently at <span className="text-fontprimary font-medium">Dune Security</span>.
+                Currently at <span className="text-accent font-medium">Dune Security</span>.
               </p>
             </motion.div>
           </div>
@@ -151,10 +152,10 @@ export default function Home() {
         {/* ============================================
             FEATURED PROJECTS SECTION
             ============================================ */}
-        <section className="w-full pb-32">
+        <section className="w-full pb-40">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div 
-              className="flex flex-col gap-32"
+              className="flex flex-col gap-40"
               initial="hidden"
               animate="visible"
               variants={staggerSlow}
@@ -165,12 +166,12 @@ export default function Home() {
                   variants={fadeIn}
                 >
                   <Link href={project.href} className="group block">
-                    {/* Image - Full width, no container */}
-                    <div className="relative w-full overflow-hidden rounded-lg mb-8">
+                    {/* Image - Full width with hover lift */}
+                    <div className="relative w-full overflow-hidden rounded-xl mb-8 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/10 group-hover:-translate-y-1" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}>
                       <Image
                         src={project.image}
                         alt={project.imageAlt}
-                        className="w-full transition-transform duration-700 group-hover:scale-[1.03]"
+                        className="w-full transition-transform duration-700 group-hover:scale-[1.02]"
                         style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}
                         draggable={false}
                         priority={index < 2}
@@ -197,9 +198,9 @@ export default function Home() {
         </section>
 
         {/* ============================================
-            OTHER PROJECTS SECTION
+            SELECTED WORK SECTION
             ============================================ */}
-        <section className="w-full py-24 bg-gray-50">
+        <section className="w-full py-32 bg-bg-secondary border-t border-gray-200/60">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial="hidden"
@@ -210,7 +211,7 @@ export default function Home() {
                 className="text-h2 text-fontprimary mb-12"
                 variants={fadeIn}
               >
-                Other Work
+                Selected Work
               </motion.h2>
               
               <motion.div 
@@ -221,7 +222,8 @@ export default function Home() {
                   <Link 
                     key={project.title}
                     href={project.href} 
-                    className="group block p-8 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-colors"
+                    className="group block p-8 bg-white rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300"
+                    style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}
                   >
                     <p className="text-fonttertiary text-sm tracking-wide mb-3">
                       {project.company} · {project.year}
@@ -242,7 +244,7 @@ export default function Home() {
         {/* ============================================
             CONTACT SECTION
             ============================================ */}
-        <section className="w-full py-24">
+        <section className="w-full py-32">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <p className="text-xl text-fontprimary mb-2">
               Interested in working together?

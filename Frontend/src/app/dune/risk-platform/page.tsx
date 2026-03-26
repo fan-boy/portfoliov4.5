@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import TransitionWrapper from "../../components/TransitionWrapper";
 import DefaultPage from "../../components/Pages/DefaultPage";
+import InsightCard from "../../components/Cards/InsightCard";
 import OrgDashboard from "../../../../public/assets/Dune/dashboard.webp";
 import architecture from "../../../../public/assets/Dune/architecture.webp";
 import OldDashboard from "../../../../public/assets/Dune/OldOrganization.webp";
@@ -84,7 +85,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               SUMMARY
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 Security teams drown in data but struggle to answer a simple question: 
@@ -99,10 +100,10 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               THE PROBLEM
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 &quot;I can&apos;t tell which users are putting us most at risk.&quot;
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
@@ -111,29 +112,29 @@ const RiskPlatform: React.FC = () => {
             </div>
 
             {/* Insight Cards */}
-            <div className="max-w-3xl mx-auto px-6 mt-12 space-y-4">
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">No clear picture of who&apos;s risky</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Everyone had data. Nobody had a unified view of which people were actually dangerous to the business.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Training wasn&apos;t targeted</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Security teams care about the small set of high-risk users. They wanted focus, not floods of data for everyone.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Couldn&apos;t explain to the board</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">CISOs needed a risk story they could communicate upward. Opaque scores don&apos;t survive executive scrutiny.</p>
-              </div>
+            <div className="max-w-3xl mx-auto px-6 mt-16 space-y-6">
+              <InsightCard 
+                title="No clear picture of who's risky" 
+                description="Everyone had data. Nobody had a unified view of which people were actually dangerous to the business." 
+              />
+              <InsightCard 
+                title="Training wasn't targeted" 
+                description="Security teams care about the small set of high-risk users. They wanted focus, not floods of data for everyone." 
+              />
+              <InsightCard 
+                title="Couldn't explain to the board" 
+                description="CISOs needed a risk story they could communicate upward. Opaque scores don't survive executive scrutiny." 
+              />
             </div>
           </section>
 
           {/* ============================================
               THE APPROACH
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Designing a credit score for user risk
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-6">
@@ -160,7 +161,7 @@ const RiskPlatform: React.FC = () => {
           </section>
 
           {/* The Four Pillars List */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <h3 className="text-2xl md:text-3xl text-fontprimary mb-12 tracking-tight">The Four Pillars</h3>
               
@@ -170,7 +171,7 @@ const RiskPlatform: React.FC = () => {
                     <span className="text-indigo-600 font-semibold text-sm">1</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Business Impact</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Business Impact</h4>
                     <p className="text-fontsecondary leading-relaxed">Role, access level, what&apos;s at stake if this person is compromised. A CFO clicking a phishing link is different from an intern.</p>
                   </div>
                 </div>
@@ -180,7 +181,7 @@ const RiskPlatform: React.FC = () => {
                     <span className="text-indigo-600 font-semibold text-sm">2</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Simulated Attacks</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Simulated Attacks</h4>
                     <p className="text-fontsecondary leading-relaxed">Performance in phishing, spear-phishing, smishing, and vishing scenarios. Real behavior under simulated pressure.</p>
                   </div>
                 </div>
@@ -190,7 +191,7 @@ const RiskPlatform: React.FC = () => {
                     <span className="text-indigo-600 font-semibold text-sm">3</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Training Activity</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Training Activity</h4>
                     <p className="text-fontsecondary leading-relaxed">Completion rates and recency. Are they engaged with security education, or ignoring it entirely?</p>
                   </div>
                 </div>
@@ -200,7 +201,7 @@ const RiskPlatform: React.FC = () => {
                     <span className="text-indigo-600 font-semibold text-sm">4</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Cyber Hygiene</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Cyber Hygiene</h4>
                     <p className="text-fontsecondary leading-relaxed">Signals from connected tools: sign-in patterns, device posture, password behavior. The daily habits that indicate risk.</p>
                   </div>
                 </div>
@@ -211,10 +212,10 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               THE EXPERIENCE REDESIGN
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Redesign</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 From dark and dense to clear and actionable
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
@@ -281,10 +282,10 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               DRILLDOWN FLOW
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The System</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 One language, every zoom level
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
@@ -336,10 +337,10 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               STRATEGIC IMPACT
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Impact</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Design as product strategy
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
@@ -363,10 +364,10 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 The numbers
               </h2>
             </div>
@@ -408,30 +409,30 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
               <div className="space-y-10">
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Explainability beats sophistication</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Explainability beats sophistication</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     We could have built a more complex model with more factors. It would have been more &quot;accurate.&quot; But accuracy that can&apos;t be explained is useless in enterprise software. The constraint of four factors forced clarity.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Design the conversation, not just the screen</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Design the conversation, not just the screen</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     A lot of my work was designing how sales would demo the product, how CISOs would explain it to their boards, how admins would discuss users with managers. The UI was just one artifact of that thinking.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Own the strategy, not just the execution</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Own the strategy, not just the execution</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     I ran the customer research, proposed the four-pillar model, and built the case for why this should be our priority. At early-stage companies, the best designers don&apos;t wait for requirements. They shape them.
                   </p>
@@ -443,7 +444,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
               <a href="/dune/stillsuit" className="text-2xl md:text-3xl text-fontprimary hover:text-indigo-600 transition-colors tracking-tight">

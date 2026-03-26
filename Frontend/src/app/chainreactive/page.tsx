@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import TransitionWrapper from "../components/TransitionWrapper";
 import DefaultPage from "../components/Pages/DefaultPage";
+import InsightCard from "../components/Cards/InsightCard";
 import AnimatedBlobs from "../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../lib/animations";
 import { useChatOverflow } from "../lib/hooks/useChatOverflow";
@@ -81,7 +82,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               SUMMARY
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 While DoorDash and Uber Eats fought over delivery marketplaces, I saw a different opportunity.
@@ -96,10 +97,10 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               THE OPPORTUNITY
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Opportunity</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 What the big players missed
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-6">
@@ -162,10 +163,10 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               MARKET SIZING
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Market Opportunity</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 The numbers
               </h2>
             </div>
@@ -191,10 +192,10 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               RESEARCH INSIGHT
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Key Insight</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Decision fatigue as design constraint
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-6">
@@ -206,33 +207,33 @@ const ChainReactive: React.FC = () => {
             </div>
 
             {/* Research findings */}
-            <div className="max-w-3xl mx-auto px-6 mt-12 space-y-4">
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Decision fatigue epidemic</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Users weren&apos;t struggling with our interface. They were struggling with decisions themselves. More choice led to more abandonment.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Staffing crisis</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Restaurants were operating at 40-60% capacity not because of demand, but because they couldn&apos;t hire. Any solution requiring staff training was dead on arrival.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Safety imperative</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Physical menus were liability concerns. Existing QR solutions required app downloads and broke constantly.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Margin pressure</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Small-town restaurants operate on 3-5% margins. Marketplace commissions of 15-30% weren&apos;t sustainable.</p>
-              </div>
+            <div className="max-w-3xl mx-auto px-6 mt-16 space-y-6">
+              <InsightCard 
+                title="Decision fatigue epidemic" 
+                description="Users weren't struggling with our interface. They were struggling with decisions themselves. More choice led to more abandonment." 
+              />
+              <InsightCard 
+                title="Staffing crisis" 
+                description="Restaurants were operating at 40-60% capacity not because of demand, but because they couldn't hire. Any solution requiring staff training was dead on arrival." 
+              />
+              <InsightCard 
+                title="Safety imperative" 
+                description="Physical menus were liability concerns. Existing QR solutions required app downloads and broke constantly." 
+              />
+              <InsightCard 
+                title="Margin pressure" 
+                description="Small-town restaurants operate on 3-5% margins. Marketplace commissions of 15-30% weren't sustainable." 
+              />
             </div>
           </section>
 
           {/* ============================================
               THE SOLUTION
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Solution</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 2-step ordering in under 60 seconds
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -245,14 +246,14 @@ const ChainReactive: React.FC = () => {
               <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
                 <div className="text-center px-8 py-6 bg-emerald-50 rounded-xl flex-1 w-full md:w-auto">
                   <div className="text-5xl font-light text-emerald-600 mb-3">1</div>
-                  <p className="text-lg text-fontprimary font-medium mb-1">What do you want?</p>
+                  <p className="text-lg text-fontprimary font-normal mb-1">What do you want?</p>
                   <p className="text-fontsecondary text-sm">Smart suggestions based on time, history, popularity</p>
                 </div>
                 <div className="text-fontmuted text-3xl hidden md:block">→</div>
                 <div className="text-fontmuted text-3xl md:hidden">↓</div>
                 <div className="text-center px-8 py-6 bg-emerald-50 rounded-xl flex-1 w-full md:w-auto">
                   <div className="text-5xl font-light text-emerald-600 mb-3">2</div>
-                  <p className="text-lg text-fontprimary font-medium mb-1">When do you want it?</p>
+                  <p className="text-lg text-fontprimary font-normal mb-1">When do you want it?</p>
                   <p className="text-fontsecondary text-sm">Pickup time selection</p>
                 </div>
               </div>
@@ -284,10 +285,10 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               MULTI-PROBLEM ARCHITECTURE
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Systems Thinking</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Four problems, one platform
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -300,7 +301,7 @@ const ChainReactive: React.FC = () => {
                     <span className="text-emerald-600 font-semibold text-sm">1</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Staffing Crisis</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Staffing Crisis</h4>
                     <p className="text-fontsecondary leading-relaxed">Self-service ordering reduced front-of-house staff requirements by 40%. Zero staff training required.</p>
                   </div>
                 </div>
@@ -310,7 +311,7 @@ const ChainReactive: React.FC = () => {
                     <span className="text-emerald-600 font-semibold text-sm">2</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Safety Concerns</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Safety Concerns</h4>
                     <p className="text-fontsecondary leading-relaxed">In-restaurant QR ordering eliminated physical menu contact. Seamless transition between remote and on-premise ordering.</p>
                   </div>
                 </div>
@@ -320,7 +321,7 @@ const ChainReactive: React.FC = () => {
                     <span className="text-emerald-600 font-semibold text-sm">3</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Brand Control</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Brand Control</h4>
                     <p className="text-fontsecondary leading-relaxed">Template-based approach with strategic flexibility points. Restaurants kept their identity, not buried under a marketplace brand.</p>
                   </div>
                 </div>
@@ -330,7 +331,7 @@ const ChainReactive: React.FC = () => {
                     <span className="text-emerald-600 font-semibold text-sm">4</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Technical Complexity</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Technical Complexity</h4>
                     <p className="text-fontsecondary leading-relaxed">Real-time POS integration eliminated manual inventory management. Sophisticated backend, simple frontend.</p>
                   </div>
                 </div>
@@ -339,7 +340,7 @@ const ChainReactive: React.FC = () => {
           </section>
 
           {/* Brand examples */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-6xl mx-auto px-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg shadow-black/5 ring-1 ring-black/5">
@@ -366,10 +367,10 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               DATA-DRIVEN OPTIMIZATION
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Data-Driven Optimization</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Checkout abandonment: 78% → 23%
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-6">
@@ -395,10 +396,10 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               BUSINESS MODEL INFLUENCE
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Strategic Influence</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 From POS vendor to platform provider
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -455,10 +456,10 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 The numbers
               </h2>
             </div>
@@ -502,37 +503,37 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
               <div className="space-y-10">
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Crisis creates adoption windows</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Crisis creates adoption windows</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     Small businesses are notoriously resistant to technology adoption. COVID changed that equation. At the lead level, you recognize when market conditions create opportunities that pure product quality can&apos;t manufacture.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Constraint-driven design creates competitive advantage</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Constraint-driven design creates competitive advantage</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     The limitations of small-town markets forced design decisions that became our moat. Simple interfaces, deep integrations, trust-building patterns. These weren&apos;t compromises. They were strategic advantages.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Integration beats aggregation in underserved markets</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Integration beats aggregation in underserved markets</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     Marketplaces aggregate supply and demand. In underserved markets, the value is in making existing businesses work better, not connecting them to more customers.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Design the business case, not just the experience</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Design the business case, not just the experience</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     I didn&apos;t pitch the 2-step ordering flow as &quot;better UX.&quot; I pitched it as &quot;$2,400/month in labor savings.&quot; Framing design decisions in business outcomes got leadership buy-in and resources.
                   </p>
@@ -544,7 +545,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
               <a href="/universitypark" className="text-2xl md:text-3xl text-fontprimary hover:text-emerald-600 transition-colors tracking-tight">

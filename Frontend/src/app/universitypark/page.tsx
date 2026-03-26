@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import TransitionWrapper from "../components/TransitionWrapper";
 import DefaultPage from "../components/Pages/DefaultPage";
+import InsightCard from "../components/Cards/InsightCard";
 import AnimatedBlobs from "../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../lib/animations";
 import { useChatOverflow } from "../lib/hooks/useChatOverflow";
@@ -81,7 +82,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               SUMMARY
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 Most sustainability initiatives fail at the same point: the gap between knowing and doing.
@@ -96,10 +97,10 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               THE CHALLENGE
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Information wasn&apos;t the problem
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -117,7 +118,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Research</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Understanding the real barriers
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -127,18 +128,18 @@ const UniversityPark: React.FC = () => {
 
             {/* Research findings */}
             <div className="max-w-3xl mx-auto px-6 space-y-6">
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-lg text-fontprimary font-medium mb-2">&quot;I know what I should do. I just don&apos;t do it&quot;</p>
-                <p className="text-fontsecondary">Residents weren&apos;t lacking information. They were lacking triggers, accountability, and a sense that their individual actions mattered.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-lg text-fontprimary font-medium mb-2">&quot;The committee can&apos;t see what&apos;s working&quot;</p>
-                <p className="text-fontsecondary">There was no feedback loop. The committee had no visibility into which initiatives were gaining traction and which were being ignored.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-lg text-fontprimary font-medium mb-2">&quot;One size fits none&quot;</p>
-                <p className="text-fontsecondary">A platform designed for sustainability enthusiasts would alienate beginners. A platform for beginners would bore experts. We needed progressive depth.</p>
-              </div>
+              <InsightCard 
+                title={`"I know what I should do. I just don't do it"`}
+                description="Residents weren't lacking information. They were lacking triggers, accountability, and a sense that their individual actions mattered." 
+              />
+              <InsightCard 
+                title={`"The committee can't see what's working"`}
+                description="There was no feedback loop. The committee had no visibility into which initiatives were gaining traction and which were being ignored." 
+              />
+              <InsightCard 
+                title={`"One size fits none"`}
+                description="A platform designed for sustainability enthusiasts would alienate beginners. A platform for beginners would bore experts. We needed progressive depth." 
+              />
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
@@ -170,7 +171,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Gamification grounded in behavioral science
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -234,7 +235,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Key Decisions</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 What we built differently
               </h2>
 
@@ -291,7 +292,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Information Architecture</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Life contexts, not environmental categories
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -347,7 +348,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Admin Tools</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Designing for non-technical maintainers
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -358,18 +359,18 @@ const UniversityPark: React.FC = () => {
               </p>
 
               <div className="space-y-6">
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <p className="text-lg text-fontprimary font-medium mb-2">Visual content editing</p>
-                  <p className="text-fontsecondary">Admins see exactly what residents will see. No preview button, no mental translation from backend to frontend.</p>
-                </div>
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <p className="text-lg text-fontprimary font-medium mb-2">Metrics that matter</p>
-                  <p className="text-fontsecondary">Actionable data: which practices have the most completions, which challenges are gaining traction, where engagement is dropping. Not vanity metrics. Decision-support data.</p>
-                </div>
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <p className="text-lg text-fontprimary font-medium mb-2">Guardrails, not freedom</p>
-                  <p className="text-fontsecondary">Admins work within templates. This prevents accidental design breakage while still allowing content flexibility.</p>
-                </div>
+                <InsightCard 
+                  title="Visual content editing" 
+                  description="Admins see exactly what residents will see. No preview button, no mental translation from backend to frontend." 
+                />
+                <InsightCard 
+                  title="Metrics that matter" 
+                  description="Actionable data: which practices have the most completions, which challenges are gaining traction, where engagement is dropping. Not vanity metrics. Decision-support data." 
+                />
+                <InsightCard 
+                  title="Guardrails, not freedom" 
+                  description="Admins work within templates. This prevents accidental design breakage while still allowing content flexibility." 
+                />
               </div>
             </div>
           </section>
@@ -394,7 +395,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Iteration</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Testing with real residents
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -465,10 +466,10 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 From awareness to action
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -476,18 +477,18 @@ const UniversityPark: React.FC = () => {
               </p>
 
               <div className="space-y-6">
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <p className="text-lg text-fontprimary font-medium mb-2">Resident adoption</p>
-                  <p className="text-fontsecondary">Majority of targeted households engaged with the platform within first quarter</p>
-                </div>
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <p className="text-lg text-fontprimary font-medium mb-2">Committee independence</p>
-                  <p className="text-fontsecondary">Non-technical admins managing platform independently within days of handoff. No developer dependency.</p>
-                </div>
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <p className="text-lg text-fontprimary font-medium mb-2">Replicable model</p>
-                  <p className="text-fontsecondary">Other municipalities expressed interest in adapting the approach for their communities</p>
-                </div>
+                <InsightCard 
+                  title="Resident adoption" 
+                  description="Majority of targeted households engaged with the platform within first quarter" 
+                />
+                <InsightCard 
+                  title="Committee independence" 
+                  description="Non-technical admins managing platform independently within days of handoff. No developer dependency." 
+                />
+                <InsightCard 
+                  title="Replicable model" 
+                  description="Other municipalities expressed interest in adapting the approach for their communities" 
+                />
               </div>
             </div>
           </section>
@@ -498,7 +499,7 @@ const UniversityPark: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
@@ -537,7 +538,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
               <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-green-600 transition-colors">

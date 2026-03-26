@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import TransitionWrapper from "../../components/TransitionWrapper";
 import DefaultPage from "../../components/Pages/DefaultPage";
+import InsightCard from "../../components/Cards/InsightCard";
 import DesignSystem from "../../../../public/assets/Dune/DesignSystem.webp";
 import AnimatedBlobs from "../../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../../lib/animations";
@@ -76,7 +77,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               SUMMARY
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 As the sole designer at an early-stage startup, I couldn&apos;t afford to rebuild components from scratch every sprint. 
@@ -91,10 +92,10 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               THE CASE FOR BUILDING EARLY
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Decision</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Why build a design system when you&apos;re the only designer?
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-6">
@@ -106,33 +107,33 @@ const StillsuitDesignSystem: React.FC = () => {
             </div>
 
             {/* Strategic reasons */}
-            <div className="max-w-3xl mx-auto px-6 mt-12 space-y-4">
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">We were about to scale</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Every component I built without a system was technical debt for the future team.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">The rebrand was coming</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Moving from dark to light mode across an entire product is painful without centralized styles.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Engineering velocity was at stake</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">Without a shared language for components, every ticket required extra explanation.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-base text-fontprimary font-medium mb-1">Design quality needed to compound</p>
-                <p className="text-fontsecondary text-sm leading-relaxed">I wanted every new feature to be better than the last. A system meant learnings accumulated.</p>
-              </div>
+            <div className="max-w-3xl mx-auto px-6 mt-16 space-y-6">
+              <InsightCard 
+                title="We were about to scale" 
+                description="Every component I built without a system was technical debt for the future team." 
+              />
+              <InsightCard 
+                title="The rebrand was coming" 
+                description="Moving from dark to light mode across an entire product is painful without centralized styles." 
+              />
+              <InsightCard 
+                title="Engineering velocity was at stake" 
+                description="Without a shared language for components, every ticket required extra explanation." 
+              />
+              <InsightCard 
+                title="Design quality needed to compound" 
+                description="I wanted every new feature to be better than the last. A system meant learnings accumulated." 
+              />
             </div>
           </section>
 
           {/* ============================================
               THE MATH
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Business Case</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Making the case with math
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -149,10 +150,10 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               PRINCIPLES
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 Four principles that guided every decision
               </h2>
 
@@ -162,7 +163,7 @@ const StillsuitDesignSystem: React.FC = () => {
                     <span className="text-teal-600 font-semibold text-sm">1</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Speed over completeness</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Speed over completeness</h4>
                     <p className="text-fontsecondary leading-relaxed">The system needed to accelerate work this week, not in six months. Build components as needed, not speculatively.</p>
                   </div>
                 </div>
@@ -172,7 +173,7 @@ const StillsuitDesignSystem: React.FC = () => {
                     <span className="text-teal-600 font-semibold text-sm">2</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Engineer-first documentation</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Engineer-first documentation</h4>
                     <p className="text-fontsecondary leading-relaxed">The primary consumer was engineering. Documentation had to answer their questions without requiring a meeting with me.</p>
                   </div>
                 </div>
@@ -182,7 +183,7 @@ const StillsuitDesignSystem: React.FC = () => {
                     <span className="text-teal-600 font-semibold text-sm">3</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">Flexible but opinionated</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">Flexible but opinionated</h4>
                     <p className="text-fontsecondary leading-relaxed">Sensible defaults for 90% of use cases, with clear escape hatches for the other 10%.</p>
                   </div>
                 </div>
@@ -192,7 +193,7 @@ const StillsuitDesignSystem: React.FC = () => {
                     <span className="text-teal-600 font-semibold text-sm">4</span>
                   </div>
                   <div>
-                    <h4 className="text-lg text-fontprimary font-medium mb-1">One source of truth</h4>
+                    <h4 className="text-lg text-fontprimary font-normal mb-1">One source of truth</h4>
                     <p className="text-fontsecondary leading-relaxed">Tokens in Figma had to match code exactly. Drift between design and implementation defeats the purpose.</p>
                   </div>
                 </div>
@@ -203,10 +204,10 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               TOKEN ARCHITECTURE
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Foundation</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Token architecture
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -251,10 +252,10 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               COLOR SYSTEM
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Color Philosophy</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Color earns its place
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-6">
@@ -275,8 +276,8 @@ const StillsuitDesignSystem: React.FC = () => {
                     <span className="w-5 h-5 rounded-full bg-yellow-500"></span>
                     <span className="w-5 h-5 rounded-full bg-green-500"></span>
                   </div>
-                  <h4 className="text-base text-fontprimary font-medium mb-1">Risk & Status</h4>
-                  <p className="text-fontsecondary text-sm">The only place we use saturated color liberally. High signal, no noise.</p>
+                  <h4 className="text-xl text-fontprimary font-semibold mb-2">Risk & Status</h4>
+                  <p className="text-fonttertiary text-sm leading-relaxed">The only place we use saturated color liberally. High signal, no noise.</p>
                 </div>
                 <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
                   <div className="flex gap-2 mb-4">
@@ -285,8 +286,8 @@ const StillsuitDesignSystem: React.FC = () => {
                     <span className="w-5 h-5 rounded-full bg-gray-300"></span>
                     <span className="w-5 h-5 rounded-full bg-gray-400"></span>
                   </div>
-                  <h4 className="text-base text-fontprimary font-medium mb-1">Everything Else</h4>
-                  <p className="text-fontsecondary text-sm">Neutrals that let meaningful color pop. The restraint makes the signal clear.</p>
+                  <h4 className="text-xl text-fontprimary font-semibold mb-2">Everything Else</h4>
+                  <p className="text-fonttertiary text-sm leading-relaxed">Neutrals that let meaningful color pop. The restraint makes the signal clear.</p>
                 </div>
               </div>
             </div>
@@ -295,10 +296,10 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               COMPONENT DEEP DIVE
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Deep Dive</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 The risk indicator
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
@@ -337,10 +338,10 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               DOCUMENTATION
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Handoff</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Documentation that engineers actually use
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-6">
@@ -363,10 +364,10 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 The numbers
               </h2>
             </div>
@@ -396,37 +397,37 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
               <div className="space-y-10">
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Infrastructure is a leadership decision</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Infrastructure is a leadership decision</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     Building a design system when you&apos;re the only designer feels indulgent. But at the staff level, you think about what the team will need in 12 months, not just what you need today.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">The system is a product</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">The system is a product</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     It has users (engineers, future designers). It needs UX. It needs maintenance. Treating it as a product, with strategy, roadmap, and success metrics, is what made it successful.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Document for the person who isn&apos;t here yet</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Document for the person who isn&apos;t here yet</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     Every piece of documentation was written for the engineer or designer who would join in 6 months and need to understand &quot;why is it this way?&quot;
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-fontprimary font-medium mb-2">Make the case with math</h3>
+                  <h3 className="text-lg text-fontprimary font-normal mb-2">Make the case with math</h3>
                   <p className="text-fontsecondary leading-relaxed">
                     Leadership approved the investment because I showed the ROI. Staff designers speak in business outcomes, not just design quality.
                   </p>
@@ -438,7 +439,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
               <a href="/dune/workflows" className="text-2xl md:text-3xl text-fontprimary hover:text-teal-600 transition-colors tracking-tight">

@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import TransitionWrapper from "../../components/TransitionWrapper";
 import DefaultPage from "../../components/Pages/DefaultPage";
+import InsightCard from "../../components/Cards/InsightCard";
 import OrgDashboard from "../../../../public/assets/Dune/dashboard.webp";
 import architecture from "../../../../public/assets/Dune/architecture.webp";
 import Customers from "../../../../public/assets/Dune/customers.webp";
@@ -79,7 +80,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               SUMMARY
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 Most security products surface information and leave decisions to overloaded humans. 
@@ -94,10 +95,10 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE OPPORTUNITY
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Opportunity</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 &quot;If the system knows who&apos;s risky, why isn&apos;t it doing more?&quot;
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -115,7 +116,7 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Business Case</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Quantifying the opportunity
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -150,10 +151,10 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE PROBLEM
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Powerful enough to matter, safe enough to trust
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
@@ -163,18 +164,18 @@ const DynamicWorkflows: React.FC = () => {
 
             {/* Pain points - stacked */}
             <div className="max-w-3xl mx-auto px-6 mt-16 space-y-6">
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-lg text-fontprimary font-medium mb-2">&quot;By the time I act, it&apos;s too late&quot;</p>
-                <p className="text-fontsecondary">Manual review cycles meant high-risk users could go weeks before anyone intervened. Attackers don&apos;t wait.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-lg text-fontprimary font-medium mb-2">&quot;I can&apos;t scale this process&quot;</p>
-                <p className="text-fontsecondary">What works for 100 users doesn&apos;t work for 10,000. Security teams needed force multiplication, not more headcount.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-lg text-fontprimary font-medium mb-2">&quot;I&apos;m nervous about automation&quot;</p>
-                <p className="text-fontsecondary">Past experiences with aggressive automated systems made admins wary. They wanted control, not a black box.</p>
-              </div>
+              <InsightCard 
+                title={`"By the time I act, it's too late"`}
+                description="Manual review cycles meant high-risk users could go weeks before anyone intervened. Attackers don't wait." 
+              />
+              <InsightCard 
+                title={`"I can't scale this process"`}
+                description="What works for 100 users doesn't work for 10,000. Security teams needed force multiplication, not more headcount." 
+              />
+              <InsightCard 
+                title={`"I'm nervous about automation"`}
+                description="Past experiences with aggressive automated systems made admins wary. They wanted control, not a black box." 
+              />
             </div>
           </section>
 
@@ -184,7 +185,7 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Solution</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Workflows as policies
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
@@ -246,7 +247,7 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Designing for Trust</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Preview, Protect, Prove
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -290,10 +291,10 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               STRATEGIC IMPACT
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Strategic Impact</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 From dashboard to platform
               </h2>
             </div>
@@ -366,7 +367,7 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">My Role</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 This wasn&apos;t a feature I was asked to design
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
@@ -428,7 +429,7 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
@@ -467,7 +468,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
               <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-amber-600 transition-colors">

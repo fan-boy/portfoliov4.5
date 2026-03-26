@@ -68,7 +68,7 @@ const Crashr: React.FC = () => {
           {/* ============================================
               SUMMARY
               ============================================ */}
-          <section className="w-full py-24">
+          <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 A flexible design system that supports multiple brand identities while maintaining consistency and development efficiency.
@@ -82,10 +82,10 @@ const Crashr: React.FC = () => {
           {/* ============================================
               THE CHALLENGE
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
                 Multi-brand architecture
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
@@ -100,7 +100,7 @@ const Crashr: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 Token-based theming
               </h2>
 
@@ -151,13 +151,13 @@ const Crashr: React.FC = () => {
           {/* ============================================
               DELIVERABLES
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-5xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase mb-8 block">Deliverables</span>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <h4 className="text-lg text-fontprimary font-medium mb-4">Crashr</h4>
+                  <h4 className="text-lg text-fontprimary font-normal mb-4">Crashr</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Desktop design drafts</li>
                     <li>Mobile design drafts</li>
@@ -165,7 +165,7 @@ const Crashr: React.FC = () => {
                   </ul>
                 </div>
                 <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <h4 className="text-lg text-fontprimary font-medium mb-4">Bombers</h4>
+                  <h4 className="text-lg text-fontprimary font-normal mb-4">Bombers</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Desktop design drafts</li>
                     <li>Mobile design drafts</li>
@@ -173,7 +173,7 @@ const Crashr: React.FC = () => {
                   </ul>
                 </div>
                 <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <h4 className="text-lg text-fontprimary font-medium mb-4">Shared System</h4>
+                  <h4 className="text-lg text-fontprimary font-normal mb-4">Shared System</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Unified component library</li>
                     <li>Icon system</li>
@@ -181,7 +181,7 @@ const Crashr: React.FC = () => {
                   </ul>
                 </div>
                 <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <h4 className="text-lg text-fontprimary font-medium mb-4">Token Architecture</h4>
+                  <h4 className="text-lg text-fontprimary font-normal mb-4">Token Architecture</h4>
                   <ul className="space-y-2 text-fontsecondary">
                     <li>Primitive tokens</li>
                     <li>Semantic tokens</li>
@@ -198,7 +198,7 @@ const Crashr: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
-              <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
                 What I learned
               </h2>
 
@@ -223,7 +223,7 @@ const Crashr: React.FC = () => {
           {/* ============================================
               NEXT PROJECT CTA
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
               <a href="/everestos" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-orange-600 transition-colors">
