@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import Profile from "../../../public/assets/About/profile.webp";
 import AnimatedBlobs from "../components/AnimatedBlobs";
+import Footer from "../components/Miscelaneous/footer";
 import { useChat } from '../context/ChatContext';
 import { motion } from "framer-motion";
 
@@ -170,6 +171,8 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }

@@ -19,7 +19,7 @@ export default function Footer() {
         © {new Date().getFullYear()} Aaditya Shete &middot; Designed with care
       </div>
       <div className="mt-4">
-        Last Updated Nov 2025
+        Last updated Jan 2026
       </div>
     </footer>
   );
