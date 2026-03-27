@@ -142,12 +142,12 @@ export default function Home() {
                 >
                   <Link href={project.href} className="group block">
                     {/* Header - Title left, subtitle right */}
-                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
-                      <h2 className="text-2xl text-fontprimary group-hover:text-fontsecondary transition-all duration-300 flex items-center gap-2">
-                        <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">{project.title}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-4">
+                      <h2 className="text-xl text-fontprimary group-hover:text-fontsecondary transition-colors duration-500 ease-out flex items-center">
+                        <span>{project.title}</span>
+                        <span className="inline-block opacity-0 max-w-0 overflow-hidden group-hover:opacity-100 group-hover:max-w-8 transition-all duration-500" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}>&nbsp;→</span>
                       </h2>
-                      <p className="text-base text-fonttertiary">
+                      <p className="text-base text-fonttertiary group-hover:text-fontsecondary transition-colors duration-500 ease-out">
                         {project.subtitle}
                       </p>
                     </div>
