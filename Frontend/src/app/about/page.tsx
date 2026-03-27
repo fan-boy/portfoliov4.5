@@ -102,7 +102,7 @@ export default function AboutPage() {
             <p className="text-sm text-fonttertiary uppercase tracking-wider mb-8">Experience</p>
             
             <div className="flex flex-col gap-8">
-              {experience.map((role, index) => (
+              {experience.map((role) => (
                 <div key={role.company} className="flex flex-col sm:flex-row sm:gap-8">
                   <div className="sm:w-32 flex-shrink-0 mb-1 sm:mb-0">
                     <span className="text-sm text-fontmuted">{role.years}</span>
