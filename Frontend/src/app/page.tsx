@@ -144,8 +144,8 @@ export default function Home() {
                     {/* Header - Title left, subtitle right */}
                     <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-4">
                       <h2 className="text-xl text-fontprimary group-hover:text-fontsecondary transition-colors duration-500 ease-out flex items-center">
+                        <span className="inline-block opacity-0 max-w-0 overflow-hidden group-hover:opacity-100 group-hover:max-w-8 transition-all duration-500" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}>→&nbsp;</span>
                         <span>{project.title}</span>
-                        <span className="inline-block opacity-0 max-w-0 overflow-hidden group-hover:opacity-100 group-hover:max-w-8 transition-all duration-500" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}>&nbsp;→</span>
                       </h2>
                       <p className="text-base text-fonttertiary group-hover:text-fontsecondary transition-colors duration-500 ease-out">
                         {project.subtitle}
