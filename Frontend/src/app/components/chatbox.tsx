@@ -205,16 +205,26 @@ export default function ChatBox() {
     const url = PROJECT_URLS[ref.project];
     if (!url) return;
     
-    doClose();
     const fullUrl = `${url}#${ref.section}`;
-    router.push(fullUrl);
     
-    setTimeout(() => {
+    // Check if we're already on the right page
+    if (pathname === url) {
+      // Just scroll to the section
       const element = document.getElementById(ref.section);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }, 300);
+    } else {
+      // Navigate to the page, then scroll after load
+      router.push(fullUrl);
+      setTimeout(() => {
+        const element = document.getElementById(ref.section);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500);
+    }
+    // Don't close chat - user can close it when ready
   };
 
   const handleAsk = async (msg?: string) => {
