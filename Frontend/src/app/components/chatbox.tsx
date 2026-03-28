@@ -150,6 +150,20 @@ export default function ChatBox() {
     if (!chatOpen) setMinimized(false);
   }, [chatOpen]);
 
+  // Lock/unlock body scroll based on chat state
+  useEffect(() => {
+    if (chatOpen && !minimized) {
+      // Full screen - lock scroll
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Closed or minimized - allow scroll
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [chatOpen, minimized]);
+
   const doClose = () => {
     setChatOpen(false);
     setQuestion('');
