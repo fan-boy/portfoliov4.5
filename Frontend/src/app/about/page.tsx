@@ -42,13 +42,13 @@ export default function AboutPage() {
   // Overflow control handled by ChatBox component
 
   return (
-    <main className="min-h-screen text-gray-900">
+    <main className="min-h-screen text-gray-900 overflow-x-hidden">
       {!chatOpen && (
         <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       
       {/* Hero Image - Full width */}
-      <section className="w-full pt-24 pb-16 px-6 relative z-10">
+      <section className="w-full pt-20 sm:pt-24 pb-8 sm:pb-16 px-4 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <motion.div 
             className="overflow-hidden rounded-2xl"
@@ -67,20 +67,20 @@ export default function AboutPage() {
       </section>
 
       {/* Intro */}
-      <section className="w-full py-16 px-6 relative z-10">
+      <section className="w-full py-10 sm:py-16 px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
           >
-            <h1 className="text-4xl md:text-5xl text-fontprimary font-normal tracking-tight mb-6">
+            <h1 className="text-3xl md:text-5xl text-fontprimary font-normal tracking-tight mb-4 sm:mb-6">
               Aaditya Shete
             </h1>
-            <p className="text-xl text-fontsecondary leading-relaxed mb-6">
+            <p className="text-lg sm:text-xl text-fontsecondary leading-relaxed mb-4 sm:mb-6">
               Product designer building 0→1 products and scaling design systems. Currently leading design at <span className="text-fontprimary">Dune Security</span>.
             </p>
-            <p className="text-lg text-fonttertiary leading-relaxed">
+            <p className="text-base sm:text-lg text-fonttertiary leading-relaxed">
               Mumbai → Maryland → New York. I thrive in ambiguity, love a good whiteboard session, and believe the best products come from teams who listen deeply and iterate relentlessly.
             </p>
           </motion.div>
@@ -88,26 +88,26 @@ export default function AboutPage() {
       </section>
 
       {/* Experience */}
-      <section className="w-full py-16 px-6 bg-bg-secondary relative z-10">
+      <section className="w-full py-10 sm:py-16 px-4 sm:px-6 bg-bg-secondary relative z-10">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
-            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-8">Experience</p>
+            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-6 sm:mb-8">Experience</p>
             
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6 sm:gap-8">
               {experience.map((role) => (
                 <div key={role.company} className="flex flex-col sm:flex-row sm:gap-8">
-                  <div className="sm:w-32 flex-shrink-0 mb-1 sm:mb-0">
-                    <span className="text-sm text-fontmuted">{role.years}</span>
+                  <div className="sm:w-32 flex-shrink-0 mb-0.5 sm:mb-0">
+                    <span className="text-xs sm:text-sm text-fontmuted">{role.years}</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg text-fontprimary mb-1">
+                    <h3 className="text-base sm:text-lg text-fontprimary mb-1">
                       {role.title}
                     </h3>
-                    <p className="text-fonttertiary mb-1">{role.company}</p>
+                    <p className="text-sm sm:text-base text-fonttertiary mb-1">{role.company}</p>
                     <p className="text-sm text-fontmuted">{role.description}</p>
                   </div>
                 </div>
@@ -118,30 +118,30 @@ export default function AboutPage() {
       </section>
 
       {/* What I do */}
-      <section className="w-full py-16 px-6 relative z-10">
+      <section className="w-full py-10 sm:py-16 px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
           >
-            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-8">What I Do</p>
+            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-6 sm:mb-8">What I Do</p>
             
-            <div className="grid sm:grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-6 sm:gap-8">
               <div>
-                <h3 className="text-lg text-fontprimary mb-2">Product Design</h3>
+                <h3 className="text-base sm:text-lg text-fontprimary mb-1 sm:mb-2">Product Design</h3>
                 <p className="text-fonttertiary text-sm">End-to-end design from research through shipped product. I care about outcomes, not deliverables.</p>
               </div>
               <div>
-                <h3 className="text-lg text-fontprimary mb-2">Design Systems</h3>
+                <h3 className="text-base sm:text-lg text-fontprimary mb-1 sm:mb-2">Design Systems</h3>
                 <p className="text-fonttertiary text-sm">Building infrastructure that lets teams move fast without breaking quality.</p>
               </div>
               <div>
-                <h3 className="text-lg text-fontprimary mb-2">0→1 Products</h3>
+                <h3 className="text-base sm:text-lg text-fontprimary mb-1 sm:mb-2">0→1 Products</h3>
                 <p className="text-fonttertiary text-sm">Turning ambiguity into clarity. Finding the right problem before solving it.</p>
               </div>
               <div>
-                <h3 className="text-lg text-fontprimary mb-2">Design Strategy</h3>
+                <h3 className="text-base sm:text-lg text-fontprimary mb-1 sm:mb-2">Design Strategy</h3>
                 <p className="text-fonttertiary text-sm">Connecting design decisions to business outcomes. Making the case with data.</p>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function AboutPage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="w-full py-24 px-6 relative z-10">
+      <section className="w-full py-16 sm:py-24 px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -159,7 +159,7 @@ export default function AboutPage() {
           >
             <Link 
               href="/contact" 
-              className="text-3xl md:text-4xl text-fontprimary hover:text-accent transition-colors duration-300"
+              className="text-2xl sm:text-3xl md:text-4xl text-fontprimary hover:text-accent transition-colors duration-300"
             >
               Get in touch →
             </Link>
