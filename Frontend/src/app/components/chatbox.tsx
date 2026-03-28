@@ -40,27 +40,14 @@ const PAGE_PROMPTS: Record<string, string[]> = {
 
 // Shimmer loading component
 const LoadingShimmer = () => (
-  <div className="flex items-start gap-3">
-    {/* AI Avatar */}
-    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-md">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
-        <path d="M12 3C7.03 3 3 7.03 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M12 8V12L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </div>
-    <div className="flex-1 space-y-2.5 py-1">
-      <div className="space-y-2">
-        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-3/4 animate-shimmer" 
-             style={{ backgroundSize: '200% 100%' }} />
-        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-full animate-shimmer" 
-             style={{ backgroundSize: '200% 100%', animationDelay: '0.1s' }} />
-        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-2/3 animate-shimmer" 
-             style={{ backgroundSize: '200% 100%', animationDelay: '0.2s' }} />
-      </div>
-      <div className="flex items-center gap-2 pt-1">
-        <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-        <span className="text-xs text-gray-400 font-medium">Thinking...</span>
-      </div>
+  <div className="space-y-2.5">
+    <div className="space-y-2">
+      <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-3/4 animate-shimmer" 
+           style={{ backgroundSize: '200% 100%' }} />
+      <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-full animate-shimmer" 
+           style={{ backgroundSize: '200% 100%', animationDelay: '0.1s' }} />
+      <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-2/3 animate-shimmer" 
+           style={{ backgroundSize: '200% 100%', animationDelay: '0.2s' }} />
     </div>
   </div>
 );
@@ -75,7 +62,7 @@ const ChatMessage = ({
   index: number;
   onReferenceClick: (ref: Reference) => void;
 }) => {
-  const isAI = turn.role === 'ai';
+  const isUser = turn.role === 'user';
   
   return (
     <motion.div
@@ -87,70 +74,55 @@ const ChatMessage = ({
         delay: index === 0 ? 0 : 0.05 
       }}
       className={clsx(
-        'flex w-full gap-3',
-        isAI ? 'justify-start' : 'justify-end'
+        'flex flex-col w-full',
+        isUser ? 'items-end' : 'items-start'
       )}
     >
-      {/* AI Avatar */}
-      {isAI && (
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-md">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
-            <path d="M12 3C7.03 3 3 7.03 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            <path d="M12 8V12L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+      <div className={clsx(
+        "px-4 py-3 rounded-2xl text-base leading-relaxed max-w-[80%]",
+        isUser
+          ? "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-md shadow-md"
+          : "bg-white text-gray-800 border border-gray-100 rounded-bl-md shadow-sm"
+      )}>
+        <div className="whitespace-pre-wrap break-words">
+          {turn.text}
         </div>
-      )}
-      
-      <div className={clsx('flex flex-col', isAI ? 'items-start' : 'items-end', 'max-w-[75%]')}>
-        <div className={clsx(
-          "px-4 py-3 rounded-2xl text-base leading-relaxed",
-          isAI
-            ? "bg-white text-gray-800 border border-gray-100 rounded-tl-md shadow-sm"
-            : "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-tr-md shadow-md"
-        )}>
-          <div className="whitespace-pre-wrap break-words">
-            {turn.text}
-          </div>
-        </div>
-        
-        {/* Reference chips for AI messages */}
-        {isAI && turn.references && turn.references.length > 0 && (
-          <motion.div 
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-            className="flex flex-wrap gap-2 mt-2 ml-1"
-          >
-            {turn.references.map((ref, refIdx) => (
-              <button
-                key={refIdx}
-                onClick={() => onReferenceClick(ref)}
-                className="group inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-full hover:bg-indigo-100 hover:border-indigo-200 hover:shadow-sm transition-all duration-200"
-              >
-                <svg 
-                  width="12" 
-                  height="12" 
-                  viewBox="0 0 16 16" 
-                  fill="none" 
-                  className="flex-shrink-0 transition-transform group-hover:translate-x-0.5"
-                >
-                  <path 
-                    d="M6 12L10 8L6 4" 
-                    stroke="currentColor" 
-                    strokeWidth="1.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {ref.label}
-              </button>
-            ))}
-          </motion.div>
-        )}
       </div>
       
-      {/* User avatar spacer for alignment */}
-      {!isAI && <div className="w-8 flex-shrink-0" />}
+      {/* Reference chips */}
+      {!isUser && turn.references && turn.references.length > 0 && (
+        <motion.div 
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
+          className="flex flex-wrap gap-2 mt-2"
+        >
+          {turn.references.map((ref, refIdx) => (
+            <button
+              key={refIdx}
+              onClick={() => onReferenceClick(ref)}
+              className="group inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-full hover:bg-indigo-100 hover:border-indigo-200 hover:shadow-sm transition-all duration-200"
+            >
+              <svg 
+                width="12" 
+                height="12" 
+                viewBox="0 0 16 16" 
+                fill="none" 
+                className="flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+              >
+                <path 
+                  d="M6 12L10 8L6 4" 
+                  stroke="currentColor" 
+                  strokeWidth="1.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {ref.label}
+            </button>
+          ))}
+        </motion.div>
+      )}
     </motion.div>
   );
 };
