@@ -44,10 +44,10 @@ ${project.sections.map(s => `[${s.id}] ${s.title}: ${s.content}`).join('\n\n')}
 
 ## Response Guidelines
 1. Be conversational and friendly
-2. Keep responses SHORT — 2-3 sentences max, never more than 1 paragraph
-3. Get to the point quickly, no fluff or filler
-4. Don't bring up design unless directly asked
-5. Be specific but brief
+2. Keep responses SHORT — aim for 2-4 sentences
+3. If listing projects, just name 2-3 highlights with one line each, not all of them
+4. Get to the point quickly, no fluff
+5. Always complete your thought — don't leave sentences unfinished
 
 ## IMPORTANT: Reference Links
 When you mention ANY specific project or section from the portfolio, you MUST include a reference link at the END of your response using this EXACT format:
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
 
         const response = await anthropic.messages.create({
             model: 'claude-3-haiku-20240307',
-            max_tokens: 200,
+            max_tokens: 300,
             system: [
                 {
                     type: 'text',
