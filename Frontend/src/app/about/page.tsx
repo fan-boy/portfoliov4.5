@@ -48,8 +48,8 @@ export default function AboutPage() {
       )}
       
       {/* Hero Image - Full width */}
-      <section className="w-full pt-20 sm:pt-24 pb-8 sm:pb-16 px-4 sm:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto">
+      <section className="w-full pt-20 sm:pt-24 pb-8 sm:pb-16 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div 
             className="overflow-hidden rounded-2xl"
             initial={{ opacity: 0, y: 20 }}
@@ -67,8 +67,8 @@ export default function AboutPage() {
       </section>
 
       {/* Intro */}
-      <section className="w-full py-10 sm:py-16 px-4 sm:px-6 relative z-10">
-        <div className="max-w-3xl mx-auto">
+      <section className="w-full py-10 sm:py-16 relative z-10">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,8 +88,8 @@ export default function AboutPage() {
       </section>
 
       {/* Experience */}
-      <section className="w-full py-10 sm:py-16 px-4 sm:px-6 bg-bg-secondary relative z-10">
-        <div className="max-w-3xl mx-auto">
+      <section className="w-full py-10 sm:py-16 bg-bg-secondary relative z-10">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,8 +118,8 @@ export default function AboutPage() {
       </section>
 
       {/* What I do */}
-      <section className="w-full py-10 sm:py-16 px-4 sm:px-6 relative z-10">
-        <div className="max-w-3xl mx-auto">
+      <section className="w-full py-10 sm:py-16 relative z-10">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -150,8 +150,8 @@ export default function AboutPage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="w-full py-16 sm:py-24 px-4 sm:px-6 relative z-10">
-        <div className="max-w-3xl mx-auto">
+      <section className="w-full py-16 sm:py-24 relative z-10">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
