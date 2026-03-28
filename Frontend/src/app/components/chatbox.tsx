@@ -13,12 +13,6 @@ type Reference = {
   label: string;
 };
 
-type ChatTurn = { 
-  role: 'user' | 'ai'; 
-  text: string;
-  references?: Reference[];
-};
-
 const PROJECT_URLS: Record<string, string> = {
   'risk-platform': '/dune/risk-platform',
   'stillsuit': '/dune/stillsuit',
@@ -30,10 +24,59 @@ const PROJECT_URLS: Record<string, string> = {
   'everestos': '/everestos',
 };
 
+// Reverse mapping: URL path -> project info for page context
+const URL_TO_PROJECT: Record<string, { id: string; name: string }> = {
+  '/dune/risk-platform': { id: 'risk-platform', name: 'Risk Platform' },
+  '/dune/stillsuit': { id: 'stillsuit', name: 'Stillsuit Design System' },
+  '/dune/workflows': { id: 'workflows', name: 'Dynamic Workflows' },
+  '/universitypark': { id: 'universitypark', name: 'University Park' },
+  '/chainreactive': { id: 'chainreactive', name: 'Chain Reactive' },
+  '/crashr': { id: 'crashr', name: 'Crashr' },
+  '/cadence': { id: 'cadence', name: 'Cadence' },
+  '/everestos': { id: 'everestos', name: 'EverestOS' },
+  '/about': { id: 'about', name: 'About Adi' },
+};
+
 const PAGE_PROMPTS: Record<string, string[]> = {
   "/": [
     "Tell me more about Adi.",
     "What projects has Adi worked on?"
+  ],
+  "/about": [
+    "What's Adi's design philosophy?",
+    "What are Adi's key skills?"
+  ],
+  "/dune/risk-platform": [
+    "Tell me about this project.",
+    "What was the biggest challenge here?"
+  ],
+  "/dune/stillsuit": [
+    "Tell me about this project.",
+    "How does the token system work?"
+  ],
+  "/dune/workflows": [
+    "Tell me about this project.",
+    "What problem does this solve?"
+  ],
+  "/universitypark": [
+    "Tell me about this project.",
+    "What was your role here?"
+  ],
+  "/chainreactive": [
+    "Tell me about this project.",
+    "What made this challenging?"
+  ],
+  "/crashr": [
+    "Tell me about this project.",
+    "How does the app work?"
+  ],
+  "/cadence": [
+    "Tell me about this project.",
+    "What's unique about Cadence?"
+  ],
+  "/everestos": [
+    "Tell me about this project.",
+    "What was the design approach?"
   ],
 };
 
@@ -51,7 +94,7 @@ const ChatMessage = ({
   onReferenceClick,
   compact = false
 }: { 
-  turn: ChatTurn; 
+  turn: { role: 'user' | 'ai'; text: string; references?: Reference[] }; 
   onReferenceClick: (ref: Reference) => void;
   compact?: boolean;
 }) => {
@@ -96,12 +139,10 @@ const ChatMessage = ({
 };
 
 export default function ChatBox() {
-  const { chatOpen, setChatOpen } = useChat();
+  const { chatOpen, setChatOpen, chat, setChat, minimized, setMinimized } = useChat();
   const [question, setQuestion] = useState('');
-  const [chat, setChat] = useState<ChatTurn[]>([]);
   const [loading, setLoading] = useState(false);
   const [promptsVisible, setPromptsVisible] = useState(true);
-  const [minimized, setMinimized] = useState(false);
 
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
@@ -149,7 +190,7 @@ export default function ChatBox() {
 
   useEffect(() => {
     if (!chatOpen) setMinimized(false);
-  }, [chatOpen]);
+  }, [chatOpen, setMinimized]);
 
   // Lock/unlock body scroll based on chat state
   useEffect(() => {
@@ -197,11 +238,18 @@ export default function ChatBox() {
     setPromptsVisible(false);
     setLoading(true);
     
+    // Get current page context
+    const currentProject = URL_TO_PROJECT[pathname || ''] || null;
+    
     try {
       const res = await fetch('/api/askaboutadi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: trimmed, history: chat.map(c => ({ role: c.role, text: c.text })) }),
+        body: JSON.stringify({ 
+          question: trimmed, 
+          history: chat.map(c => ({ role: c.role, text: c.text })),
+          currentPage: currentProject
+        }),
       });
       const data = await res.json();
       setChat(c => [...c, { role: 'ai', text: data.response || 'No response received.', references: data.references || [] }]);

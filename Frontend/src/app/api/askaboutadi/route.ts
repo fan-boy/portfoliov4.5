@@ -49,6 +49,13 @@ ${project.sections.map(s => `[${s.id}] ${s.title}: ${s.content}`).join('\n\n')}
 4. Get to the point quickly, no fluff
 5. Always complete your thought — don't leave sentences unfinished
 
+## Page Context Awareness
+When the user's message starts with [User is currently viewing...], they're on that specific project page.
+- If they ask "tell me about this project" or "what is this", answer about THAT project
+- If they ask generic questions like "what challenges did you face here", relate it to the current project
+- Use the project ID to include relevant reference links
+- Don't repeat the project name excessively — they're already looking at it
+
 ## IMPORTANT: Reference Links
 When you mention ANY specific project or section from the portfolio, you MUST include a reference link at the END of your response using this EXACT format:
 
@@ -71,7 +78,7 @@ const SYSTEM_PROMPT = buildSystemPrompt();
 
 export async function POST(request: NextRequest) {
     try {
-        const { question, history } = await request.json();
+        const { question, history, currentPage } = await request.json();
 
         if (!question) {
             return NextResponse.json({ error: 'Question is required' }, { status: 400 });
@@ -89,10 +96,16 @@ export async function POST(request: NextRequest) {
             }
         }
         
+        // Build the question with page context if available
+        let contextualQuestion = question;
+        if (currentPage && currentPage.id && currentPage.name) {
+            contextualQuestion = `[User is currently viewing the "${currentPage.name}" project page (${currentPage.id})]\n\n${question}`;
+        }
+        
         // Add current question
         messages.push({
             role: 'user',
-            content: question
+            content: contextualQuestion
         });
 
         const response = await anthropic.messages.create({
