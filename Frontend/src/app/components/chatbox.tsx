@@ -121,6 +121,7 @@ export default function ChatBox() {
     };
     window.addEventListener('keydown', handler, true);
     return () => window.removeEventListener('keydown', handler, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatOpen, minimized, chat.length]);
 
   useEffect(() => {
