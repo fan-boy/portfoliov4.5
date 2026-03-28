@@ -39,12 +39,7 @@ const experience = [
 
 export default function AboutPage() {
   const { chatOpen } = useChat();
-  
-  useEffect(() => {
-    if (chatOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = '' };
-  }, [chatOpen]);
+  // Overflow control handled by ChatBox component
 
   return (
     <main className="min-h-screen text-gray-900">
