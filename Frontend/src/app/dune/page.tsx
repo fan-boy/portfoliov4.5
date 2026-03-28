@@ -9,7 +9,7 @@ import DesignSystem from "../../../public/assets/Dune/DesignSystem.webp";
 import OldDashboard from "../../../public/assets/Dune/OldOrganization.webp";
 import Customers from "../../../public/assets/Dune/customers.webp";
 
-import { ArrowUp, ArrowDown, ArrowsOutLineVertical, Timer } from "phosphor-react";
+import { TrendingUp, TrendingDown, Maximize2, Clock } from "lucide-react";
 
 import PageSection from "../components/Pages/PageSection";
 import FullImage from "../components/Miscelaneous/FullImage";
@@ -106,19 +106,19 @@ const DuneSecurity: React.FC = () => {
 
                 <span className=" grid grid-cols-4 gap-4">
                   <span className="flex flex-col items-start p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow transition">
-                    <ArrowUp size={28} weight="duotone" className="text-gray-400 mb-2" />
+                    <TrendingUp size={28} className="text-gray-400 mb-2" />
                     <h4 className="text-fontprimary leading-snug">Employee training completion rates</h4>
                   </span>
                   <span className="flex flex-col items-start p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow transition">
-                    <ArrowDown size={28} weight="duotone" className="text-gray-400 mb-2" />
+                    <TrendingDown size={28} className="text-gray-400 mb-2" />
                     <h4 className="text-fontprimary leading-snug">Dashboard-related support tickets</h4>
                   </span>
                   <span className="flex flex-col items-start p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow transition">
-                    <ArrowsOutLineVertical size={28} weight="duotone" className="text-gray-400 mb-2" />
+                    <Maximize2 size={28} className="text-gray-400 mb-2" />
                     <h4 className="text-fontprimary  leading-snug">Expansion to new enterprise clients</h4>
                   </span>
                   <span className="flex flex-col items-start p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow transition">
-                    <Timer size={28} weight="duotone" className="text-gray-400 mb-2" />
+                    <Clock size={28} className="text-gray-400 mb-2" />
                     <h4 className="text-fontprimary leading-snug">Faster time-to-production for new features</h4>
                   </span>
 

@@ -15,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
        <head>
         <link href="https://fonts.cdnfonts.com/css/switzer" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" crossOrigin="anonymous" />
       </head>
       <body className="relative min-h-screen">
         <ChatProvider>  

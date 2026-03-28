@@ -2,9 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["cataas.com","images.unsplash.com","randomuser.me"],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'cataas.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'randomuser.me' },
+    ],
   },
-  // ...any other config options
+  compress: true,
 };
 
 export default nextConfig;
