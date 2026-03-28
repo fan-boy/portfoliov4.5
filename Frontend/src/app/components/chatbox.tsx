@@ -19,7 +19,6 @@ type ChatTurn = {
   references?: Reference[];
 };
 
-// Map project IDs to their URLs
 const PROJECT_URLS: Record<string, string> = {
   'risk-platform': '/dune/risk-platform',
   'stillsuit': '/dune/stillsuit',
@@ -40,46 +39,41 @@ const PAGE_PROMPTS: Record<string, string[]> = {
 
 // Shimmer loading component
 const LoadingShimmer = () => (
-  <div className="space-y-2.5">
-    <div className="space-y-2">
-      <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-3/4 animate-shimmer" 
-           style={{ backgroundSize: '200% 100%' }} />
-      <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-full animate-shimmer" 
-           style={{ backgroundSize: '200% 100%', animationDelay: '0.1s' }} />
-      <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-2/3 animate-shimmer" 
-           style={{ backgroundSize: '200% 100%', animationDelay: '0.2s' }} />
-    </div>
+  <div className="space-y-2">
+    <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-3/4 animate-shimmer" 
+         style={{ backgroundSize: '200% 100%' }} />
+    <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded w-full animate-shimmer" 
+         style={{ backgroundSize: '200% 100%', animationDelay: '0.1s' }} />
   </div>
 );
 
-// Message component with animation
+// Message component
 const ChatMessage = ({ 
   turn, 
   index, 
-  onReferenceClick 
+  onReferenceClick,
+  compact = false
 }: { 
   turn: ChatTurn; 
   index: number;
   onReferenceClick: (ref: Reference) => void;
+  compact?: boolean;
 }) => {
   const isUser = turn.role === 'user';
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ 
-        duration: 0.3, 
-        ease: [0.23, 1, 0.32, 1],
-        delay: index === 0 ? 0 : 0.05 
-      }}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
       className={clsx(
         'flex flex-col w-full',
         isUser ? 'items-end' : 'items-start'
       )}
     >
       <div className={clsx(
-        "px-4 py-3 rounded-2xl text-base leading-relaxed max-w-[80%]",
+        "rounded-2xl leading-relaxed",
+        compact ? "px-3 py-2 text-sm max-w-[85%]" : "px-4 py-3 text-base max-w-[80%]",
         isUser
           ? "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-md shadow-md"
           : "bg-white text-gray-800 border border-gray-100 rounded-bl-md shadow-sm"
@@ -92,31 +86,28 @@ const ChatMessage = ({
       {/* Reference chips */}
       {!isUser && turn.references && turn.references.length > 0 && (
         <motion.div 
-          initial={{ opacity: 0, y: 5 }}
+          initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.3 }}
-          className="flex flex-wrap gap-2 mt-2"
+          transition={{ delay: 0.15, duration: 0.25 }}
+          className="flex flex-wrap gap-1.5 mt-1.5"
         >
           {turn.references.map((ref, refIdx) => (
             <button
               key={refIdx}
               onClick={() => onReferenceClick(ref)}
-              className="group inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-full hover:bg-indigo-100 hover:border-indigo-200 hover:shadow-sm transition-all duration-200"
+              className={clsx(
+                "group inline-flex items-center gap-1 font-medium text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-full hover:bg-indigo-100 hover:border-indigo-200 transition-all",
+                compact ? "px-2 py-1 text-[11px]" : "px-3 py-1.5 text-xs"
+              )}
             >
               <svg 
-                width="12" 
-                height="12" 
+                width="10" 
+                height="10" 
                 viewBox="0 0 16 16" 
                 fill="none" 
                 className="flex-shrink-0 transition-transform group-hover:translate-x-0.5"
               >
-                <path 
-                  d="M6 12L10 8L6 4" 
-                  stroke="currentColor" 
-                  strokeWidth="1.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                />
+                <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               {ref.label}
             </button>
@@ -127,12 +118,79 @@ const ChatMessage = ({
   );
 };
 
+// Minimized chat widget
+const MinimizedChat = ({ 
+  chat, 
+  onExpand, 
+  onClose,
+  onReferenceClick,
+  loading
+}: { 
+  chat: ChatTurn[];
+  onExpand: () => void;
+  onClose: () => void;
+  onReferenceClick: (ref: Reference) => void;
+  loading: boolean;
+}) => {
+  const lastMessages = chat.slice(-3);
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 20, scale: 0.95 }}
+      transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+      className="fixed bottom-6 right-6 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[100]"
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-100">
+        <button
+          onClick={onExpand}
+          className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors flex items-center gap-2"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-gray-400">
+            <path d="M21 15L15 21M21 15H15M21 15V21M3 9L9 3M3 9H9M3 9V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          Expand
+        </button>
+        <button
+          onClick={onClose}
+          className="p-1 rounded-full hover:bg-gray-200 transition-colors"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-500">
+            <path d="M4.5 4.5l7 7m0-7l-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      {/* Messages */}
+      <div className="p-3 max-h-64 overflow-y-auto space-y-2">
+        {lastMessages.map((turn, i) => (
+          <ChatMessage 
+            key={i} 
+            turn={turn} 
+            index={i}
+            onReferenceClick={onReferenceClick}
+            compact
+          />
+        ))}
+        {loading && (
+          <div className="px-3 py-2 rounded-2xl bg-white border border-gray-100 rounded-bl-md shadow-sm max-w-[85%]">
+            <LoadingShimmer />
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
 export default function ChatBox() {
   const { chatOpen, setChatOpen } = useChat();
   const [question, setQuestion] = useState('');
   const [chat, setChat] = useState<ChatTurn[]>([]);
   const [loading, setLoading] = useState(false);
   const [promptsVisible, setPromptsVisible] = useState(true);
+  const [minimized, setMinimized] = useState(false);
 
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
@@ -142,13 +200,17 @@ export default function ChatBox() {
 
   // Handle keyboard shortcuts
   useEffect(() => {
-    if (!chatOpen) return;
+    if (!chatOpen || minimized) return;
     
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault();
         e.stopPropagation();
-        doClose();
+        if (chat.length > 0) {
+          setMinimized(true);
+        } else {
+          doClose();
+        }
         return;
       }
       
@@ -162,30 +224,25 @@ export default function ChatBox() {
     window.addEventListener('keydown', handler, true);
     return () => window.removeEventListener('keydown', handler, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chatOpen]);
+  }, [chatOpen, minimized, chat.length]);
 
   // Auto-focus input when chat opens
   useEffect(() => {
-    if (chatOpen && inputRef.current) {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
+    if (chatOpen && !minimized && inputRef.current) {
+      setTimeout(() => inputRef.current?.focus(), 100);
     }
-  }, [chatOpen]);
+  }, [chatOpen, minimized]);
 
   // Auto-scroll to bottom
   useEffect(() => {
-    if (chatEndRef.current && (chat.length > 0 || loading)) {
+    if (chatEndRef.current && (chat.length > 0 || loading) && !minimized) {
       setTimeout(() => {
-        chatEndRef.current?.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'end'
-        });
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
       }, 100);
     }
-  }, [chat, loading]);
+  }, [chat, loading, minimized]);
 
-  // Hide prompts if user types or chat is non-empty
+  // Hide prompts
   useEffect(() => {
     if (question || chat.length > 0 || loading) setPromptsVisible(false);
   }, [question, chat.length, loading]);
@@ -195,27 +252,33 @@ export default function ChatBox() {
     if (!chatOpen && chat.length === 0) setPromptsVisible(true);
   }, [chatOpen, chat.length]);
 
+  // Reset minimized state when chat closes
+  useEffect(() => {
+    if (!chatOpen) setMinimized(false);
+  }, [chatOpen]);
+
   const doClose = () => {
     setChatOpen(false);
     setQuestion('');
     setLoading(false);
+    setMinimized(false);
   };
 
   const handleReferenceClick = (ref: Reference) => {
     const url = PROJECT_URLS[ref.project];
     if (!url) return;
     
+    // Minimize chat when clicking a reference
+    setMinimized(true);
+    
     const fullUrl = `${url}#${ref.section}`;
     
-    // Check if we're already on the right page
     if (pathname === url) {
-      // Just scroll to the section
       const element = document.getElementById(ref.section);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     } else {
-      // Navigate to the page, then scroll after load
       router.push(fullUrl);
       setTimeout(() => {
         const element = document.getElementById(ref.section);
@@ -224,7 +287,6 @@ export default function ChatBox() {
         }
       }, 500);
     }
-    // Don't close chat - user can close it when ready
   };
 
   const handleAsk = async (msg?: string) => {
@@ -265,9 +327,22 @@ export default function ChatBox() {
 
   const promptChips = PAGE_PROMPTS[pathname || "/"] || [];
 
+  // Show minimized widget
+  if (chatOpen && minimized) {
+    return (
+      <MinimizedChat
+        chat={chat}
+        loading={loading}
+        onExpand={() => setMinimized(false)}
+        onClose={doClose}
+        onReferenceClick={handleReferenceClick}
+      />
+    );
+  }
+
   return (
     <AnimatePresence>
-      {chatOpen && (
+      {chatOpen && !minimized && (
         <>
           {/* Overlay & Blobs */}
           <motion.div
@@ -281,20 +356,35 @@ export default function ChatBox() {
               <AnimatedBlobs expanded={true} loading={loading} />
             </div>
             
-            {/* Close button */}
-            <motion.button
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1 }}
-              className="fixed top-6 right-8 flex items-center gap-1.5 rounded-full px-3 py-1.5 border border-gray-200 bg-white/90 shadow-sm text-xs font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 hover:border-gray-300 transition-all z-[120]"
-              onClick={doClose}
-              tabIndex={0}
-            >
-              <span className="font-semibold tracking-wide">ESC</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M4.5 4.5l7 7m0-7l-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </motion.button>
+            {/* Close/Minimize buttons */}
+            <div className="fixed top-6 right-8 flex items-center gap-2 z-[120]">
+              {chat.length > 0 && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 }}
+                  className="flex items-center gap-1.5 rounded-full px-3 py-1.5 border border-gray-200 bg-white/90 shadow-sm text-xs font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all"
+                  onClick={() => setMinimized(true)}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Minimize
+                </motion.button>
+              )}
+              <motion.button
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 }}
+                className="flex items-center gap-1.5 rounded-full px-3 py-1.5 border border-gray-200 bg-white/90 shadow-sm text-xs font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all"
+                onClick={doClose}
+              >
+                <span className="font-semibold tracking-wide">ESC</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M4.5 4.5l7 7m0-7l-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Chat history */}
@@ -321,12 +411,11 @@ export default function ChatBox() {
                   />
                 ))}
                 
-                {/* Loading state */}
                 {loading && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="px-4 py-3 rounded-2xl bg-white border border-gray-100 rounded-tl-md shadow-sm max-w-[75%]"
+                    className="px-4 py-3 rounded-2xl bg-white border border-gray-100 rounded-bl-md shadow-sm max-w-[80%]"
                   >
                     <LoadingShimmer />
                   </motion.div>
