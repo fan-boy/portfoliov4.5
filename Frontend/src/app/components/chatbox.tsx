@@ -38,6 +38,123 @@ const PAGE_PROMPTS: Record<string, string[]> = {
   ],
 };
 
+// Shimmer loading component
+const LoadingShimmer = () => (
+  <div className="flex items-start gap-3">
+    {/* AI Avatar */}
+    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-md">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
+        <path d="M12 3C7.03 3 3 7.03 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M12 8V12L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </div>
+    <div className="flex-1 space-y-2.5 py-1">
+      <div className="space-y-2">
+        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-3/4 animate-shimmer" 
+             style={{ backgroundSize: '200% 100%' }} />
+        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-full animate-shimmer" 
+             style={{ backgroundSize: '200% 100%', animationDelay: '0.1s' }} />
+        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg w-2/3 animate-shimmer" 
+             style={{ backgroundSize: '200% 100%', animationDelay: '0.2s' }} />
+      </div>
+      <div className="flex items-center gap-2 pt-1">
+        <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+        <span className="text-xs text-gray-400 font-medium">Thinking...</span>
+      </div>
+    </div>
+  </div>
+);
+
+// Message component with animation
+const ChatMessage = ({ 
+  turn, 
+  index, 
+  onReferenceClick 
+}: { 
+  turn: ChatTurn; 
+  index: number;
+  onReferenceClick: (ref: Reference) => void;
+}) => {
+  const isAI = turn.role === 'ai';
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ 
+        duration: 0.3, 
+        ease: [0.23, 1, 0.32, 1],
+        delay: index === 0 ? 0 : 0.05 
+      }}
+      className={clsx(
+        'flex w-full gap-3',
+        isAI ? 'justify-start' : 'justify-end'
+      )}
+    >
+      {/* AI Avatar */}
+      {isAI && (
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-md">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
+            <path d="M12 3C7.03 3 3 7.03 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M12 8V12L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      )}
+      
+      <div className={clsx('flex flex-col', isAI ? 'items-start' : 'items-end', 'max-w-[75%]')}>
+        <div className={clsx(
+          "px-4 py-3 rounded-2xl text-base leading-relaxed",
+          isAI
+            ? "bg-white text-gray-800 border border-gray-100 rounded-tl-md shadow-sm"
+            : "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-tr-md shadow-md"
+        )}>
+          <div className="whitespace-pre-wrap break-words">
+            {turn.text}
+          </div>
+        </div>
+        
+        {/* Reference chips for AI messages */}
+        {isAI && turn.references && turn.references.length > 0 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
+            className="flex flex-wrap gap-2 mt-2 ml-1"
+          >
+            {turn.references.map((ref, refIdx) => (
+              <button
+                key={refIdx}
+                onClick={() => onReferenceClick(ref)}
+                className="group inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-full hover:bg-indigo-100 hover:border-indigo-200 hover:shadow-sm transition-all duration-200"
+              >
+                <svg 
+                  width="12" 
+                  height="12" 
+                  viewBox="0 0 16 16" 
+                  fill="none" 
+                  className="flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+                >
+                  <path 
+                    d="M6 12L10 8L6 4" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {ref.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </div>
+      
+      {/* User avatar spacer for alignment */}
+      {!isAI && <div className="w-8 flex-shrink-0" />}
+    </motion.div>
+  );
+};
+
 export default function ChatBox() {
   const { chatOpen, setChatOpen } = useChat();
   const [question, setQuestion] = useState('');
@@ -51,7 +168,7 @@ export default function ChatBox() {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Handle keyboard shortcuts - Only ESC when chat is open
+  // Handle keyboard shortcuts
   useEffect(() => {
     if (!chatOpen) return;
     
@@ -84,7 +201,7 @@ export default function ChatBox() {
     }
   }, [chatOpen]);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll to bottom
   useEffect(() => {
     if (chatEndRef.current && (chat.length > 0 || loading)) {
       setTimeout(() => {
@@ -116,14 +233,10 @@ export default function ChatBox() {
     const url = PROJECT_URLS[ref.project];
     if (!url) return;
     
-    // Close the chat
     doClose();
-    
-    // Navigate to the page with section hash
     const fullUrl = `${url}#${ref.section}`;
     router.push(fullUrl);
     
-    // Smooth scroll after navigation (slight delay for page load)
     setTimeout(() => {
       const element = document.getElementById(ref.section);
       if (element) {
@@ -176,26 +289,30 @@ export default function ChatBox() {
         <>
           {/* Overlay & Blobs */}
           <motion.div
-            className="fixed inset-0 z-50 bg-white/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-white/60 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.22 }}
+            transition={{ duration: 0.25 }}
           >
             <div className="pointer-events-none relative w-full h-screen">
               <AnimatedBlobs expanded={true} loading={loading} />
             </div>
-            {/* CLOSE button */}
-            <button
-              className="fixed top-6 right-8 flex items-center gap-1 rounded-full px-3 py-1 border border-gray-200 bg-white/90 shadow text-xs font-medium text-gray-400 hover:bg-indigo-50 hover:text-indigo-700 transition z-[120]"
+            
+            {/* Close button */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 }}
+              className="fixed top-6 right-8 flex items-center gap-1.5 rounded-full px-3 py-1.5 border border-gray-200 bg-white/90 shadow-sm text-xs font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 hover:border-gray-300 transition-all z-[120]"
               onClick={doClose}
               tabIndex={0}
             >
               <span className="font-semibold tracking-wide">ESC</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" className="ml-1" fill="none">
-                <path d="M4.5 4.5l7 7m0-7l-7 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M4.5 4.5l7 7m0-7l-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
-            </button>
+            </motion.button>
           </motion.div>
 
           {/* Chat history */}
@@ -204,117 +321,89 @@ export default function ChatBox() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.22 }}
+            transition={{ duration: 0.25 }}
           >
             <div 
               ref={chatContainerRef}
-              className="flex-1 w-full max-w-3xl mx-auto flex flex-col pt-[120px] pb-[120px] px-6 pointer-events-auto overflow-y-auto"
+              className="flex-1 w-full max-w-2xl mx-auto flex flex-col pt-[100px] pb-[140px] px-6 pointer-events-auto overflow-y-auto"
               style={{ height: '100vh', scrollBehavior: 'smooth' }}
             >
               <div className="flex-1"></div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 {chat.map((turn, i) => (
-                  <div
-                    key={i}
-                    className={clsx(
-                      'flex flex-col w-full',
-                      turn.role === 'ai' ? 'items-start' : 'items-end'
-                    )}
-                  >
-                    <div className={clsx(
-                      "px-4 py-2 rounded-2xl max-w-[75%] text-base leading-relaxed",
-                      turn.role === 'user'
-                        ? "bg-indigo-600 text-white rounded-br-md"
-                        : "bg-white text-gray-800 border border-gray-200 rounded-bl-md shadow-sm"
-                    )}>
-                      <div className="whitespace-pre-wrap break-words">
-                        {turn.text}
-                      </div>
-                    </div>
-                    
-                    {/* Reference chips for AI messages */}
-                    {turn.role === 'ai' && turn.references && turn.references.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-2 ml-1">
-                        {turn.references.map((ref, refIdx) => (
-                          <button
-                            key={refIdx}
-                            onClick={() => handleReferenceClick(ref)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-full hover:bg-indigo-100 hover:border-indigo-300 transition-colors"
-                          >
-                            <svg 
-                              width="12" 
-                              height="12" 
-                              viewBox="0 0 16 16" 
-                              fill="none" 
-                              className="flex-shrink-0"
-                            >
-                              <path 
-                                d="M6 12L10 8L6 4" 
-                                stroke="currentColor" 
-                                strokeWidth="1.5" 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                            {ref.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <ChatMessage 
+                    key={i} 
+                    turn={turn} 
+                    index={i}
+                    onReferenceClick={handleReferenceClick}
+                  />
                 ))}
+                
+                {/* Loading state */}
                 {loading && (
-                  <div className="flex justify-start">
-                    <div className="px-4 py-2 rounded-2xl bg-white border border-gray-200 shadow-sm rounded-bl-md">
-                      <div className="flex gap-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                      </div>
-                    </div>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="px-4 py-3 rounded-2xl bg-white border border-gray-100 rounded-tl-md shadow-sm max-w-[75%]"
+                  >
+                    <LoadingShimmer />
+                  </motion.div>
                 )}
                 <div ref={chatEndRef} />
               </div>
             </div>
           </motion.div>
 
-          {/* Prompt chips - Only when no chat */}
-          {promptsVisible && chat.length === 0 && (
-            <div className="fixed left-0 right-0 bottom-[100px] z-[85] w-full flex flex-col items-center pointer-events-auto">
-              <div className="text-gray-400 text-sm mb-4 select-none">
-                Start a conversation. Ask anything about Adi!
-              </div>
-              {promptChips.length > 0 && (
-                <div className="flex flex-wrap gap-3 max-w-3xl w-full px-6 justify-center">
-                  {promptChips.map((prompt, idx) => (
-                    <button
-                      key={prompt + idx}
-                      type="button"
-                      onClick={() => handleAsk(prompt)}
-                      className="border border-indigo-200 bg-indigo-50 text-indigo-700 font-medium rounded-full px-4 py-2 text-sm transition hover:bg-indigo-100 hover:border-indigo-300"
-                    >
-                      {prompt}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+          {/* Prompt chips */}
+          <AnimatePresence>
+            {promptsVisible && chat.length === 0 && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ delay: 0.15 }}
+                className="fixed left-0 right-0 bottom-[120px] z-[85] w-full flex flex-col items-center pointer-events-auto"
+              >
+                <p className="text-gray-400 text-sm mb-4 select-none">
+                  Ask anything about Adi&apos;s work
+                </p>
+                {promptChips.length > 0 && (
+                  <div className="flex flex-wrap gap-2 max-w-2xl w-full px-6 justify-center">
+                    {promptChips.map((prompt, idx) => (
+                      <motion.button
+                        key={prompt + idx}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 + idx * 0.05 }}
+                        type="button"
+                        onClick={() => handleAsk(prompt)}
+                        className="border border-gray-200 bg-white/80 text-gray-700 font-medium rounded-full px-4 py-2 text-sm transition-all hover:bg-white hover:border-indigo-200 hover:text-indigo-600 hover:shadow-sm"
+                      >
+                        {prompt}
+                      </motion.button>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Chat input */}
           <motion.form
-            className="fixed left-0 right-0 bottom-0 pb-6 z-[80] w-full pointer-events-auto flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ delay: 0.1 }}
+            className="fixed left-0 right-0 bottom-0 pb-8 pt-4 z-[80] w-full pointer-events-auto flex justify-center"
             style={{
-              background: "linear-gradient(to top, rgba(255,255,255,0.8) 70%, rgba(255,255,255,0))",
-              minHeight: '80px'
+              background: "linear-gradient(to top, rgba(255,255,255,0.95) 60%, rgba(255,255,255,0))",
             }}
             onSubmit={e => {
               e.preventDefault();
               handleAsk();
             }}
           >
-            <div className="rounded-full border border-gray-200 shadow-md bg-white/90 flex gap-2 py-2 px-3 items-center max-w-3xl w-full mx-6">
+            <div className="rounded-2xl border border-gray-200 shadow-lg bg-white flex gap-2 py-2 px-3 items-center max-w-2xl w-full mx-6">
               <textarea
                 ref={inputRef}
                 value={question}
@@ -322,7 +411,7 @@ export default function ChatBox() {
                 rows={1}
                 placeholder="Ask me anything about Adi..."
                 onChange={e => setQuestion(e.target.value)}
-                className="resize-none bg-transparent px-3 py-1.5 text-base flex-1 font-normal border-none outline-none placeholder-gray-400"
+                className="resize-none bg-transparent px-3 py-2 text-base flex-1 font-normal border-none outline-none placeholder-gray-400"
                 onKeyDown={e => {
                   if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
@@ -336,17 +425,26 @@ export default function ChatBox() {
                 type="submit"
                 disabled={loading || !question.trim()}
                 className={clsx(
-                  "flex items-center gap-2 rounded-full px-4 py-1.5 font-medium text-sm border transition",
+                  "flex items-center justify-center w-10 h-10 rounded-xl transition-all",
                   loading
-                    ? "bg-indigo-100 border-indigo-200 text-indigo-300 cursor-wait"
-                    : "bg-indigo-50 border-indigo-200 text-indigo-700 hover:bg-indigo-100 hover:text-indigo-800",
+                    ? "bg-gray-100 text-gray-300 cursor-wait"
+                    : question.trim()
+                      ? "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white shadow-md hover:shadow-lg hover:scale-105"
+                      : "bg-gray-100 text-gray-400",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
                 )}
               >
-                <span className="flex items-center justify-center w-5 h-5 rounded-sm text-[11px] font-medium border border-indigo-300 text-indigo-700 bg-white">
-                {"\u23CE"}
-                </span>
-                {loading ? 'Sending...' : 'Ask'}
+                {loading ? (
+                  <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
               </button>
             </div>
           </motion.form>
