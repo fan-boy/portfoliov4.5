@@ -3,16 +3,38 @@
 import { useChat } from '../context/ChatContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import AnimatedBlobs from './AnimatedBlobs';
 
-type ChatTurn = { role: 'user' | 'ai'; text: string };
+type Reference = {
+  project: string;
+  section: string;
+  label: string;
+};
+
+type ChatTurn = { 
+  role: 'user' | 'ai'; 
+  text: string;
+  references?: Reference[];
+};
+
+// Map project IDs to their URLs
+const PROJECT_URLS: Record<string, string> = {
+  'risk-platform': '/dune/risk-platform',
+  'stillsuit': '/dune/stillsuit',
+  'workflows': '/dune/workflows',
+  'universitypark': '/universitypark',
+  'chainreactive': '/chainreactive',
+  'crashr': '/crashr',
+  'cadence': '/cadence',
+  'everestos': '/everestos',
+};
 
 const PAGE_PROMPTS: Record<string, string[]> = {
   "/": [
     "Tell me more about Adi.",
-    "What joke would Adi tell?"
+    "What projects has Adi worked on?"
   ],
 };
 
@@ -27,13 +49,13 @@ export default function ChatBox() {
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
 
   // Handle keyboard shortcuts - Only ESC when chat is open
   useEffect(() => {
     if (!chatOpen) return;
     
     const handler = (e: KeyboardEvent) => {
-      // Block all keyboard shortcuts except ESC when chat is open
       if (e.key === 'Escape') {
         e.preventDefault();
         e.stopPropagation();
@@ -41,7 +63,6 @@ export default function ChatBox() {
         return;
       }
       
-      // Block CMD+K and other shortcuts while chat is open
       if (e.metaKey || e.ctrlKey) {
         e.preventDefault();
         e.stopPropagation();
@@ -49,7 +70,6 @@ export default function ChatBox() {
       }
     };
     
-    // Use capture phase to intercept before other handlers
     window.addEventListener('keydown', handler, true);
     return () => window.removeEventListener('keydown', handler, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,11 +112,31 @@ export default function ChatBox() {
     setLoading(false);
   };
 
+  const handleReferenceClick = (ref: Reference) => {
+    const url = PROJECT_URLS[ref.project];
+    if (!url) return;
+    
+    // Close the chat
+    doClose();
+    
+    // Navigate to the page with section hash
+    const fullUrl = `${url}#${ref.section}`;
+    router.push(fullUrl);
+    
+    // Smooth scroll after navigation (slight delay for page load)
+    setTimeout(() => {
+      const element = document.getElementById(ref.section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300);
+  };
+
   const handleAsk = async (msg?: string) => {
     const trimmed = (msg ?? question).trim();
     if (!trimmed) return;
     
-    const newUserMessage = { role: 'user' as const, text: trimmed };
+    const newUserMessage: ChatTurn = { role: 'user', text: trimmed };
     setChat(current => [...current, newUserMessage]);
     setQuestion('');
     setPromptsVisible(false);
@@ -108,17 +148,22 @@ export default function ChatBox() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           question: trimmed,
-          history: chat
+          history: chat.map(c => ({ role: c.role, text: c.text }))
         }),
       });
       const data = await res.json();
-      setChat(current => [...current, { role: 'ai', text: data.response || 'No response received.' }]);
+      
+      const aiMessage: ChatTurn = { 
+        role: 'ai', 
+        text: data.response || 'No response received.',
+        references: data.references || []
+      };
+      setChat(current => [...current, aiMessage]);
     } catch (err) {
       console.error(err);
       setChat(current => [...current, { role: 'ai', text: 'Something went wrong. Please try again.' }]);
     } finally {
       setLoading(false);
-      // Refocus input after response
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   };
@@ -153,7 +198,7 @@ export default function ChatBox() {
             </button>
           </motion.div>
 
-          {/* Chat history - WIDER BUT THINNER */}
+          {/* Chat history */}
           <motion.div
             className="fixed left-0 right-0 bottom-0 top-0 z-[60] flex flex-col items-center w-full pointer-events-none"
             initial={{ opacity: 0 }}
@@ -172,8 +217,8 @@ export default function ChatBox() {
                   <div
                     key={i}
                     className={clsx(
-                      'flex w-full',
-                      turn.role === 'ai' ? 'justify-start' : 'justify-end'
+                      'flex flex-col w-full',
+                      turn.role === 'ai' ? 'items-start' : 'items-end'
                     )}
                   >
                     <div className={clsx(
@@ -186,6 +231,36 @@ export default function ChatBox() {
                         {turn.text}
                       </div>
                     </div>
+                    
+                    {/* Reference chips for AI messages */}
+                    {turn.role === 'ai' && turn.references && turn.references.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-2 ml-1">
+                        {turn.references.map((ref, refIdx) => (
+                          <button
+                            key={refIdx}
+                            onClick={() => handleReferenceClick(ref)}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-full hover:bg-indigo-100 hover:border-indigo-300 transition-colors"
+                          >
+                            <svg 
+                              width="12" 
+                              height="12" 
+                              viewBox="0 0 16 16" 
+                              fill="none" 
+                              className="flex-shrink-0"
+                            >
+                              <path 
+                                d="M6 12L10 8L6 4" 
+                                stroke="currentColor" 
+                                strokeWidth="1.5" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                            {ref.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
                 {loading && (
@@ -227,7 +302,7 @@ export default function ChatBox() {
             </div>
           )}
 
-          {/* Chat input - WIDER BUT THINNER with Enter icon inside Ask button */}
+          {/* Chat input */}
           <motion.form
             className="fixed left-0 right-0 bottom-0 pb-6 z-[80] w-full pointer-events-auto flex justify-center"
             style={{
@@ -257,7 +332,6 @@ export default function ChatBox() {
                 autoFocus
               />
               
-              {/* Ask button with Enter icon inside - NavChip style */}
               <button
                 type="submit"
                 disabled={loading || !question.trim()}
@@ -269,7 +343,6 @@ export default function ChatBox() {
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
                 )}
               >
-                {/* Enter key icon - like NavChip letters */}
                 <span className="flex items-center justify-center w-5 h-5 rounded-sm text-[11px] font-medium border border-indigo-300 text-indigo-700 bg-white">
                 {"\u23CE"}
                 </span>
