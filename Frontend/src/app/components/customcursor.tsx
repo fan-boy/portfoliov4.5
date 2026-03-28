@@ -1,9 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 const CLICKABLE_SELECTORS = "a, button, [role='button'], input, select";
+
+// Spring config: high stiffness + low mass = snappy but smooth
+const springConfig = { damping: 20, stiffness: 700, mass: 0.1 };
 
 const CustomCursor: React.FC = () => {
   const [hovered, setHovered] = useState(false);
@@ -11,6 +14,10 @@ const CustomCursor: React.FC = () => {
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
+  
+  // Smooth the motion values with springs
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
 
   const pathname = usePathname();
 
@@ -74,15 +81,21 @@ const CustomCursor: React.FC = () => {
         border: hovered ? "2px solid #615fff" : "none",
         pointerEvents: "none",
         zIndex: 9999,
-        x: mouseX,
-        y: mouseY,
+        x: smoothX,
+        y: smoothY,
         translateX: -offset,
         translateY: -offset,
         opacity: visible ? 1 : 0,
-        transition: "background 0.2s, border 0.2s, width 0.2s, height 0.2s, opacity 0.15s",
       }}
       animate={{
         scale: hovered ? 1.5 : 1,
+        width: size,
+        height: size,
+      }}
+      transition={{
+        scale: { type: "spring", stiffness: 400, damping: 25 },
+        width: { duration: 0.15 },
+        height: { duration: 0.15 },
       }}
     />
   );
