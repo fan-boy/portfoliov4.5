@@ -26,6 +26,7 @@ const StillsuitDesignSystem: React.FC = () => {
               HERO SECTION
               ============================================ */}
           <motion.section 
+            id="hero"
             className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
@@ -92,7 +93,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               THE CASE FOR BUILDING EARLY
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="the-decision" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Decision</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -130,7 +131,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               THE MATH
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="business-case" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Business Case</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -150,7 +151,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               PRINCIPLES
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="principles" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
@@ -204,7 +205,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               TOKEN ARCHITECTURE
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="token-architecture" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Foundation</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -252,7 +253,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               COLOR SYSTEM
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="color-system" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Color Philosophy</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -296,7 +297,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               COMPONENT DEEP DIVE
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="risk-indicator" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Deep Dive</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -338,7 +339,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               DOCUMENTATION
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="documentation" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Handoff</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -364,7 +365,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="outcomes" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
@@ -397,7 +398,7 @@ const StillsuitDesignSystem: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="learnings" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">

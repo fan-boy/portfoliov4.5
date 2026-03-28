@@ -23,6 +23,7 @@ const Cadence: React.FC = () => {
               HERO SECTION
               ============================================ */}
           <motion.section 
+            id="hero"
             className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
@@ -83,7 +84,7 @@ const Cadence: React.FC = () => {
           {/* ============================================
               THE CHALLENGE
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section id="the-challenge" className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
@@ -101,7 +102,7 @@ const Cadence: React.FC = () => {
           {/* ============================================
               TECHNICAL APPROACH
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="approach" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
@@ -155,7 +156,7 @@ const Cadence: React.FC = () => {
           {/* ============================================
               TECH STACK
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section id="tech-stack" className="w-full py-24 bg-bg-secondary">
             <div className="max-w-5xl mx-auto px-6">
               <div className="grid md:grid-cols-4 gap-8">
                 <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100 text-center">
@@ -181,7 +182,7 @@ const Cadence: React.FC = () => {
           {/* ============================================
               USER TESTING
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="user-testing" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">User Testing</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
@@ -204,7 +205,7 @@ const Cadence: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section id="learnings" className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">

@@ -31,6 +31,7 @@ const UniversityPark: React.FC = () => {
               HERO SECTION
               ============================================ */}
           <motion.section 
+            id="hero"
             className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
@@ -97,7 +98,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               THE CHALLENGE
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="the-challenge" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -115,7 +116,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               RESEARCH
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="research" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Research</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -168,7 +169,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               GAMIFICATION STRATEGY
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="gamification" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -232,7 +233,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               DESIGN DECISIONS
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="design-decisions" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Key Decisions</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
@@ -291,7 +292,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               INFORMATION ARCHITECTURE
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="information-architecture" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Information Architecture</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -347,7 +348,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               ADMIN TOOLS
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="admin-tools" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Admin Tools</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -394,7 +395,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               USER TESTING
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="user-testing" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Iteration</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -470,7 +471,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="outcomes" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -500,7 +501,7 @@ const UniversityPark: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="learnings" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">

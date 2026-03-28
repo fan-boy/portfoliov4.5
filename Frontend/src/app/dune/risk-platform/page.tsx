@@ -32,6 +32,7 @@ const RiskPlatform: React.FC = () => {
               HERO SECTION
               ============================================ */}
           <motion.section 
+            id="hero"
             className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
@@ -100,7 +101,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               THE PROBLEM
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="the-challenge" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -131,7 +132,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               THE APPROACH
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="the-approach" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -161,7 +162,7 @@ const RiskPlatform: React.FC = () => {
           </section>
 
           {/* The Four Pillars List */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="four-pillars" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <h3 className="text-2xl md:text-3xl text-fontprimary mb-12 tracking-tight">The Four Pillars</h3>
               
@@ -212,7 +213,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               THE EXPERIENCE REDESIGN
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="the-redesign" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Redesign</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -282,7 +283,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               DRILLDOWN FLOW
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="drilldown" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The System</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -337,7 +338,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               STRATEGIC IMPACT
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="impact" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Impact</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -364,7 +365,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="outcomes" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
@@ -409,7 +410,7 @@ const RiskPlatform: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="learnings" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">

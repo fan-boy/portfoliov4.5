@@ -1,0 +1,461 @@
+{
+  "about": {
+    "name": "Aaditya Shete",
+    "nickname": "Adi",
+    "currentRole": "Head of Product Design at Dune Security",
+    "location": "New York",
+    "background": "Mumbai → Maryland → New York",
+    "summary": "Product designer building 0→1 products and scaling design systems. Founding designer at Dune Security.",
+    "philosophy": "I thrive in ambiguity, love a good whiteboard session, and believe the best products come from teams who listen deeply and iterate relentlessly.",
+    "skills": ["Product Design", "Design Systems", "0→1 Products", "Design Strategy"],
+    "experience": [
+      {
+        "company": "Dune Security",
+        "title": "Head of Product Design",
+        "years": "2024 — Present",
+        "description": "Leading design for AI-powered security risk platform. Founding designer."
+      },
+      {
+        "company": "University Park",
+        "title": "Lead Product Designer",
+        "years": "2023 — 2024",
+        "description": "0→1 behavior change platform for municipal sustainability."
+      },
+      {
+        "company": "Chain Reactive",
+        "title": "Lead Designer & Developer",
+        "years": "2021 — 2022",
+        "description": "End-to-end product for small business ordering."
+      },
+      {
+        "company": "Ingram Micro",
+        "title": "Product Design Specialist",
+        "years": "2018 — 2021",
+        "description": "Enterprise tools and internal platforms."
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "risk-platform",
+      "name": "Dune Risk Platform",
+      "url": "/dune/risk-platform",
+      "company": "Dune Security",
+      "year": "2024 to Present",
+      "role": "Product Design Lead",
+      "headline": "Making Security Risk Understandable and Actionable",
+      "summary": "Security teams drown in data but struggle to answer: which users are actually putting us at risk? As founding designer, I helped define the product. The risk model I created became the centerpiece of our sales narrative.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "Designed a system that makes security risk understandable and actionable for enterprise CISOs and security teams."
+        },
+        {
+          "id": "the-challenge",
+          "title": "The Challenge",
+          "content": "CISOs couldn't tell which users were putting them most at risk. Everyone had phishing results and training completion rates, but nobody had a unified view of which people were actually dangerous to the business. Training wasn't targeted, and CISOs couldn't explain risk to the board because opaque scores don't survive executive scrutiny."
+        },
+        {
+          "id": "the-approach",
+          "title": "The Approach",
+          "content": "Designed a credit score for user risk. The original risk score combined multiple signals in ways that were mathematically valid but impossible to explain. I pushed for a constraint: the model had to be explainable in four factors or fewer. Credit scores are read one at a time; security admins look at thousands of users at once. Cognitive load matters."
+        },
+        {
+          "id": "four-pillars",
+          "title": "The Four Pillars",
+          "content": "1) Business Impact: Role, access level, what's at stake if compromised. A CFO clicking phishing is different from an intern. 2) Simulated Attacks: Performance in phishing, spear-phishing, smishing, and vishing scenarios. 3) Training Activity: Completion rates and recency. Are they engaged with security education? 4) Cyber Hygiene: Signals from connected tools—sign-in patterns, device posture, password behavior."
+        },
+        {
+          "id": "the-redesign",
+          "title": "The Experience Redesign",
+          "content": "Went from dark and dense to clear and actionable. The existing UI was dark, dense, and organized around what looked sophisticated, not what made security teams faster. Before: Dark mode everywhere, dense card-heavy layouts, navigation by feature, color as decoration. After: Light mode default, generous spacing, clear typography, navigation by job (Understand → Investigate → Configure), color as signal for risk levels and status."
+        },
+        {
+          "id": "drilldown",
+          "title": "Drilldown System",
+          "content": "One language, every zoom level. A CISO needs the org-wide view, a security admin needs individual user view. Same data, different depths. Designed consistent drilldown pattern where risk scores look the same whether viewing 10,000 people or one person. Flow: Org (10,000 users) → Dept (500 users) → User (1 person) → Factor (why they're risky)."
+        },
+        {
+          "id": "impact",
+          "title": "Strategic Impact",
+          "content": "The four-pillar model changed how we sold the product. Worked directly with GTM team to translate pillars into sales enablement materials. The risk visualization became the first thing shown in demos—our 'aha moment.'"
+        },
+        {
+          "id": "outcomes",
+          "title": "Outcomes",
+          "content": "$6M seed round closed with investor materials I designed. 15+ Fortune 500 clients using the platform. 90% drop in dashboard-related support tickets. 32% increase in employee training completion."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Explainability beats sophistication—accuracy that can't be explained is useless in enterprise software. Design the conversation, not just the screen—I designed how sales would demo, how CISOs would explain to boards. Own the strategy, not just the execution—I ran customer research, proposed the four-pillar model, and built the case for prioritization."
+        }
+      ]
+    },
+    {
+      "id": "stillsuit",
+      "name": "Stillsuit Design System",
+      "url": "/dune/stillsuit",
+      "company": "Dune Security",
+      "year": "2024 to Present",
+      "role": "Systems Design",
+      "headline": "Building a Design System for Speed and Consistency",
+      "summary": "As sole designer at an early-stage startup, I couldn't rebuild components every sprint. Created Stillsuit: a practical design system that reduced engineer onboarding by 50%, enabled rebrand in 2 weeks instead of 6.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "A practical design system built for speed at Dune Security."
+        },
+        {
+          "id": "the-decision",
+          "title": "The Decision",
+          "content": "Why build a design system when you're the only designer? I'm cautious about design systems—they're often created too early and become maintenance burdens. But I was thinking ahead: we were about to scale, the rebrand was coming, engineering velocity was at stake, and I wanted design quality to compound."
+        },
+        {
+          "id": "business-case",
+          "title": "The Business Case",
+          "content": "Made the case with math. We planned 12+ major features. If each saved 3-4 days of design/eng overhead, the system paid for itself by feature #3."
+        },
+        {
+          "id": "principles",
+          "title": "Four Principles",
+          "content": "1) Speed over completeness: Build components as needed, not speculatively. 2) Engineer-first documentation: Primary consumer was engineering, docs had to answer their questions without a meeting. 3) Flexible but opinionated: Sensible defaults for 90% of use cases with clear escape hatches. 4) One source of truth: Tokens in Figma match code exactly."
+        },
+        {
+          "id": "token-architecture",
+          "title": "Token Architecture",
+          "content": "Three-tier system: Primitives (raw values like gray-100, space-4) → Semantic (contextual meaning like color-bg-primary) → Component (specific usage like button-padding-x). When we flipped from dark to light mode, I changed semantic token mappings and every component updated automatically."
+        },
+        {
+          "id": "color-system",
+          "title": "Color Philosophy",
+          "content": "Color earns its place. The old product used color decoratively—dark backgrounds, gradient accents. It made the interface noisy and risk states hard to spot. In the new system, saturated colors are reserved for risk and status. When something is red, it actually means something."
+        },
+        {
+          "id": "risk-indicator",
+          "title": "The Risk Indicator",
+          "content": "The most important component. Appears everywhere: dashboard summaries, user rows, inline mentions. Works at multiple sizes (Large for dashboard hero, Medium for user rows, Small for inline mentions) while remaining instantly scannable."
+        },
+        {
+          "id": "documentation",
+          "title": "Documentation Approach",
+          "content": "Documentation lives directly in Figma, attached to components. When an engineer inspects a component, usage guidelines are right there. Engineers stopped asking 'what's the padding here?'—the answer was always 'check the component.'"
+        },
+        {
+          "id": "outcomes",
+          "title": "Outcomes",
+          "content": "50% faster engineer onboarding. 2 weeks for rebrand execution (vs 6 estimated). 30% faster average feature shipping. Dramatic drop in visual bugs and 'doesn't match' tickets."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Infrastructure is a leadership decision—I was thinking about what the team would need in 12 months. The system is a product—it has users (engineers, future designers), needs UX, needs maintenance. Document for the person who isn't here yet. Make the case with math—speaking in business outcomes gets buy-in."
+        }
+      ]
+    },
+    {
+      "id": "workflows",
+      "name": "Dynamic Workflows",
+      "url": "/dune/workflows",
+      "company": "Dune Security",
+      "year": "2024 to Present",
+      "role": "Product Strategy & Design",
+      "headline": "Turning Dashboards Into Decision-Makers",
+      "summary": "Most security products surface information and leave decisions to overloaded humans. I designed a system that takes action automatically. This wasn't just a feature—it was a strategic pivot that transformed Dune from 'risk reporting' to 'User Risk OS.'",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "Designed automated workflow system that transformed Dune from dashboard to platform."
+        },
+        {
+          "id": "the-opportunity",
+          "title": "The Opportunity",
+          "content": "After redesigning Dune's risk model, this question kept surfacing: 'If the system knows who's risky, why isn't it doing more?' The market was crowded with dashboards. Nobody was doing automated remediation well."
+        },
+        {
+          "id": "business-case",
+          "title": "The Business Case",
+          "content": "Used customer research to quantify: 40+ hours/month spent manually following up on high-risk users. 73% of high-risk users never received intervention due to bandwidth. 0 competitors offering meaningful automation."
+        },
+        {
+          "id": "the-challenge",
+          "title": "The Challenge",
+          "content": "Pain points from interviews: 'By the time I act, it's too late'—manual review meant high-risk users went weeks without intervention. 'I can't scale this process'—what works for 100 users doesn't work for 10,000. 'I'm nervous about automation'—past experiences made admins wary, they wanted control."
+        },
+        {
+          "id": "solution",
+          "title": "The Solution",
+          "content": "Designed workflows as if/then rules defined once and enforced continuously. Each workflow answers: Trigger (who does this apply to?) → Actions (what should happen?) → Notify (who needs to know?). Example: 'If a user has high business impact AND fails multiple phishing simulations → restrict IAM access, assign targeted training, notify their manager.'"
+        },
+        {
+          "id": "trust",
+          "title": "Designing for Trust",
+          "content": "Three principles: Preview (before any workflow goes live, users see exactly who would be affected), Protect (guardrails prevent workflows from doing too much—rate limiting, escalation tiers, easy rollback, exclusion lists), Prove (every action is logged, admins see exactly what the system did, when, and why)."
+        },
+        {
+          "id": "strategic-impact",
+          "title": "Strategic Impact",
+          "content": "Transformation: Before—'Another security dashboard', feature parity, 'see your risk data', sold on training value. After—'User Risk OS' that measures, decides, AND acts; clear competitive differentiation; 'reduce risk automatically'; larger contracts."
+        },
+        {
+          "id": "my-role",
+          "title": "My Role",
+          "content": "This wasn't a feature I was asked to design. I drove it from insight to implementation: 1) Identified the opportunity through customer research, 2) Built the business case and presented to leadership, 3) Drove prioritization over other planned features, 4) Shaped the GTM strategy with sales, 5) Designed the implementation from strategy through final UI."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Features can be strategy—recognizing when a design opportunity is actually a business opportunity. Design for the sales conversation—I understood how our sales team pitched and where they lost deals. Automation needs to feel controllable—users trust tools they can inspect, adjust, and override. Own the outcome, not just the output."
+        }
+      ]
+    },
+    {
+      "id": "universitypark",
+      "name": "University Park",
+      "url": "/universitypark",
+      "company": "University Park",
+      "year": "2023 to 2024",
+      "role": "Lead Product Designer",
+      "headline": "Turning Sustainability From Awareness Into Habit",
+      "summary": "Most sustainability initiatives fail at the gap between knowing and doing. University Park had educated residents for years, but awareness wasn't converting to action. I defined the product strategy, ran research that uncovered what blocked behavior change, and built admin tools for non-technical committee members.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "Behavior change platform for municipal sustainability that converts awareness into action."
+        },
+        {
+          "id": "the-challenge",
+          "title": "The Challenge",
+          "content": "Information wasn't the problem. The committee had newsletters, workshops, flyers. Awareness was high, action was low. The gap between 'I know I should compost' and 'I actually compost' wasn't information—it was behavior design."
+        },
+        {
+          "id": "research",
+          "title": "Research Findings",
+          "content": "Three key insights: 1) 'I know what I should do. I just don't do it'—residents lacked triggers, accountability, sense that their actions mattered. 2) The committee couldn't see what's working—no feedback loop on which initiatives gained traction. 3) One size fits none—needed progressive depth for both beginners and experts."
+        },
+        {
+          "id": "gamification",
+          "title": "Gamification Strategy",
+          "content": "Grounded in behavioral science: Habit Loop (Duhigg)—Cue → Routine → Reward. Self-Determination Theory—autonomy (choose practices), competence (level up), relatedness (community progress). Variable Reward Schedules—surprise elements like bonus challenges and seasonal events."
+        },
+        {
+          "id": "design-decisions",
+          "title": "Key Design Decisions",
+          "content": "Practices over goals—specific actionable practices ('Start a compost bin this week') not abstract targets. Progressive commitment—easy wins first, harder practices unlock with momentum. Social visibility not comparison—community forums and celebration, not leaderboards. Physical-digital bridge—real-world rewards like garden plaques extend feedback beyond screen."
+        },
+        {
+          "id": "information-architecture",
+          "title": "Information Architecture",
+          "content": "Residents didn't think in environmental categories (energy, water, waste). They thought in life contexts. So I organized by: At Home, In Your Yard, When Shopping, In the Community. This reduced cognitive load—users navigate by context, not taxonomy."
+        },
+        {
+          "id": "admin-tools",
+          "title": "Admin Tools",
+          "content": "Committee would maintain the platform for years, but members aren't developers. Designed WYSIWYG admin dashboard: visual content editing (see exactly what residents see), metrics that matter (actionable data, not vanity metrics), guardrails not freedom (work within templates to prevent breakage)."
+        },
+        {
+          "id": "user-testing",
+          "title": "User Testing",
+          "content": "Tested with 7 residents across personas. Findings: gamification confusion (added clearer explanation of reward system), navigation uncertainty (added explicit onboarding flow and 'Start Here' practices), admin complexity (simplified to core tasks)."
+        },
+        {
+          "id": "outcomes",
+          "title": "Outcomes",
+          "content": "Majority of targeted households engaged in first quarter. Non-technical admins managing platform independently within days. Other municipalities expressed interest in adapting the approach."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Behavior change requires system design, not just UX. Serve multiple audiences without fragmenting. Design for maintainability, not just launch. Civic projects demand extra rigor—people are investing trust in a public resource."
+        }
+      ]
+    },
+    {
+      "id": "chainreactive",
+      "name": "Chain Reactive",
+      "url": "/chainreactive",
+      "company": "Chain Reactive",
+      "year": "2020 to 2021",
+      "role": "Lead Product Designer",
+      "headline": "How I Identified and Captured a $60M Market Opportunity",
+      "summary": "While DoorDash and Uber Eats fought over delivery, I saw a different opportunity. Small-town restaurants didn't need another middleman taking 30% margins. I identified the market gap, designed a platform addressing multiple business challenges, and influenced the company's pivot from POS vendor to platform provider.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "End-to-end ordering platform for small-town restaurants, achieving 30-40% revenue increase and 100% pilot retention."
+        },
+        {
+          "id": "the-opportunity",
+          "title": "The Opportunity",
+          "content": "COVID forced digital transformation. Existing options were terrible for small-town businesses: marketplace apps charged 15-30% commissions on thin margins, required complex onboarding, no POS integration, zero value for pickup-focused businesses."
+        },
+        {
+          "id": "market-sizing",
+          "title": "Market Sizing",
+          "content": "50K small-town restaurants needing integrated solutions. 200K+ adjacent small retail businesses facing similar challenges. $60M total addressable opportunity in our segment."
+        },
+        {
+          "id": "key-insight",
+          "title": "Research Insight",
+          "content": "Spent weeks doing field research. Key finding: college students made 3-5 daily micro-decisions before 11 AM. Cognitive load from complex menus directly correlated with cart abandonment. And 67% of orders were repeats—nobody was optimizing for that."
+        },
+        {
+          "id": "barriers",
+          "title": "Real Barriers",
+          "content": "Decision fatigue epidemic—more choice led to more abandonment. Staffing crisis—restaurants at 40-60% capacity not from demand but hiring. Safety imperative—physical menus were liability concerns. Margin pressure—3-5% margins couldn't sustain 15-30% commissions."
+        },
+        {
+          "id": "solution",
+          "title": "The Solution",
+          "content": "2-step ordering in under 60 seconds: 1) What do you want? (smart suggestions based on time, history, popularity) 2) When do you want it? (pickup time). That's it. With 67% repeat orders, previous orders surfaced immediately for one-tap reordering."
+        },
+        {
+          "id": "multi-problem",
+          "title": "Four Problems, One Platform",
+          "content": "1) Staffing Crisis—self-service reduced front-of-house staff by 40%, zero training required. 2) Safety—QR ordering eliminated physical menu contact. 3) Brand Control—template-based with strategic flexibility, restaurants kept identity. 4) Technical Complexity—real-time POS integration eliminated manual inventory management."
+        },
+        {
+          "id": "optimization",
+          "title": "Data-Driven Optimization",
+          "content": "Initial checkout abandonment: 78% (industry benchmark: 45%). Issue wasn't UX friction but trust—small-town customers skeptical of entering payment info. Solution: one-click checkout with saved payment, trust signals, payment info shared across all Chain Reactive restaurants. Result: 78% → 23% abandonment."
+        },
+        {
+          "id": "business-influence",
+          "title": "Strategic Influence",
+          "content": "Design strategy reshaped the company. Before: POS vendor selling hardware, one-time sales, limited stickiness. After: Platform-as-a-service with recurring revenue, integration creates massive switching costs, 100% pilot retention. Expanded internationally to Thailand."
+        },
+        {
+          "id": "outcomes",
+          "title": "Outcomes",
+          "content": "30-40% monthly revenue increase. $2,400 average monthly labor savings per business. 100% pilot retention (vs 67% industry). <60s order completion (vs 3-5 min industry). 67% repeat order rate (vs 31% marketplaces). 73% lower customer acquisition cost."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Crisis creates adoption windows. Constraint-driven design creates competitive advantage. Integration beats aggregation in underserved markets. Design the business case, not just the experience—I pitched '$2,400/month labor savings' not 'better UX.'"
+        }
+      ]
+    },
+    {
+      "id": "crashr",
+      "name": "Crashr Design System",
+      "url": "/crashr",
+      "company": "Crashr",
+      "year": "2023",
+      "role": "Product Designer",
+      "headline": "One System, Multiple Brands",
+      "summary": "A flexible design system supporting multiple brand identities (Crashr and Bombers gaming platforms) while maintaining consistency and development efficiency across desktop and mobile.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "Multi-brand design system for gaming platforms."
+        },
+        {
+          "id": "the-challenge",
+          "title": "The Challenge",
+          "content": "How do you build a design system that serves multiple brands with distinct visual identities while keeping the underlying component architecture unified?"
+        },
+        {
+          "id": "approach",
+          "title": "The Approach",
+          "content": "Token-based theming: 1) Understanding brand identity—what needs to be brand-specific (colors, typography, imagery) vs shared (spacing, layout, interactions). 2) Foundation setup—primitive tokens, semantic tokens (brand-specific), component tokens (consistent). 3) Unified icon library. 4) Themeable components with consistent behavior and accessibility."
+        },
+        {
+          "id": "deliverables",
+          "title": "Deliverables",
+          "content": "For both Crashr and Bombers: desktop and mobile designs, brand-specific tokens. Shared: unified component library, icon system, documentation. Token architecture at three levels."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Theming at token level, not component level—components stay consistent, tokens change per brand. Consistent behavior, flexible visuals—interaction patterns should be consistent; visual differentiation shouldn't compromise usability."
+        }
+      ]
+    },
+    {
+      "id": "cadence",
+      "name": "Cadence",
+      "url": "/cadence",
+      "company": "Personal Project",
+      "year": "June to August 2024",
+      "role": "Lead Designer & Developer",
+      "headline": "When Body Movement Creates Music",
+      "summary": "Interactive art installation transforming body movement into audiovisual experience. Developed for NextNow Fest 2024 at University of Maryland. Built with motion detection, projection mapping, and audio-reactive visuals.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "Interactive installation where body movement creates music and visuals."
+        },
+        {
+          "id": "the-challenge",
+          "title": "The Challenge",
+          "content": "How might we create a seamless experience where users influence music and visuals through movement? Inspired by Whiplash—an orchestra conductor controls music through body movement. What if anyone could do that?"
+        },
+        {
+          "id": "approach",
+          "title": "Technical Approach",
+          "content": "POC: Basic theremin-like interface with TouchDesigner and Kinect Azure. Added audio-reactive particle cloud visualizations. Built custom projection surfaces with cardboard, paper, spray paint. Used Kantan Mapper for multi-surface projection. Pivoted from generating music to modifying existing music based on movement."
+        },
+        {
+          "id": "tech-stack",
+          "title": "Tech Stack",
+          "content": "Motion Detection: Kinect Azure. Audio: Max MSP. Visuals: TouchDesigner. Projection: Kantan Mapper."
+        },
+        {
+          "id": "user-testing",
+          "title": "User Testing",
+          "content": "Tested with 10 users. Users described experience as 'magical' and feeling 'part of the art.' Found gestures weren't immediately intuitive—updated to make interactions more discoverable."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Combining familiar elements with novel interactions leads to more intuitive experiences. Flexibility matters—when original goal proved too difficult, pivoting achieved the creative vision within constraints."
+        }
+      ]
+    },
+    {
+      "id": "everestos",
+      "name": "EverestOS",
+      "url": "/everestos",
+      "company": "Personal Project",
+      "year": "2023",
+      "role": "Personal Project",
+      "headline": "Reimagining the Desktop Experience",
+      "summary": "Conceptual exploration of modern operating system design. Focused on high visual polish, consistency, and cohesive design language across all system components.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Overview",
+          "content": "Conceptual OS design exploring modern desktop experience."
+        },
+        {
+          "id": "research",
+          "title": "Research",
+          "content": "Studied OS design evolution: 1950s-60s (no real OS), 1970s-80s (first GUIs, desktop metaphor), 1990s-2000s (Start menu, Aqua, skeuomorphism), 2010s (flat design revolution, touch-friendly), Present (glassmorphism, subtle depth, dark modes, gesture navigation)."
+        },
+        {
+          "id": "principles",
+          "title": "Design Principles",
+          "content": "Visual Polish: refined without sacrificing usability. Consistency: design language applying across all system components. System Design: comprehensive system including color with light/dark modes, typography scale, spacing, component library, motion principles."
+        },
+        {
+          "id": "design-system",
+          "title": "Design System",
+          "content": "Color (light/dark modes, semantic tokens, accessible contrast). Typography (system font stack, clear hierarchy). Components (buttons, inputs, windows, dialogs, navigation). Icons (consistent style, multiple sizes). Motion (easing curves, transitions, micro-interactions). Layout (spacing scale, grid system, responsive patterns)."
+        },
+        {
+          "id": "learnings",
+          "title": "Learnings",
+          "content": "Historical context matters for identifying patterns and opportunities. System-level thinking required for hundreds of different contexts. Constraints drive innovation—pushing visual boundaries within what users expect."
+        }
+      ]
+    }
+  ]
+}

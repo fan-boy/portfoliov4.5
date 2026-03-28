@@ -29,6 +29,7 @@ const ChainReactive: React.FC = () => {
               HERO SECTION
               ============================================ */}
           <motion.section 
+            id="hero"
             className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
@@ -97,7 +98,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               THE OPPORTUNITY
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="the-opportunity" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Opportunity</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -163,7 +164,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               MARKET SIZING
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="market-sizing" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Market Opportunity</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
@@ -192,7 +193,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               RESEARCH INSIGHT
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="key-insight" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Key Insight</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -230,7 +231,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               THE SOLUTION
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="solution" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Solution</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -285,7 +286,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               MULTI-PROBLEM ARCHITECTURE
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="multi-problem" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Systems Thinking</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -367,7 +368,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               DATA-DRIVEN OPTIMIZATION
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="optimization" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Data-Driven Optimization</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -396,7 +397,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               BUSINESS MODEL INFLUENCE
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="business-influence" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Strategic Influence</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -456,7 +457,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               OUTCOMES
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="outcomes" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Outcomes</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">
@@ -503,7 +504,7 @@ const ChainReactive: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="learnings" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">

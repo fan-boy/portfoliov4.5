@@ -29,6 +29,7 @@ const DynamicWorkflows: React.FC = () => {
               HERO SECTION
               ============================================ */}
           <motion.section 
+            id="hero"
             className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
@@ -95,7 +96,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE OPPORTUNITY
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="the-opportunity" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Opportunity</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -113,7 +114,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE BUSINESS CASE
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="business-case" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Business Case</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -151,7 +152,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE PROBLEM
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="the-challenge" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Challenge</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -182,7 +183,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               THE SOLUTION
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="solution" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Solution</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -244,7 +245,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               DESIGNING FOR TRUST
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="trust" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Designing for Trust</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -291,7 +292,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               STRATEGIC IMPACT
               ============================================ */}
-          <section className="w-full py-32 bg-bg-secondary">
+          <section id="strategic-impact" className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Strategic Impact</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -364,7 +365,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               HOW I INFLUENCED
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="my-role" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">My Role</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
@@ -426,7 +427,7 @@ const DynamicWorkflows: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="learnings" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-12 tracking-tight">

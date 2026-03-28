@@ -522,3 +522,11 @@ a:hover {
 .blob-move-3 {
   animation: blobMove3 22s ease-in-out infinite;
 }
+
+/* Arrow fade out then slide in from left */
+@keyframes fadeOutSlideIn {
+  0% { opacity: 1; transform: translateX(0); }
+  35% { opacity: 0; transform: translateX(0); }
+  50% { opacity: 0; transform: translateX(-6px); }
+  100% { opacity: 1; transform: translateX(0); }
+}

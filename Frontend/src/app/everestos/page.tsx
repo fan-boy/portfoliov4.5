@@ -23,6 +23,7 @@ const EverestOS: React.FC = () => {
               HERO SECTION
               ============================================ */}
           <motion.section 
+            id="hero"
             className="w-full pt-32 pb-16"
             initial="hidden"
             animate="visible"
@@ -82,7 +83,7 @@ const EverestOS: React.FC = () => {
           {/* ============================================
               RESEARCH
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section id="research" className="w-full py-24 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Research</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-6 tracking-tight">
@@ -136,7 +137,7 @@ const EverestOS: React.FC = () => {
           {/* ============================================
               DESIGN APPROACH
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="principles" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Approach</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">
@@ -180,7 +181,7 @@ const EverestOS: React.FC = () => {
           {/* ============================================
               DESIGN SYSTEM
               ============================================ */}
-          <section className="w-full py-24 bg-bg-secondary">
+          <section id="design-system" className="w-full py-24 bg-bg-secondary">
             <div className="max-w-5xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase mb-8 block">Design System</span>
               
@@ -240,7 +241,7 @@ const EverestOS: React.FC = () => {
           {/* ============================================
               LEARNINGS
               ============================================ */}
-          <section className="w-full py-32">
+          <section id="learnings" className="w-full py-32">
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Reflection</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary mt-4 mb-12 tracking-tight">

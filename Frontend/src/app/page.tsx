@@ -212,9 +212,10 @@ export default function Home() {
           <div className="max-w-4xl mx-auto px-6">
             <Link 
               href="/contact" 
-              className="text-4xl md:text-5xl text-fontprimary hover:text-accent transition-colors duration-300"
+              className="group inline-flex items-baseline text-4xl md:text-5xl text-fontprimary hover:text-accent transition-colors duration-500"
             >
-              Get in touch →
+              <span>Get in touch&nbsp;</span>
+              <span className="inline-block group-hover:animate-[fadeOutSlideIn_0.6s_cubic-bezier(0.23,1,0.32,1)]">→</span>
             </Link>
           </div>
         </section>
