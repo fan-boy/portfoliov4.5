@@ -50,12 +50,10 @@ const LoadingShimmer = () => (
 // Message component
 const ChatMessage = ({ 
   turn, 
-  index, 
   onReferenceClick,
   compact = false
 }: { 
   turn: ChatTurn; 
-  index: number;
   onReferenceClick: (ref: Reference) => void;
   compact?: boolean;
 }) => {
@@ -169,7 +167,6 @@ const MinimizedChat = ({
           <ChatMessage 
             key={i} 
             turn={turn} 
-            index={i}
             onReferenceClick={onReferenceClick}
             compact
           />
@@ -406,7 +403,6 @@ export default function ChatBox() {
                   <ChatMessage 
                     key={i} 
                     turn={turn} 
-                    index={i}
                     onReferenceClick={handleReferenceClick}
                   />
                 ))}
