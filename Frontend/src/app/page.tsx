@@ -5,7 +5,7 @@ import AnimatedBlobs from "./components/AnimatedBlobs";
 import DuneOrgDashboard from "../../public/assets/Dune/dashboard.webp";
 import DuneDesignSystem from "../../public/assets/Dune/DesignSystem.webp";
 import UniversityParkUserProfile from "../../public/assets/UniversityPark/userprofile.webp";
-// import ChainReactiveHero from "../../public/assets/ChainReactive/hero.webp";
+import ChainReactiveHero from "../../public/assets/ChainReactive/hero.webp";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import DefaultPage from "./components/Pages/DefaultPage";
@@ -46,34 +46,32 @@ const projects: Project[] = [
     company: "University Park",
     year: "2023–2024",
   },
-  // Hidden for launch - keeping code intact
-  // {
-  //   title: "Chain Reactive",
-  //   subtitle: "Capturing a $60M market opportunity for small businesses",
-  //   href: "/chainreactive",
-  //   image: ChainReactiveHero,
-  //   company: "Startup",
-  //   year: "2021",
-  // },
+  {
+    title: "Chain Reactive",
+    subtitle: "Capturing a $60M market opportunity for small businesses",
+    href: "/chainreactive",
+    image: ChainReactiveHero,
+    company: "Startup",
+    year: "2021",
+  },
 ];
 
-// Hidden for launch - keeping code intact
-// const selectedWork = [
-//   {
-//     title: "Dynamic Workflows",
-//     subtitle: "Automated remediation saving 40+ hours/month",
-//     href: "/dune/workflows",
-//     company: "Dune Security",
-//     year: "2024",
-//   },
-//   {
-//     title: "Crashr",
-//     subtitle: "Multi-brand design system for gaming platforms",
-//     href: "/crashr",
-//     company: "Freelance",
-//     year: "2023",
-//   },
-// ];
+const selectedWork = [
+  {
+    title: "Dynamic Workflows",
+    subtitle: "Automated remediation saving 40+ hours/month",
+    href: "/dune/workflows",
+    company: "Dune Security",
+    year: "2024",
+  },
+  {
+    title: "Crashr",
+    subtitle: "Multi-brand design system for gaming platforms",
+    href: "/crashr",
+    company: "Freelance",
+    year: "2023",
+  },
+];
 
 export default function Home() {
   const { chatOpen } = useChatOverflow();
@@ -172,7 +170,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Hidden for launch - keeping code intact
         <section className="w-full py-24 border-t border-gray-100">
           <div className="max-w-4xl mx-auto px-6">
             <p className="text-sm text-fonttertiary uppercase tracking-wider mb-8">
@@ -203,7 +200,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-        */}
 
         {/* ============================================
             CONTACT
