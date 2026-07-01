@@ -65,7 +65,7 @@ const DynamicWorkflows: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative w-full rounded-2xl overflow-hidden bg-amber-50">
+                <div className="relative w-full rounded-2xl overflow-hidden bg-indigo-50">
                   <Image
                     src={OrgDashboard}
                     alt="Dynamic Workflows automation engine"
@@ -128,15 +128,15 @@ const DynamicWorkflows: React.FC = () => {
             <div className="max-w-5xl mx-auto px-6">
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
-                  <div className="text-5xl font-light text-amber-600 mb-4">40+</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-4">40+</div>
                   <p className="text-fontsecondary">Hours/month spent manually following up on high-risk users</p>
                 </div>
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
-                  <div className="text-5xl font-light text-amber-600 mb-4">73%</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-4">73%</div>
                   <p className="text-fontsecondary">Of high-risk users never received intervention due to bandwidth</p>
                 </div>
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
-                  <div className="text-5xl font-light text-amber-600 mb-4">0</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-4">0</div>
                   <p className="text-fontsecondary">Competitors offering meaningful automation</p>
                 </div>
               </div>
@@ -198,24 +198,24 @@ const DynamicWorkflows: React.FC = () => {
             <div className="max-w-5xl mx-auto px-6">
               <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
-                  <div className="text-2xl font-light text-amber-600 mb-2">Trigger</div>
+                  <div className="text-2xl font-light text-indigo-600 mb-2">Trigger</div>
                   <p className="text-fontsecondary text-sm">Who does this apply to?</p>
                 </div>
                 <div className="text-fontmuted text-2xl">→</div>
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
-                  <div className="text-2xl font-light text-amber-600 mb-2">Actions</div>
+                  <div className="text-2xl font-light text-indigo-600 mb-2">Actions</div>
                   <p className="text-fontsecondary text-sm">What should happen?</p>
                 </div>
                 <div className="text-fontmuted text-2xl">→</div>
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
-                  <div className="text-2xl font-light text-amber-600 mb-2">Notify</div>
+                  <div className="text-2xl font-light text-indigo-600 mb-2">Notify</div>
                   <p className="text-fontsecondary text-sm">Who needs to know?</p>
                 </div>
               </div>
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-16">
-              <div className="p-8 bg-amber-50 rounded-xl border border-amber-100">
+              <div className="p-8 bg-indigo-50 rounded-xl border border-indigo-100">
                 <p className="text-fonttertiary text-sm uppercase tracking-wide mb-3">Example Workflow</p>
                 <p className="text-xl text-fontprimary leading-relaxed">
                   &quot;If a user has <span className="font-medium">high business impact</span> AND <span className="font-medium">fails multiple phishing simulations</span> → restrict their IAM access, assign targeted training, and notify their manager.&quot;
@@ -257,8 +257,8 @@ const DynamicWorkflows: React.FC = () => {
 
               <div className="space-y-12">
                 <div className="flex gap-6">
-                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-amber-600 font-semibold">1</span>
+                  <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold">1</span>
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Preview</h4>
@@ -267,8 +267,8 @@ const DynamicWorkflows: React.FC = () => {
                 </div>
 
                 <div className="flex gap-6">
-                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-amber-600 font-semibold">2</span>
+                  <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold">2</span>
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Protect</h4>
@@ -277,8 +277,8 @@ const DynamicWorkflows: React.FC = () => {
                 </div>
 
                 <div className="flex gap-6">
-                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-amber-600 font-semibold">3</span>
+                  <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold">3</span>
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Prove</h4>
@@ -324,22 +324,22 @@ const DynamicWorkflows: React.FC = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm tracking-wider uppercase text-amber-600 mb-6">After Workflows</h3>
+                  <h3 className="text-sm tracking-wider uppercase text-indigo-600 mb-6">After Workflows</h3>
                   <ul className="space-y-4">
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       &quot;User Risk OS&quot;: measures, decides, AND acts
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       Clear competitive differentiation
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       &quot;Reduce risk automatically&quot;
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       Sold on platform value, larger contracts
                     </li>
                   </ul>
@@ -377,32 +377,32 @@ const DynamicWorkflows: React.FC = () => {
 
               <div className="space-y-6">
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">1</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">1</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Identified the opportunity</span> through customer research</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">2</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">2</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Built the business case</span> and presented to leadership</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">3</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">3</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Drove prioritization</span> over other planned features</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">4</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">4</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Shaped the GTM strategy</span> — worked with sales on positioning</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">5</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">5</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Designed the implementation</span> — from strategy through final UI</p>
                 </div>
@@ -472,7 +472,7 @@ const DynamicWorkflows: React.FC = () => {
           <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-amber-600 transition-colors">
+              <a href="/dune/risk-platform" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-indigo-600 transition-colors">
                 Risk Platform →
               </a>
             </div>

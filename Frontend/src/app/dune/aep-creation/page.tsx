@@ -65,7 +65,7 @@ const AEPCreation: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative w-full rounded-2xl overflow-hidden bg-amber-50">
+                <div className="relative w-full rounded-2xl overflow-hidden bg-indigo-50">
                   <Image
                     src={OrgDashboard}
                     alt="AEP Builder interface"
@@ -136,15 +136,15 @@ const AEPCreation: React.FC = () => {
             <div className="max-w-5xl mx-auto px-6">
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
-                  <div className="text-5xl font-light text-amber-600 mb-4">1 day</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-4">1 day</div>
                   <p className="text-fontsecondary">Minimum operator turnaround per AEP — even for standard requests</p>
                 </div>
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
-                  <div className="text-5xl font-light text-amber-600 mb-4">100%</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-4">100%</div>
                   <p className="text-fontsecondary">Of AEP creation required internal operator involvement</p>
                 </div>
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
-                  <div className="text-5xl font-light text-amber-600 mb-4">0</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-4">0</div>
                   <p className="text-fontsecondary">Ways for customers to test or preview persona behavior before launch</p>
                 </div>
               </div>
@@ -208,19 +208,19 @@ const AEPCreation: React.FC = () => {
             <div className="max-w-5xl mx-auto px-6">
               <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
-                  <div className="text-2xl font-light text-amber-600 mb-2">Step 1</div>
+                  <div className="text-2xl font-light text-indigo-600 mb-2">Step 1</div>
                   <p className="text-fontprimary font-medium mb-1">AEP Setup</p>
                   <p className="text-fontsecondary text-sm">Define the scenario, adversary method, and target context</p>
                 </div>
                 <div className="text-fontmuted text-2xl">→</div>
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
-                  <div className="text-2xl font-light text-amber-600 mb-2">Step 2</div>
+                  <div className="text-2xl font-light text-indigo-600 mb-2">Step 2</div>
                   <p className="text-fontprimary font-medium mb-1">Test & Refine</p>
                   <p className="text-fontsecondary text-sm">Chat with the persona, adjust behavior, publish when ready</p>
                 </div>
                 <div className="text-fontmuted text-2xl">→</div>
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
-                  <div className="text-2xl font-light text-amber-600 mb-2">Published</div>
+                  <div className="text-2xl font-light text-indigo-600 mb-2">Published</div>
                   <p className="text-fontprimary font-medium mb-1">Live in Campaign Builder</p>
                   <p className="text-fontsecondary text-sm">AEP available instantly — no operator required</p>
                 </div>
@@ -228,7 +228,7 @@ const AEPCreation: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-16">
-              <div className="p-8 bg-amber-50 rounded-xl border border-amber-100">
+              <div className="p-8 bg-indigo-50 rounded-xl border border-indigo-100">
                 <p className="text-fonttertiary text-sm uppercase tracking-wide mb-3">The Key Design Decision</p>
                 <p className="text-xl text-fontprimary leading-relaxed">
                   The manager plays the <span className="font-medium">employee role</span> in Step 2 — 
@@ -274,8 +274,8 @@ const AEPCreation: React.FC = () => {
 
               <div className="space-y-12">
                 <div className="flex gap-6">
-                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-amber-600 font-semibold">1</span>
+                  <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold">1</span>
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Quick-Action Chips</h4>
@@ -288,8 +288,8 @@ const AEPCreation: React.FC = () => {
                 </div>
 
                 <div className="flex gap-6">
-                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-amber-600 font-semibold">2</span>
+                  <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold">2</span>
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Natural Language Instructions</h4>
@@ -302,8 +302,8 @@ const AEPCreation: React.FC = () => {
                 </div>
 
                 <div className="flex gap-6">
-                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-amber-600 font-semibold">3</span>
+                  <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold">3</span>
                   </div>
                   <div>
                     <h4 className="text-xl text-fontprimary font-medium mb-2">Hard Guardrails</h4>
@@ -357,26 +357,26 @@ const AEPCreation: React.FC = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm tracking-wider uppercase text-amber-600 mb-6">After AEP Builder</h3>
+                  <h3 className="text-sm tracking-wider uppercase text-indigo-600 mb-6">After AEP Builder</h3>
                   <ul className="space-y-4">
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       Focused two-step form in-platform
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       AI generates persona immediately
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       Live chat test before any employee sees it
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       One-click refinement, instant regeneration
                     </li>
                     <li className="text-fontprimary flex items-start gap-3">
-                      <span className="text-amber-500">→</span>
+                      <span className="text-indigo-500">→</span>
                       Publish in minutes, not days
                     </li>
                   </ul>
@@ -415,32 +415,32 @@ const AEPCreation: React.FC = () => {
 
               <div className="space-y-6">
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">1</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">1</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Mapped the current-state process</span> — shadowed operators, interviewed customers</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">2</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">2</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Defined the two-step model</span> — setup vs. test as separate mental modes</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">3</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">3</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Designed every state</span> — empty states, errors, guardrail messaging, version history</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">4</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">4</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Wrote the product spec</span> — edge cases, integration points, publishing guardrails</p>
                 </div>
                 <div className="flex gap-6 items-start">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-600 text-sm font-semibold">5</span>
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-indigo-600 text-sm font-semibold">5</span>
                   </div>
                   <p className="text-lg text-fontprimary"><span className="font-medium">Partnered with engineering</span> on AI generation latency targets and failure handling</p>
                 </div>
@@ -519,7 +519,7 @@ const AEPCreation: React.FC = () => {
           <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/dune/workflows" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-amber-600 transition-colors">
+              <a href="/dune/workflows" className="text-2xl md:text-3xl text-fontprimary tracking-tight hover:text-indigo-600 transition-colors">
                 Dynamic Workflows →
               </a>
             </div>
