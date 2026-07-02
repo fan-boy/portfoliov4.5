@@ -137,22 +137,22 @@ const ChainReactive: React.FC = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xs tracking-wider uppercase text-emerald-600 mb-5">What Small Businesses Needed</h3>
+                  <h3 className="text-xs tracking-wider uppercase text-indigo-600 mb-5">What Small Businesses Needed</h3>
                   <ul className="space-y-3">
                     <li className="text-fontprimary flex items-start gap-3 text-sm">
-                      <span className="text-emerald-500 mt-0.5">→</span>
+                      <span className="text-indigo-500 mt-0.5">→</span>
                       Pickup optimization
                     </li>
                     <li className="text-fontprimary flex items-start gap-3 text-sm">
-                      <span className="text-emerald-500 mt-0.5">→</span>
+                      <span className="text-indigo-500 mt-0.5">→</span>
                       Customer retention
                     </li>
                     <li className="text-fontprimary flex items-start gap-3 text-sm">
-                      <span className="text-emerald-500 mt-0.5">→</span>
+                      <span className="text-indigo-500 mt-0.5">→</span>
                       Brand control
                     </li>
                     <li className="text-fontprimary flex items-start gap-3 text-sm">
-                      <span className="text-emerald-500 mt-0.5">→</span>
+                      <span className="text-indigo-500 mt-0.5">→</span>
                       Operational cost savings
                     </li>
                   </ul>
@@ -175,15 +175,15 @@ const ChainReactive: React.FC = () => {
             <div className="max-w-4xl mx-auto px-6">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="p-8 bg-bg-secondary rounded-xl">
-                  <div className="text-4xl md:text-5xl font-light text-emerald-600 mb-3">50K</div>
+                  <div className="text-4xl md:text-5xl font-light text-indigo-600 mb-3">50K</div>
                   <p className="text-fontsecondary text-sm">Small-town restaurants needing integrated solutions</p>
                 </div>
                 <div className="p-8 bg-bg-secondary rounded-xl">
-                  <div className="text-4xl md:text-5xl font-light text-emerald-600 mb-3">200K+</div>
+                  <div className="text-4xl md:text-5xl font-light text-indigo-600 mb-3">200K+</div>
                   <p className="text-fontsecondary text-sm">Adjacent small retail businesses facing similar challenges</p>
                 </div>
                 <div className="p-8 bg-bg-secondary rounded-xl">
-                  <div className="text-4xl md:text-5xl font-light text-emerald-600 mb-3">$60M</div>
+                  <div className="text-4xl md:text-5xl font-light text-indigo-600 mb-3">$60M</div>
                   <p className="text-fontsecondary text-sm">Total addressable opportunity in our segment</p>
                 </div>
               </div>
@@ -245,15 +245,15 @@ const ChainReactive: React.FC = () => {
             {/* 2-step flow */}
             <div className="max-w-4xl mx-auto px-6">
               <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
-                <div className="text-center px-8 py-6 bg-emerald-50 rounded-xl flex-1 w-full md:w-auto">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">1</div>
+                <div className="text-center px-8 py-6 bg-indigo-50 rounded-xl flex-1 w-full md:w-auto">
+                  <div className="text-5xl font-light text-indigo-600 mb-3">1</div>
                   <p className="text-lg text-fontprimary font-normal mb-1">What do you want?</p>
                   <p className="text-fontsecondary text-sm">Smart suggestions based on time, history, popularity</p>
                 </div>
                 <div className="text-fontmuted text-3xl hidden md:block">→</div>
                 <div className="text-fontmuted text-3xl md:hidden">↓</div>
-                <div className="text-center px-8 py-6 bg-emerald-50 rounded-xl flex-1 w-full md:w-auto">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">2</div>
+                <div className="text-center px-8 py-6 bg-indigo-50 rounded-xl flex-1 w-full md:w-auto">
+                  <div className="text-5xl font-light text-indigo-600 mb-3">2</div>
                   <p className="text-lg text-fontprimary font-normal mb-1">When do you want it?</p>
                   <p className="text-fontsecondary text-sm">Pickup time selection</p>
                 </div>
@@ -261,7 +261,7 @@ const ChainReactive: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <div className="p-6 bg-emerald-50 rounded-xl border border-emerald-100">
+              <div className="p-6 bg-indigo-50 rounded-xl border border-indigo-100">
                 <p className="text-lg text-fontprimary leading-relaxed">
                   That&apos;s it. Two steps. <span className="font-medium">Under 60 seconds.</span> With 67% of orders being repeats, previous orders surfaced immediately on return visits for one-tap reordering.
                 </p>
@@ -298,8 +298,8 @@ const ChainReactive: React.FC = () => {
 
               <div className="space-y-10">
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-emerald-600 font-semibold text-sm">1</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold text-sm">1</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">Staffing Crisis</h4>
@@ -308,8 +308,8 @@ const ChainReactive: React.FC = () => {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-emerald-600 font-semibold text-sm">2</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold text-sm">2</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">Safety Concerns</h4>
@@ -318,8 +318,8 @@ const ChainReactive: React.FC = () => {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-emerald-600 font-semibold text-sm">3</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold text-sm">3</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">Brand Control</h4>
@@ -328,8 +328,8 @@ const ChainReactive: React.FC = () => {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-emerald-600 font-semibold text-sm">4</span>
+                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-indigo-600 font-semibold text-sm">4</span>
                   </div>
                   <div>
                     <h4 className="text-lg text-fontprimary font-normal mb-1">Technical Complexity</h4>
@@ -386,7 +386,7 @@ const ChainReactive: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <div className="p-6 bg-emerald-50 rounded-xl border border-emerald-100">
+              <div className="p-6 bg-indigo-50 rounded-xl border border-indigo-100">
                 <p className="text-lg text-fontprimary leading-relaxed">
                   Result: Checkout abandonment dropped from 78% to 23%. <span className="font-medium">A 52% improvement.</span>
                 </p>
@@ -428,18 +428,18 @@ const ChainReactive: React.FC = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xs tracking-wider uppercase text-emerald-600 mb-5">After</h3>
+                  <h3 className="text-xs tracking-wider uppercase text-indigo-600 mb-5">After</h3>
                   <ul className="space-y-3">
                     <li className="text-fontprimary flex items-start gap-3 text-sm">
-                      <span className="text-emerald-500 mt-0.5">→</span>
+                      <span className="text-indigo-500 mt-0.5">→</span>
                       Platform-as-a-service with recurring revenue
                     </li>
                     <li className="text-fontprimary flex items-start gap-3 text-sm">
-                      <span className="text-emerald-500 mt-0.5">→</span>
+                      <span className="text-indigo-500 mt-0.5">→</span>
                       Integration creates massive switching costs
                     </li>
                     <li className="text-fontprimary flex items-start gap-3 text-sm">
-                      <span className="text-emerald-500 mt-0.5">→</span>
+                      <span className="text-indigo-500 mt-0.5">→</span>
                       100% pilot retention
                     </li>
                   </ul>
@@ -468,19 +468,19 @@ const ChainReactive: React.FC = () => {
             <div className="max-w-4xl mx-auto px-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">30-40%</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-3">30-40%</div>
                   <p className="text-fontsecondary text-sm">Monthly revenue increase across pilot businesses</p>
                 </div>
                 <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">$2,400</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-3">$2,400</div>
                   <p className="text-fontsecondary text-sm">Average monthly labor cost savings per business</p>
                 </div>
                 <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">100%</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-3">100%</div>
                   <p className="text-fontsecondary text-sm">Pilot retention (vs. 67% industry average)</p>
                 </div>
                 <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">&lt;60s</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-3">&lt;60s</div>
                   <p className="text-fontsecondary text-sm">Order completion time (vs. 3-5 min industry)</p>
                 </div>
               </div>
@@ -490,11 +490,11 @@ const ChainReactive: React.FC = () => {
             <div className="max-w-4xl mx-auto px-6 mt-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">67%</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-3">67%</div>
                   <p className="text-fontsecondary text-sm">Repeat order rate (vs. 31% for marketplaces)</p>
                 </div>
                 <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="text-5xl font-light text-emerald-600 mb-3">73%</div>
+                  <div className="text-5xl font-light text-indigo-600 mb-3">73%</div>
                   <p className="text-fontsecondary text-sm">Lower customer acquisition cost vs. marketplace</p>
                 </div>
               </div>
@@ -549,7 +549,7 @@ const ChainReactive: React.FC = () => {
           <section className="w-full py-32 bg-bg-secondary">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-fonttertiary text-sm tracking-wider uppercase mb-4">Next Project</p>
-              <a href="/universitypark" className="text-2xl md:text-3xl text-fontprimary hover:text-emerald-600 transition-colors tracking-tight">
+              <a href="/universitypark" className="text-2xl md:text-3xl text-fontprimary hover:text-indigo-600 transition-colors tracking-tight">
                 University Park →
               </a>
             </div>
