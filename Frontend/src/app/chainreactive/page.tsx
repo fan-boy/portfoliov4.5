@@ -23,7 +23,7 @@ const ChainReactive: React.FC = () => {
         <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       <DefaultPage>
-        <article className="w-full">
+        <article className="w-full z-2">
           
           {/* ============================================
               HERO SECTION
@@ -65,7 +65,7 @@ const ChainReactive: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+                <div className="relative rounded-2xl overflow-hidden">
                   <video 
                     autoPlay 
                     loop 
@@ -174,15 +174,15 @@ const ChainReactive: React.FC = () => {
 
             <div className="max-w-4xl mx-auto px-6">
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="p-8 bg-bg-secondary rounded-xl">
+                <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
                   <div className="text-4xl md:text-5xl font-light text-indigo-600 mb-3">50K</div>
                   <p className="text-fontsecondary text-sm">Small-town restaurants needing integrated solutions</p>
                 </div>
-                <div className="p-8 bg-bg-secondary rounded-xl">
+                <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
                   <div className="text-4xl md:text-5xl font-light text-indigo-600 mb-3">200K+</div>
                   <p className="text-fontsecondary text-sm">Adjacent small retail businesses facing similar challenges</p>
                 </div>
-                <div className="p-8 bg-bg-secondary rounded-xl">
+                <div className="p-8 bg-white rounded-xl shadow-sm border border-gray-100">
                   <div className="text-4xl md:text-5xl font-light text-indigo-600 mb-3">$60M</div>
                   <p className="text-fontsecondary text-sm">Total addressable opportunity in our segment</p>
                 </div>
@@ -272,7 +272,7 @@ const ChainReactive: React.FC = () => {
           {/* Order flow visual */}
           <section className="w-full pb-24">
             <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
+              <div className="relative rounded-2xl overflow-hidden">
                 <Image
                   src={MenuExample}
                   alt="Chain Reactive ordering interface"
@@ -344,7 +344,7 @@ const ChainReactive: React.FC = () => {
           <section className="w-full py-32">
             <div className="max-w-6xl mx-auto px-6">
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="relative rounded-2xl overflow-hidden shadow-lg shadow-black/5 ring-1 ring-black/5">
+                <div className="relative rounded-2xl overflow-hidden">
                   <Image
                     src={CafeExample}
                     alt="Cafe branded ordering"
@@ -352,7 +352,7 @@ const ChainReactive: React.FC = () => {
                     style={{ objectFit: "contain" }}
                   />
                 </div>
-                <div className="relative rounded-2xl overflow-hidden shadow-lg shadow-black/5 ring-1 ring-black/5">
+                <div className="relative rounded-2xl overflow-hidden">
                   <Image
                     src={ThaiExample}
                     alt="Thai restaurant branded ordering"
