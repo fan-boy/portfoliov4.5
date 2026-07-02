@@ -45,7 +45,7 @@ const AEPCreation: React.FC = () => {
                 <span className="w-1 h-1 rounded-full bg-fontmuted"></span>
                 <span>2024 to Present</span>
                 <span className="w-1 h-1 rounded-full bg-fontmuted"></span>
-                <span>Product Design & UX Strategy</span>
+                <span>AI Product Design & UX Strategy</span>
               </div>
             </motion.div>
 
@@ -55,7 +55,7 @@ const AEPCreation: React.FC = () => {
               variants={fadeIn}
             >
               <h1 className="text-display">
-                From Word Docs to Self-Serve in Two Steps
+                Designing the UX That Trains the AI
               </h1>
             </motion.div>
 
@@ -86,13 +86,18 @@ const AEPCreation: React.FC = () => {
               <p className="text-2xl md:text-3xl text-fontprimary leading-relaxed font-light">
                 Dune&apos;s red teaming product ran on manual handoffs. Customers filled out Word docs,
                 emailed them to our operators, and waited a full day to get a persona loaded.
-                <span className="font-medium"> I replaced that with a two-step self-serve builder.</span>
+                <span className="font-medium"> I replaced that with a self-serve AI builder — and designed the feedback loop that makes the model smarter over time.</span>
               </p>
               <p className="text-lg text-fontsecondary leading-relaxed mt-8">
-                AEP Builder wasn&apos;t just a UX improvement. It was a trust-building exercise — 
-                convincing enterprise security managers that they could create, test, and publish 
-                AI-generated social engineering personas without operator involvement. The design 
-                had to be powerful enough to matter and transparent enough to trust.
+                AEP Builder wasn&apos;t just a UX improvement. It was an AI product design challenge — 
+                how do you let non-technical users configure, test, and steer a generative AI persona 
+                without exposing them to the complexity underneath? And critically: how do you capture 
+                their feedback in a way that continuously improves the model?
+              </p>
+              <p className="text-lg text-fontsecondary leading-relaxed mt-6">
+                Every refinement instruction, every thumbs-up and thumbs-down, every archetype a manager 
+                tested — all of it was structured signal feeding back into training. The UI wasn&apos;t 
+                just a product surface. It was a data collection system in disguise.
               </p>
             </div>
           </section>
@@ -255,6 +260,101 @@ const AEPCreation: React.FC = () => {
               >
                 <source src="/assets/Dune/KeyPivots.mp4" type="video/mp4" />
               </video>
+            </div>
+          </section>
+
+          {/* ============================================
+              DESIGNING FOR AI
+              ============================================ */}
+          <section id="ai-design" className="w-full py-32 bg-bg-secondary">
+            <div className="max-w-3xl mx-auto px-6">
+              <span className="text-fonttertiary text-sm tracking-wider uppercase">AI Product Design</span>
+              <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
+                The UI is also a training pipeline
+              </h2>
+              <p className="text-lg text-fontsecondary leading-relaxed mb-8">
+                Most AI products treat user feedback as a nice-to-have. I designed it as a first-class 
+                requirement from the start. Every interaction in Step 2 was an opportunity to capture 
+                structured signal that would make the model better.
+              </p>
+              <p className="text-lg text-fontsecondary leading-relaxed">
+                The challenge: feedback systems only work if users actually use them. So the design 
+                had to make giving feedback feel effortless — not like a chore tacked onto the end of a flow.
+              </p>
+            </div>
+
+            <div className="max-w-3xl mx-auto px-6 mt-16 space-y-10">
+              <div className="flex gap-6">
+                <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-indigo-600 font-semibold">1</span>
+                </div>
+                <div>
+                  <h4 className="text-xl text-fontprimary font-medium mb-2">Thumbs Up / Thumbs Down — with structure</h4>
+                  <p className="text-fontsecondary leading-relaxed">
+                    After every AEP response, inline feedback controls appear. A thumbs-down expands 
+                    into categorized chips (Too formal, Too aggressive, Off-topic, Unrealistic) plus a 
+                    free-text field. This wasn&apos;t UX decoration — the categories mapped directly to 
+                    labeled training data dimensions. Every click was a structured label, not just a sentiment score.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-6">
+                <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-indigo-600 font-semibold">2</span>
+                </div>
+                <div>
+                  <h4 className="text-xl text-fontprimary font-medium mb-2">Quick-action chips as preference signals</h4>
+                  <p className="text-fontsecondary leading-relaxed">
+                    The six refinement chips (More casual, Less aggressive, Add urgency...) weren&apos;t 
+                    just shortcuts. Each chip represented a behavioral axis the model could be tuned on. 
+                    Aggregate chip usage across customers revealed which personas consistently skewed too 
+                    aggressive or too formal — informing default persona calibration.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-6">
+                <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-indigo-600 font-semibold">3</span>
+                </div>
+                <div>
+                  <h4 className="text-xl text-fontprimary font-medium mb-2">Archetype testing as behavioral benchmarking</h4>
+                  <p className="text-fontsecondary leading-relaxed">
+                    The Curious / Skeptical / Hostile / Compliant archetype chips let managers test the 
+                    AEP against standardized employee personas. This produced comparable test sessions 
+                    across different AEPs — giving the team a consistent benchmark to evaluate model 
+                    quality and regression test after updates.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-6">
+                <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-indigo-600 font-semibold">4</span>
+                </div>
+                <div>
+                  <h4 className="text-xl text-fontprimary font-medium mb-2">Natural language instructions as fine-tuning data</h4>
+                  <p className="text-fontsecondary leading-relaxed">
+                    Free-text refinement instructions (&quot;Don&apos;t mention dollar amounts so early&quot;, 
+                    &quot;Sound more like internal IT&quot;) were stored alongside the before/after persona 
+                    snapshots. Over time, these instruction-outcome pairs became a curated dataset 
+                    for fine-tuning the generation model — written by domain experts without them 
+                    knowing they were annotating training data.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-3xl mx-auto px-6 mt-16">
+              <div className="p-8 bg-indigo-50 rounded-xl border border-indigo-100">
+                <p className="text-fonttertiary text-sm uppercase tracking-wide mb-3">The Flywheel</p>
+                <p className="text-xl text-fontprimary leading-relaxed">
+                  More customers building AEPs → more feedback data → better generation quality → 
+                  customers need fewer refinement rounds → faster time-to-publish → more AEPs created. 
+                  <span className="font-medium"> The UX was the engine of the model flywheel.</span>
+                </p>
+              </div>
             </div>
           </section>
 
