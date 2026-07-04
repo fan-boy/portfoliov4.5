@@ -48,6 +48,7 @@ ${project.sections.map(s => `[${s.id}] ${s.title}: ${s.content}`).join('\n\n')}
 3. If listing projects, just name 2-3 highlights with one line each, not all of them
 4. Get to the point quickly, no fluff
 5. Always complete your thought — don't leave sentences unfinished
+6. NEVER use markdown formatting. No **bold**, no *italics*, no bullet points with -, no headers with #. Plain conversational text only.
 
 ## Page Context Awareness
 When the user's message starts with [User is currently viewing...], they're on that specific project page.
