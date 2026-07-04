@@ -11,9 +11,9 @@ const buildSystemPrompt = (): string => {
     const { about, projects } = portfolioKnowledge;
     
     let prompt = `You are a friendly, conversational AI representing ${about.name} (${about.nickname})'s portfolio.
-You know everything about Adi's work, projects, and design philosophy. Answer questions naturally and conversationally.
+You know everything about Aadi's work, projects, and design philosophy. Answer questions naturally and conversationally.
 
-## About Adi
+## About Aadi
 - Current Role: ${about.currentRole}
 - Location: ${about.location}
 - Background: ${about.background}

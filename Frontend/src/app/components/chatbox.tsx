@@ -34,17 +34,17 @@ const URL_TO_PROJECT: Record<string, { id: string; name: string }> = {
   '/crashr': { id: 'crashr', name: 'Crashr' },
   '/cadence': { id: 'cadence', name: 'Cadence' },
   '/everestos': { id: 'everestos', name: 'EverestOS' },
-  '/about': { id: 'about', name: 'About Adi' },
+  '/about': { id: 'about', name: 'About Aadi' },
 };
 
 const PAGE_PROMPTS: Record<string, string[]> = {
   "/": [
-    "Tell me more about Adi.",
-    "What projects has Adi worked on?"
+    "Tell me more about Aadi.",
+    "What projects has Aadi worked on?"
   ],
   "/about": [
-    "What's Adi's design philosophy?",
-    "What are Adi's key skills?"
+    "What's Aadi's design philosophy?",
+    "What are Aadi's key skills?"
   ],
   "/dune/risk-platform": [
     "Tell me about this project.",
@@ -382,7 +382,7 @@ export default function ChatBox() {
         {/* Prompts */}
         {promptsVisible && chat.length === 0 && (
           <div className="fixed left-0 right-0 bottom-28 flex flex-col items-center z-[60]">
-            <p className="text-gray-400 text-sm mb-4">Ask anything about Adi&apos;s work</p>
+            <p className="text-gray-400 text-sm mb-4">Ask anything about Aadi&apos;s work</p>
             <div className="flex flex-wrap gap-2 justify-center max-w-2xl px-6">
               {promptChips.map((prompt, idx) => (
                 <button
@@ -406,7 +406,7 @@ export default function ChatBox() {
                 value={question}
                 disabled={loading}
                 rows={1}
-                placeholder="Ask me anything about Adi..."
+                placeholder="Ask me anything about Aadi..."
                 onChange={e => setQuestion(e.target.value)}
                 onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleAsk(); }}}
                 className="resize-none bg-transparent px-3 py-2 text-base flex-1 outline-none placeholder-gray-400"
