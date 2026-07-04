@@ -365,8 +365,8 @@ export default function ChatBox() {
         </div>
 
         {/* Messages */}
-        <div className="absolute inset-0 flex justify-center overflow-y-auto pt-24 pb-32 px-6">
-          <div className="w-full max-w-2xl flex flex-col justify-end min-h-full">
+        <div className="absolute inset-0 flex justify-center overflow-y-auto pt-24 pb-36 px-6">
+          <div className="w-full max-w-2xl flex flex-col justify-end">
             <div className="space-y-4">
               {chat.map((turn, i) => (
                 <ChatMessage key={i} turn={turn} onReferenceClick={handleReferenceClick} />
