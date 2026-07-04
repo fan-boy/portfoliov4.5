@@ -17,6 +17,7 @@ const PROJECT_URLS: Record<string, string> = {
   'risk-platform': '/dune/risk-platform',
   'stillsuit': '/dune/stillsuit',
   'workflows': '/dune/workflows',
+  'aep-creation': '/dune/aep-creation',
   'universitypark': '/universitypark',
   'chainreactive': '/chainreactive',
   'crashr': '/crashr',
@@ -29,6 +30,7 @@ const URL_TO_PROJECT: Record<string, { id: string; name: string }> = {
   '/dune/risk-platform': { id: 'risk-platform', name: 'Risk Platform' },
   '/dune/stillsuit': { id: 'stillsuit', name: 'Stillsuit Design System' },
   '/dune/workflows': { id: 'workflows', name: 'Dynamic Workflows' },
+  '/dune/aep-creation': { id: 'aep-creation', name: 'AEP Builder' },
   '/universitypark': { id: 'universitypark', name: 'University Park' },
   '/chainreactive': { id: 'chainreactive', name: 'Chain Reactive' },
   '/crashr': { id: 'crashr', name: 'Crashr' },
@@ -57,6 +59,10 @@ const PAGE_PROMPTS: Record<string, string[]> = {
   "/dune/workflows": [
     "Tell me about this project.",
     "What problem does this solve?"
+  ],
+  "/dune/aep-creation": [
+    "Tell me about this project.",
+    "How does the AI training work?"
   ],
   "/universitypark": [
     "Tell me about this project.",
