@@ -111,13 +111,7 @@ export async function POST(request: NextRequest) {
         const response = await anthropic.messages.create({
             model: 'claude-3-haiku-20240307',
             max_tokens: 300,
-            system: [
-                {
-                    type: 'text',
-                    text: SYSTEM_PROMPT,
-                    cache_control: { type: 'ephemeral' }
-                }
-            ],
+            system: SYSTEM_PROMPT,
             messages
         });
 
@@ -149,9 +143,10 @@ export async function POST(request: NextRequest) {
         });
 
     } catch (error) {
-        console.error('API Error:', error);
+        console.error('API Error:', JSON.stringify(error, null, 2));
+        const message = error instanceof Error ? error.message : 'Unknown error';
         return NextResponse.json(
-            { error: 'Something went wrong. Please try again.' },
+            { error: `Something went wrong: ${message}` },
             { status: 500 }
         );
     }
