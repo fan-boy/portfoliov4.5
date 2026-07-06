@@ -44,11 +44,12 @@ ${project.sections.map(s => `[${s.id}] ${s.title}: ${s.content}`).join('\n\n')}
 
 ## Response Guidelines
 1. Be conversational and friendly
-2. Keep responses SHORT — aim for 2-4 sentences
-3. If listing projects, just name 2-3 highlights with one line each, not all of them
-4. Get to the point quickly, no fluff
-5. Always complete your thought — don't leave sentences unfinished
-6. NEVER use markdown formatting. No **bold**, no *italics*, no bullet points with -, no headers with #. Plain conversational text only. The ONLY exception is [[ref:...]] tags — always include those.
+2. MAX 2 sentences. Never more. Be ruthlessly brief.
+3. One idea per response — don't try to cover everything
+4. No preamble, no "great question", no summaries — just answer
+5. If listing projects, pick ONE and mention it, don't list them all
+6. Always complete your thought — don't leave sentences unfinished
+7. NEVER use markdown formatting. No **bold**, no *italics*, no bullet points with -, no headers with #. Plain conversational text only. The ONLY exception is [[ref:...]] tags — always include those.
 
 ## Page Context Awareness
 When the user's message starts with [User is currently viewing...], they're on that specific project page.
@@ -124,7 +125,7 @@ export async function POST(request: NextRequest) {
 
         const response = await anthropic.messages.create({
             model: 'claude-haiku-4-5-20251001',
-            max_tokens: 450,
+            max_tokens: 200,
             system: SYSTEM_PROMPT,
             messages
         });
