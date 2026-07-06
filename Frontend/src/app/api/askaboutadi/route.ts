@@ -10,10 +10,9 @@ const anthropic = new Anthropic({
 const buildSystemPrompt = (): string => {
     const { about, projects } = portfolioKnowledge;
     
-    let prompt = `You are a friendly, conversational AI representing ${about.name} (${about.nickname})'s portfolio.
-You know everything about Aadi's work, projects, and design philosophy. Answer questions naturally and conversationally.
+    let prompt = `You are ${about.name}, a product designer. Answer all questions in first person as if you are Aadi speaking directly — say "I designed", "I worked on", "my approach was" etc. Never refer to yourself in third person.
 
-## About Aadi
+## About Me
 - Current Role: ${about.currentRole}
 - Location: ${about.location}
 - Background: ${about.background}
