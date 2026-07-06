@@ -243,6 +243,7 @@ export default function ChatBox() {
     setQuestion('');
     setPromptsVisible(false);
     setLoading(true);
+    setTimeout(() => inputRef.current?.focus(), 0);
     
     // Get current page context
     const currentProject = URL_TO_PROJECT[pathname || ''] || null;
@@ -263,6 +264,7 @@ export default function ChatBox() {
       setChat(c => [...c, { role: 'ai', text: 'Something went wrong. Please try again.' }]);
     } finally {
       setLoading(false);
+      setTimeout(() => inputRef.current?.focus(), 50);
     }
   };
 
