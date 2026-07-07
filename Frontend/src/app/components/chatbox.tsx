@@ -5,7 +5,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import clsx from 'clsx';
+import Image from 'next/image';
 import AnimatedBlobs from './AnimatedBlobs';
+import Avatar from '../../../public/assets/About/profile.webp';
 
 type Reference = {
   project: string;
@@ -108,38 +110,50 @@ const ChatMessage = ({
   
   return (
     <div className={clsx(
-      'flex flex-col w-full animate-fade-in',
-      isUser ? 'items-end' : 'items-start'
+      'flex w-full animate-fade-in',
+      isUser ? 'justify-end' : 'justify-start items-start gap-2'
     )}>
-      <div className={clsx(
-        "rounded-2xl leading-relaxed",
-        compact ? "px-3 py-2 text-sm max-w-[90%]" : "px-4 py-3 text-base max-w-[80%]",
-        isUser
-          ? "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-md shadow-md"
-          : "bg-white text-gray-800 border border-gray-100 rounded-bl-md shadow-sm"
-      )}>
-        <div className="whitespace-pre-wrap break-words">{turn.text}</div>
-      </div>
-      
-      {!isUser && turn.references && turn.references.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mt-1.5 animate-fade-in" style={{ animationDelay: '100ms' }}>
-          {turn.references.map((ref, refIdx) => (
-            <button
-              key={refIdx}
-              onClick={() => onReferenceClick(ref)}
-              className={clsx(
-                "group inline-flex items-center gap-1 font-medium text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-full hover:bg-indigo-100 hover:border-indigo-200 transition-colors",
-                compact ? "px-2 py-1 text-[11px]" : "px-3 py-1.5 text-xs"
-              )}
-            >
-              <svg width="10" height="10" viewBox="0 0 16 16" fill="none" className="transition-transform group-hover:translate-x-0.5">
-                <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              {ref.label}
-            </button>
-          ))}
+      {/* Avatar for AI messages */}
+      {!isUser && (
+        <div className={clsx(
+          "rounded-full overflow-hidden flex-shrink-0 border border-gray-100",
+          compact ? "w-6 h-6" : "w-8 h-8"
+        )}>
+          <Image src={Avatar} alt="Aadi" className="w-full h-full object-cover" />
         </div>
       )}
+
+      <div className="flex flex-col items-start max-w-[80%]">
+        <div className={clsx(
+          "rounded-2xl leading-relaxed",
+          compact ? "px-3 py-2 text-sm" : "px-4 py-3 text-base",
+          isUser
+            ? "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-md shadow-md"
+            : "bg-white text-gray-800 border border-gray-100 rounded-bl-md shadow-sm"
+        )}>
+          <div className="whitespace-pre-wrap break-words">{turn.text}</div>
+        </div>
+
+        {!isUser && turn.references && turn.references.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-1.5 animate-fade-in" style={{ animationDelay: '100ms' }}>
+            {turn.references.map((ref, refIdx) => (
+              <button
+                key={refIdx}
+                onClick={() => onReferenceClick(ref)}
+                className={clsx(
+                  "group inline-flex items-center gap-1 font-medium text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-full hover:bg-indigo-100 hover:border-indigo-200 transition-colors",
+                  compact ? "px-2 py-1 text-[11px]" : "px-3 py-1.5 text-xs"
+                )}
+              >
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none" className="transition-transform group-hover:translate-x-0.5">
+                  <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                {ref.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
