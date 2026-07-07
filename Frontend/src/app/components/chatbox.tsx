@@ -111,7 +111,7 @@ const ChatMessage = ({
   return (
     <div className={clsx(
       'flex w-full animate-fade-in',
-      isUser ? 'justify-end' : 'justify-start items-start gap-2'
+      isUser ? 'justify-end' : 'justify-start items-end gap-2'
     )}>
       {/* Avatar for AI messages */}
       {!isUser && (
