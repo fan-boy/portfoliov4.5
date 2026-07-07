@@ -3,6 +3,8 @@ import { useChat } from '../../context/ChatContext';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
+import Image from 'next/image';
+import Avatar from '../../../../public/assets/About/profile.webp';
 
 export default function Button() {
   const { chatOpen, setChatOpen } = useChat();
@@ -46,17 +48,20 @@ export default function Button() {
       whileHover={{ scale: 1.01 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
     >
-      {/* Keyboard shortcut - ultra minimal like your nav chips */}
+      {/* Avatar */}
+      <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-200 flex-shrink-0">
+        <Image src={Avatar} alt="Aadi" className="w-full h-full object-cover" />
+      </div>
+      Chat with Aadi
+      {/* Keyboard shortcut */}
       <span
         className={clsx(
           'flex items-center justify-center px-2 py-1 rounded-md text-xs font-medium',
           'bg-gray-100/80 border border-gray-200/60 text-gray-500',
-          'group-hover:bg-gray-200/80 group-hover:text-gray-600'
         )}
       >
         {shortcutKey}
       </span>
-      Chat
       
       
     </motion.button>
