@@ -206,6 +206,65 @@ export default function Home() {
         */}
 
         {/* ============================================
+            SIDE PROJECTS
+            ============================================ */}
+        <section className="w-full pb-32">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-12">Side Projects</p>
+
+            <div className="flex flex-col gap-6">
+              {/* Swingscope */}
+              <a
+                href="https://swingscope.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 border-t border-gray-100 hover:border-gray-300 transition-colors duration-300"
+              >
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-lg text-fontprimary group-hover:text-fontsecondary transition-colors duration-300">Swingscope</h3>
+                    <span className="text-xs text-fontmuted border border-gray-200 rounded-full px-2 py-0.5">Designed & Built</span>
+                  </div>
+                  <p className="text-fonttertiary text-sm">AI-powered swing trading scanner. Real market data, Claude enrichment, risk controls.</p>
+                  <div className="flex gap-2 mt-1">
+                    <span className="text-xs text-fontmuted">Next.js</span>
+                    <span className="text-xs text-fontmuted">·</span>
+                    <span className="text-xs text-fontmuted">Python</span>
+                    <span className="text-xs text-fontmuted">·</span>
+                    <span className="text-xs text-fontmuted">Claude API</span>
+                    <span className="text-xs text-fontmuted">·</span>
+                    <span className="text-xs text-fontmuted">Polygon.io</span>
+                  </div>
+                </div>
+                <span className="text-fonttertiary group-hover:text-fontprimary group-hover:translate-x-1 transition-all duration-300 text-lg flex-shrink-0">→</span>
+              </a>
+
+              {/* Zine App */}
+              <a
+                href="#"
+                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 border-t border-gray-100 hover:border-gray-300 transition-colors duration-300"
+              >
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-lg text-fontprimary group-hover:text-fontsecondary transition-colors duration-300">Zine</h3>
+                    <span className="text-xs text-fontmuted border border-gray-200 rounded-full px-2 py-0.5">Designed & Built</span>
+                  </div>
+                  <p className="text-fonttertiary text-sm">A digital zine creation and publishing platform. Rich layouts, no design tools required.</p>
+                  <div className="flex gap-2 mt-1">
+                    <span className="text-xs text-fontmuted">Next.js</span>
+                    <span className="text-xs text-fontmuted">·</span>
+                    <span className="text-xs text-fontmuted">TypeScript</span>
+                    <span className="text-xs text-fontmuted">·</span>
+                    <span className="text-xs text-fontmuted">Node.js</span>
+                  </div>
+                </div>
+                <span className="text-fonttertiary group-hover:text-fontprimary group-hover:translate-x-1 transition-all duration-300 text-lg flex-shrink-0">→</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================
             CONTACT
             ============================================ */}
         <section className="w-full py-32">
