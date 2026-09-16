@@ -1,0 +1,146 @@
+/* Watercolor — a study, not a company challenge.
+   Local styles only; the `wc-` prefix (no `exp-`) marks these as non-system.
+
+   The page is a single fixed viewport-sized surface with no scroll, so the
+   browser window reads as the sheet of paper the painting sits on. */
+
+.wc-stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--exp-canvas);
+}
+
+/* Nothing on this route scrolls */
+body:has(.wc-stage) {
+  overflow: hidden;
+}
+
+.wc-canvas {
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+}
+
+/* ----------------------------------------------------------------------
+   The reveal
+
+   Each wash is masked by a handful of heavily blurred ellipses that scale
+   up from nothing. Because the mask edge is soft and the layer underneath
+   is already running a displacement filter, the growing edge tears and
+   feathers the way a loaded brush does on wet paper — rather than sliding
+   in like a wipe.
+
+   transform-box: fill-box makes each ellipse scale about its own centre,
+   so a layer can bloom from several points at slightly different times.
+   ---------------------------------------------------------------------- */
+
+.wc-bloom {
+  transform: scale(0.04);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wc-bloom var(--wc-dur, 1.4s) cubic-bezier(0.22, 0.68, 0.3, 1)
+    var(--wc-delay, 0s) forwards;
+  will-change: transform;
+}
+
+@keyframes wc-bloom {
+  from {
+    transform: scale(0.04);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Pigment deepens as the water dries, so each layer also settles in opacity
+   slightly behind its own bloom. */
+.wc-layer {
+  opacity: 0;
+  animation: wc-settle var(--wc-dur, 1.4s) ease-out var(--wc-delay, 0s) forwards;
+}
+
+@keyframes wc-settle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--wc-final, 1);
+  }
+}
+
+/* Ink lines are drawn, not washed — a pen stroke, so it draws along itself */
+.wc-ink-stroke {
+  stroke-dasharray: var(--wc-len, 400);
+  stroke-dashoffset: var(--wc-len, 400);
+  animation: wc-draw 1.1s cubic-bezier(0.33, 0.9, 0.44, 1) var(--wc-delay, 0s) forwards;
+}
+
+@keyframes wc-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Once the painting is down, the sky breathes very slowly — the only motion
+   that continues, so it reads as paper still damp rather than as a loop. */
+.wc-damp {
+  animation: wc-damp 11s ease-in-out 7s infinite;
+}
+
+@keyframes wc-damp {
+  0%,
+  100% {
+    opacity: 0.93;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* The Next.js dev indicator also parks itself bottom-left. Lift the escape
+   link clear of it so the two don't overlap while developing. */
+.wc-stage .exp-escape {
+  inset-block-end: max(var(--exp-space-12), env(safe-area-inset-bottom));
+}
+
+.wc-signature {
+  position: absolute;
+  inset-block-end: max(var(--exp-space-6), env(safe-area-inset-bottom));
+  inset-inline-end: var(--exp-space-8);
+  text-align: end;
+  opacity: 0;
+  animation: wc-settle 1.4s ease-out 5.6s forwards;
+}
+
+/* ----------------------------------------------------------------------
+   Reduced motion
+
+   The painting is the point, not the performance. Show the finished piece
+   immediately: every bloom at full size, every wash at full opacity, no
+   drawing, no breathing.
+   ---------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .wc-bloom {
+    animation: none;
+    transform: scale(1);
+  }
+
+  .wc-layer,
+  .wc-signature {
+    animation: none;
+    opacity: var(--wc-final, 1);
+  }
+
+  .wc-ink-stroke {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .wc-damp {
+    animation: none;
+  }
+}

@@ -1,0 +1,991 @@
+/* ============================================================
+   EXPERIMENTS — scoped visual language for interview challenges
+   ============================================================
+
+   Loaded only by src/app/experiments/layout.tsx. Nothing here
+   leaks outside `.exp-scope`, and nothing in globals.css reaches
+   inside it.
+
+   A challenge picks three things:
+     theme       — the company's palette and type (exp-theme-*)
+     expression  — how much motion and roundness (exp-x-*)
+     chrome      — embedded in the portfolio, or owns the viewport
+
+   Add a company theme by overriding the token contract in a
+   theme.css next to the challenge's page.tsx. See README.md.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Escape the global stylesheet
+
+   globals.css styles bare h1-h6, p, a, section and blockquote in
+   the unlayered cascade, which outranks every Tailwind utility.
+   `revert-layer` skips unlayered declarations and falls back to
+   the layered ones, so Tailwind's preflight and utilities apply
+   normally inside a challenge while the portfolio's editorial
+   type stays untouched elsewhere.
+   ------------------------------------------------------------ */
+
+.exp-scope :where(h1, h2, h3, h4, h5, h6, p, a, section, blockquote, hr, ul, ol) {
+  all: revert-layer;
+}
+
+/* body sets Switzer at 18px/1.65 and inherits into everything.
+   Re-declare from tokens so a challenge starts from its own type. */
+.exp-scope {
+  font-family: var(--exp-font-sans);
+  font-size: var(--exp-text-body);
+  line-height: var(--exp-lh-body);
+  font-weight: var(--exp-weight-normal);
+  color: var(--exp-text);
+  background: var(--exp-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Only Inter 300-600 is loaded. Without this, asking for 700 gets a
+     fabricated bold that looks smudged instead of an obvious regression. */
+  font-synthesis: none;
+  /* User-supplied strings and long tokens land all over a challenge */
+  overflow-wrap: break-word;
+}
+
+.exp-scope ::selection {
+  background: var(--exp-accent-subtle);
+  color: var(--exp-text);
+}
+
+/* ------------------------------------------------------------
+   2. Token contract
+
+   Every theme below overrides these names and nothing else, so a
+   challenge built against the tokens re-themes for free.
+   ------------------------------------------------------------ */
+
+.exp-scope {
+  /* Surfaces, canvas is the backdrop and raised sits closest to the user */
+  --exp-canvas: oklch(98.5% 0.002 264);
+  --exp-surface: oklch(100% 0 264);
+  --exp-surface-raised: oklch(100% 0 264);
+  --exp-surface-sunken: oklch(96.5% 0.004 264);
+
+  /* Text */
+  --exp-text: oklch(22% 0.012 264);
+  --exp-text-secondary: oklch(45% 0.012 264);
+  --exp-text-muted: oklch(58.5% 0.01 264);
+  --exp-text-on-accent: oklch(99% 0 264);
+
+  /* Accent */
+  --exp-accent: oklch(51.5% 0.18 258);
+  --exp-accent-hover: color-mix(in oklch, var(--exp-accent) 88%, black);
+  --exp-accent-active: color-mix(in oklch, var(--exp-accent) 78%, black);
+  --exp-accent-subtle: oklch(93% 0.03 258);
+  --exp-focus: var(--exp-accent);
+
+  /* Status. Keep these distinct from --exp-accent so "primary action"
+     never reads as "it worked". */
+  --exp-success: oklch(58% 0.14 150);
+  --exp-warning: oklch(62% 0.124 80);
+  --exp-danger: oklch(56% 0.19 25);
+  --exp-danger-hover: color-mix(in oklch, var(--exp-danger) 88%, black);
+
+  /* Disabled is its own token, not opacity — opacity's contrast
+     depends on whatever is behind it. */
+  --exp-disabled-bg: oklch(95% 0.004 264);
+  --exp-disabled-text: oklch(70% 0.008 264);
+
+  /* Borders. Alpha in light mode so they sink into the surface. */
+  --exp-border: oklch(0 0 0 / 0.08);
+  --exp-border-strong: oklch(0 0 0 / 0.14);
+
+  /* Layered shadows read as physical depth, one big blur reads as a sticker */
+  --exp-shadow-sm:
+    0 1px 1px oklch(0 0 0 / 0.04),
+    0 2px 4px oklch(0 0 0 / 0.03);
+  --exp-shadow-md:
+    0 1px 2px oklch(0 0 0 / 0.05),
+    0 4px 8px oklch(0 0 0 / 0.04),
+    0 8px 24px oklch(0 0 0 / 0.04);
+  --exp-shadow-lg:
+    0 1px 2px oklch(0 0 0 / 0.06),
+    0 8px 16px oklch(0 0 0 / 0.05),
+    0 24px 48px oklch(0 0 0 / 0.06);
+
+  /* Type. Switzer, Inter and JetBrains Mono are already loaded by the
+     root layout; a challenge that needs the company's own face loads it
+     in its theme.css with a metric-matched fallback.
+
+     Only Inter 300-600 and JetBrains Mono 400-500 are actually loaded, so
+     nothing here asks for 700. With font-synthesis: none below, a missing
+     weight shows up as a wrong weight instead of a fabricated bold. */
+  --exp-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --exp-font-display: var(--exp-font-sans);
+  --exp-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --exp-weight-normal: 400;
+  --exp-weight-medium: 500;
+  --exp-weight-strong: 600;
+
+  /* Scale, leading and tracking come as a set per role: leading tightens as
+     size grows, tracking goes negative on display and positive on small caps,
+     and body gets neither. A theme retunes all three together. */
+  --exp-text-display: 3rem;
+  --exp-lh-display: 1.05;
+  --exp-tracking-display: -0.03em;
+
+  --exp-text-h1: 2.25rem;
+  --exp-lh-h1: 1.15;
+  --exp-tracking-h1: -0.02em;
+
+  --exp-text-h2: 1.75rem;
+  --exp-lh-h2: 1.25;
+  --exp-tracking-h2: -0.015em;
+
+  --exp-text-h3: 1.375rem;
+  --exp-lh-h3: 1.35;
+  --exp-tracking-h3: -0.01em;
+
+  --exp-text-body-lg: 1.125rem;
+  --exp-lh-body-lg: 1.6;
+
+  --exp-text-body: 1rem;
+  --exp-lh-body: 1.6;
+
+  --exp-text-sm: 0.875rem;
+  --exp-lh-sm: 1.5;
+
+  /* 12px is the floor. Nothing in a challenge should go below it. */
+  --exp-text-xs: 0.75rem;
+  --exp-lh-xs: 1.4;
+
+  --exp-tracking-caps: 0.06em;
+
+  /* Reading column. 65ch is the sweet spot of the 45-75 character range. */
+  --exp-measure: 65ch;
+  --exp-measure-narrow: 45ch;
+
+  /* Page container. Uncapped layouts drift apart on a 27" monitor. */
+  --exp-container: 1200px;
+  --exp-container-narrow: 760px;
+
+  /* 4px scale */
+  --exp-space-1: 0.25rem;
+  --exp-space-2: 0.5rem;
+  --exp-space-3: 0.75rem;
+  --exp-space-4: 1rem;
+  --exp-space-5: 1.25rem;
+  --exp-space-6: 1.5rem;
+  --exp-space-8: 2rem;
+  --exp-space-10: 2.5rem;
+  --exp-space-12: 3rem;
+  --exp-space-16: 4rem;
+  --exp-space-24: 6rem;
+
+  /* Easing. Entrances ease out, exits ease in. */
+  --exp-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --exp-ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --exp-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --exp-ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Set by expression below */
+  --exp-radius-sm: 4px;
+  --exp-radius-md: 8px;
+  --exp-radius-lg: 12px;
+  --exp-dur-fast: 120ms;
+  --exp-dur-base: 180ms;
+  --exp-dur-slow: 260ms;
+  --exp-stagger: 40ms;
+  --exp-lift: 2px;
+  --exp-press: 0.98;
+  --exp-pad-card: var(--exp-space-5);
+  --exp-pad-control: var(--exp-space-3);
+
+  /* Inner radius = outer − padding, so nested corners stay concentric */
+  --exp-radius-nested: calc(var(--exp-radius-lg) - var(--exp-pad-card));
+}
+
+/* ------------------------------------------------------------
+   3. Themes
+   ------------------------------------------------------------ */
+
+/* neutral — the default above. Unopinionated, cool greys, blue accent.
+   Use when the brief is about structure and you don't want the palette
+   making an argument. */
+
+/* product — dense internal tooling. Linear, Ramp, Vercel territory:
+   small type, tight corners, quiet accent, numbers that stack. */
+.exp-theme-product {
+  --exp-canvas: oklch(97.5% 0.003 285);
+  --exp-surface: oklch(100% 0 285);
+  --exp-surface-sunken: oklch(96% 0.004 285);
+  --exp-text: oklch(20% 0.01 285);
+  --exp-text-secondary: oklch(44% 0.011 285);
+  --exp-text-muted: oklch(57.5% 0.009 285);
+  --exp-accent: oklch(51% 0.19 275);
+  --exp-accent-subtle: oklch(93% 0.03 275);
+
+  /* B2B scale — ratio ~1.2. Density is the point: an operator lives in this
+     screen all day and wants more rows visible, not bigger letters. Body
+     drops to 14px, which the floor allows for dense UI but not for prose,
+     and the steps stay close together so hierarchy comes from weight and
+     colour rather than from size jumps. */
+  --exp-text-display: 2.25rem;
+  --exp-lh-display: 1.1;
+  --exp-tracking-display: -0.02em;
+
+  --exp-text-h1: 1.5rem;
+  --exp-lh-h1: 1.25;
+  --exp-tracking-h1: -0.015em;
+
+  --exp-text-h2: 1.1875rem;
+  --exp-lh-h2: 1.3;
+  --exp-tracking-h2: -0.01em;
+
+  --exp-text-h3: 1rem;
+  --exp-lh-h3: 1.4;
+  --exp-tracking-h3: -0.005em;
+
+  --exp-text-body-lg: 0.9375rem;
+  --exp-lh-body-lg: 1.5;
+
+  --exp-text-body: 0.875rem;
+  --exp-lh-body: 1.5;
+
+  --exp-text-sm: 0.8125rem;
+  --exp-lh-sm: 1.45;
+
+  --exp-text-xs: 0.75rem;
+  --exp-lh-xs: 1.35;
+
+  /* Prose is rare here and sits in a panel, not a column */
+  --exp-measure: 60ch;
+
+  /* keep disabled on the product neutral hue, or it reads cooler than the surface */
+  --exp-disabled-bg: oklch(95% 0.004 285);
+  --exp-disabled-text: oklch(70% 0.008 285);
+
+  --exp-radius-sm: 3px;
+  --exp-radius-md: 5px;
+  --exp-radius-lg: 8px;
+  --exp-pad-card: var(--exp-space-4);
+  --exp-pad-control: var(--exp-space-2);
+}
+
+/* editorial — warm paper, serif display, room to breathe. Use for
+   marketing, docs and long-form briefs. */
+.exp-theme-editorial {
+  --exp-canvas: oklch(97.8% 0.012 70);
+  --exp-surface: oklch(99.2% 0.005 70);
+  /* raised stays warm; inheriting pure white would put a cold card on warm paper */
+  --exp-surface-raised: oklch(99.5% 0.003 70);
+  --exp-surface-sunken: oklch(95.5% 0.016 70);
+  --exp-text: oklch(24% 0.02 70);
+  --exp-text-secondary: oklch(42% 0.02 70);
+  --exp-text-muted: oklch(56% 0.018 70);
+  --exp-accent: oklch(50% 0.16 28);
+  --exp-accent-subtle: oklch(93% 0.03 28);
+
+  /* Serif display over a sans text face — contrast, not resemblance. Two
+     families is the whole budget. */
+  --exp-font-display: ui-serif, Georgia, 'Times New Roman', serif;
+
+  /* Marketing scale — ratio ~1.33, a perfect fourth. The wide gaps are the
+     creative licence: a hero can be 5x body size and still read as one
+     system because every step comes from the same ratio. Display and h1
+     clamp so an 80px headline doesn't run off a phone. */
+  --exp-text-display: clamp(2.75rem, 9vw, 5rem);
+  --exp-lh-display: 1;
+  --exp-tracking-display: -0.04em;
+
+  --exp-text-h1: clamp(2rem, 5vw, 3rem);
+  --exp-lh-h1: 1.1;
+  --exp-tracking-h1: -0.03em;
+
+  --exp-text-h2: 2rem;
+  --exp-lh-h2: 1.2;
+  --exp-tracking-h2: -0.02em;
+
+  --exp-text-h3: 1.5rem;
+  --exp-lh-h3: 1.3;
+  --exp-tracking-h3: -0.015em;
+
+  /* The standfirst under a hero */
+  --exp-text-body-lg: 1.25rem;
+  --exp-lh-body-lg: 1.65;
+
+  --exp-text-body: 1.125rem;
+  --exp-lh-body: 1.7;
+
+  --exp-text-sm: 1rem;
+  --exp-lh-sm: 1.6;
+
+  --exp-text-xs: 0.875rem;
+  --exp-lh-xs: 1.5;
+
+  --exp-disabled-bg: oklch(95% 0.008 70);
+  --exp-disabled-text: oklch(70% 0.014 70);
+
+  --exp-border: oklch(29.6% 0.044 70 / 0.1);
+  --exp-border-strong: oklch(29.6% 0.044 70 / 0.18);
+  --exp-pad-card: var(--exp-space-6);
+}
+
+/* consumer — B2C product. Public-facing and phone-first, so body sits at the
+   16px web default and never drops below it: unlike a B2B operator, this user
+   is on a train, one-handed, and has never seen the screen before. Magenta
+   accent keeps the brand 45deg clear of the danger red, and the neutrals carry
+   a matching hue so the greys don't fight it. */
+.exp-theme-consumer {
+  --exp-canvas: oklch(98.5% 0.003 330);
+  --exp-surface: oklch(100% 0 330);
+  --exp-surface-raised: oklch(100% 0 330);
+  --exp-surface-sunken: oklch(96.5% 0.005 330);
+
+  --exp-text: oklch(24% 0.014 330);
+  --exp-text-secondary: oklch(46% 0.014 330);
+  --exp-text-muted: oklch(59.5% 0.012 330);
+  --exp-text-on-accent: oklch(99% 0 330);
+
+  --exp-accent: oklch(52% 0.2 340);
+  --exp-accent-subtle: oklch(93% 0.032 340);
+
+  --exp-disabled-bg: oklch(95% 0.005 330);
+  --exp-disabled-text: oklch(70% 0.01 330);
+
+  /* Switzer is geometric and a touch friendlier than Inter for headlines,
+     and the root layout already loads it. */
+  --exp-font-display: 'Switzer', 'Inter', system-ui, sans-serif;
+
+  /* B2C scale — ratio ~1.25, a major third. Wider steps than B2B because
+     hierarchy has to survive a first-time user skimming on a phone, tighter
+     than marketing because this is a tool people return to. */
+  --exp-text-display: clamp(2.25rem, 7vw, 3rem);
+  --exp-lh-display: 1.1;
+  --exp-tracking-display: -0.03em;
+
+  --exp-text-h1: 2rem;
+  --exp-lh-h1: 1.2;
+  --exp-tracking-h1: -0.02em;
+
+  --exp-text-h2: 1.5rem;
+  --exp-lh-h2: 1.3;
+  --exp-tracking-h2: -0.015em;
+
+  --exp-text-h3: 1.25rem;
+  --exp-lh-h3: 1.4;
+  --exp-tracking-h3: -0.01em;
+
+  --exp-text-body-lg: 1.125rem;
+  --exp-lh-body-lg: 1.6;
+
+  /* The floor for this audience. Don't override it downward. */
+  --exp-text-body: 1rem;
+  --exp-lh-body: 1.6;
+
+  --exp-text-sm: 0.875rem;
+  --exp-lh-sm: 1.5;
+
+  --exp-text-xs: 0.8125rem;
+  --exp-lh-xs: 1.4;
+}
+
+/* dark — borders go solid, because alpha white glows on dark. Accent
+   is desaturated so it stops vibrating, and the topmost surface stays
+   the lightest so layering survives. */
+.exp-theme-dark {
+  --exp-canvas: oklch(15.5% 0.008 265);
+  --exp-surface: oklch(19.5% 0.009 265);
+  --exp-surface-raised: oklch(23.5% 0.01 265);
+  --exp-surface-sunken: oklch(12.5% 0.007 265);
+
+  --exp-text: oklch(96% 0.004 265);
+  --exp-text-secondary: oklch(85.5% 0.008 265);
+  --exp-text-muted: oklch(68.5% 0.009 265);
+  --exp-text-on-accent: oklch(15.5% 0.008 265);
+
+  --exp-accent: oklch(77.5% 0.112 258);
+  --exp-accent-hover: color-mix(in oklch, var(--exp-accent) 88%, white);
+  --exp-accent-active: color-mix(in oklch, var(--exp-accent) 78%, white);
+  --exp-accent-subtle: oklch(30% 0.055 258);
+
+  --exp-success: oklch(76% 0.13 152);
+  --exp-warning: oklch(78% 0.12 82);
+  --exp-danger: oklch(78.5% 0.12 25);
+  --exp-danger-hover: color-mix(in oklch, var(--exp-danger) 88%, white);
+
+  --exp-disabled-bg: oklch(26.5% 0.006 265);
+  --exp-disabled-text: oklch(62% 0.007 265);
+
+  --exp-border: oklch(30% 0.01 265);
+  --exp-border-strong: oklch(40% 0.012 265);
+
+  --exp-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.4);
+  --exp-shadow-md:
+    0 2px 4px oklch(0 0 0 / 0.3),
+    0 8px 24px oklch(0 0 0 / 0.35);
+  --exp-shadow-lg:
+    0 2px 4px oklch(0 0 0 / 0.3),
+    0 12px 28px oklch(0 0 0 / 0.4),
+    0 32px 64px oklch(0 0 0 / 0.35);
+
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------
+   4. Expression — the creativity dial
+
+   Same components, different amount of personality. Restrained for
+   an enterprise brief that should look inevitable; expressive when
+   the challenge is explicitly asking for a point of view.
+   ------------------------------------------------------------ */
+
+.exp-x-restrained {
+  --exp-radius-sm: 2px;
+  --exp-radius-md: 4px;
+  --exp-radius-lg: 6px;
+  --exp-dur-fast: 100ms;
+  --exp-dur-base: 140ms;
+  --exp-dur-slow: 180ms;
+  --exp-stagger: 0ms;
+  --exp-lift: 0px;
+  --exp-press: 0.99;
+}
+
+.exp-x-balanced {
+  --exp-radius-sm: 4px;
+  --exp-radius-md: 8px;
+  --exp-radius-lg: 12px;
+  --exp-dur-fast: 120ms;
+  --exp-dur-base: 180ms;
+  --exp-dur-slow: 260ms;
+  --exp-stagger: 40ms;
+  --exp-lift: 2px;
+  --exp-press: 0.98;
+}
+
+.exp-x-expressive {
+  --exp-radius-sm: 8px;
+  --exp-radius-md: 14px;
+  --exp-radius-lg: 20px;
+  --exp-dur-fast: 150ms;
+  --exp-dur-base: 240ms;
+  --exp-dur-slow: 360ms;
+  --exp-stagger: 60ms;
+  --exp-lift: 4px;
+  --exp-press: 0.96;
+  --exp-pad-card: var(--exp-space-6);
+  --exp-tracking-display: -0.035em;
+}
+
+/* ------------------------------------------------------------
+   5. Chrome
+
+   The root layout is fixed: navbar, 140px top pad, custom cursor and
+   chat button on every route. A fullbleed challenge cancels all four
+   from inside its own subtree.
+
+   COUPLING: these selectors depend on src/app/layout.tsx's DOM order.
+   If that file changes, this block changes with it — or better, give
+   the layout a data attribute and key off that instead.
+   ------------------------------------------------------------ */
+
+.exp-fullbleed {
+  margin-top: -140px;
+  min-height: 100dvh;
+}
+
+body:has(.exp-fullbleed) > nav,
+body:has(.exp-fullbleed) > div[style*='9999'],
+body:has(.exp-fullbleed) > div.fixed.bottom-0.right-0.z-50 {
+  display: none;
+}
+
+/* CustomCursor sets body.style.cursor = 'none' inline, so this needs the
+   important to win. Native cursors matter once the challenge has text
+   fields and resize handles. */
+body:has(.exp-fullbleed) {
+  cursor: auto !important;
+}
+
+.exp-embedded {
+  padding-bottom: var(--exp-space-24);
+}
+
+/* ------------------------------------------------------------
+   6. Primitives
+
+   A small starting set, not a component library. Each one exists
+   because it encodes a decision worth not re-making: three levels of
+   button weight, an input with four distinct states, a focus ring
+   that replaces the outline instead of deleting it.
+   ------------------------------------------------------------ */
+
+.exp-scope :where(*, *::before, *::after) {
+  box-sizing: border-box;
+}
+
+/* --- Type roles ---------------------------------------------------
+   Use these instead of reaching for --exp-text-* directly. Each bundles
+   size, leading, tracking and wrap mode, so a challenge can't pick a size
+   and forget the leading that belongs with it. The scale re-tunes per
+   theme; these class names don't change.
+   ------------------------------------------------------------------ */
+
+.exp-display,
+.exp-h1,
+.exp-h2,
+.exp-h3 {
+  /* Headings get balance: it evens the line lengths instead of leaving one
+     word stranded. It gives up past a few lines, which is fine — headings
+     are short by definition. */
+  text-wrap: balance;
+  color: var(--exp-text);
+  margin-block: 0;
+}
+
+.exp-display {
+  font-family: var(--exp-font-display);
+  font-size: var(--exp-text-display);
+  line-height: var(--exp-lh-display);
+  letter-spacing: var(--exp-tracking-display);
+  font-weight: var(--exp-weight-normal);
+  /* Metric kerning leaves gaps between pairs like Wa and Ty at this size */
+  font-kerning: normal;
+}
+
+.exp-h1 {
+  font-family: var(--exp-font-display);
+  font-size: var(--exp-text-h1);
+  line-height: var(--exp-lh-h1);
+  letter-spacing: var(--exp-tracking-h1);
+  font-weight: var(--exp-weight-medium);
+  font-kerning: normal;
+}
+
+.exp-h2 {
+  font-family: var(--exp-font-display);
+  font-size: var(--exp-text-h2);
+  line-height: var(--exp-lh-h2);
+  letter-spacing: var(--exp-tracking-h2);
+  font-weight: var(--exp-weight-medium);
+}
+
+.exp-h3 {
+  font-size: var(--exp-text-h3);
+  line-height: var(--exp-lh-h3);
+  letter-spacing: var(--exp-tracking-h3);
+  font-weight: var(--exp-weight-medium);
+}
+
+/* Standfirst / card description. `pretty` stops a lone word stranding on
+   the last line without balance's habit of shortening line one. */
+.exp-lead {
+  font-size: var(--exp-text-body-lg);
+  line-height: var(--exp-lh-body-lg);
+  color: var(--exp-text-secondary);
+  text-wrap: pretty;
+  margin-block: 0;
+}
+
+/* Long-form body gets neither balance nor pretty — balancing a full
+   paragraph costs horizontal space and buys no reading benefit. */
+.exp-body {
+  font-size: var(--exp-text-body);
+  line-height: var(--exp-lh-body);
+  color: var(--exp-text-secondary);
+  margin-block: 0;
+}
+
+.exp-body + .exp-body {
+  /* Paragraph spacing at 1x the line-height keeps the vertical rhythm */
+  margin-block-start: calc(var(--exp-text-body) * var(--exp-lh-body));
+}
+
+.exp-caption {
+  font-size: var(--exp-text-sm);
+  line-height: var(--exp-lh-sm);
+  color: var(--exp-text-muted);
+  text-wrap: pretty;
+  margin-block: 0;
+}
+
+/* Small uppercase needs the tracking opened up or the capitals clump.
+   nowrap because a section label breaking mid-phrase reads as a bug. */
+.exp-caps {
+  font-size: var(--exp-text-xs);
+  line-height: var(--exp-lh-xs);
+  font-weight: var(--exp-weight-medium);
+  letter-spacing: var(--exp-tracking-caps);
+  text-transform: uppercase;
+  color: var(--exp-text-secondary);
+  white-space: nowrap;
+  margin-block: 0;
+}
+
+.exp-mono {
+  font-family: var(--exp-font-mono);
+  font-size: var(--exp-text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Reading and wrapping ----------------------------------------- */
+
+.exp-measure {
+  max-width: var(--exp-measure);
+}
+
+.exp-measure-narrow {
+  max-width: var(--exp-measure-narrow);
+}
+
+/* Anything that ticks: timers, prices, counters, table columns. Proportional
+   figures draw a narrow 1 and a wide 4, so the row shifts on every update. */
+.exp-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Visible to screen readers, not to the eye. For giving a densely-encoded
+   element the same meaning in reading order that it carries visually. */
+.exp-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.exp-scope :where(table) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Truncation hides content, so both of these need a route to the full
+   string — a title attribute, a tooltip, or an expand control. */
+.exp-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.exp-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--exp-clamp-lines, 2);
+  overflow: hidden;
+}
+
+/* --- Links -------------------------------------------------------- */
+
+/* The scope reset strips globals.css's link styling, so a challenge link
+   starts with no affordance at all. This puts one back, taking thickness
+   and position from the font's own metrics rather than the browser's
+   guess, and skipping the ink on descenders. */
+.exp-link {
+  color: var(--exp-accent);
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.12em;
+  transition: color var(--exp-dur-fast) var(--exp-ease-out);
+}
+
+.exp-link:hover {
+  color: var(--exp-accent-hover);
+}
+
+/* The established cue for "hover for more" — abbreviations, defined terms */
+.exp-term {
+  text-decoration: underline dotted;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.15em;
+  cursor: help;
+}
+
+.exp-card {
+  background: var(--exp-surface);
+  border: 1px solid var(--exp-border);
+  border-radius: var(--exp-radius-lg);
+  padding: var(--exp-pad-card);
+  box-shadow: var(--exp-shadow-sm);
+}
+
+.exp-card-raised {
+  background: var(--exp-surface-raised);
+  box-shadow: var(--exp-shadow-md);
+}
+
+.exp-focusable:focus-visible,
+.exp-btn:focus-visible,
+.exp-input:focus-visible {
+  outline: 2px solid var(--exp-focus);
+  outline-offset: 2px;
+}
+
+.exp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--exp-space-2);
+  min-height: 36px;
+  padding: var(--exp-space-2) var(--exp-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--exp-radius-md);
+  font-family: inherit;
+  font-size: var(--exp-text-sm);
+  font-weight: var(--exp-weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--exp-dur-fast) var(--exp-ease-out),
+    border-color var(--exp-dur-fast) var(--exp-ease-out),
+    color var(--exp-dur-fast) var(--exp-ease-out),
+    transform var(--exp-dur-fast) var(--exp-ease-out);
+}
+
+.exp-btn:active:not(:disabled) {
+  transform: scale(var(--exp-press));
+}
+
+.exp-btn:disabled {
+  background: var(--exp-disabled-bg);
+  color: var(--exp-disabled-text);
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+.exp-btn-primary {
+  background: var(--exp-accent);
+  color: var(--exp-text-on-accent);
+}
+
+.exp-btn-primary:hover:not(:disabled) {
+  background: var(--exp-accent-hover);
+}
+
+.exp-btn-secondary {
+  background: var(--exp-surface);
+  border-color: var(--exp-border-strong);
+  color: var(--exp-text);
+}
+
+.exp-btn-secondary:hover:not(:disabled) {
+  background: var(--exp-surface-sunken);
+}
+
+.exp-btn-ghost {
+  background: transparent;
+  color: var(--exp-text-secondary);
+}
+
+.exp-btn-ghost:hover:not(:disabled) {
+  background: var(--exp-surface-sunken);
+  color: var(--exp-text);
+}
+
+.exp-btn-danger {
+  background: var(--exp-danger);
+  color: var(--exp-text-on-accent);
+}
+
+.exp-btn-danger:hover:not(:disabled) {
+  background: var(--exp-danger-hover);
+}
+
+.exp-label {
+  display: block;
+  margin-block-end: var(--exp-space-2);
+  font-size: var(--exp-text-sm);
+  font-weight: var(--exp-weight-medium);
+  color: var(--exp-text-secondary);
+}
+
+.exp-input {
+  width: 100%;
+  min-height: 36px;
+  padding: var(--exp-space-2) var(--exp-pad-control);
+  background: var(--exp-surface);
+  border: 1px solid var(--exp-border-strong);
+  border-radius: var(--exp-radius-md);
+  color: var(--exp-text);
+  font-family: inherit;
+  /* 16px on touch, or iOS zooms the viewport on focus */
+  font-size: max(16px, var(--exp-text-body));
+  transition:
+    border-color var(--exp-dur-fast) var(--exp-ease-out),
+    background-color var(--exp-dur-fast) var(--exp-ease-out);
+}
+
+@media (pointer: fine) {
+  .exp-input {
+    font-size: var(--exp-text-body);
+  }
+}
+
+.exp-input::placeholder {
+  color: var(--exp-text-muted);
+}
+
+.exp-input:hover:not(:disabled) {
+  border-color: var(--exp-text-muted);
+}
+
+.exp-input:focus-visible {
+  border-color: var(--exp-focus);
+}
+
+.exp-input[aria-invalid='true'] {
+  border-color: var(--exp-danger);
+}
+
+.exp-input:disabled {
+  background: var(--exp-disabled-bg);
+  color: var(--exp-disabled-text);
+  cursor: not-allowed;
+}
+
+/* Errors signal three ways: border, icon, text. Colour alone is invisible
+   to a chunk of users. */
+.exp-error {
+  display: flex;
+  align-items: center;
+  gap: var(--exp-space-1);
+  margin-block-start: var(--exp-space-2);
+  font-size: var(--exp-text-sm);
+  color: var(--exp-danger);
+}
+
+.exp-hairline {
+  height: 1px;
+  background: var(--exp-border);
+  border: 0;
+}
+
+/* ------------------------------------------------------------
+   7. Frame — the brief header and the way back out
+   ------------------------------------------------------------ */
+
+.exp-brief {
+  max-width: var(--exp-container);
+  margin: 0 auto var(--exp-space-12);
+  padding-inline: var(--exp-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--exp-space-4);
+}
+
+.exp-brief-back {
+  align-self: flex-start;
+  font-size: var(--exp-text-sm);
+  color: var(--exp-text-muted);
+  transition: color var(--exp-dur-fast) var(--exp-ease-out);
+}
+
+.exp-brief-back:hover {
+  color: var(--exp-text);
+}
+
+.exp-brief-title {
+  font-family: var(--exp-font-display);
+  font-size: var(--exp-text-h1);
+  line-height: var(--exp-lh-h1);
+  letter-spacing: var(--exp-tracking-h1);
+  color: var(--exp-text);
+  text-wrap: balance;
+}
+
+.exp-brief-prompt {
+  font-size: var(--exp-text-body-lg);
+  line-height: var(--exp-lh-body-lg);
+  color: var(--exp-text-secondary);
+  text-wrap: pretty;
+}
+
+.exp-brief-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--exp-space-8);
+  margin-block-start: var(--exp-space-2);
+}
+
+.exp-brief-meta dd {
+  margin: var(--exp-space-1) 0 0;
+  font-size: var(--exp-text-sm);
+  line-height: var(--exp-lh-sm);
+  color: var(--exp-text-secondary);
+}
+
+/* Quiet by default so it doesn't compete with the challenge's own UI. */
+.exp-escape {
+  position: fixed;
+  bottom: max(var(--exp-space-4), env(safe-area-inset-bottom));
+  inset-inline-start: var(--exp-space-4);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--exp-space-2) var(--exp-space-3);
+  background: var(--exp-surface);
+  border: 1px solid var(--exp-border);
+  border-radius: 999px;
+  box-shadow: var(--exp-shadow-sm);
+  font-size: var(--exp-text-xs);
+  color: var(--exp-text-muted);
+  opacity: 0.6;
+  transition:
+    opacity var(--exp-dur-base) var(--exp-ease-out),
+    color var(--exp-dur-base) var(--exp-ease-out);
+}
+
+.exp-escape:hover,
+.exp-escape:focus-visible {
+  opacity: 1;
+  color: var(--exp-text);
+}
+
+/* ------------------------------------------------------------
+   8. Motion helpers
+   ------------------------------------------------------------ */
+
+@keyframes exp-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.exp-enter {
+  animation: exp-enter var(--exp-dur-slow) var(--exp-ease-out) both;
+  animation-delay: calc(var(--exp-index, 0) * var(--exp-stagger));
+}
+
+.exp-lift {
+  transition:
+    transform var(--exp-dur-base) var(--exp-ease-out),
+    box-shadow var(--exp-dur-base) var(--exp-ease-out);
+}
+
+.exp-lift:hover {
+  transform: translateY(calc(-1 * var(--exp-lift)));
+  box-shadow: var(--exp-shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-scope {
+    --exp-dur-fast: 0.01ms;
+    --exp-dur-base: 0.01ms;
+    --exp-dur-slow: 0.01ms;
+    --exp-stagger: 0ms;
+    --exp-lift: 0px;
+    --exp-press: 1;
+  }
+
+  .exp-enter {
+    animation: none;
+  }
+}

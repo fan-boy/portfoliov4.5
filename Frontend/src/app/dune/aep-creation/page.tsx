@@ -6,7 +6,7 @@ import Image from "next/image";
 import TransitionWrapper from "../../components/TransitionWrapper";
 import DefaultPage from "../../components/Pages/DefaultPage";
 import InsightCard from "../../components/Cards/InsightCard";
-import OrgDashboard from "../../../../public/assets/Dune/dashboard.webp";
+import AEPCover from "../../../../public/assets/Dune/AEP/AEPCover.webp";
 import architecture from "../../../../public/assets/Dune/architecture.webp";
 import Customers from "../../../../public/assets/Dune/customers.webp";
 
@@ -67,7 +67,7 @@ const AEPCreation: React.FC = () => {
               <div className="max-w-6xl mx-auto">
                 <div className="relative w-full rounded-2xl overflow-hidden bg-indigo-50">
                   <Image
-                    src={OrgDashboard}
+                    src={AEPCover}
                     alt="AEP Builder interface"
                     className="w-full"
                     priority
