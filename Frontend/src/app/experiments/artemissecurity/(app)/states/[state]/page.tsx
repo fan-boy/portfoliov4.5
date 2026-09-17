@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { QueueState } from "../../components/queue/QueueState";
+import { QueueState } from "../../../components/queue/QueueState";
 
 const STATES = ["quiet", "ingestion-stopped", "all-closed", "loading"] as const;
 export type StateKey = (typeof STATES)[number];

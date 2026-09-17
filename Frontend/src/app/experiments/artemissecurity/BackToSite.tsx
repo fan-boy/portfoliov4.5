@@ -7,14 +7,15 @@ import Link from 'next/link';
  * "leave this product" rather than as a sixth nav item, so nobody mistakes it
  * for part of the case tool.
  *
+ * Returns to the case study's landing page rather than the portfolio home —
+ * one step back, not all the way out, so the reader keeps their place.
+ *
  * It floats rather than living inside Nav.tsx so the ported component stays
- * untouched, and it sits in the empty column the nav's `flex-1` spacer leaves
- * between the last nav item and the user chip — over the app, but not over
- * anything.
+ * untouched.
  */
 export function BackToSite() {
   return (
-    <Link href="/" className="artemis-back">
+    <Link href="/experiments/artemissecurity" className="artemis-back">
       <svg
         width="13"
         height="13"
@@ -29,7 +30,7 @@ export function BackToSite() {
         <path d="M19 12H5" />
         <path d="m12 19-7-7 7-7" />
       </svg>
-      Back to portfolio
+      Back to case study
     </Link>
   );
 }

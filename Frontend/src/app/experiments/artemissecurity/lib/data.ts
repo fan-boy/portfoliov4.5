@@ -121,11 +121,60 @@ export const bands: Band[] = [
   },
 ];
 
+/* A sample of the closed pile. The band stays collapsed by default — the
+   count is the contract, not the contents — but it opens, because a dismissal
+   an analyst cannot inspect is a dismissal they cannot audit. */
+const closed: CaseRecord[] = [
+  {
+    id: "CASE-4756", severity: "MED", verdict: "FP",
+    title: "Nightly Backup Agent Read 12,000 Files Across Three Shares",
+    entity: "svc-backup-01", more: "+3", findings: "12 findings", confidence: "High",
+    qualifier: { tone: "Sources", text: "Matches the 90-day schedule" },
+    age: "6h 02m",
+  },
+  {
+    id: "CASE-4741", severity: "LOW", verdict: "FP",
+    title: "Okta Sign-In From a New Country Matched an Approved Travel Request",
+    entity: "j.park@acme.com", findings: "1 finding", confidence: "High",
+    qualifier: { tone: "Sources", text: "Travel request TR-2291, MFA satisfied" },
+    age: "7h 18m",
+  },
+  {
+    id: "CASE-4733", severity: "MED", verdict: "Benign",
+    title: "Password Spray Blocked at the Edge, No Account Reached Lockout",
+    entity: "Okta tenant", more: "+8", findings: "84 findings", confidence: "High",
+    qualifier: { tone: "Sources", text: "All attempts rejected pre-auth" },
+    age: "9h 41m",
+  },
+  {
+    id: "CASE-4728", severity: "LOW", verdict: "FP",
+    title: "Force Push to a Protected Branch Carried Two Approvals",
+    entity: "s.adeyemi", more: "+1", findings: "1 finding", confidence: "High",
+    qualifier: { tone: "Sources", text: "PR #8821, exception on record" },
+    age: "11h 04m",
+  },
+  {
+    id: "CASE-4719", severity: "MED", verdict: "FP",
+    title: "EC2 Instances Launched in an Unused Region by the DR Drill Runner",
+    entity: "dr-drill-runner", more: "+2", findings: "6 findings", confidence: "High",
+    qualifier: { tone: "Sources", text: "Change ticket CHG-1180" },
+    age: "14h 26m",
+  },
+  {
+    id: "CASE-4705", severity: "LOW", verdict: "Benign",
+    title: "Dormant Account Reactivated Two Days Before Its Rehire Date",
+    entity: "k.osei@acme.com", findings: "2 findings", confidence: "Medium",
+    qualifier: { tone: "Sources", text: "HR record RH-441" },
+    age: "1d 3h",
+  },
+];
+
 export const closedBand = {
   label: "CLOSED BY ARTEMIS",
   count: "404",
   note: "Frozen on close — later activity arrives as a new case",
   breakdown: ["False positive 361", "True benign 43", "Last sampled 2h ago — no disagreements"],
+  cases: closed,
 };
 
 export function findCase(id: string): CaseRecord | undefined {
@@ -133,5 +182,5 @@ export function findCase(id: string): CaseRecord | undefined {
     const hit = band.cases.find((c) => c.id === id);
     if (hit) return hit;
   }
-  return undefined;
+  return closedBand.cases.find((c) => c.id === id);
 }

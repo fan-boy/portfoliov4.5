@@ -273,15 +273,28 @@ blockquote {
   color: var(--text-secondary);
 }
 
-/* Links */
-a {
-  color: var(--text-primary);
-  text-decoration: none;
-  transition: color var(--duration-micro) ease-out;
-}
+/* Links.
 
-a:hover {
-  color: var(--accent-primary);
+   Inside @layer base on purpose. Unlayered rules outrank everything in
+   @layer utilities, so an unlayered `a { color }` silently beats `text-white`,
+   `text-accent`, and every other colour utility on a link — a link styled as a
+   button could not set its own text colour, and per-page `hover:text-*` never
+   applied. Layered, these stay the default and any utility on the element wins.
+
+   Only the `a` rules moved. The bare h1-h6 / p / section rules are left
+   unlayered deliberately: layering those would hand ~639 elements across the
+   site back to their utilities and restyle pages that are currently tuned
+   around the override. */
+@layer base {
+  a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--duration-micro) ease-out;
+  }
+
+  a:hover {
+    color: var(--accent-primary);
+  }
 }
 
 /* ============================================

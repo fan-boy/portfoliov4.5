@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { findCase } from "../../lib/data";
-import { CaseDetail } from "../../components/case/CaseDetail";
+import { findCase } from "../../../lib/data";
+import { CaseDetail } from "../../../components/case/CaseDetail";
 
 export default async function CasePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

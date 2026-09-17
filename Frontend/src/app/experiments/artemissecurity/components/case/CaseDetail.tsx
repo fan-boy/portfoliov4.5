@@ -36,7 +36,7 @@ export function CaseDetail({ data }: { data: CaseRecord }) {
         {/* ── Breadcrumb ─────────────────────────────────────────────── */}
         <div className="flex h-44 shrink-0 items-center justify-between gap-10 border-b border-hairline px-28">
           <div className="flex items-center gap-9">
-            <Link href="/experiments/artemissecurity" className="flex items-center gap-9 text-muted hover:text-primary">
+            <Link href="/experiments/artemissecurity/cases" className="flex items-center gap-9 text-muted hover:text-primary">
               <ChevronLeft />
               <span className="text-[12.5px] leading-[18px]">Cases</span>
             </Link>

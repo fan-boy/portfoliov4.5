@@ -1,6 +1,7 @@
 "use client";
 
 import { Activity, AlignLeft, ChartBar, LayoutGrid, User } from "../ui/Icon";
+import { Logo } from "../ui/Logo";
 
 const ITEMS = [
   { label: "Cases", Icon: AlignLeft, active: true },
@@ -13,16 +14,11 @@ const ITEMS = [
 export function Nav() {
   return (
     <nav className="flex w-236 shrink-0 flex-col gap-2 border-r border-hairline bg-panel px-14 pt-18 pb-16">
-      <div className="mb-20 flex items-center gap-9 pt-2 pl-8">
-        <span
-          className="flex size-20 items-center justify-center rounded-sm text-[12px] leading-[15px] font-semibold"
-          style={{ background: "var(--accent-solid)", color: "var(--text-on-accent)" }}
-        >
-          A
-        </span>
-        <span className="text-[14px] leading-[20px] font-semibold tracking-[-0.1px] text-primary">
-          Artemis
-        </span>
+      {/* The lockup carries both the mark and the wordmark, so it replaces the
+          pair that used to sit here. text-primary rather than a fixed colour —
+          the SVG is currentColor throughout, so it follows the theme. */}
+      <div className="mb-20 flex items-center pt-2 pl-8 text-primary">
+        <Logo height={22} />
       </div>
 
       {ITEMS.map(({ label, Icon, active }) => (
