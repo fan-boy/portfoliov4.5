@@ -90,8 +90,12 @@ export default function ArtemisLanding() {
                 views that work sits in. A queue that spends attention unevenly, and a case that
                 can be checked one claim at a time.
               </p>
-              <p>
-                The prototype is built heavily using AI and is not fully functioning. It's just there to show the figma screens in action. Also all the test case information is AI generated. 
+              {/* A caveat, not part of the argument — so it sits below the brief
+                  at a lower weight rather than competing with it. */}
+              <p className="text-base text-fonttertiary leading-relaxed mt-8">
+                The prototype is built heavily using AI and is not fully functioning. It&rsquo;s
+                just there to show the Figma screens in action. All the test case information is
+                AI generated.
               </p>
             </motion.div>
 
