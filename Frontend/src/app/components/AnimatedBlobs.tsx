@@ -15,14 +15,14 @@ const COLORS = [
 ];
 
 const springTransition = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 38,
   damping: 18,
   mass: 1.4
 };
 
 // Emil's ease-out-quint for smooth, natural motion
-const easeOutQuint = [0.23, 1, 0.32, 1];
+const easeOutQuint = [0.23, 1, 0.32, 1] as const;
 
 // Stripe-style continuous directional movement
 // Each blob drifts slowly in one direction, then loops back seamlessly

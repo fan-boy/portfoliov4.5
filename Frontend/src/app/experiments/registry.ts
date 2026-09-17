@@ -56,23 +56,10 @@ export interface Challenge {
   note?: string;
 }
 
-export const challenges: Challenge[] = [
-  {
-    slug: 'artemissecurity',
-    company: 'Artemis Security',
-    title: 'Cases queue and case detail',
-    prompt:
-      'Design how an analyst works with AI-investigated cases: a queue where they decide what to look at next, and a detail view where they understand what happened and decide what to do.',
-    chrome: 'fullbleed',
-    /* The ported prototype ships its own token system and does not call
-       scopeClasses(), so theme/expression are inert for this entry. */
-    theme: 'product',
-    expression: 'restrained',
-    status: 'in-progress',
-    received: '2026-09-13',
-    note: 'Ported from the standalone prototype. Self-themed; 1px spacing base scoped to its subtree.',
-  },
-];
+/* Deliberately empty. The Artemis case study is not listed here — it is
+   password-gated and unlisted, reachable only by direct link. Its route still
+   exists at /experiments/artemissecurity; it simply is not advertised. */
+export const challenges: Challenge[] = [];
 
 /**
  * A visual study — no brief, no company, no deadline. Kept separate from

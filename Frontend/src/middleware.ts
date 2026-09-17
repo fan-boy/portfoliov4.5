@@ -26,13 +26,23 @@ export async function middleware(req: NextRequest) {
   if (pathname === LOCKED_PATH) return NextResponse.next();
 
   const ok = await tokenIsValid(req.cookies.get(GATE_COOKIE)?.value);
-  if (ok) return NextResponse.next();
 
-  const url = req.nextUrl.clone();
-  url.pathname = LOCKED_PATH;
-  /* Where to return to once the password is accepted. */
-  url.searchParams.set('from', pathname);
-  return NextResponse.rewrite(url);
+  const res = ok
+    ? NextResponse.next()
+    : (() => {
+        const url = req.nextUrl.clone();
+        url.pathname = LOCKED_PATH;
+        /* Where to return to once the password is accepted. */
+        url.searchParams.set('from', pathname);
+        return NextResponse.rewrite(url);
+      })();
+
+  /* Unlisted, and kept that way. The meta robots tag only covers HTML that a
+     crawler renders; the header covers every response on these paths — the
+     locked page, the RSC payloads, the images — and `noarchive` keeps it out
+     of cached copies even if a link leaks. */
+  res.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+  return res;
 }
 
 /* Must be statically analysable — Next reads this at build time, so no
