@@ -37,7 +37,7 @@ export function Footer() {
           7 new cases since you opened this view
         </span>
         <button className="pressable rounded-sm border border-line bg-inset px-9 py-4 text-[11px] leading-[15px] font-medium text-secondary hover:bg-hover">
-          Merge in
+           Refresh Page
         </button>
       </div>
     </div>
