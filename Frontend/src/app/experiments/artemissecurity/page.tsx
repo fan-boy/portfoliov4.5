@@ -79,16 +79,19 @@ export default function ArtemisLanding() {
                 title uses — a display line and a paragraph want different widths. */}
             <motion.div className="max-w-3xl mx-auto px-6" variants={fadeIn}>
               <p className="text-xl text-fontsecondary leading-relaxed mb-6">
-                Artemis is an AI-native SIEM. It investigates every alert on its own — gathers the
-                evidence, reconstructs the attack chain, and proposes a verdict — so the analyst is
+              Artemis is an AI-native SIEM. Rather than providing raw data, Artemis analyzes alerts and presents conclusions to security teams.
+               Unlike other SIEM vendors, Artemis proactively engages the data, gathers evidence, reconstructs the attack chain and proposes a verdict. So the analyst is
                 no longer the first investigator. They&rsquo;re the second.
               </p>
               <p className="text-xl text-fontsecondary leading-relaxed">
                 That changes the job from <em>investigate</em> to <em>adjudicate</em>, and it
                 changes the interface&rsquo;s job from &ldquo;give me the data&rdquo; to
                 &ldquo;convince me, or let me catch you being wrong.&rdquo; I designed the two
-                views that work sits in: a queue that spends attention unevenly, and a case that
+                views that work sits in. A queue that spends attention unevenly, and a case that
                 can be checked one claim at a time.
+              </p>
+              <p>
+                The prototype is built heavily using AI and is not fully functioning. It's just there to show the figma screens in action. Also all the test case information is AI generated. 
               </p>
             </motion.div>
 
