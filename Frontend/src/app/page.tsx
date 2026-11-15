@@ -103,14 +103,14 @@ export default function Home() {
             </motion.p>
             
             <motion.h1 
-              className="text-display text-fontprimary leading-[1.05] tracking-tight max-w-4xl mb-10"
+              className="text-display text-fontprimary leading-[1.05] tracking-tight max-w-3xl mb-12"
               variants={fadeIn}
             >
               Building products where complexity feels effortless.
             </motion.h1>
             
             <motion.div 
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-3 max-w-xl"
               variants={fadeIn}
             >
               <p className="text-xl text-fontsecondary leading-relaxed">

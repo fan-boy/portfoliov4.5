@@ -71,6 +71,9 @@ const floatVariants = [
   }
 ];
 
+/** How far above its box the clip edge is pushed, in px. */
+const HEADROOM = 260;
+
 export default function AnimatedBlobs({
   expanded,
   loading,
@@ -90,16 +93,25 @@ export default function AnimatedBlobs({
     }
   }, [loading]);
 
+  // Clipped: the blobs drift up to 160px sideways, and without this they widen
+  // the document on a phone, which re-centres every centred container on the
+  // page and pushes right-hand content off screen.
+  //
+  // The box is lifted by HEADROOM and the blobs pushed back down by the same
+  // amount, so they land exactly where they used to while the top edge of the
+  // clip sits above the viewport. Clipping on the natural top edge would show
+  // as a hard line across the wash.
   const containerClass = expanded
-    ? "fixed inset-0 z-0 pointer-events-none"
-    : "absolute inset-0 z-0 pointer-events-none";
+    ? "fixed inset-0 z-0 pointer-events-none overflow-hidden"
+    : "absolute inset-x-0 z-0 pointer-events-none overflow-hidden";
 
   return (
     <div className={containerClass}
       style={{
-        height: expanded ? "100vh" : "38vw",
-        minHeight: expanded ? "100vh" : 280,
-        maxHeight: expanded ? "100vh" : 420,
+        top: expanded ? undefined : -HEADROOM,
+        height: expanded ? "100vh" : `calc(38vw + ${HEADROOM}px)`,
+        minHeight: expanded ? "100vh" : 280 + HEADROOM,
+        maxHeight: expanded ? "100vh" : 420 + HEADROOM,
       }}
     >
       {COLORS.map((color, i) => {
@@ -151,7 +163,7 @@ export default function AnimatedBlobs({
               style={{
                 background: color,
                 left: HERO_BLOBS[i].left,
-                top: HERO_BLOBS[i].top,
+                top: `calc(${HERO_BLOBS[i].top} + ${HEADROOM}px)`,
                 width: HERO_BLOBS[i].width,
                 height: HERO_BLOBS[i].height,
                 opacity: HERO_BLOBS[i].opacity,
@@ -170,7 +182,7 @@ export default function AnimatedBlobs({
             style={{
               background: color,
               left: HERO_BLOBS[i].left,
-              top: HERO_BLOBS[i].top,
+              top: `calc(${HERO_BLOBS[i].top} + ${HEADROOM}px)`,
               width: HERO_BLOBS[i].width,
               height: HERO_BLOBS[i].height,
               opacity: HERO_BLOBS[i].opacity,
