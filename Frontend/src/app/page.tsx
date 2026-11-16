@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import TransitionWrapper from "./components/TransitionWrapper";
 import AnimatedBlobs from "./components/AnimatedBlobs";
@@ -14,9 +15,18 @@ import { useChatOverflow } from "./lib/hooks/useChatOverflow";
 
 interface Project {
   title: string;
-  subtitle: string;
+  /** What the project set out to do: the case study's own headline. */
+  summary: string;
   href: string;
   image: StaticImageData;
+  /** Plays in place of the image when set. */
+  video?: string;
+  /** Use the image as the video's poster. Off when the image doesn't match the video's first frame. */
+  imageIsPoster?: boolean;
+  /** Gives the card a layered look: this image behind, the screen floating on it. */
+  background?: string;
+  /** Flip the background horizontally, so two cards can share one image without matching. */
+  backgroundMirrored?: boolean;
   company: string;
   year: string;
 }
@@ -24,23 +34,32 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Risk Platform",
-    subtitle: "Designed the risk model that closed a $6M seed round",
+    summary: "Making security risk understandable and actionable",
     href: "/dune/risk-platform",
     image: DuneOrgDashboard,
+    // Built in Figma: "Portfolio — hero video" page of the Dune master file.
+    video: "/assets/Dune/RiskHeroLoop.mp4",
+    imageIsPoster: true,
+    background: "/assets/Dune/RiskCardBg.webp",
     company: "Dune Security",
     year: "2024",
   },
   {
     title: "Stillsuit Design System",
-    subtitle: "50% faster engineer onboarding. Full rebrand in 2 weeks.",
+    summary: "Building a design system for speed and consistency",
     href: "/dune/stillsuit",
     image: DuneDesignSystem,
+    // Built in Figma: "Portfolio — card video" page of the Stillsuit DS v2 file. The real
+    // dashboard rendered with the Components collection in Dark, then Light mode.
+    video: "/assets/Dune/StillsuitFlipLoop.mp4",
+    background: "/assets/Dune/RiskCardBg.webp",
+    backgroundMirrored: true,
     company: "Dune Security",
     year: "2024",
   },
   {
     title: "University Park",
-    subtitle: "Behavior change platform adopted by majority of households in first quarter",
+    summary: "Turning sustainability from awareness into habit",
     href: "/universitypark",
     image: UniversityParkUserProfile,
     company: "University Park",
@@ -49,7 +68,7 @@ const projects: Project[] = [
   // Hidden for launch - keeping code intact
   // {
   //   title: "Chain Reactive",
-  //   subtitle: "Capturing a $60M market opportunity for small businesses",
+  //   summary: "How I identified and captured a $60M market opportunity",
   //   href: "/chainreactive",
   //   image: ChainReactiveHero,
   //   company: "Startup",
@@ -75,6 +94,128 @@ const projects: Project[] = [
 //   },
 // ];
 
+interface SideProject {
+  title: string;
+  description: string;
+  stack: string[];
+  /** Leave out until it has somewhere to go; the row renders without a link. */
+  href?: string;
+}
+
+const sideProjects: SideProject[] = [
+  {
+    title: "Swingscope",
+    description: "AI-powered swing trading scanner. Real market data, Claude enrichment, risk controls.",
+    stack: ["Next.js", "Python", "Claude API", "Polygon.io"],
+    href: "https://swingscope.app",
+  },
+  {
+    title: "Zine",
+    description: "A digital zine creation and publishing platform. Rich layouts, no design tools required.",
+    stack: ["Next.js", "TypeScript", "Node.js"],
+  },
+];
+
+const EASE = "cubic-bezier(0.23, 1, 0.32, 1)";
+const CARD_BG = "#F0F1F8";
+
+/**
+ * A case study's video. With a poster the card is never empty while it loads;
+ * without one, the first frame shows as soon as it arrives. Under reduced
+ * motion it stays on that still.
+ */
+function ProjectVideo({ src, poster }: { src: string; poster?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (query.matches) video.pause();
+      else void video.play().catch(() => {});
+    };
+    apply();
+    query.addEventListener("change", apply);
+    return () => query.removeEventListener("change", apply);
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      // autoPlay lets the browser keep retrying if an early play() is interrupted;
+      // the effect above only has to pause it for reduced motion.
+      autoPlay
+      muted
+      loop
+      playsInline
+      poster={poster}
+      preload="auto"
+      aria-hidden="true"
+      className="h-full w-full object-cover object-left-top"
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}
+
+/**
+ * The background image is its own layer and the screen floats on it, so hover
+ * can move them apart: the background swells while the screen rises and its
+ * shadow deepens. The screen is taller than the space below it so it always
+ * bleeds off the bottom edge, even while lifted.
+ */
+function LayeredMedia({ project }: { project: Project }) {
+  return (
+    <div className="relative aspect-[1540/1000] overflow-hidden rounded-2xl isolate">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        style={{
+          backgroundImage: `url(${project.background})`,
+          transform: project.backgroundMirrored ? "scaleX(-1)" : undefined,
+          transitionTimingFunction: EASE,
+        }}
+      />
+      <div
+        className="absolute transition-transform duration-500 group-hover:-translate-y-2 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0"
+        style={{ left: "6.49%", top: "10%", width: "93.51%", height: "calc(90% + 48px)", transitionTimingFunction: EASE }}
+      >
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-tl-[12px]"
+          style={{ boxShadow: "0 2px 6px rgba(13,64,26,0.10), 0 18px 48px rgba(13,64,26,0.12)" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-tl-[12px] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 motion-reduce:transition-none"
+          style={{ boxShadow: "0 6px 14px rgba(13,64,26,0.12), 0 32px 72px rgba(13,64,26,0.18)" }}
+        />
+        <div className="relative h-full w-full overflow-hidden rounded-tl-[12px] bg-white">
+          {project.video ? (
+            <ProjectVideo src={project.video} poster={project.imageIsPoster ? project.image.src : undefined} />
+          ) : (
+            <Image
+              src={project.image}
+              alt=""
+              className="h-full w-full object-cover object-left-top"
+              sizes="(min-width: 1024px) 912px, 94vw"
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="border-b border-gray-100 pb-4 mb-10">
+      <p className="m-0 text-sm text-fonttertiary uppercase tracking-wider">{children}</p>
+    </div>
+  );
+}
+
 export default function Home() {
   const { chatOpen } = useChatOverflow();
 
@@ -84,201 +225,181 @@ export default function Home() {
         <AnimatedBlobs expanded={false} loading={false} move={true} />
       )}
       <DefaultPage>
-        
-        {/* ============================================
-            HERO
-            ============================================ */}
-        <motion.section 
-          className="w-full pt-40 pb-32 relative z-10"
-          initial="hidden"
-          animate="visible"
-          variants={staggerSlow}
-        >
-          <div className="max-w-5xl mx-auto px-6">
-            <motion.p 
-              className="text-fonttertiary text-base tracking-wider uppercase mb-6"
-              variants={fadeIn}
-            >
-              Aaditya Shete
-            </motion.p>
-            
-            <motion.h1 
-              className="text-display text-fontprimary leading-[1.05] tracking-tight max-w-3xl mb-12"
-              variants={fadeIn}
-            >
-              Building products where complexity feels effortless.
-            </motion.h1>
-            
-            <motion.div 
-              className="flex flex-col gap-3 max-w-xl"
-              variants={fadeIn}
-            >
-              <p className="text-xl text-fontsecondary leading-relaxed">
-                Product designer blending visual clarity with AI-first workflows.
-              </p>
-              <p className="text-xl text-fontsecondary leading-relaxed">
-                Currently at <span className="text-accent font-medium">Dune Security</span>.
+        {/* .home-page opts this page out of the bare h1–h6 / p / section rules in
+            globals.css, so the utilities below are what renders. */}
+        <div className="home-page w-full">
+
+          {/* ============================================
+              HERO
+              ============================================ */}
+          <motion.section
+            className="w-full pt-16 pb-16 relative z-10"
+            initial="hidden"
+            animate="visible"
+            variants={staggerSlow}
+          >
+            <div className="max-w-5xl mx-auto px-6">
+              <motion.p className="m-0 mb-6 text-fonttertiary text-base tracking-wider uppercase" variants={fadeIn}>
+                Aaditya Shete
+              </motion.p>
+              <motion.h1
+                className="m-0 max-w-3xl text-[2.75rem] leading-[1.1] md:text-[5rem] md:leading-[1.05] font-normal tracking-[-0.02em] text-fontprimary text-balance"
+                variants={fadeIn}
+              >
+                Building products where complexity feels effortless.
+              </motion.h1>
+            </div>
+            <motion.div className="max-w-5xl mx-auto px-6 mt-12 md:mt-16" variants={fadeIn}>
+              <p className="m-0 max-w-md text-lg text-fontsecondary leading-relaxed text-pretty">
+                Product designer blending visual clarity with AI-first workflows. Currently at{" "}
+                <span className="text-fontprimary">Dune Security</span>.
               </p>
             </motion.div>
-          </div>
-        </motion.section>
+          </motion.section>
 
-        {/* ============================================
-            WORK
-            ============================================ */}
-        <section className="w-full pb-32">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="flex flex-col gap-32 lg:gap-40">
+          {/* ============================================
+              WORK
+              ============================================ */}
+          <section className="w-full pb-32" aria-label="Work">
+            <div className="max-w-5xl mx-auto px-6 flex flex-col gap-20">
               {projects.map((project, index) => (
-                <motion.article
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: index * 0.1,
-                    ease: [0.23, 1, 0.32, 1]
-                  }}
-                >
-                  <Link href={project.href} className="group block">
-                    {/* Header - Title left, subtitle right */}
-                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-4">
-                      <h2 className="text-xl text-fontprimary group-hover:text-fontsecondary transition-colors duration-500 ease-out flex items-center">
-                        <span className="inline-block opacity-0 max-w-0 overflow-hidden group-hover:opacity-100 group-hover:max-w-8 transition-all duration-500" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}>→&nbsp;</span>
-                        <span>{project.title}</span>
-                      </h2>
-                      <p className="text-base text-fonttertiary group-hover:text-fontsecondary transition-colors duration-500 ease-out">
-                        {project.subtitle}
-                      </p>
-                    </div>
-
-                    {/* Image in colored container with hover effect */}
-                    <div className="rounded-2xl pt-8 pl-8 sm:pt-12 sm:pl-12 overflow-hidden" style={{ backgroundColor: '#F0F1F8' }}>
-                      <div className="relative overflow-hidden rounded-tl-lg">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full rounded-tl-lg origin-top-left scale-[1.05] group-hover:scale-100 transition-all duration-700"
-                          style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)' }}
-                          draggable={false}
-                          priority={index < 2}
-                        />
+                <Link key={project.title} href={project.href} className="group block">
+                  {project.background ? (
+                    <LayeredMedia project={project} />
+                  ) : (
+                    // The screenshot sits inset from the top-left and bleeds off the
+                    // bottom-right, so it reads as a window onto the product.
+                    <div className="overflow-hidden rounded-2xl pt-8 pl-8 sm:pt-16 sm:pl-16" style={{ backgroundColor: CARD_BG }}>
+                      <div className="relative aspect-[16/10] overflow-hidden rounded-tl-lg">
+                        {project.video ? (
+                          <ProjectVideo src={project.video} poster={project.imageIsPoster ? project.image.src : undefined} />
+                        ) : (
+                          <Image
+                            src={project.image}
+                            alt=""
+                            className="h-full w-full object-cover object-left-top rounded-tl-lg origin-top-left scale-[1.04] group-hover:scale-100 transition-transform duration-700"
+                            style={{ transitionTimingFunction: EASE }}
+                            sizes="(min-width: 1024px) 976px, 100vw"
+                            priority={index === 1}
+                          />
+                        )}
                       </div>
                     </div>
-                  </Link>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Hidden for launch - keeping code intact
-        <section className="w-full py-24 border-t border-gray-100">
-          <div className="max-w-4xl mx-auto px-6">
-            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-8">
-              Selected Work
-            </p>
-            
-            <div className="flex flex-col">
-              {selectedWork.map((project) => (
-                <Link 
-                  key={project.title}
-                  href={project.href}
-                  className="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between py-4 border-b border-gray-100 last:border-b-0"
-                >
-                  <div>
-                    <span className="text-fontprimary group-hover:text-fontsecondary transition-colors">
+                  )}
+                  <div className="mt-5 grid grid-cols-1 gap-1 sm:grid-cols-[1fr_auto] sm:gap-8">
+                    <h2 className="m-0 text-base font-normal text-fontprimary">
                       {project.title}
-                    </span>
-                    <span className="text-fonttertiary mx-2">—</span>
-                    <span className="text-fonttertiary">
-                      {project.subtitle}
-                    </span>
+                      <span className="text-fonttertiary"> — {project.summary}</span>
+                    </h2>
+                    <p className="m-0 text-sm text-fontmuted tabular-nums">
+                      {project.company}, {project.year}
+                    </p>
                   </div>
-                  <span className="text-sm text-fontmuted">
-                    {project.year}
-                  </span>
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
-        */}
+          </section>
 
-        {/* ============================================
-            SIDE PROJECTS
-            ============================================ */}
-        <section className="w-full pb-32">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="text-sm text-fonttertiary uppercase tracking-wider mb-12">Side Projects</p>
+          {/* Hidden for launch - keeping code intact
+          <section className="w-full py-24 border-t border-gray-100">
+            <div className="max-w-4xl mx-auto px-6">
+              <p className="text-sm text-fonttertiary uppercase tracking-wider mb-8">
+                Selected Work
+              </p>
 
-            <div className="flex flex-col gap-6">
-              {/* Swingscope */}
-              <a
-                href="https://swingscope.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 border-t border-gray-100 hover:border-gray-300 transition-colors duration-300"
-              >
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-lg text-fontprimary group-hover:text-fontsecondary transition-colors duration-300">Swingscope</h3>
-                    <span className="text-xs text-fontmuted border border-gray-200 rounded-full px-2 py-0.5">Designed & Built</span>
-                  </div>
-                  <p className="text-fonttertiary text-sm">AI-powered swing trading scanner. Real market data, Claude enrichment, risk controls.</p>
-                  <div className="flex gap-2 mt-1">
-                    <span className="text-xs text-fontmuted">Next.js</span>
-                    <span className="text-xs text-fontmuted">·</span>
-                    <span className="text-xs text-fontmuted">Python</span>
-                    <span className="text-xs text-fontmuted">·</span>
-                    <span className="text-xs text-fontmuted">Claude API</span>
-                    <span className="text-xs text-fontmuted">·</span>
-                    <span className="text-xs text-fontmuted">Polygon.io</span>
-                  </div>
-                </div>
-                <span className="text-fonttertiary group-hover:text-fontprimary group-hover:translate-x-1 transition-all duration-300 text-lg flex-shrink-0">→</span>
-              </a>
-
-              {/* Zine App */}
-              <a
-                href="#"
-                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 border-t border-gray-100 hover:border-gray-300 transition-colors duration-300"
-              >
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-lg text-fontprimary group-hover:text-fontsecondary transition-colors duration-300">Zine</h3>
-                    <span className="text-xs text-fontmuted border border-gray-200 rounded-full px-2 py-0.5">Designed & Built</span>
-                  </div>
-                  <p className="text-fonttertiary text-sm">A digital zine creation and publishing platform. Rich layouts, no design tools required.</p>
-                  <div className="flex gap-2 mt-1">
-                    <span className="text-xs text-fontmuted">Next.js</span>
-                    <span className="text-xs text-fontmuted">·</span>
-                    <span className="text-xs text-fontmuted">TypeScript</span>
-                    <span className="text-xs text-fontmuted">·</span>
-                    <span className="text-xs text-fontmuted">Node.js</span>
-                  </div>
-                </div>
-                <span className="text-fonttertiary group-hover:text-fontprimary group-hover:translate-x-1 transition-all duration-300 text-lg flex-shrink-0">→</span>
-              </a>
+              <div className="flex flex-col">
+                {selectedWork.map((project) => (
+                  <Link
+                    key={project.title}
+                    href={project.href}
+                    className="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between py-4 border-b border-gray-100 last:border-b-0"
+                  >
+                    <div>
+                      <span className="text-fontprimary group-hover:text-fontsecondary transition-colors">
+                        {project.title}
+                      </span>
+                      <span className="text-fonttertiary mx-2">—</span>
+                      <span className="text-fonttertiary">
+                        {project.subtitle}
+                      </span>
+                    </div>
+                    <span className="text-sm text-fontmuted">
+                      {project.year}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+          */}
 
-        {/* ============================================
-            CONTACT
-            ============================================ */}
-        <section className="w-full py-32">
-          <div className="max-w-4xl mx-auto px-6">
-            <Link 
-              href="/contact" 
-              className="group inline-flex items-baseline text-4xl md:text-5xl text-fontprimary hover:text-accent transition-colors duration-500"
-            >
-              <span>Get in touch&nbsp;</span>
-              <span className="inline-block group-hover:animate-[fadeOutSlideIn_0.6s_cubic-bezier(0.23,1,0.32,1)]">→</span>
-            </Link>
-          </div>
-        </section>
+          {/* ============================================
+              SIDE PROJECTS
+              ============================================ */}
+          <section className="w-full pb-32">
+            <div className="max-w-5xl mx-auto px-6">
+              <SectionLabel>Side projects</SectionLabel>
 
+              <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8">
+                {sideProjects.map((p) => {
+                  const body = (
+                    <>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3 className="m-0 text-lg font-normal text-fontprimary">{p.title}</h3>
+                        {p.href ? (
+                          <span
+                            className="text-fonttertiary transition-[color,transform] duration-300 ease-out group-hover:translate-x-1 group-hover:text-fontprimary"
+                            aria-hidden="true"
+                          >
+                            ↗
+                          </span>
+                        ) : (
+                          <span className="text-xs text-fontmuted">In progress</span>
+                        )}
+                      </div>
+                      <p className="m-0 text-sm text-fonttertiary text-pretty">{p.description}</p>
+                      <p className="m-0 mt-2 text-xs text-fontmuted">{p.stack.join(" · ")}</p>
+                    </>
+                  );
+                  const className = "flex flex-col gap-1 border-t border-gray-100 pt-5";
+                  return p.href ? (
+                    <a
+                      key={p.title}
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group ${className} transition-colors duration-300 hover:border-gray-300`}
+                    >
+                      {body}
+                    </a>
+                  ) : (
+                    <div key={p.title} className={className}>
+                      {body}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* ============================================
+              CONTACT
+              ============================================ */}
+          <section className="w-full pb-32">
+            <div className="max-w-5xl mx-auto px-6">
+              <div className="border-t border-gray-100 pt-16">
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-baseline text-4xl md:text-5xl text-fontprimary hover:text-accent transition-colors duration-500"
+                >
+                  <span>Get in touch&nbsp;</span>
+                  <span className="inline-block group-hover:animate-[fadeOutSlideIn_0.6s_cubic-bezier(0.23,1,0.32,1)]">→</span>
+                </Link>
+              </div>
+            </div>
+          </section>
+
+        </div>
       </DefaultPage>
     </TransitionWrapper>
   );

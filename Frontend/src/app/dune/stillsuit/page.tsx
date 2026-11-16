@@ -1,15 +1,52 @@
 'use client'
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import TransitionWrapper from "../../components/TransitionWrapper";
 import DefaultPage from "../../components/Pages/DefaultPage";
 import InsightCard from "../../components/Cards/InsightCard";
 import DesignSystem from "../../../../public/assets/Dune/DesignSystem.webp";
+import RiskScoreStates from "../../../../public/assets/Dune/Stillsuit/risk-score-states.png";
+import RiskColorPalette from "../../../../public/assets/Dune/Stillsuit/risk-color-palette.png";
+import SemanticColorDocs from "../../../../public/assets/Dune/Stillsuit/semantic-color-docs.png";
 import AnimatedBlobs from "../../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../../lib/animations";
 import { useChatOverflow } from "../../lib/hooks/useChatOverflow";
+
+/** A real export from the Stillsuit Figma file, with a short caption under it. */
+function Figure({ src, alt, caption, className = "" }: { src: StaticImageData; alt: string; caption: string; className?: string }) {
+  return (
+    <figure className={`m-0 ${className}`}>
+      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
+        <Image src={src} alt={alt} className="w-full h-auto" sizes="(min-width: 1024px) 896px, 100vw" />
+      </div>
+      <figcaption className="mt-3 text-sm text-fonttertiary">{caption}</figcaption>
+    </figure>
+  );
+}
+
+/** Loops silently; holds still for visitors who prefer reduced motion. */
+function LoopVideo({ src, label }: { src: string; label: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (query.matches) video.pause();
+      else void video.play().catch(() => {});
+    };
+    apply();
+    query.addEventListener("change", apply);
+    return () => query.removeEventListener("change", apply);
+  }, []);
+  return (
+    <video ref={ref} autoPlay muted loop playsInline preload="auto" aria-label={label} className="block w-full h-auto">
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}
 
 const StillsuitDesignSystem: React.FC = () => {
   const { chatOpen } = useChatOverflow();
@@ -248,6 +285,18 @@ const StillsuitDesignSystem: React.FC = () => {
                 </p>
               </div>
             </div>
+
+            <figure className="max-w-4xl mx-auto px-6 mt-12 m-0">
+              <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
+                <LoopVideo
+                  src="/assets/Dune/StillsuitFlipLoop.mp4"
+                  label="The organization dashboard switching from dark mode to light mode"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-fonttertiary">
+                The same dashboard, rendered twice from Figma with only the Components collection switched from Dark to Light mode.
+              </figcaption>
+            </figure>
           </section>
 
           {/* ============================================
@@ -267,31 +316,12 @@ const StillsuitDesignSystem: React.FC = () => {
               </p>
             </div>
 
-            {/* Color usage */}
-            <div className="max-w-4xl mx-auto px-6 mt-12">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="flex gap-2 mb-4">
-                    <span className="w-5 h-5 rounded-full bg-red-500"></span>
-                    <span className="w-5 h-5 rounded-full bg-orange-500"></span>
-                    <span className="w-5 h-5 rounded-full bg-yellow-500"></span>
-                    <span className="w-5 h-5 rounded-full bg-green-500"></span>
-                  </div>
-                  <h4 className="text-xl text-fontprimary font-semibold mb-2">Risk & Status</h4>
-                  <p className="text-fonttertiary text-sm leading-relaxed">The only place we use saturated color liberally. High signal, no noise.</p>
-                </div>
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <div className="flex gap-2 mb-4">
-                    <span className="w-5 h-5 rounded-full bg-gray-100"></span>
-                    <span className="w-5 h-5 rounded-full bg-gray-200"></span>
-                    <span className="w-5 h-5 rounded-full bg-gray-300"></span>
-                    <span className="w-5 h-5 rounded-full bg-gray-400"></span>
-                  </div>
-                  <h4 className="text-xl text-fontprimary font-semibold mb-2">Everything Else</h4>
-                  <p className="text-fonttertiary text-sm leading-relaxed">Neutrals that let meaningful color pop. The restraint makes the signal clear.</p>
-                </div>
-              </div>
-            </div>
+            <Figure
+              src={RiskColorPalette}
+              alt="Stillsuit's risk color palette: green, red, orange and yellow ramps from 100 to 1100"
+              caption="The risk palette. These four ramps are the only saturated colors in the system; everything else is neutral."
+              className="max-w-4xl mx-auto px-6 mt-12"
+            />
           </section>
 
           {/* ============================================
@@ -308,32 +338,12 @@ const StillsuitDesignSystem: React.FC = () => {
               </p>
             </div>
 
-            {/* Risk indicator sizes */}
-            <div className="max-w-4xl mx-auto px-6 mt-12">
-              <div className="flex flex-col sm:flex-row gap-8 items-center justify-center py-12 bg-bg-secondary rounded-2xl">
-                <div className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center mb-3 mx-auto">
-                    <span className="text-white text-3xl font-semibold">73</span>
-                  </div>
-                  <p className="text-fontprimary font-medium text-sm">Large</p>
-                  <p className="text-fonttertiary text-xs">Dashboard hero</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center mb-3 mx-auto">
-                    <span className="text-white text-base font-semibold">73</span>
-                  </div>
-                  <p className="text-fontprimary font-medium text-sm">Medium</p>
-                  <p className="text-fonttertiary text-xs">User row</p>
-                </div>
-                <div className="text-center">
-                  <div className="px-2.5 py-0.5 rounded-full bg-orange-500 mb-3 mx-auto inline-block">
-                    <span className="text-white text-xs font-semibold">73</span>
-                  </div>
-                  <p className="text-fontprimary font-medium text-sm">Small</p>
-                  <p className="text-fonttertiary text-xs">Inline mention</p>
-                </div>
-              </div>
-            </div>
+            <Figure
+              src={RiskScoreStates}
+              alt="The Risk Score Card component in its Low, Moderate, High and Severe states, scoring 23, 46, 72 and 99"
+              caption="The Risk Score Card's four levels. The badge names the level, and the gauge places the score along the same green-to-red ramp."
+              className="max-w-5xl mx-auto px-6 mt-12"
+            />
           </section>
 
           {/* ============================================
@@ -352,6 +362,13 @@ const StillsuitDesignSystem: React.FC = () => {
                 My solution: <span className="text-fontprimary font-medium">documentation lives directly in Figma, attached to components</span>. When an engineer inspects a component, the usage guidelines are right there.
               </p>
             </div>
+
+            <Figure
+              src={SemanticColorDocs}
+              alt="Stillsuit's semantic color documentation in Figma: error, warning, info and success tokens with light and dark values"
+              caption="Semantic color documentation, as it lives in the Figma file: every status token with its light and dark value, its name, and where to use it."
+              className="max-w-2xl mx-auto px-6 mt-12"
+            />
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
               <div className="p-6 bg-accent-soft rounded-xl border border-accent-soft">

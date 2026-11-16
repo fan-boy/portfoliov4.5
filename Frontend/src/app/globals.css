@@ -297,6 +297,26 @@ blockquote {
   }
 }
 
+/* Home page opt-out.
+
+   The home page is written against Tailwind utilities, so inside .home-page the
+   bare h1-h6 / p / section rules above are rolled back to the layered styles
+   (preflight + utilities). Scoped on purpose: the rest of the site keeps the
+   override it is tuned around (see the note on the link rules above). */
+.home-page :is(h1, h2, h3, h4, h5, h6, p) {
+  font: revert-layer;
+  color: revert-layer;
+  margin: revert-layer;
+  letter-spacing: revert-layer;
+  line-height: revert-layer;
+}
+
+.home-page section {
+  padding: revert-layer;
+  max-width: revert-layer;
+  margin: revert-layer;
+}
+
 /* ============================================
    GRADIENT BACKGROUNDS
    ============================================ */
