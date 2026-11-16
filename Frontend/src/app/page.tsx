@@ -5,7 +5,7 @@ import TransitionWrapper from "./components/TransitionWrapper";
 import AnimatedBlobs from "./components/AnimatedBlobs";
 import DuneOrgDashboard from "../../public/assets/Dune/dashboard.webp";
 import DuneDesignSystem from "../../public/assets/Dune/DesignSystem.webp";
-import UniversityParkUserProfile from "../../public/assets/UniversityPark/userprofile.webp";
+import UniversityParkDashboard from "../../public/assets/UniversityPark/redesign/dashboard-1.jpg";
 // import ChainReactiveHero from "../../public/assets/ChainReactive/hero.webp";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
@@ -61,7 +61,7 @@ const projects: Project[] = [
     title: "University Park",
     summary: "Turning sustainability from awareness into habit",
     href: "/universitypark",
-    image: UniversityParkUserProfile,
+    image: UniversityParkDashboard,
     company: "University Park",
     year: "2023–2024",
   },

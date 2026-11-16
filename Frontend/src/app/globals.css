@@ -595,3 +595,21 @@ blockquote {
 .animate-slide-up {
   animation: slide-up 0.2s ease-out both;
 }
+
+/* Scrolls a tall screenshot inside a fixed window: hold, half way, hold, bottom, hold, back up.
+   --travel is how far (as a share of the strip's own height) the strip moves to reach its bottom. */
+@keyframes screen-scroll {
+  0%, 16% { transform: translateY(0); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  30%, 46% { transform: translateY(calc(var(--travel) * -0.5)); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  60%, 78% { transform: translateY(calc(var(--travel) * -1)); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  92%, 100% { transform: translateY(0); }
+}
+
+.screen-scroll {
+  animation: screen-scroll 10s infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-scroll { animation: none; }
+}

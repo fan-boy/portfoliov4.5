@@ -1,7 +1,7 @@
 'use client'
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 import TransitionWrapper from "../components/TransitionWrapper";
 import DefaultPage from "../components/Pages/DefaultPage";
@@ -10,11 +10,114 @@ import AnimatedBlobs from "../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../lib/animations";
 import { useChatOverflow } from "../lib/hooks/useChatOverflow";
 
-import HeroImage from "../../../public/assets/UniversityPark/hero.webp";
 import Research from "../../../public/assets/UniversityPark/research.webp";
-import MidFi from "../../../public/assets/UniversityPark/mid-fi.webp";
-import Gamification from "../../../public/assets/UniversityPark/gamification.webp";
-import Admin from "../../../public/assets/UniversityPark/admin.webp";
+import RedesignPractices from "../../../public/assets/UniversityPark/redesign/practices.jpg";
+import AdminPracticeEditor from "../../../public/assets/UniversityPark/redesign/admin-practice-editor.jpg";
+import AdminChallengeEditor from "../../../public/assets/UniversityPark/redesign/admin-challenge-editor.jpg";
+import BadgeLadder from "../../../public/assets/UniversityPark/case-study/badge-ladder.png";
+import Dashboard1 from "../../../public/assets/UniversityPark/redesign/dashboard-1.jpg";
+import Dashboard2 from "../../../public/assets/UniversityPark/redesign/dashboard-2.jpg";
+import Challenge1 from "../../../public/assets/UniversityPark/redesign/challenge-1.jpg";
+import Challenge2 from "../../../public/assets/UniversityPark/redesign/challenge-2.jpg";
+import RedesignCommunity from "../../../public/assets/UniversityPark/redesign/community.jpg";
+import Onboarding1 from "../../../public/assets/UniversityPark/redesign/onboarding-1.jpg";
+import Onboarding2 from "../../../public/assets/UniversityPark/redesign/onboarding-2.jpg";
+import Onboarding3 from "../../../public/assets/UniversityPark/redesign/onboarding-3.jpg";
+import Onboarding4 from "../../../public/assets/UniversityPark/redesign/onboarding-4.jpg";
+import Onboarding5 from "../../../public/assets/UniversityPark/redesign/onboarding-5.jpg";
+
+type Still = StaticImageData;
+
+/**
+ * A long screen shown in a desktop-shaped window (1512x945) that scrolls itself:
+ * holds at the top, halfway and the bottom, then returns. Stills are stacked
+ * slices of one tall screen, exported at the same width.
+ */
+const ScrollingScreen: React.FC<{ slices: Still[]; alt: string; sizes: string; priority?: boolean }> = ({ slices, alt, sizes, priority }) => {
+  const total = slices.reduce((h, s) => h + s.height, 0);
+  const travel = (total - 945) / total;
+  return (
+    <div className="relative overflow-hidden aspect-[1512/945]" role="img" aria-label={alt}>
+      <div className="screen-scroll" style={{ ["--travel" as string]: `${travel * 100}%` }}>
+        {slices.map((s, i) => (
+          <Image key={i} src={s} alt="" aria-hidden className="block w-full h-auto" sizes={sizes} priority={priority} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/** The onboarding flow, step by step: sign in, three short steps, then the dashboard with the first practice in place. */
+const ONBOARDING_STEPS: { src: Still; label: string; alt: string }[] = [
+  { src: Onboarding1, label: "Sign in", alt: "Sign-in page: the scorecard's promise on the left, email and password on the right" },
+  { src: Onboarding2, label: "How it works", alt: "Step 1 of 3: practices earn 100 points, events 70, and badges unlock after one of each" },
+  { src: Onboarding3, label: "Pick interests", alt: "Step 2 of 3: the resident picks Water Management and Habitat and Biodiversity" },
+  { src: Onboarding4, label: "First practice", alt: "Step 3 of 3: three easy practices matched to those interests, with the rain barrel selected" },
+  { src: Onboarding5, label: "Dashboard", alt: "The dashboard with the rain barrel as the first step and recommendations for Water and Habitat" },
+];
+
+const OnboardingFlow: React.FC = () => {
+  const [step, setStep] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = () => setReduced(mq.matches);
+    mq.addEventListener("change", onChange);
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.4 });
+    if (ref.current) io.observe(ref.current);
+    return () => { mq.removeEventListener("change", onChange); io.disconnect(); };
+  }, []);
+
+  // Advance only while on screen; restart the timer whenever the step changes (including a click).
+  useEffect(() => {
+    if (!visible || reduced) return;
+    const t = setTimeout(() => setStep((s) => (s + 1) % ONBOARDING_STEPS.length), 3200);
+    return () => clearTimeout(t);
+  }, [step, visible, reduced]);
+
+  return (
+    <figure ref={ref} className="m-0">
+      <div className="relative overflow-hidden rounded-2xl border border-gray-100 aspect-[1512/945]">
+        {ONBOARDING_STEPS.map((s, i) => (
+          <Image
+            key={s.label}
+            src={s.src}
+            alt={s.alt}
+            aria-hidden={i !== step}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${i === step ? "opacity-100" : "opacity-0"}`}
+            sizes="(min-width: 1152px) 1104px, 100vw"
+          />
+        ))}
+      </div>
+      <ol className="m-0 mt-4 p-0 list-none flex flex-wrap gap-2" aria-label="Onboarding steps">
+        {ONBOARDING_STEPS.map((s, i) => (
+          <li key={s.label}>
+            <button
+              type="button"
+              onClick={() => setStep(i)}
+              aria-current={i === step ? "step" : undefined}
+              className={`px-3 py-1.5 rounded-full text-sm transition-colors duration-150 ${i === step ? "bg-green-50 text-green-700 font-medium" : "text-fonttertiary hover:text-fontprimary"}`}
+            >
+              {i + 1}. {s.label}
+            </button>
+          </li>
+        ))}
+      </ol>
+    </figure>
+  );
+};
+
+/** Redesigned screens, one per key decision. */
+const DECISION_SCREENS: { title: string; alt: string; src?: Still; slices?: Still[]; position?: string }[] = [
+  { src: Dashboard1, title: "Practices over goals", alt: "Dashboard: progress to the next level, the active town challenge, and three recommended practices with points, neighbors and rebates" },
+  { src: Dashboard2, title: "Progressive commitment", alt: "Dashboard: the badge shelf, one badge earned and five locked, each with what it takes to unlock" },
+  { src: RedesignCommunity, title: "Social visibility, not comparison", alt: "Community: neighbors' questions with answer counts, a top answer from a household that did the practice, and topic tags" },
+  { slices: [Challenge1, Challenge2], title: "Physical-digital bridge", alt: "Native Plant Challenge: a checklist of one event and one practice, why native trees matter, and three approved trees to plant" },
+];
 
 const UniversityPark: React.FC = () => {
   const { chatOpen } = useChatOverflow();
@@ -67,13 +170,12 @@ const UniversityPark: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative rounded-2xl overflow-hidden" >
-                  <Image
-                    src={HeroImage}
-                    alt="University Park Sustainability Platform"
-                    className="w-full"
+                <div className="rounded-2xl overflow-hidden border border-gray-100">
+                  <ScrollingScreen
+                    slices={[Dashboard1, Dashboard2]}
+                    alt="Resident dashboard: progress to the next level, the town challenge, recommended practices, badges and what the town did this month"
+                    sizes="(min-width: 1152px) 1104px, 100vw"
                     priority
-                    style={{ objectFit: "contain" }}
                   />
                 </div>
               </div>
@@ -218,16 +320,19 @@ const UniversityPark: React.FC = () => {
 
           {/* Gamification visual */}
           <section className="w-full py-8">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="relative w-full rounded-2xl overflow-hidden bg-bg-secondary">
+            <figure className="max-w-6xl mx-auto px-6 m-0">
+              <div className="relative w-full rounded-2xl overflow-hidden border border-gray-100">
                 <Image
-                  src={Gamification}
-                  alt="Gamification system with badges and points"
-                  className="w-full"
-                  style={{ objectFit: "contain" }}
+                  src={BadgeLadder}
+                  alt="The six personal badges in order: Eco Starter, Green Advocate and Eco Hero earned; Sustainability Leader, Earth Guardian and Earth Patron still locked, each with its practice and event requirement"
+                  className="w-full h-auto"
+                  sizes="(min-width: 1152px) 1104px, 100vw"
                 />
               </div>
-            </div>
+              <figcaption className="mt-3 text-sm text-fonttertiary">
+                The badge ladder. Every practice earns 100 points and every event 70, whatever its cost or effort, so progress rewards showing up rather than spending.
+              </figcaption>
+            </figure>
           </section>
 
           {/* ============================================
@@ -272,20 +377,21 @@ const UniversityPark: React.FC = () => {
             </div>
           </section>
 
-          {/* Community post video */}
+          {/* Key decisions, shown in the final screens */}
           <section className="w-full py-8">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="rounded-2xl overflow-hidden" >
-                <video 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                  className="w-full"
-                >
-                  <source src="/assets/UniversityPark/communitypost.mp4" type="video/mp4" />
-                </video>
-              </div>
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2">
+              {DECISION_SCREENS.map((d) => (
+                <figure key={d.title} className="m-0">
+                  <div className="overflow-hidden rounded-2xl border border-gray-100">
+                    {d.slices ? (
+                      <ScrollingScreen slices={d.slices} alt={d.alt} sizes="(min-width: 768px) 540px, 100vw" />
+                    ) : (
+                      <Image src={d.src!} alt={d.alt} className="block w-full aspect-[1512/945] object-cover object-top" sizes="(min-width: 768px) 540px, 100vw" />
+                    )}
+                  </div>
+                  <figcaption className="mt-3 text-sm text-fonttertiary">{d.title}</figcaption>
+                </figure>
+              ))}
             </div>
           </section>
 
@@ -296,38 +402,36 @@ const UniversityPark: React.FC = () => {
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">Information Architecture</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
-                Life contexts, not environmental categories
+                Grouped the way residents already think
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
-                I ran card sorting sessions with residents to understand their mental models. How did they categorize sustainable practices? What groupings felt intuitive?
+                The committee had dozens of initiatives, each described in its own technical terms. Before designing any screens, I needed to know how residents would expect to find them.
               </p>
               <p className="text-lg text-fontsecondary leading-relaxed">
-                The results surprised me. Residents didn&apos;t think in environmental categories (energy, water, waste). They thought in <span className="text-fontprimary font-medium">life contexts</span> (home, yard, shopping, community).
+                Card sorting and user testing showed the groupings residents reached for. Practices are organized into <span className="text-fontprimary font-medium">five categories that follow those patterns</span>:
               </p>
             </div>
 
-            {/* IA flow */}
-            <div className="max-w-5xl mx-auto px-6 mt-16">
-              <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
-                <div className="text-center px-6 py-4 bg-green-50 rounded-xl">
-                  <p className="text-lg text-green-600 font-medium">At Home</p>
-                </div>
-                <div className="text-center px-6 py-4 bg-green-50 rounded-xl">
-                  <p className="text-lg text-green-600 font-medium">In Your Yard</p>
-                </div>
-                <div className="text-center px-6 py-4 bg-green-50 rounded-xl">
-                  <p className="text-lg text-green-600 font-medium">When Shopping</p>
-                </div>
-                <div className="text-center px-6 py-4 bg-green-50 rounded-xl">
-                  <p className="text-lg text-green-600 font-medium">In the Community</p>
-                </div>
-              </div>
+            {/* The five categories */}
+            <div className="max-w-5xl mx-auto px-6 mt-12">
+              <ul className="m-0 p-0 list-none flex flex-wrap gap-3 justify-center">
+                {["Water Management", "Waste Minimization", "Habitat and Biodiversity", "Garden Management", "Energy and Renewables"].map((c) => (
+                  <li key={c} className="px-5 py-3 bg-green-50 rounded-xl text-lg text-green-700 font-medium">
+                    {c}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className="max-w-3xl mx-auto px-6 mt-12">
-              <p className="text-lg text-fontsecondary leading-relaxed">
-                This reduced cognitive load. Users navigate by context, not by learning our taxonomy.
+              <p className="text-lg text-fontsecondary leading-relaxed mb-6">
+                Three decisions kept the library findable as it grew:
               </p>
+              <ul className="m-0 pl-5 space-y-3 text-lg text-fontsecondary leading-relaxed list-disc">
+                <li><span className="text-fontprimary font-medium">Practices and events live apart.</span> Something you do at home and something you show up to are different commitments, so they get different pages.</li>
+                <li><span className="text-fontprimary font-medium">Official terms, explained.</span> Each category keeps the committee&apos;s official name, defined in plain language, so residents and the committee use the same words.</li>
+                <li><span className="text-fontprimary font-medium">Everything is tagged.</span> Tags like water, runoff or backyard let search and filters find a practice however a resident thinks of it.</li>
+              </ul>
             </div>
           </section>
 
@@ -336,10 +440,10 @@ const UniversityPark: React.FC = () => {
             <div className="max-w-6xl mx-auto px-6">
               <div className="relative rounded-2xl overflow-hidden" >
                 <Image
-                  src={MidFi}
-                  alt="Mid-fidelity wireframes"
-                  className="w-full"
-                  style={{ objectFit: "contain" }}
+                  src={RedesignPractices}
+                  alt="Practices, filtered to Water Management: the five categories in the sidebar, each practice with its effort, cost and rebate, and a related event"
+                  className="w-full h-auto"
+                  sizes="(min-width: 1152px) 1104px, 100vw"
                 />
               </div>
             </div>
@@ -380,15 +484,18 @@ const UniversityPark: React.FC = () => {
 
           {/* Admin visual */}
           <section className="w-full py-8">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden" >
-                <Image
-                  src={Admin}
-                  alt="Admin dashboard interface"
-                  className="w-full"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2">
+              {[
+                { src: AdminPracticeEditor, title: "Practice editor: edit the page residents see, settings beside it", alt: "Admin practice editor: the rain barrel page edited in place, with category, tags, rebate and proof-of-completion settings in a side panel" },
+                { src: AdminChallengeEditor, title: "Challenge editor: activities, dates and reward, with live progress", alt: "Admin challenge editor: the Native Plant Challenge edited in place, with how many households joined and finished, dates and the badge reward" },
+              ].map((a) => (
+                <figure key={a.title} className="m-0">
+                  <div className="overflow-hidden rounded-2xl border border-gray-100">
+                    <Image src={a.src} alt={a.alt} className="block w-full h-auto" sizes="(min-width: 768px) 540px, 100vw" />
+                  </div>
+                  <figcaption className="mt-3 text-sm text-fonttertiary">{a.title}</figcaption>
+                </figure>
+              ))}
             </div>
           </section>
 
@@ -451,20 +558,10 @@ const UniversityPark: React.FC = () => {
             </div>
           </section>
 
-          {/* Onboarding video */}
+          {/* Onboarding flow */}
           <section className="w-full py-8">
             <div className="max-w-6xl mx-auto px-6">
-              <div className="rounded-2xl overflow-hidden" >
-                <video 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                  className="w-full"
-                >
-                  <source src="/assets/UniversityPark/OnboardingFlow.mp4" type="video/mp4" />
-                </video>
-              </div>
+              <OnboardingFlow />
             </div>
           </section>
 
