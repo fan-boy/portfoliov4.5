@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import TransitionWrapper from "./components/TransitionWrapper";
 import AnimatedBlobs from "./components/AnimatedBlobs";
 import DuneOrgDashboard from "../../public/assets/Dune/dashboard.webp";
 import DuneDesignSystem from "../../public/assets/Dune/DesignSystem.webp";
 import UniversityParkDashboard from "../../public/assets/UniversityPark/redesign/dashboard-1.jpg";
+import UniversityParkDashboardLower from "../../public/assets/UniversityPark/redesign/dashboard-2.jpg";
 // import ChainReactiveHero from "../../public/assets/ChainReactive/hero.webp";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
@@ -25,6 +26,10 @@ interface Project {
   imageIsPoster?: boolean;
   /** Gives the card a layered look: this image behind, the screen floating on it. */
   background?: string;
+  /** A CSS background-image (e.g. gradients) for the layered look, in place of an image file. */
+  backgroundCss?: string;
+  /** Slices of one tall screen, stacked; the window scrolls through them on a loop. */
+  scroll?: StaticImageData[];
   /** Flip the background horizontally, so two cards can share one image without matching. */
   backgroundMirrored?: boolean;
   company: string;
@@ -62,6 +67,12 @@ const projects: Project[] = [
     summary: "Turning sustainability from awareness into habit",
     href: "/universitypark",
     image: UniversityParkDashboard,
+    // The redesigned resident dashboard (Upark Figma file, "Redesign — desktop (2026)"),
+    // scrolled in CSS since Figma's video export fails in that file.
+    scroll: [UniversityParkDashboard, UniversityParkDashboardLower],
+    backgroundCss:
+      // A soft mesh like RiskCardBg, in the product's own palette: leaf, mint, cream, a touch of amber.
+      "radial-gradient(55% 70% at 0% 50%, rgba(47,125,79,0.9) 0%, rgba(47,125,79,0) 70%), radial-gradient(60% 65% at 68% 12%, rgba(108,170,124,0.85) 0%, rgba(108,170,124,0) 70%), radial-gradient(45% 50% at 100% 100%, rgba(233,162,59,0.4) 0%, rgba(233,162,59,0) 70%), radial-gradient(55% 50% at 30% 95%, rgba(251,250,245,0.95) 0%, rgba(251,250,245,0) 70%), linear-gradient(135deg, #CFE6D6 0%, #E6F2EA 55%, #F3EBD7 100%)",
     company: "University Park",
     year: "2023–2024",
   },
@@ -160,6 +171,43 @@ function ProjectVideo({ src, poster }: { src: string; poster?: string }) {
 }
 
 /**
+ * Stacked slices of one tall screen that scroll inside their window: hold at the
+ * top, halfway and the bottom, then return (the .screen-scroll keyframes in
+ * globals.css). The travel is measured, since the window's height depends on the card.
+ */
+function ScrollingScreen({ slices }: { slices: StaticImageData[] }) {
+  const windowRef = useRef<HTMLDivElement>(null);
+  const stripRef = useRef<HTMLDivElement>(null);
+  const [travel, setTravel] = useState(0);
+
+  useEffect(() => {
+    const win = windowRef.current;
+    const strip = stripRef.current;
+    if (!win || !strip) return;
+    const measure = () => setTravel(Math.max(0, strip.offsetHeight - win.offsetHeight));
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(win);
+    observer.observe(strip);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={windowRef} className="h-full w-full overflow-hidden" aria-hidden="true">
+      <div
+        ref={stripRef}
+        className={travel > 0 ? "screen-scroll" : undefined}
+        style={{ ["--travel" as string]: `${travel}px` }}
+      >
+        {slices.map((slice, i) => (
+          <Image key={i} src={slice} alt="" className="block h-auto w-full" sizes="(min-width: 1024px) 912px, 94vw" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/**
  * The background image is its own layer and the screen floats on it, so hover
  * can move them apart: the background swells while the screen rises and its
  * shadow deepens. The screen is taller than the space below it so it always
@@ -172,7 +220,7 @@ function LayeredMedia({ project }: { project: Project }) {
         aria-hidden="true"
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         style={{
-          backgroundImage: `url(${project.background})`,
+          backgroundImage: project.backgroundCss ?? `url(${project.background})`,
           transform: project.backgroundMirrored ? "scaleX(-1)" : undefined,
           transitionTimingFunction: EASE,
         }}
@@ -192,7 +240,9 @@ function LayeredMedia({ project }: { project: Project }) {
           style={{ boxShadow: "0 6px 14px rgba(13,64,26,0.12), 0 32px 72px rgba(13,64,26,0.18)" }}
         />
         <div className="relative h-full w-full overflow-hidden rounded-tl-[12px] bg-white">
-          {project.video ? (
+          {project.scroll ? (
+            <ScrollingScreen slices={project.scroll} />
+          ) : project.video ? (
             <ProjectVideo src={project.video} poster={project.imageIsPoster ? project.image.src : undefined} />
           ) : (
             <Image
@@ -264,7 +314,7 @@ export default function Home() {
             <div className="max-w-5xl mx-auto px-6 flex flex-col gap-20">
               {projects.map((project, index) => (
                 <Link key={project.title} href={project.href} className="group block">
-                  {project.background ? (
+                  {project.background || project.backgroundCss ? (
                     <LayeredMedia project={project} />
                   ) : (
                     // The screenshot sits inset from the top-left and bleeds off the
