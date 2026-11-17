@@ -9,6 +9,7 @@ import InsightCard from "../components/Cards/InsightCard";
 import AnimatedBlobs from "../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../lib/animations";
 import { useChatOverflow } from "../lib/hooks/useChatOverflow";
+import { UNIVERSITY_PARK_GRADIENT } from "../lib/universityPark";
 
 import Research from "../../../public/assets/UniversityPark/research.webp";
 import RedesignPractices from "../../../public/assets/UniversityPark/redesign/practices.jpg";
@@ -27,6 +28,19 @@ import Onboarding4 from "../../../public/assets/UniversityPark/redesign/onboardi
 import Onboarding5 from "../../../public/assets/UniversityPark/redesign/onboarding-5.jpg";
 
 type Still = StaticImageData;
+
+/**
+ * A screen inset on the University Park gradient, the way the Risk Platform hero
+ * sits on its green: the same margin on every side (7.4% of the width), soft
+ * corners and a forest-tinted shadow so the screen lifts off the background.
+ */
+const ScreenFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div className="rounded-2xl p-[7.4%]" style={{ backgroundImage: UNIVERSITY_PARK_GRADIENT }}>
+    <div className="overflow-hidden rounded-lg shadow-[0_1px_2px_rgba(14,59,37,0.08),0_16px_40px_-12px_rgba(14,59,37,0.3)]">
+      {children}
+    </div>
+  </div>
+);
 
 /**
  * A long screen shown in a desktop-shaped window (1512x945) that scrolls itself:
@@ -81,7 +95,8 @@ const OnboardingFlow: React.FC = () => {
 
   return (
     <figure ref={ref} className="m-0">
-      <div className="relative overflow-hidden rounded-2xl border border-gray-100 aspect-[1512/945]">
+      <ScreenFrame>
+      <div className="relative aspect-[1512/945]">
         {ONBOARDING_STEPS.map((s, i) => (
           <Image
             key={s.label}
@@ -89,10 +104,11 @@ const OnboardingFlow: React.FC = () => {
             alt={s.alt}
             aria-hidden={i !== step}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${i === step ? "opacity-100" : "opacity-0"}`}
-            sizes="(min-width: 1152px) 1104px, 100vw"
+            sizes="(min-width: 1152px) 960px, 86vw"
           />
         ))}
       </div>
+      </ScreenFrame>
       <ol className="m-0 mt-4 p-0 list-none flex flex-wrap gap-2" aria-label="Onboarding steps">
         {ONBOARDING_STEPS.map((s, i) => (
           <li key={s.label}>
@@ -170,14 +186,14 @@ const UniversityPark: React.FC = () => {
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="rounded-2xl overflow-hidden border border-gray-100">
+                <ScreenFrame>
                   <ScrollingScreen
                     slices={[Dashboard1, Dashboard2]}
                     alt="Resident dashboard: progress to the next level, the town challenge, recommended practices, badges and what the town did this month"
-                    sizes="(min-width: 1152px) 1104px, 100vw"
+                    sizes="(min-width: 1152px) 960px, 86vw"
                     priority
                   />
-                </div>
+                </ScreenFrame>
               </div>
             </motion.div>
           </motion.section>
@@ -382,13 +398,13 @@ const UniversityPark: React.FC = () => {
             <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2">
               {DECISION_SCREENS.map((d) => (
                 <figure key={d.title} className="m-0">
-                  <div className="overflow-hidden rounded-2xl border border-gray-100">
+                  <ScreenFrame>
                     {d.slices ? (
-                      <ScrollingScreen slices={d.slices} alt={d.alt} sizes="(min-width: 768px) 540px, 100vw" />
+                      <ScrollingScreen slices={d.slices} alt={d.alt} sizes="(min-width: 768px) 470px, 86vw" />
                     ) : (
-                      <Image src={d.src!} alt={d.alt} className="block w-full aspect-[1512/945] object-cover object-top" sizes="(min-width: 768px) 540px, 100vw" />
+                      <Image src={d.src!} alt={d.alt} className="block w-full aspect-[1512/945] object-cover object-top" sizes="(min-width: 768px) 470px, 86vw" />
                     )}
-                  </div>
+                  </ScreenFrame>
                   <figcaption className="mt-3 text-sm text-fonttertiary">{d.title}</figcaption>
                 </figure>
               ))}
@@ -438,14 +454,14 @@ const UniversityPark: React.FC = () => {
           {/* Wireframes */}
           <section className="w-full py-8">
             <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden" >
+              <ScreenFrame>
                 <Image
                   src={RedesignPractices}
                   alt="Practices, filtered to Water Management: the five categories in the sidebar, each practice with its effort, cost and rebate, and a related event"
-                  className="w-full h-auto"
-                  sizes="(min-width: 1152px) 1104px, 100vw"
+                  className="block w-full h-auto"
+                  sizes="(min-width: 1152px) 960px, 86vw"
                 />
-              </div>
+              </ScreenFrame>
             </div>
           </section>
 
@@ -490,9 +506,9 @@ const UniversityPark: React.FC = () => {
                 { src: AdminChallengeEditor, title: "Challenge editor: activities, dates and reward, with live progress", alt: "Admin challenge editor: the Native Plant Challenge edited in place, with how many households joined and finished, dates and the badge reward" },
               ].map((a) => (
                 <figure key={a.title} className="m-0">
-                  <div className="overflow-hidden rounded-2xl border border-gray-100">
-                    <Image src={a.src} alt={a.alt} className="block w-full h-auto" sizes="(min-width: 768px) 540px, 100vw" />
-                  </div>
+                  <ScreenFrame>
+                    <Image src={a.src} alt={a.alt} className="block w-full h-auto" sizes="(min-width: 768px) 470px, 86vw" />
+                  </ScreenFrame>
                   <figcaption className="mt-3 text-sm text-fonttertiary">{a.title}</figcaption>
                 </figure>
               ))}
