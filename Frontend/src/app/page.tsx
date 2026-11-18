@@ -69,7 +69,7 @@ const projects: Project[] = [
   {
     title: "Persona Builder",
     summary: "Designing the UX that trains the AI",
-    href: "/dune/aep-creation",
+    href: "/dune/persona-creation",
     image: AEPTestAndRefine,
     // Built in Figma: "Portfolio — hero video" page of the Dune master file, from the
     // Red Teaming video states. A test chat plays out, an instruction is applied, the chat resets.

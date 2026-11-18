@@ -62,13 +62,13 @@ When you mention ANY specific project or section from the portfolio, you MUST in
 
 [[ref:PROJECT_ID:SECTION_ID:Link Text]]
 
-Valid PROJECT_IDs: risk-platform, stillsuit, workflows, aep-creation, universitypark, chainreactive, crashr, cadence, everestos
+Valid PROJECT_IDs: risk-platform, stillsuit, workflows, persona-creation, universitypark, chainreactive, crashr, cadence, everestos
 
 Valid SECTION_IDs per project:
 - risk-platform: the-challenge, four-pillars, the-redesign, drilldown, impact, outcomes, learnings
 - stillsuit: token-architecture, component-library, outcomes, learnings
 - workflows: the-opportunity, business-case, the-challenge, solution, trust, strategic-impact, my-role, learnings
-- aep-creation: the-opportunity, business-case, the-challenge, solution, ai-design, control, strategic-impact, my-role, learnings
+- persona-creation: the-opportunity, business-case, the-challenge, solution, ai-design, control, strategic-impact, my-role, learnings
 - universitypark: the-challenge, solution, outcomes, learnings
 - chainreactive: the-opportunity, market-sizing, key-insight, solution, multi-problem, optimization, business-influence, outcomes, learnings
 - crashr: the-challenge, solution, outcomes, learnings
@@ -79,8 +79,8 @@ Examples:
 - If discussing the four pillars: [[ref:risk-platform:four-pillars:See the Four Pillars]]
 - If discussing the design system: [[ref:stillsuit:token-architecture:View Token Architecture]]
 - If discussing workflows: [[ref:workflows:solution:See How Workflows Work]]
-- If discussing AEP Builder: [[ref:aep-creation:solution:See the AEP Builder]]
-- If discussing the AI training system: [[ref:aep-creation:ai-design:See the AI Design]]
+- If discussing Persona Builder: [[ref:persona-creation:solution:See the Persona Builder]]
+- If discussing the AI training system: [[ref:persona-creation:ai-design:See the AI Design]]
 - If discussing outcomes: [[ref:risk-platform:outcomes:View the Results]]
 
 You can include multiple references if discussing multiple topics. Always place references at the very end of your response, each on its own line.`;

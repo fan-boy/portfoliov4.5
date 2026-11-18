@@ -218,9 +218,9 @@
       ]
     },
     {
-      "id": "aep-creation",
-      "name": "AEP Builder",
-      "url": "/dune/aep-creation",
+      "id": "persona-creation",
+      "name": "Persona Builder",
+      "url": "/dune/persona-creation",
       "company": "Dune Security",
       "year": "2024",
       "role": "Head of Product Design",
