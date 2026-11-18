@@ -5,6 +5,7 @@ import TransitionWrapper from "./components/TransitionWrapper";
 import AnimatedBlobs from "./components/AnimatedBlobs";
 import DuneOrgDashboard from "../../public/assets/Dune/dashboard.webp";
 import DuneDesignSystem from "../../public/assets/Dune/DesignSystem.webp";
+import AEPTestAndRefine from "../../public/assets/Dune/AEP/step-test.jpg";
 import UniversityParkDashboard from "../../public/assets/UniversityPark/redesign/dashboard-1.jpg";
 import UniversityParkDashboardLower from "../../public/assets/UniversityPark/redesign/dashboard-2.jpg";
 // import ChainReactiveHero from "../../public/assets/ChainReactive/hero.webp";
@@ -33,6 +34,8 @@ interface Project {
   scroll?: StaticImageData[];
   /** Flip the background horizontally, so two cards can share one image without matching. */
   backgroundMirrored?: boolean;
+  /** Turn the background 180°, a third way to share one image. */
+  backgroundRotated?: boolean;
   company: string;
   year: string;
 }
@@ -60,6 +63,19 @@ const projects: Project[] = [
     video: "/assets/Dune/StillsuitFlipLoop.mp4",
     background: "/assets/Dune/RiskCardBg.webp",
     backgroundMirrored: true,
+    company: "Dune Security",
+    year: "2024",
+  },
+  {
+    title: "Persona Builder",
+    summary: "Designing the UX that trains the AI",
+    href: "/dune/aep-creation",
+    image: AEPTestAndRefine,
+    // Built in Figma: "Portfolio — hero video" page of the Dune master file, from the
+    // Red Teaming video states. A test chat plays out, an instruction is applied, the chat resets.
+    video: "/assets/Dune/AEP/AEPCardLoop.mp4",
+    background: "/assets/Dune/RiskCardBg.webp",
+    backgroundRotated: true,
     company: "Dune Security",
     year: "2024",
   },
@@ -220,7 +236,7 @@ function LayeredMedia({ project }: { project: Project }) {
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         style={{
           backgroundImage: project.backgroundCss ?? `url(${project.background})`,
-          transform: project.backgroundMirrored ? "scaleX(-1)" : undefined,
+          transform: project.backgroundMirrored ? "scaleX(-1)" : project.backgroundRotated ? "rotate(180deg)" : undefined,
           transitionTimingFunction: EASE,
         }}
       />

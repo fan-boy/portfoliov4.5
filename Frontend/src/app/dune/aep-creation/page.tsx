@@ -1,18 +1,55 @@
 'use client'
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 import TransitionWrapper from "../../components/TransitionWrapper";
 import DefaultPage from "../../components/Pages/DefaultPage";
 import InsightCard from "../../components/Cards/InsightCard";
-import AEPCover from "../../../../public/assets/Dune/AEP/AEPCover.webp";
-import architecture from "../../../../public/assets/Dune/architecture.webp";
+import StepSetup from "../../../../public/assets/Dune/AEP/step-setup.jpg";
+import StepTest from "../../../../public/assets/Dune/AEP/step-test.jpg";
+import AISignals from "../../../../public/assets/Dune/AEP/ai-signals.jpg";
+import QuickActions from "../../../../public/assets/Dune/AEP/quick-actions.jpg";
+import RefinementOutcomes from "../../../../public/assets/Dune/AEP/refinement-outcomes.jpg";
 import Customers from "../../../../public/assets/Dune/customers.webp";
 
 import AnimatedBlobs from "../../components/AnimatedBlobs";
 import { fadeIn, stagger } from "../../lib/animations";
 import { useChatOverflow } from "../../lib/hooks/useChatOverflow";
+
+/** A real export from the Dune master Figma file, with a short caption under it. */
+function Figure({ src, alt, caption, sizes = "(min-width: 1152px) 1104px, 100vw" }: { src: StaticImageData; alt: string; caption: string; sizes?: string }) {
+  return (
+    <figure className="m-0">
+      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
+        <Image src={src} alt={alt} className="block w-full h-auto" sizes={sizes} />
+      </div>
+      <figcaption className="mt-3 text-sm text-fonttertiary">{caption}</figcaption>
+    </figure>
+  );
+}
+
+/** Loops silently; holds still for visitors who prefer reduced motion. */
+function LoopVideo({ src, label }: { src: string; label: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (query.matches) video.pause();
+      else void video.play().catch(() => {});
+    };
+    apply();
+    query.addEventListener("change", apply);
+    return () => query.removeEventListener("change", apply);
+  }, []);
+  return (
+    <video ref={ref} autoPlay muted loop playsInline preload="auto" aria-label={label} className="block w-full h-auto">
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}
 
 const AEPCreation: React.FC = () => {
   const { chatOpen } = useChatOverflow();
@@ -59,19 +96,17 @@ const AEPCreation: React.FC = () => {
               </h1>
             </motion.div>
 
-            {/* Hero Image - Full Bleed */}
+            {/* Hero video: the whole builder flow on the Dune green, built in the Dune master
+                Figma file ("Portfolio — hero video" page) from the Red Teaming video states. */}
             <motion.div
               className="w-full px-6"
               variants={fadeIn}
             >
               <div className="max-w-6xl mx-auto">
-                <div className="relative w-full rounded-2xl overflow-hidden bg-indigo-50">
-                  <Image
-                    src={AEPCover}
-                    alt="AEP Builder interface"
-                    className="w-full"
-                    priority
-                    style={{ objectFit: "contain" }}
+                <div className="relative w-full rounded-2xl overflow-hidden">
+                  <LoopVideo
+                    src="/assets/Dune/AEP/AEPHero.mp4"
+                    label="Persona Builder: set up the persona, design the attack, test it in chat as the employee, refine it in plain language, then publish"
                   />
                 </div>
               </div>
@@ -89,7 +124,7 @@ const AEPCreation: React.FC = () => {
                 <span className="font-medium"> I replaced that with a self-serve AI builder — and designed the feedback loop that makes the model smarter over time.</span>
               </p>
               <p className="text-lg text-fontsecondary leading-relaxed mt-8">
-                AEP Builder wasn&apos;t just a UX improvement. It was an AI product design challenge — 
+                Persona Builder wasn&apos;t just a UX improvement. It was an AI product design challenge — 
                 how do you let non-technical users configure, test, and steer a generative AI persona 
                 without exposing them to the complexity underneath? And critically: how do you capture 
                 their feedback in a way that continuously improves the model?
@@ -113,13 +148,13 @@ const AEPCreation: React.FC = () => {
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
                 This question came up in almost every customer conversation about Red Teaming. 
-                The existing process was a bottleneck — every new AEP required an operator to 
+                The existing process was a bottleneck — every new persona required an operator to 
                 manually translate a form into a backend JSON config. Customers with sophisticated 
                 red team programs wanted to iterate quickly. We were slowing them down.
               </p>
               <p className="text-lg text-fontsecondary leading-relaxed">
                 I saw an opportunity to turn a support burden into a self-serve product — and in the 
-                process, make AEP creation a core differentiator rather than a back-office operation.
+                process, make persona creation a core differentiator rather than a back-office operation.
               </p>
             </div>
           </section>
@@ -131,7 +166,7 @@ const AEPCreation: React.FC = () => {
             <div className="max-w-3xl mx-auto px-6">
               <span className="text-fonttertiary text-sm tracking-wider uppercase">The Problem, Quantified</span>
               <h2 className="text-3xl md:text-4xl text-fontprimary font-light mt-4 mb-6 tracking-tight">
-                Every AEP had a 24-hour tax
+                Every persona had a 24-hour tax
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-12">
                 I mapped the current-state process end-to-end and the numbers told the story clearly.
@@ -142,11 +177,11 @@ const AEPCreation: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
                   <div className="text-5xl font-light text-indigo-600 mb-4">1 day</div>
-                  <p className="text-fontsecondary">Minimum operator turnaround per AEP — even for standard requests</p>
+                  <p className="text-fontsecondary">Minimum operator turnaround per persona — even for standard requests</p>
                 </div>
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
                   <div className="text-5xl font-light text-indigo-600 mb-4">100%</div>
-                  <p className="text-fontsecondary">Of AEP creation required internal operator involvement</p>
+                  <p className="text-fontsecondary">Of persona creation required internal operator involvement</p>
                 </div>
                 <div className="p-10 bg-white rounded-2xl border border-gray-200 text-center">
                   <div className="text-5xl font-light text-indigo-600 mb-4">0</div>
@@ -173,7 +208,7 @@ const AEPCreation: React.FC = () => {
                 Self-serve for something this consequential
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed">
-                AEPs are AI personas that conduct live social engineering simulations against real employees. 
+                Personas are AI attackers that conduct live social engineering simulations against real employees. 
                 Getting the design wrong had real consequences. Security managers raised consistent concerns:
               </p>
             </div>
@@ -204,7 +239,7 @@ const AEPCreation: React.FC = () => {
                 A two-step loop: configure, then verify
               </h2>
               <p className="text-lg text-fontsecondary leading-relaxed mb-8">
-                I designed the AEP Builder as a focused two-step flow. Step 1 captures context. 
+                I designed the Persona Builder as a focused two-step flow. Step 1 captures context. 
                 Step 2 gives the manager a live environment to test what they built before it ever reaches employees.
               </p>
             </div>
@@ -214,7 +249,7 @@ const AEPCreation: React.FC = () => {
               <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
                   <div className="text-2xl font-light text-indigo-600 mb-2">Step 1</div>
-                  <p className="text-fontprimary font-medium mb-1">AEP Setup</p>
+                  <p className="text-fontprimary font-medium mb-1">Persona Setup</p>
                   <p className="text-fontsecondary text-sm">Define the scenario, adversary method, and target context</p>
                 </div>
                 <div className="text-fontmuted text-2xl">→</div>
@@ -227,7 +262,7 @@ const AEPCreation: React.FC = () => {
                 <div className="text-center px-8 py-6 bg-bg-secondary rounded-xl flex-1">
                   <div className="text-2xl font-light text-indigo-600 mb-2">Published</div>
                   <p className="text-fontprimary font-medium mb-1">Live in Campaign Builder</p>
-                  <p className="text-fontsecondary text-sm">AEP available instantly — no operator required</p>
+                  <p className="text-fontsecondary text-sm">Persona available instantly — no operator required</p>
                 </div>
               </div>
             </div>
@@ -237,7 +272,7 @@ const AEPCreation: React.FC = () => {
                 <p className="text-fonttertiary text-sm uppercase tracking-wide mb-3">The Key Design Decision</p>
                 <p className="text-xl text-fontprimary leading-relaxed">
                   The manager plays the <span className="font-medium">employee role</span> in Step 2 — 
-                  they experience the AEP firsthand before publishing it. This wasn&apos;t just a 
+                  they experience the persona firsthand before publishing it. This wasn&apos;t just a 
                   preview. It was the trust mechanism the whole flow depended on.
                 </p>
                 <p className="text-fontsecondary mt-4">
@@ -248,18 +283,21 @@ const AEPCreation: React.FC = () => {
             </div>
           </section>
 
-          {/* Video placeholder */}
+          {/* Configure, then verify */}
           <section className="w-full py-8">
-            <div className="max-w-6xl mx-auto px-6">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full"
-              >
-                <source src="/assets/Dune/KeyPivots.mp4" type="video/mp4" />
-              </video>
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2">
+              <Figure
+                src={StepSetup}
+                alt="Step 1: the persona's name, adversary method and the scenario it runs, filled in on one page"
+                caption="Configure: the scenario, adversary method and target context, on one page."
+                sizes="(min-width: 768px) 540px, 100vw"
+              />
+              <Figure
+                src={StepTest}
+                alt="Test and refine: a full test conversation on the left, a plain-language instruction ready to apply on the right"
+                caption="Verify: the manager plays the employee, then refines the persona in plain language."
+                sizes="(min-width: 768px) 540px, 100vw"
+              />
             </div>
           </section>
 
@@ -291,7 +329,7 @@ const AEPCreation: React.FC = () => {
                 <div>
                   <h4 className="text-xl text-fontprimary font-medium mb-2">Thumbs Up / Thumbs Down — with structure</h4>
                   <p className="text-fontsecondary leading-relaxed">
-                    After every AEP response, inline feedback controls appear. A thumbs-down expands 
+                    After every persona response, inline feedback controls appear. A thumbs-down expands 
                     into categorized chips (Too formal, Too aggressive, Off-topic, Unrealistic) plus a 
                     free-text field. This wasn&apos;t UX decoration — the categories mapped directly to 
                     labeled training data dimensions. Every click was a structured label, not just a sentiment score.
@@ -322,8 +360,8 @@ const AEPCreation: React.FC = () => {
                   <h4 className="text-xl text-fontprimary font-medium mb-2">Archetype testing as behavioral benchmarking</h4>
                   <p className="text-fontsecondary leading-relaxed">
                     The Curious / Skeptical / Hostile / Compliant archetype chips let managers test the 
-                    AEP against standardized employee personas. This produced comparable test sessions 
-                    across different AEPs — giving the team a consistent benchmark to evaluate model 
+                    persona against standardized employee personas. This produced comparable test sessions 
+                    across different personas — giving the team a consistent benchmark to evaluate model 
                     quality and regression test after updates.
                   </p>
                 </div>
@@ -346,12 +384,20 @@ const AEPCreation: React.FC = () => {
               </div>
             </div>
 
+            <div className="max-w-6xl mx-auto px-6 mt-16">
+              <Figure
+                src={AISignals}
+                alt="Test and refine, annotated: inline feedback on every persona turn, employee archetypes above the reply box, a natural-language instruction field and the instruction history"
+                caption="Every control in the test session doubles as a training signal: turn feedback, archetypes, instructions and their history."
+              />
+            </div>
+
             <div className="max-w-3xl mx-auto px-6 mt-16">
               <div className="p-8 bg-indigo-50 rounded-xl border border-indigo-100">
                 <p className="text-fonttertiary text-sm uppercase tracking-wide mb-3">The Flywheel</p>
                 <p className="text-xl text-fontprimary leading-relaxed">
-                  More customers building AEPs → more feedback data → better generation quality → 
-                  customers need fewer refinement rounds → faster time-to-publish → more AEPs created. 
+                  More customers building personas → more feedback data → better generation quality → 
+                  customers need fewer refinement rounds → faster time-to-publish → more personas created. 
                   <span className="font-medium"> The UX was the engine of the model flywheel.</span>
                 </p>
               </div>
@@ -416,6 +462,19 @@ const AEPCreation: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            <div className="max-w-6xl mx-auto px-6 mt-16 space-y-16">
+              <Figure
+                src={QuickActions}
+                alt="Quick actions, annotated: six one-click behaviour modifiers with Less aggressive selected, applied to the live session"
+                caption="Quick actions: six behaviour axes, one click each."
+              />
+              <Figure
+                src={RefinementOutcomes}
+                alt="Recent changes, annotated: a revertible version, a no-op reported as No change, a Restricted instruction refused by a guardrail, and a failed generation with Retry"
+                caption="Guardrails refuse out loud: every instruction ends in a version, a no-op, a refusal or a retry."
+              />
+            </div>
           </section>
 
           {/* ============================================
@@ -432,7 +491,7 @@ const AEPCreation: React.FC = () => {
             <div className="max-w-5xl mx-auto px-6 mt-12">
               <div className="grid md:grid-cols-2 gap-16">
                 <div>
-                  <h3 className="text-sm tracking-wider uppercase text-fonttertiary mb-6">Before AEP Builder</h3>
+                  <h3 className="text-sm tracking-wider uppercase text-fonttertiary mb-6">Before Persona Builder</h3>
                   <ul className="space-y-4">
                     <li className="text-fontsecondary flex items-start gap-3">
                       <span className="text-fontmuted">→</span>
@@ -457,7 +516,7 @@ const AEPCreation: React.FC = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm tracking-wider uppercase text-indigo-600 mb-6">After AEP Builder</h3>
+                  <h3 className="text-sm tracking-wider uppercase text-indigo-600 mb-6">After Persona Builder</h3>
                   <ul className="space-y-4">
                     <li className="text-fontprimary flex items-start gap-3">
                       <span className="text-indigo-500">→</span>
@@ -481,20 +540,6 @@ const AEPCreation: React.FC = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Architecture image */}
-          <section className="w-full py-8">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/10 ring-1 ring-black/5">
-                <Image
-                  src={architecture}
-                  alt="AEP Builder system architecture"
-                  className="w-full"
-                  style={{ objectFit: "contain" }}
-                />
               </div>
             </div>
           </section>
@@ -554,7 +599,7 @@ const AEPCreation: React.FC = () => {
               <div className="rounded-2xl overflow-hidden">
                 <Image
                   src={Customers}
-                  alt="Enterprise security teams using AEP Builder"
+                  alt="Enterprise security teams using Persona Builder"
                   className="w-full"
                   style={{ objectFit: "contain" }}
                 />
@@ -585,7 +630,7 @@ const AEPCreation: React.FC = () => {
                 <div>
                   <h3 className="text-xl text-fontprimary font-medium mb-3">Empty states are product strategy</h3>
                   <p className="text-fontsecondary leading-relaxed">
-                    First-time users landing on an empty AEP Library are at the highest drop-off risk. 
+                    First-time users landing on an empty Persona Library are at the highest drop-off risk. 
                     I spent disproportionate time on the empty state — the illustration, the two CTAs, 
                     the copy. That&apos;s where activation actually happens.
                   </p>
