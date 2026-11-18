@@ -463,7 +463,7 @@ const AEPCreation: React.FC = () => {
               </div>
             </div>
 
-            <div className="max-w-6xl mx-auto px-6 mt-16 space-y-16">
+            <div className="max-w-6xl mx-auto px-6 mt-16 grid grid-cols-1 gap-y-16">
               <Figure
                 src={QuickActions}
                 alt="Quick actions, annotated: six one-click behaviour modifiers with Less aggressive selected, applied to the live session"
