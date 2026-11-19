@@ -1,0 +1,187 @@
+/* ============================================================
+   Bibs — each case study is a race bib pinned to the wall.
+   Picking one pops its pins, tears the timing strip and zooms
+   into the number. Scoped under .bibs-page.
+   ============================================================ */
+
+.bibs-page :is(h1, h2, h3, h4, h5, h6, p) {
+  font: revert-layer;
+  color: revert-layer;
+  margin: revert-layer;
+  letter-spacing: revert-layer;
+  line-height: revert-layer;
+}
+.bibs-page .bb-ink {
+  color: #2a1a14;
+}
+.bibs-page .bb-mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Bib ---------- */
+.bib {
+  position: relative;
+  border-radius: calc(var(--bib) * 0.02);
+  background: #fbfaf6;
+  box-shadow: 0 1px 2px rgba(60, 25, 10, 0.12), 0 14px 30px rgba(60, 25, 10, 0.16);
+}
+/* A soft vertical fold, where the bib has been carried folded in a bag. */
+.bib::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 49.6%, rgba(0, 0, 0, 0.035) 50%, rgba(255, 255, 255, 0.5) 50.4%, transparent 51%);
+}
+.bib-band {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4%;
+  padding: 0 10%;
+  border-radius: calc(var(--bib) * 0.02) calc(var(--bib) * 0.02) 0 0;
+  background: var(--accent);
+  color: #fff;
+}
+.bib-event {
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: calc(var(--bib) * 0.05);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.bib-year {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: calc(var(--bib) * 0.04);
+  opacity: 0.85;
+}
+.bib-number {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22%;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: calc(var(--bib) * 0.3);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+  color: #1d1410;
+}
+.bib-org {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 61%;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: calc(var(--bib) * 0.042);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(29, 20, 16, 0.6);
+}
+/* Perforation: a dashed line with half-moon notches at each edge. */
+.bib-perf {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 76%;
+  height: 0;
+  border-top: 1.5px dashed rgba(29, 20, 16, 0.28);
+}
+.bib-perf::before,
+.bib-perf::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--bib) * -0.016);
+  width: calc(var(--bib) * 0.032);
+  height: calc(var(--bib) * 0.032);
+  border-radius: 50%;
+  background: var(--bb-field, #f2d6c9);
+}
+.bib-perf::before {
+  left: calc(var(--bib) * -0.016);
+}
+.bib-perf::after {
+  right: calc(var(--bib) * -0.016);
+}
+.bib-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 24%;
+  display: flex;
+  align-items: center;
+  gap: 6%;
+  padding: 0 7%;
+  border-radius: 0 0 calc(var(--bib) * 0.02) calc(var(--bib) * 0.02);
+  background: #fbfaf6;
+  transform-origin: 20% 0;
+}
+.bib-barcode {
+  width: 34%;
+  height: 46%;
+  background: repeating-linear-gradient(90deg, #1d1410 0 2px, transparent 2px 4px, #1d1410 4px 5px, transparent 5px 8px, #1d1410 8px 11px, transparent 11px 12px);
+  opacity: 0.85;
+}
+.bib-chip {
+  font-family: var(--font-mono);
+  font-size: calc(var(--bib) * 0.038);
+  letter-spacing: 0.1em;
+  color: rgba(29, 20, 16, 0.65);
+}
+.bib-chip b {
+  font-weight: 400;
+  color: var(--accent);
+}
+.bib-pin {
+  position: absolute;
+  width: calc(var(--bib) * 0.12);
+  height: calc(var(--bib) * 0.042);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+/* ---------- Wall ---------- */
+.bb-item {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+}
+/* Each bib hangs a little crooked; hover straightens and lifts it. */
+.bb-item-hover {
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.bb-item-hover.is-picked {
+  transform: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .bb-item:not([aria-disabled]):hover .bb-item-hover {
+    transform: translateY(-8px) rotate(0deg);
+  }
+}
+.bb-item:focus-visible .bb-item-hover {
+  transform: translateY(-8px) rotate(0deg);
+}
+.bb-item:focus-visible .bib {
+  outline: 2px solid #2a1a14;
+  outline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-item-hover {
+    transition: none;
+  }
+}

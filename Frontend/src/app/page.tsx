@@ -51,7 +51,7 @@ const projects: Project[] = [
     imageIsPoster: true,
     background: "/assets/Dune/RiskCardBg.webp",
     company: "Dune Security",
-    year: "2024",
+    year: "2025",
   },
   {
     title: "Stillsuit Design System",
@@ -77,7 +77,7 @@ const projects: Project[] = [
     background: "/assets/Dune/RiskCardBg.webp",
     backgroundRotated: true,
     company: "Dune Security",
-    year: "2024",
+    year: "2026",
   },
   {
     title: "University Park",

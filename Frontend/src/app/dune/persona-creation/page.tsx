@@ -80,7 +80,7 @@ const AEPCreation: React.FC = () => {
               <div className="flex flex-wrap items-center gap-3 text-fonttertiary text-sm tracking-wide">
                 <span>Dune Security</span>
                 <span className="w-1 h-1 rounded-full bg-fontmuted"></span>
-                <span>2024 to Present</span>
+                <span>2026</span>
                 <span className="w-1 h-1 rounded-full bg-fontmuted"></span>
                 <span>AI Product Design & UX Strategy</span>
               </div>
