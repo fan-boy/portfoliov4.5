@@ -1,0 +1,357 @@
+/* ============================================================
+   Records — an experimental, analog take on the portfolio.
+   Flat and graphic: one colour field, black vinyl, a solid tonearm.
+   Everything is scoped under .records-page.
+   ============================================================ */
+
+/* Same opt-out as .home-page: this page is written against Tailwind utilities,
+   so roll the bare h1–p rules in globals.css back to the layered styles. */
+.records-page :is(h1, h2, h3, h4, h5, h6, p) {
+  font: revert-layer;
+  color: revert-layer;
+  margin: revert-layer;
+  letter-spacing: revert-layer;
+  line-height: revert-layer;
+}
+
+/* Scoped under .records-page so they win over the h1–p opt-out above. */
+.records-page .rec-ink {
+  color: #14231a;
+}
+.records-page .rec-mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+/* The boxed year, like a catalogue stamp. */
+.rec-stamp {
+  display: inline-block;
+  padding: 3px 7px 2px;
+  border: 1.5px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+/* ---------- Disc ---------- */
+.rec-disc {
+  position: relative;
+  width: var(--disc);
+  height: var(--disc);
+  border-radius: 50%;
+  box-shadow: 0 calc(var(--disc) * 0.035) calc(var(--disc) * 0.08) rgba(10, 30, 18, 0.22);
+}
+.rec-disc-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  background-image:
+    /* Lead-in and run-out: smooth bands at the edge and just outside the label. */
+    radial-gradient(circle at 50% 50%, transparent 0 47%, #141414 47.6% 49.2%, transparent 49.5%),
+    radial-gradient(circle at 50% 50%, transparent 0 27.6%, #151515 28% 31.5%, transparent 31.8%),
+    /* Fine grooves. */
+    repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035) 0 0.6px, transparent 0.6px 2.6px);
+}
+.rec-disc-label {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 54%;
+  height: 54%;
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--disc) * 0.008);
+  padding: 12%;
+  text-align: center;
+  background: #e9efe9;
+}
+.rec-disc-label-art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+.rec-disc-title {
+  font-family: var(--font-sans);
+  font-size: calc(var(--disc) * 0.052);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.rec-disc-meta {
+  font-family: var(--font-mono);
+  font-size: calc(var(--disc) * 0.025);
+  opacity: 0.75;
+}
+/* A faint, still sheen: the light doesn't turn with the record. */
+.rec-disc-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 300deg at 50% 50%,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.06) 20deg,
+    transparent 44deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.04) 200deg,
+    transparent 224deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 0 27.5%, #000 28%);
+  mask: radial-gradient(circle, transparent 0 27.5%, #000 28%);
+}
+.rec-disc-hole {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 3.6%;
+  height: 3.6%;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 calc(var(--disc) * 0.006) #fff;
+}
+
+/* ---------- Sleeve ---------- */
+.rec-sleeve {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #f4f1ea;
+  box-shadow: 0 18px 36px rgba(10, 40, 22, 0.18), 0 3px 8px rgba(10, 40, 22, 0.12);
+}
+.rec-sleeve-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.rec-sleeve-art {
+  position: absolute;
+  left: 15%;
+  top: 40%;
+  width: 100%;
+  height: 74%;
+  border-top-left-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(13, 64, 26, 0.14), 0 10px 22px rgba(13, 64, 26, 0.16);
+}
+.rec-sleeve-type {
+  position: absolute;
+  left: 9%;
+  top: 9%;
+  right: 9%;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--sleeve) * 0.014);
+}
+.rec-sleeve-title {
+  font-family: var(--font-sans);
+  font-size: calc(var(--sleeve) * 0.085);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.rec-sleeve-meta {
+  font-family: var(--font-mono);
+  font-size: calc(var(--sleeve) * 0.046);
+  opacity: 0.75;
+}
+.rec-sleeve-wear {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 40%, rgba(0, 0, 0, 0.04));
+}
+
+/* ---------- Records in the shop ---------- */
+.rec-item-btn {
+  display: block;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+}
+.rec-item-btn:focus-visible .rec-sleeve {
+  outline: 2px solid #14231a;
+  outline-offset: 5px;
+}
+.rec-item-lift {
+  position: relative;
+  transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.rec-item-slot {
+  position: absolute;
+  z-index: 0;
+}
+/* The disc always shows a little; hover pulls it further out. */
+.rec-item-peek {
+  transform: translateX(26%);
+  transition: transform 420ms cubic-bezier(0.23, 1, 0.32, 1), opacity 200ms ease-out;
+}
+.rec-item-lift > .rec-sleeve {
+  position: relative;
+  z-index: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .rec-item-btn:not([aria-disabled]):hover .rec-item-lift {
+    transform: translateY(-6px);
+  }
+  .rec-item-btn:not([aria-disabled]):hover .rec-item-peek {
+    transform: translateX(42%);
+  }
+}
+.rec-item-btn:focus-visible .rec-item-lift {
+  transform: translateY(-6px);
+}
+.rec-item-btn:focus-visible .rec-item-peek {
+  transform: translateX(42%);
+}
+.rec-item-peek.is-away {
+  opacity: 0;
+  transition: none;
+}
+
+/* ---------- Deck ---------- */
+.rec-deck {
+  position: relative;
+  background: rgba(10, 40, 22, 0.06);
+}
+.rec-platter {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(10, 40, 22, 0.07);
+}
+.rec-spindle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  z-index: 2;
+}
+.rec-arm-rest {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: rgba(10, 40, 22, 0.14);
+}
+.rec-arm {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 4;
+}
+.rec-arm-tube {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 10px;
+  border-radius: 5px;
+  background: var(--accent);
+}
+.rec-arm-shadow {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 10px;
+  border-radius: 5px;
+  background: #0a2816;
+  filter: blur(4px);
+}
+.rec-arm-head {
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 22px;
+  height: 40px;
+  border-radius: 4px;
+  transform: translateX(-50%) rotate(-20deg);
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(10, 40, 22, 0.16);
+}
+.rec-arm-counterweight {
+  position: absolute;
+  left: -14px;
+  bottom: 22px;
+  width: 28px;
+  height: 40px;
+  border-radius: 3px;
+  background: var(--accent);
+  filter: brightness(0.75);
+}
+.rec-arm-pivot {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  z-index: 5;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(10, 40, 22, 0.16);
+}
+
+/* ---------- Round controls ---------- */
+.rec-round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #fff;
+  background: var(--accent);
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
+}
+.rec-round:active {
+  transform: scale(0.96);
+}
+.rec-round:focus-visible,
+.rec-link:focus-visible {
+  outline: 2px solid #14231a;
+  outline-offset: 3px;
+}
+.rec-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #14231a;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rec-item-lift,
+  .rec-item-peek {
+    transition: none;
+  }
+}
+
+/* Pieces that take the live page colour. */
+.rec-mark-sleeve {
+  fill: var(--rec-field, #bfe4c9);
+}
+.rec-stamp-on-field {
+  background: var(--rec-field, #bfe4c9);
+}
