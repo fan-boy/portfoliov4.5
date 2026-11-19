@@ -15,6 +15,7 @@ import DefaultPage from "./components/Pages/DefaultPage";
 import { fadeIn, staggerSlow } from "./lib/animations";
 import { useChatOverflow } from "./lib/hooks/useChatOverflow";
 import { UNIVERSITY_PARK_GRADIENT } from "./lib/universityPark";
+import TrinketLedge from "./components/TrinketLedge/TrinketLedge";
 
 interface Project {
   title: string;
@@ -362,6 +363,19 @@ export default function Home() {
                   </div>
                 </Link>
               ))}
+            </div>
+          </section>
+
+          {/* ============================================
+              OTHER FORMATS: the same work as records, film and race bibs
+              ============================================ */}
+          <section className="w-full pb-32" aria-labelledby="other-formats">
+            <div className="max-w-5xl mx-auto px-6">
+              <div className="border-b border-gray-100 pb-4 mb-4 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                <p id="other-formats" className="m-0 text-sm text-fonttertiary uppercase tracking-wider">Same work, other formats</p>
+                <p className="m-0 text-sm text-fontmuted">Experiments</p>
+              </div>
+              <TrinketLedge />
             </div>
           </section>
 

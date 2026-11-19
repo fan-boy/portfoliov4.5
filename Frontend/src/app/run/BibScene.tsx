@@ -1,4 +1,5 @@
 'use client'
+import WorkCrumb from "../components/WorkCrumb";
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
@@ -261,6 +262,7 @@ export default function BibScene() {
               animate={{ opacity: active ? 0 : 1 }}
               transition={{ duration: 0.3 }}
             >
+              <WorkCrumb page="Races" className="bb-ink mb-3" />
               <h1 className="bb-ink text-[44px] font-bold leading-none tracking-[-0.03em]">Aadi&apos;s Races</h1>
               <p className="bb-mono bb-ink mt-3 text-[14px] opacity-80">Four case studies, four races. Pick a bib.</p>
             </motion.header>
@@ -301,6 +303,7 @@ export default function BibScene() {
       {/* Phones and narrow windows: the bibs as a list; a tap fades straight to the case study. */}
       <ul className="mx-auto flex min-h-[calc(100vh-140px)] max-w-md flex-col gap-7 px-5 pb-16 pt-4 min-[900px]:hidden">
         <li className="mb-1">
+          <WorkCrumb page="Races" className="bb-ink mb-4" />
           <h1 className="bb-ink text-[32px] font-bold leading-none tracking-[-0.03em]">Aadi&apos;s Races</h1>
           <p className="bb-mono bb-ink mt-2 text-[13px] opacity-80">Four case studies, four races.</p>
         </li>

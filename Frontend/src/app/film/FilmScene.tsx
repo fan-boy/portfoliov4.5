@@ -1,4 +1,5 @@
 'use client'
+import WorkCrumb from "../components/WorkCrumb";
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
@@ -316,6 +317,7 @@ export default function FilmScene() {
           <div ref={stageRef} className="relative" style={{ width: STAGE_W, height: STAGE_H, transform: `scale(${stageScale})`, flex: "none" }}>
             <motion.div className="absolute inset-0" initial={false} animate={{ opacity: active ? 0 : 1 }} transition={{ duration: 0.3 }} aria-hidden={!!active}>
               <header className="absolute left-0 top-0 flex flex-col gap-3">
+                <WorkCrumb page="Film" className="film-ink" />
                 <div className="flex items-center gap-4">
                   <FilmMark />
                   <h1 className="film-ink text-[44px] font-bold leading-none tracking-[-0.03em]">Aadi&apos;s Film</h1>
@@ -374,6 +376,7 @@ export default function FilmScene() {
       {/* Phones and narrow windows: the shelf as a list; a tap fades straight to the case study. */}
       <ul className="mx-auto flex min-h-[calc(100vh-140px)] max-w-md flex-col gap-6 px-5 pb-16 pt-4 min-[900px]:hidden">
         <li className="mb-2">
+          <WorkCrumb page="Film" className="film-ink mb-4" />
           <h1 className="film-ink text-[32px] font-bold leading-none tracking-[-0.03em]">Aadi&apos;s Film</h1>
           <p className="film-mono film-ink mt-2 text-[13px] opacity-80">Four case studies, shot on 35mm.</p>
         </li>

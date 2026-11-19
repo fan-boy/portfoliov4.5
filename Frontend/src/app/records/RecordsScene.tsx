@@ -1,4 +1,5 @@
 'use client'
+import WorkCrumb from "../components/WorkCrumb";
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
@@ -527,6 +528,7 @@ export default function RecordsScene() {
               </div>
 
               <header className="absolute left-0 top-0 flex flex-col gap-3">
+                <WorkCrumb page="Records" className="rec-ink" />
                 <div className="flex items-center gap-4">
                   <RecordsMark />
                   <h1 className="rec-ink text-[44px] font-bold leading-none tracking-[-0.03em]">Aadi&apos;s Records</h1>
@@ -617,6 +619,7 @@ export default function RecordsScene() {
       {/* Phones and narrow windows: the rack as a list; a tap fades straight to the case study. */}
       <ul className="mx-auto flex min-h-[calc(100vh-140px)] max-w-md flex-col gap-5 px-5 pb-16 pt-4 min-[900px]:hidden">
         <li className="mb-2">
+          <WorkCrumb page="Records" className="rec-ink mb-4" />
           <h1 className="rec-ink text-[32px] font-bold leading-none tracking-[-0.03em]">Aadi&apos;s Records</h1>
           <p className="rec-mono rec-ink mt-2 text-[13px] opacity-80">Four case studies, pressed on vinyl.</p>
         </li>

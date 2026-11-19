@@ -22,7 +22,7 @@ export function Navbar() {
           if (href === '/') {
             isActive =
               pathname === '/' ||
-              /^\/(dune|chainreactive|universitypark)/.test(pathname);
+              /^\/(dune|chainreactive|universitypark|records|film|run)(\/|$)/.test(pathname);
           } else {
             isActive = pathname === href;
           }
