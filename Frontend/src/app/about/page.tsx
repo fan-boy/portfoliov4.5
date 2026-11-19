@@ -12,23 +12,25 @@ import { motion } from "framer-motion";
 import MosaicTablet from "../guides/new-york/MosaicTablet";
 import { PALETTES } from "../guides/new-york/data";
 import StationDiamond from "../guides/mumbai/StationDiamond";
+import { hand } from "./hand";
+import "./magnets.css";
 
-/** Each guide's card shows a small, finished version of its city's sign. */
+/** Each guide is a fridge magnet: a small, finished version of its city's sign. */
 const guides = [
   {
     href: "/guides/new-york",
     city: "New York",
     line: "Living here since 2024",
-    backdrop: "#efeae0",
-    emblemWidth: 220,
+    tilt: "-4deg",
+    emblemWidth: 230,
     emblem: <MosaicTablet lines={["NEW YORK"]} capHeight={9} palette={PALETTES.teal} play instant maxCell={4} />,
   },
   {
     href: "/guides/mumbai",
     city: "Mumbai",
     line: "Where I grew up",
-    backdrop: "#ece2cc",
-    emblemWidth: 96,
+    tilt: "5deg",
+    emblemWidth: 116,
     emblem: <StationDiamond name="MUMBAI" deva="मुंबई" play instant />,
   },
 ];
@@ -183,27 +185,30 @@ export default function AboutPage() {
             <p id="guides" className="text-sm text-fonttertiary uppercase tracking-wider mb-2">Guides</p>
             <p className="text-sm text-fontmuted mb-6 sm:mb-8">Cities I&apos;ve lived in, written up the way I&apos;d tell a friend.</p>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 list-none m-0 p-0">
-              {guides.map((g) => (
-                <li key={g.href}>
-                  <Link
-                    href={g.href}
-                    className="group flex h-full flex-col gap-4 rounded-xl border border-gray-100 p-5 transition-colors duration-200 hover:border-gray-300 focus-visible:border-gray-400 outline-none"
-                  >
-                    <span className="flex h-28 items-center justify-center rounded-lg" style={{ background: g.backdrop }}>
-                      <span className="block transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-1 group-focus-visible:-translate-y-1" style={{ width: g.emblemWidth }}>
-                        {g.emblem}
+            {/* The guides as fridge magnets, stuck straight onto the page. */}
+            <div>
+              <ul className="m-0 flex list-none flex-wrap items-start justify-start gap-x-16 gap-y-10 p-0 py-4">
+                {guides.map((g) => (
+                  <li key={g.href}>
+                    <Link href={g.href} className="magnet-link">
+                      {/* Same-height slot for every magnet, so the captions line up. */}
+                      <span className="flex h-[130px] items-center">
+                        <span className="magnet" style={{ width: g.emblemWidth, ["--tilt" as string]: g.tilt }}>
+                          {g.emblem}
+                        </span>
                       </span>
-                    </span>
-                    <span className="flex items-baseline justify-between gap-4">
-                      <span className="text-base sm:text-lg text-fontprimary">{g.city}</span>
-                      <span className="text-fonttertiary transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true">→</span>
-                    </span>
-                    <span className="-mt-3 text-sm text-fonttertiary">{g.line}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                      <span className="magnet-caption">
+                        <span className="text-base text-fontprimary">{g.city}</span>
+                        <span className="text-sm text-fonttertiary">{g.line}</span>
+                      </span>
+                      <span className={`magnet-hint ${hand.className}`} aria-hidden="true">
+                        open guide →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         </div>
       </section>

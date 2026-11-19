@@ -1,0 +1,76 @@
+/* ============================================================
+   About › Guides: each guide is a fridge magnet stuck onto the page.
+   ============================================================ */
+
+/* A magnet: the sign itself with a little thickness, a few degrees off. */
+.magnet-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.magnet {
+  display: block;
+  transform: rotate(var(--tilt));
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.3)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18));
+  transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1), filter 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.magnet-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+/* The note that says it opens: hidden until you reach for the magnet. */
+.magnet-hint {
+  font-size: 22px;
+  line-height: 1;
+  color: #24398c;
+  opacity: 0;
+  transform: translateY(-4px) rotate(-3deg);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+/* Reaching for it: it lifts off the door, straightens up, and the note appears. */
+@media (hover: hover) and (pointer: fine) {
+  .magnet-link:hover .magnet {
+    transform: translateY(-10px) rotate(0deg) scale(1.06);
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.2)) drop-shadow(0 18px 18px rgba(0, 0, 0, 0.2));
+  }
+  .magnet-link:hover .magnet-hint {
+    opacity: 1;
+    transform: translateY(0) rotate(-3deg);
+  }
+}
+.magnet-link:focus-visible .magnet {
+  transform: translateY(-10px) rotate(0deg) scale(1.06);
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.2)) drop-shadow(0 18px 18px rgba(0, 0, 0, 0.2));
+}
+.magnet-link:focus-visible .magnet-hint {
+  opacity: 1;
+  transform: translateY(0) rotate(-3deg);
+}
+.magnet-link:focus-visible .magnet-caption {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+/* Pressing pushes it back onto the door. */
+.magnet-link:active .magnet {
+  transform: translateY(0) rotate(0deg) scale(0.97);
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.3)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transition-duration: 120ms;
+}
+/* No hover on touch screens, so the note is always showing. */
+@media (hover: none) {
+  .magnet-hint {
+    opacity: 0.75;
+    transform: translateY(0) rotate(-3deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magnet, .magnet-hint { transition: none; }
+}
