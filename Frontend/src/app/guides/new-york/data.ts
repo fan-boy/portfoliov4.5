@@ -1,3 +1,5 @@
+import type { Keepsake } from "../shared/Scrapbook";
+
 /**
  * Everything on the New York guide. Entries marked `sample: true` are
  * placeholder text and stock photos (Wikimedia Commons, see credits.ts):
@@ -54,12 +56,6 @@ export type Station = {
   keepsake?: Keepsake;
   places: Place[];
 };
-
-/** Paper things kept from the city, stuck onto the page. */
-export type Keepsake =
-  | { kind: "stub"; venue: string; event: string; date: string; color: string; sample?: boolean }
-  | { kind: "receipt"; shop: string; address: string; items: [string, string][]; total: string; date: string; sample?: boolean }
-  | { kind: "napkin"; text: string; sample?: boolean };
 
 /** The MetroCard taped beside the intro. */
 export const METROCARD = { photo: "/guides/new-york/metrocard.jpg", sample: true };

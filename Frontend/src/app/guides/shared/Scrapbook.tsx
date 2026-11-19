@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import type { Keepsake } from "./data";
 
 /**
  * The scrappy layer: paper things stuck onto the subway page. Taped prints,
@@ -13,11 +12,36 @@ import type { Keepsake } from "./data";
 
 export const PEN = "#24398C";
 
+/** Paper things kept from a city, stuck onto the page. */
+export type Keepsake =
+  | { kind: "stub"; venue: string; event: string; date: string; color: string; sample?: boolean }
+  | { kind: "receipt"; shop: string; address: string; items: [string, string][]; total: string; date: string; sample?: boolean }
+  | { kind: "napkin"; text: string; sample?: boolean }
+  /** A suburban train ticket. Stations as their short codes, e.g. "CCG". */
+  | { kind: "train"; line: string; from: string; to: string; fare: string; date: string; sample?: boolean }
+  /** A small bus ticket torn off a conductor's pad. */
+  | { kind: "bus"; fare: string; route: string; color: string; sample?: boolean }
+  /** A café bill, written by hand on a pad. */
+  | { kind: "chit"; shop: string; items: [string, string][]; total: string; sample?: boolean };
+
 /** A tilt in degrees between -max and max, seeded from a string. */
 export function tiltFor(seed: string, max = 3) {
   let h = 2166136261;
   for (let i = 0; i < seed.length; i++) h = Math.imul(h ^ seed.charCodeAt(i), 16777619);
   return (((h >>> 0) % 1000) / 1000 - 0.5) * 2 * max;
+}
+
+/** True below `px` wide. Starts false so the server and first paint agree. */
+export function useNarrow(px: number) {
+  const [narrow, setNarrow] = useState(false);
+  useEffect(() => {
+    const q = window.matchMedia(`(max-width: ${px - 1}px)`);
+    const apply = () => setNarrow(q.matches);
+    apply();
+    q.addEventListener("change", apply);
+    return () => q.removeEventListener("change", apply);
+  }, [px]);
+  return narrow;
 }
 
 /** True on a mouse or trackpad, where dragging things around makes sense. */
@@ -78,9 +102,9 @@ export function TapedPrint({
 }
 
 /** Handwriting in ballpoint blue. */
-export function Hand({ children, className = "", size = 24 }: { children: React.ReactNode; className?: string; size?: number }) {
+export function Hand({ children, className = "", size = 24, color = PEN }: { children: React.ReactNode; className?: string; size?: number; color?: string }) {
   return (
-    <span className={`sb-hand ${className}`} style={{ fontSize: size, color: PEN }}>
+    <span className={`sb-hand ${className}`} style={{ fontSize: size, color }}>
       {children}
     </span>
   );
@@ -206,9 +230,62 @@ function Napkin({ text, sample }: Extract<Keepsake, { kind: "napkin" }>) {
   );
 }
 
+function TrainTicket({ line, from, to, fare, date }: Extract<Keepsake, { kind: "train" }>) {
+  return (
+    <div className="sb-train" role="img" aria-label={`Train ticket, ${from} to ${to}`}>
+      <span className="sb-train-head">{line} · II CLASS</span>
+      <span className="sb-train-route">
+        {from} <span className="opacity-50">→</span> {to}
+      </span>
+      <span className="sb-train-row">
+        <span>ADULT · ONE WAY</span>
+        <span className="font-bold">{fare}</span>
+      </span>
+      <span className="sb-train-row opacity-70">
+        <span>{date}</span>
+        <span>№ 48213</span>
+      </span>
+    </div>
+  );
+}
+
+function BusTicket({ fare, route, color }: Extract<Keepsake, { kind: "bus" }>) {
+  return (
+    <div className="sb-bus" style={{ background: color }} role="img" aria-label={`Bus ticket, route ${route}`}>
+      <span className="sb-bus-org">B.E.S.T.</span>
+      <span className="sb-bus-fare">{fare}</span>
+      <span className="sb-bus-route">RT {route}</span>
+      <span className="sb-bus-holes" />
+    </div>
+  );
+}
+
+function Chit({ shop, items, total }: Extract<Keepsake, { kind: "chit" }>) {
+  return (
+    <div className="sb-chit" role="img" aria-label={`Bill from ${shop}`}>
+      <span className="sb-chit-shop">{shop}</span>
+      {items.map(([name, price]) => (
+        <span key={name} className="sb-chit-row">
+          <Hand size={22}>{name}</Hand>
+          <Hand size={22}>{price}</Hand>
+        </span>
+      ))}
+      <span className="sb-chit-total">
+        <Hand size={24}>total</Hand>
+        <Hand size={24} className="font-bold">
+          {total}
+        </Hand>
+      </span>
+    </div>
+  );
+}
+
 export function KeepsakeView({ item }: { item: Keepsake }) {
   if (item.kind === "stub") return <Stub {...item} />;
   if (item.kind === "receipt") return <Receipt {...item} />;
+  if (item.kind === "train") return <TrainTicket {...item} />;
+  if (item.kind === "bus") return <BusTicket {...item} />;
+  if (item.kind === "chit") return <Chit {...item} />;
   return <Napkin {...item} />;
 }
 

@@ -15,7 +15,7 @@ import WorkCrumb from "../../components/WorkCrumb";
 import MosaicTablet from "./MosaicTablet";
 import { CATEGORIES, CATEGORY, DAY, INTRO, METROCARD, PALETTES, STATIONS, type CategoryId, type Place } from "./data";
 import { CREDITS } from "./credits";
-import { Hand, KeepsakeView, Loose, MetroCard, NotebookScrap, SampleStamp, Scribble, TapedPrint } from "./Scrapbook";
+import { Hand, KeepsakeView, Loose, MetroCard, NotebookScrap, SampleStamp, Scribble, TapedPrint, useNarrow } from "../shared/Scrapbook";
 
 const NAV_SPACE = 140;
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
@@ -25,19 +25,6 @@ const INK = "#1d2026";
 const TRAIL_COLORS = ["#1F5C56", "#C9973F", "#A6513A", "#24384F"];
 const TILE_W = 72;
 const TILE_H = 36;
-
-/** True below `px` wide. Starts false so the server and first paint agree. */
-function useNarrow(px: number) {
-  const [narrow, setNarrow] = useState(false);
-  useEffect(() => {
-    const q = window.matchMedia(`(max-width: ${px - 1}px)`);
-    const apply = () => setNarrow(q.matches);
-    apply();
-    q.addEventListener("change", apply);
-    return () => q.removeEventListener("change", apply);
-  }, [px]);
-  return narrow;
-}
 
 /* ============================================================
    Arrival: the tile wall and the NEW YORK tablet

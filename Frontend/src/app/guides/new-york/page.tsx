@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Caveat } from "next/font/google";
 import TransitionWrapper from "../../components/TransitionWrapper";
 import NewYorkGuide from "./NewYorkGuide";
+import "../shared/scrapbook.css";
 import "./nyc.css";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ const hand = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--f
 export default function NewYorkPage() {
   return (
     <TransitionWrapper>
-      <div className={`nyc-page ${hand.variable}`}>
+      <div className={`nyc-page sb-page ${hand.variable}`}>
         <NewYorkGuide />
       </div>
     </TransitionWrapper>

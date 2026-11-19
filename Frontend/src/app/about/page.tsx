@@ -9,6 +9,29 @@ import AnimatedBlobs from "../components/AnimatedBlobs";
 import Footer from "../components/Miscelaneous/footer";
 import { useChat } from '../context/ChatContext';
 import { motion } from "framer-motion";
+import MosaicTablet from "../guides/new-york/MosaicTablet";
+import { PALETTES } from "../guides/new-york/data";
+import StationDiamond from "../guides/mumbai/StationDiamond";
+
+/** Each guide's card shows a small, finished version of its city's sign. */
+const guides = [
+  {
+    href: "/guides/new-york",
+    city: "New York",
+    line: "Living here since 2024",
+    backdrop: "#efeae0",
+    emblemWidth: 220,
+    emblem: <MosaicTablet lines={["NEW YORK"]} capHeight={9} palette={PALETTES.teal} play instant maxCell={4} />,
+  },
+  {
+    href: "/guides/mumbai",
+    city: "Mumbai",
+    line: "Where I grew up",
+    backdrop: "#ece2cc",
+    emblemWidth: 96,
+    emblem: <StationDiamond name="MUMBAI" deva="मुंबई" play instant />,
+  },
+];
 
 const experience = [
   {
@@ -145,6 +168,42 @@ export default function AboutPage() {
                 <p className="text-fonttertiary text-sm">Connecting design decisions to business outcomes. Making the case with data.</p>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Guides */}
+      <section className="w-full py-10 sm:py-16 relative z-10" aria-labelledby="guides">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
+          >
+            <p id="guides" className="text-sm text-fonttertiary uppercase tracking-wider mb-2">Guides</p>
+            <p className="text-sm text-fontmuted mb-6 sm:mb-8">Cities I&apos;ve lived in, written up the way I&apos;d tell a friend.</p>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 list-none m-0 p-0">
+              {guides.map((g) => (
+                <li key={g.href}>
+                  <Link
+                    href={g.href}
+                    className="group flex h-full flex-col gap-4 rounded-xl border border-gray-100 p-5 transition-colors duration-200 hover:border-gray-300 focus-visible:border-gray-400 outline-none"
+                  >
+                    <span className="flex h-28 items-center justify-center rounded-lg" style={{ background: g.backdrop }}>
+                      <span className="block transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-1 group-focus-visible:-translate-y-1" style={{ width: g.emblemWidth }}>
+                        {g.emblem}
+                      </span>
+                    </span>
+                    <span className="flex items-baseline justify-between gap-4">
+                      <span className="text-base sm:text-lg text-fontprimary">{g.city}</span>
+                      <span className="text-fonttertiary transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true">→</span>
+                    </span>
+                    <span className="-mt-3 text-sm text-fonttertiary">{g.line}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </section>
