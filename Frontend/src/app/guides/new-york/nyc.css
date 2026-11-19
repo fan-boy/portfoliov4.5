@@ -1,0 +1,219 @@
+/* ============================================================
+   New York guide. A subway station: a white tile wall, mosaic name
+   tablets, black hanging signs, route bullets. Scoped under .nyc-page.
+   ============================================================ */
+
+.nyc-page :is(h1, h2, h3, h4, h5, h6, p) {
+  font: revert-layer;
+  color: revert-layer;
+  margin: revert-layer;
+  letter-spacing: revert-layer;
+  line-height: revert-layer;
+}
+/* And the bare section rule (padding, 1200px cap, auto margins). */
+.nyc-page section {
+  padding: revert-layer;
+  max-width: revert-layer;
+  margin: revert-layer;
+}
+
+/* White 3×6 subway tile in a running bond, grout lines between.
+   One 72×72 repeat: a full tile on top, two halves offset below. */
+.nyc-wall {
+  background-color: #d9d2c4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fdfcf8'/%3E%3Cstop offset='1' stop-color='%23efebe2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='1.5' y='1.5' width='69' height='33' rx='2.5' fill='url(%23g)'/%3E%3Crect x='-34.5' y='37.5' width='69' height='33' rx='2.5' fill='url(%23g)'/%3E%3Crect x='37.5' y='37.5' width='69' height='33' rx='2.5' fill='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 72px 72px;
+}
+
+/* The hanging station sign: black, with a thin white rule along the top. */
+.nyc-sign {
+  position: relative;
+  background: #121212;
+  color: #fff;
+}
+.nyc-sign::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 2px;
+  background: #fff;
+}
+
+/* Photo placeholder: the place's colour, faintly tiled, until a scan goes in. */
+.nyc-frame-empty {
+  background-color: color-mix(in oklch, var(--cat) 16%, #f4f1ea);
+  background-image: repeating-linear-gradient(0deg, transparent 0 23px, color-mix(in oklch, var(--cat) 22%, #f4f1ea) 23px 24px),
+    repeating-linear-gradient(90deg, transparent 0 47px, color-mix(in oklch, var(--cat) 22%, #f4f1ea) 47px 48px);
+}
+
+/* Train doors: two steel leaves that part when the train reaches a stop. */
+.nyc-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(90deg, #a9b0b7, #c9ced3 40%, #b3b9bf);
+  z-index: 2;
+}
+.nyc-door::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  height: 38%;
+  width: 46%;
+  border-radius: 6px;
+  background: #3b4249;
+  box-shadow: inset 0 0 0 3px #8d949b;
+}
+.nyc-door-left { left: 0; border-right: 1px solid #6d747b; }
+.nyc-door-left::after { right: 18%; }
+.nyc-door-right { right: 0; border-left: 1px solid #6d747b; }
+.nyc-door-right::after { left: 18%; }
+
+/* ============================================================
+   Scrapbook layer: paper stuck onto the station.
+   ============================================================ */
+
+.sb-hand {
+  font-family: var(--font-hand), "Bradley Hand", "Segoe Print", cursive;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Masking tape, torn at both ends, slightly see-through. */
+.sb-tape {
+  position: absolute;
+  z-index: 3;
+  width: 78px;
+  height: 22px;
+  background: rgba(238, 226, 190, 0.82);
+  box-shadow: 0 1px 1px rgba(60, 45, 10, 0.08);
+  clip-path: polygon(0 8%, 6% 0, 12% 10%, 18% 2%, 24% 0, 76% 0, 82% 6%, 88% 0, 94% 8%, 100% 2%, 100% 92%, 94% 100%, 88% 90%, 82% 100%, 76% 96%, 24% 100%, 18% 92%, 12% 100%, 6% 94%, 0 100%);
+  pointer-events: none;
+}
+.sb-tape-tl { left: -18px; top: 6px; transform: rotate(-38deg); }
+.sb-tape-tr { right: -18px; top: 6px; transform: rotate(38deg); }
+.sb-tape-top { left: 50%; top: -11px; transform: translateX(-50%) rotate(-3deg); }
+
+/* A photo print: white border, layered shadow, a few degrees off. */
+.sb-print-wrap {
+  transform: rotate(var(--tilt));
+  transition: transform 350ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.sb-print {
+  position: relative;
+  padding: 9px 9px 9px;
+  background: #fdfcf8;
+  box-shadow: 0 1px 1px rgba(30, 25, 15, 0.08), 0 4px 8px rgba(30, 25, 15, 0.08), 0 14px 24px rgba(30, 25, 15, 0.08);
+}
+@media (hover: hover) and (pointer: fine) {
+  .sb-hoverable:hover {
+    transform: rotate(calc(var(--tilt) * 0.3)) translateY(-4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sb-print-wrap { transition: none; }
+}
+
+/* The MetroCard: a photo of the real card. The photo has white showing
+   round the rounded corners and the clipped top-right corner, so the card is
+   trimmed to its own shape; the shadow sits on the wrapper, since clip-path
+   would cut a box-shadow off. */
+.sb-metrocard {
+  position: relative;
+  width: 240px;
+  height: 153px;
+  filter: drop-shadow(0 1px 1px rgba(60, 40, 0, 0.14)) drop-shadow(0 8px 14px rgba(60, 40, 0, 0.16));
+}
+.sb-metrocard-card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  clip-path: polygon(0 0, 94.6% 0, 100% 9%, 100% 100%, 0 100%);
+}
+.sb-metrocard-card img {
+  transform: scale(1.012);
+}
+
+/* A ticket stub: card stock, perforated down the left where it was torn. */
+.sb-stub {
+  position: relative;
+  width: 210px;
+  padding: 16px 18px 14px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #1d2026;
+  font-family: var(--font-mono);
+  -webkit-mask: radial-gradient(circle 4px at 0 8px, #0000 98%, #000) 0 0 / 100% 16px;
+  mask: radial-gradient(circle 4px at 0 8px, #0000 98%, #000) 0 0 / 100% 16px;
+  filter: drop-shadow(0 6px 10px rgba(30, 25, 15, 0.14));
+}
+.sb-stub::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 10px;
+  bottom: 10px;
+  border-left: 1.5px dashed rgba(29, 32, 38, 0.35);
+}
+.sb-stub-event { font-size: 10px; letter-spacing: 0.14em; opacity: 0.7; }
+.sb-stub-venue { font-family: var(--font-sans); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; line-height: 1.1; }
+.sb-stub-date { margin-top: 6px; font-size: 11px; }
+.sb-stub-no { font-size: 10px; opacity: 0.55; }
+
+/* A thermal receipt with a torn, zigzag bottom. */
+.sb-receipt {
+  width: 190px;
+  padding: 16px 14px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #fbfaf5;
+  color: #2c2c2c;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1.35;
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 12px 8px repeat-x;
+  mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 12px 8px repeat-x;
+  filter: drop-shadow(0 6px 10px rgba(30, 25, 15, 0.12));
+}
+.sb-receipt-shop { text-align: center; font-weight: 700; font-size: 14px; letter-spacing: 0.2em; }
+.sb-receipt-line { text-align: center; opacity: 0.75; }
+.sb-receipt-rule { margin: 4px 0; border-top: 1px dashed rgba(0, 0, 0, 0.35); }
+.sb-receipt-row { display: flex; justify-content: space-between; gap: 8px; }
+
+/* A paper napkin, with a pen note on it. */
+.sb-napkin {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  padding: 26px 22px;
+  background: #fffefb;
+  border-radius: 2px 6px 3px 8px;
+  box-shadow: inset 0 0 0 10px #fffefb, inset 0 0 0 11px rgba(0, 0, 0, 0.06), 0 6px 12px rgba(30, 25, 15, 0.12);
+}
+
+/* A notebook page: ruled lines, red margin, torn along the top. */
+.sb-notebook {
+  position: relative;
+  padding: 44px 32px 30px 64px;
+  background-color: #fdfcf7;
+  background-image: linear-gradient(90deg, transparent 46px, rgba(214, 90, 80, 0.5) 46px 47.5px, transparent 47.5px),
+    repeating-linear-gradient(transparent 0 35px, rgba(70, 110, 180, 0.22) 35px 36px);
+  background-position: 0 0, 0 8px;
+  box-shadow: 0 1px 1px rgba(30, 25, 15, 0.08), 0 10px 22px rgba(30, 25, 15, 0.1);
+  clip-path: polygon(0 3%, 4% 1%, 9% 3.5%, 15% 0.5%, 22% 2.5%, 30% 0, 38% 2.8%, 47% 0.8%, 55% 3%, 63% 0.4%, 71% 2.4%, 79% 0.6%, 87% 3%, 94% 1%, 100% 2.6%, 100% 100%, 0 100%);
+}
+.sb-notebook .sb-tape-top { top: 6px; }
+/* Scoped under .nyc-page to outrank the page-wide h1–p reset above. */
+.nyc-page .sb-notebook p {
+  font-family: var(--font-hand), "Bradley Hand", cursive;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 36px;
+  color: #24398c;
+}

@@ -24,7 +24,8 @@ export function Navbar() {
               pathname === '/' ||
               /^\/(dune|chainreactive|universitypark|records|film|run)(\/|$)/.test(pathname);
           } else {
-            isActive = pathname === href;
+            // The guides are personal, so they sit under About.
+            isActive = pathname === href || (href === '/about' && /^\/guides(\/|$)/.test(pathname));
           }
           return (
             <NavChip
