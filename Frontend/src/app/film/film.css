@@ -1,0 +1,254 @@
+/* ============================================================
+   Film — the vinyl page's sibling: each case study is a roll of
+   35mm film on a shelf. Picking one pulls its film out of the
+   canister and zooms into a frame.
+   Everything is scoped under .film-page.
+   ============================================================ */
+
+.film-page :is(h1, h2, h3, h4, h5, h6, p) {
+  font: revert-layer;
+  color: revert-layer;
+  margin: revert-layer;
+  letter-spacing: revert-layer;
+  line-height: revert-layer;
+}
+.film-page .film-ink {
+  color: #231b0e;
+}
+.film-page .film-mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+.film-stamp {
+  display: inline-block;
+  padding: 3px 7px 2px;
+  border: 1.5px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.2;
+  background: var(--film-field, #eed9a1);
+}
+
+/* ---------- Canister ---------- */
+.st-can {
+  position: relative;
+  filter: drop-shadow(0 12px 14px rgba(50, 30, 5, 0.22));
+}
+.st-can-nub {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 30%;
+  height: 7%;
+  margin-left: -15%;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(90deg, #4a4a4a, #cfcfcf 35%, #7b7b7b 60%, #2f2f2f);
+}
+.st-can-cap {
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  height: 6%;
+  border-radius: calc(var(--can) * 0.014);
+  background: linear-gradient(90deg, #2c2c2c, #9a9a9a 22%, #e6e6e6 34%, #8a8a8a 55%, #3a3a3a 85%, #222);
+}
+.st-can-cap-top { top: 6%; }
+.st-can-cap-bottom { bottom: 0; }
+.st-can-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11.5%;
+  bottom: 5.5%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--can) * 0.03);
+  background: #f4ecd9;
+}
+.st-can-band {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 26%;
+  background: var(--accent);
+}
+.st-can-name {
+  position: relative;
+  margin-top: calc(var(--can) * 0.08);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-sans);
+  font-size: calc(var(--can) * 0.05);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #2a2116;
+  white-space: nowrap;
+  max-height: 70%;
+  overflow: hidden;
+}
+.st-can-iso {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: calc(var(--can) * 0.05);
+  color: var(--accent);
+}
+/* Cylinder shading over the label, lit from the upper left. */
+.st-can-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.05) 14%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 46%, rgba(0, 0, 0, 0.1) 78%, rgba(0, 0, 0, 0.36) 100%);
+}
+/* Felt light-trap on the right edge, where the film comes out. */
+.st-can-lip {
+  position: absolute;
+  right: -4%;
+  top: 16%;
+  bottom: 16%;
+  width: 7%;
+  border-radius: 2px;
+  background: #141210;
+}
+
+/* ---------- Leader tongue ---------- */
+/* The film leader, peeking out of the lip on hover: the strip's own first stretch, scaled to the shelf. */
+.st-tongue {
+  position: absolute;
+  top: 50%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.st-tongue.is-hidden {
+  visibility: hidden;
+}
+.st-tongue-slide {
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  transition: transform 420ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.st-tongue.is-out .st-tongue-slide {
+  transform: translateX(0);
+}
+.st-tongue-film {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  background: #2a1d13;
+  clip-path: polygon(0 0, 55% 0, 100% 34%, 100% 100%, 0 100%);
+}
+
+/* ---------- Shelf ---------- */
+.film-item-btn {
+  display: block;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+}
+.film-item-btn:focus-visible .st-can {
+  outline: 2px solid #231b0e;
+  outline-offset: 8px;
+}
+.film-item-lift {
+  position: relative;
+  transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* Hover: the canister lifts and its leader slides out of the lip. */
+@media (hover: hover) and (pointer: fine) {
+  .film-item-btn:not([aria-disabled]):hover .film-item-lift {
+    transform: translateY(-10px);
+  }
+  .film-item-btn:not([aria-disabled]):hover .st-tongue-slide {
+    transform: translateX(0);
+  }
+}
+.film-item-btn:focus-visible .film-item-lift {
+  transform: translateY(-10px);
+}
+.film-item-btn:focus-visible .st-tongue-slide {
+  transform: translateX(0);
+}
+
+/* ---------- Film strip ---------- */
+.st-strip {
+  position: relative;
+  background: #2a1d13;
+}
+.st-sprockets {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: repeating-linear-gradient(90deg, transparent 0 9px, #efe6d4 9px 19px, transparent 19px 27px);
+  -webkit-mask: linear-gradient(#000, #000);
+  border-radius: 2px;
+}
+.st-sprockets-top { top: 11px; }
+.st-sprockets-bottom { bottom: 11px; }
+.st-frame-slot {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.st-frame {
+  position: absolute;
+  left: 9px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 2px;
+}
+.st-edge {
+  position: absolute;
+  left: 12px;
+  bottom: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  line-height: 11px;
+  color: #e9a23b;
+  opacity: 0.85;
+}
+.st-edge b {
+  font-weight: 400;
+}
+@media (prefers-reduced-motion: reduce) {
+  .film-item-lift,
+  .st-tongue-slide {
+    transition: none;
+  }
+}
+
+/* Each roll's number, large and faint, sitting behind its canister. */
+.film-number {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-sans);
+  font-size: 220px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 300ms ease-out;
+}
+.film-number.is-hovered {
+  opacity: 0.16;
+}
+.film-item-lift > .relative {
+  z-index: 1;
+}
+.film-number.is-gone {
+  opacity: 0;
+}
