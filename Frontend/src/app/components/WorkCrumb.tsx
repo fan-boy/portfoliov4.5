@@ -17,7 +17,8 @@ export default function WorkCrumb({
 }) {
   return (
     <nav aria-label="Breadcrumb" className={`font-mono text-[13px] tracking-[-0.01em] ${className}`}>
-      <Link href={parent.href} className="opacity-60 transition-opacity duration-150 hover:opacity-100 focus-visible:opacity-100">
+      {/* color: inherit, or the global link colour wins over the page's own ink. */}
+      <Link href={parent.href} className="opacity-60 transition-opacity duration-150 hover:opacity-100 focus-visible:opacity-100" style={{ color: "inherit" }}>
         ← {parent.label}
       </Link>
       {trail.map((step) => (

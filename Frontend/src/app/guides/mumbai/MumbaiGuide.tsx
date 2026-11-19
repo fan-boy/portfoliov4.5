@@ -442,7 +442,9 @@ function MarineDrive({ reduce }: { reduce: boolean }) {
         <Link href="/about" className="font-mono text-[13px] text-[#f3ead6] underline-offset-4 opacity-80 transition-opacity duration-150 hover:opacity-100 focus-visible:underline">
           ← Back to About
         </Link>
-        <p className="m-0 font-mono text-[13px] opacity-50">Next guide: Washington, DC, coming soon</p>
+        <Link href="/guides/washington-dc" className="font-mono text-[13px] text-[#f3ead6] underline-offset-4 opacity-60 transition-opacity duration-150 hover:opacity-100 focus-visible:underline">
+          Next guide: Washington, DC →
+        </Link>
         {CREDITS.length > 0 && (
           <details className="max-w-2xl font-mono text-[11px] leading-relaxed">
             <summary className="cursor-pointer text-center opacity-60 transition-opacity duration-150 hover:opacity-100">Photo credits</summary>
@@ -450,7 +452,7 @@ function MarineDrive({ reduce }: { reduce: boolean }) {
               {CREDITS.map((c) => (
                 <li key={c.file}>
                   {c.place}:{" "}
-                  <a href={c.source} className="underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+                  <a href={c.source} className="underline underline-offset-2" style={{ color: "inherit" }} target="_blank" rel="noopener noreferrer">
                     {c.author}
                   </a>
                   , {c.license}

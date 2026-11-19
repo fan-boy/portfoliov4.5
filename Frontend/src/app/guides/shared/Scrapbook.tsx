@@ -22,7 +22,13 @@ export type Keepsake =
   /** A small bus ticket torn off a conductor's pad. */
   | { kind: "bus"; fare: string; route: string; color: string; sample?: boolean }
   /** A café bill, written by hand on a pad. */
-  | { kind: "chit"; shop: string; items: [string, string][]; total: string; sample?: boolean };
+  | { kind: "chit"; shop: string; items: [string, string][]; total: string; sample?: boolean }
+  /** A Washington, DC licence plate. */
+  | { kind: "plate"; text: string; sample?: boolean }
+  /** A DC Metro fare card. */
+  | { kind: "smartrip"; sample?: boolean }
+  /** A round sticker, the kind museums hand out at the door. */
+  | { kind: "sticker"; text: string; color: string; sample?: boolean };
 
 /** A tilt in degrees between -max and max, seeded from a string. */
 export function tiltFor(seed: string, max = 3) {
@@ -280,7 +286,46 @@ function Chit({ shop, items, total }: Extract<Keepsake, { kind: "chit" }>) {
   );
 }
 
+function Plate({ text }: Extract<Keepsake, { kind: "plate" }>) {
+  return (
+    <div className="sb-plate" role="img" aria-label={`A Washington, DC licence plate, ${text}`}>
+      <span className="sb-plate-top">DISTRICT OF COLUMBIA</span>
+      <span className="sb-plate-num">{text}</span>
+      <span className="sb-plate-bottom">TAXATION WITHOUT REPRESENTATION</span>
+      {[
+        { left: 16, top: 9 },
+        { right: 16, top: 9 },
+      ].map((pos, i) => (
+        <span key={i} className="sb-plate-bolt" style={pos} aria-hidden="true" />
+      ))}
+    </div>
+  );
+}
+
+function SmarTrip() {
+  return (
+    <div className="sb-smartrip" role="img" aria-label="A DC Metro fare card">
+      <span className="sb-smartrip-word">SmarTrip</span>
+      <span className="sb-smartrip-sub">Metrorail · Metrobus</span>
+      <span className="sb-smartrip-swoosh" aria-hidden="true" />
+      <span className="sb-smartrip-m" aria-hidden="true">M</span>
+    </div>
+  );
+}
+
+function Sticker({ text, color }: Extract<Keepsake, { kind: "sticker" }>) {
+  return (
+    <div className="sb-sticker" style={{ background: color }} role="img" aria-label={`A sticker: ${text}`}>
+      <span className="sb-sticker-sun" aria-hidden="true" />
+      <span className="sb-sticker-text">{text}</span>
+    </div>
+  );
+}
+
 export function KeepsakeView({ item }: { item: Keepsake }) {
+  if (item.kind === "plate") return <Plate {...item} />;
+  if (item.kind === "smartrip") return <SmarTrip />;
+  if (item.kind === "sticker") return <Sticker {...item} />;
   if (item.kind === "stub") return <Stub {...item} />;
   if (item.kind === "receipt") return <Receipt {...item} />;
   if (item.kind === "train") return <TrainTicket {...item} />;

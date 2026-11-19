@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import MosaicTablet from "../guides/new-york/MosaicTablet";
 import { PALETTES } from "../guides/new-york/data";
 import StationDiamond from "../guides/mumbai/StationDiamond";
+import MetroMark from "../guides/washington-dc/MetroMark";
 import { hand } from "./hand";
 import "./magnets.css";
 
@@ -32,6 +33,14 @@ const guides = [
     tilt: "5deg",
     emblemWidth: 116,
     emblem: <StationDiamond name="MUMBAI" deva="मुंबई" play instant />,
+  },
+  {
+    href: "/guides/washington-dc",
+    city: "Washington, DC",
+    line: "Every weekend, next door",
+    tilt: "-3deg",
+    emblemWidth: 92,
+    emblem: <MetroMark />,
   },
 ];
 

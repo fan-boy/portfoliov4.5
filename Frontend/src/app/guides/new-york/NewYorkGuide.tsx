@@ -546,16 +546,16 @@ function Exit({ reduce }: { reduce: boolean }) {
             ↑ To About
           </span>
         </Link>
-        <p className="m-0 font-mono text-[13px] opacity-60" style={{ color: INK }}>
-          Next guide: Mumbai, coming soon
-        </p>
+        <Link href="/guides/mumbai" className="font-mono text-[13px] underline-offset-4 opacity-60 transition-opacity duration-150 hover:opacity-100 focus-visible:underline" style={{ color: INK }}>
+          Next guide: Mumbai →
+        </Link>
         {CREDITS.length > 0 && (
           <details className="mt-6 max-w-2xl font-mono text-[11px] leading-relaxed" style={{ color: INK }}>
             <summary className="cursor-pointer text-center opacity-60 transition-opacity duration-150 hover:opacity-100">Photo credits</summary>
             <ul className="m-0 mt-3 list-none p-0 opacity-70">
               {CREDITS.map((c) => (
                 <li key={c.file}>
-                  {c.place}: <a href={c.source} className="underline underline-offset-2" target="_blank" rel="noopener noreferrer">{c.author}</a>, {c.license}
+                  {c.place}: <a href={c.source} className="underline underline-offset-2" style={{ color: "inherit" }} target="_blank" rel="noopener noreferrer">{c.author}</a>, {c.license}
                 </li>
               ))}
             </ul>

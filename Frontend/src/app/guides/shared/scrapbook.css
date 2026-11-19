@@ -15,6 +15,7 @@
   padding: revert-layer;
   max-width: revert-layer;
   margin: revert-layer;
+  background: revert-layer;
 }
 
 .sb-hand {
@@ -220,3 +221,105 @@
 .sb-chit-shop { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-align: center; opacity: 0.7; margin-bottom: 4px; }
 .sb-chit-row, .sb-chit-total { display: flex; justify-content: space-between; line-height: 26px; }
 .sb-chit-total { margin-top: 4px; border-top: 1.5px solid rgba(36, 57, 140, 0.6); }
+
+/* A DC licence plate: white, red lettering, the slogan along the bottom. */
+.sb-plate {
+  position: relative;
+  width: 230px;
+  height: 116px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #fdfdfb, #eceeef);
+  box-shadow: inset 0 0 0 2px #c9ccd0, inset 0 0 0 5px #fdfdfb, inset 0 0 0 6px #c42232, 0 1px 1px rgba(0, 0, 0, 0.12), 0 8px 14px rgba(0, 0, 0, 0.14);
+  color: #c42232;
+  font-family: var(--font-sans);
+}
+.sb-plate-top { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: #1d3c8c; }
+.sb-plate-num { font-size: 44px; font-weight: 800; letter-spacing: 0.04em; line-height: 1; }
+.sb-plate-bottom { font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; color: #1d3c8c; }
+.sb-plate-bolt {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f2f2f2, #9a9da1);
+}
+
+/* A Metro fare card. */
+.sb-smartrip {
+  position: relative;
+  width: 228px;
+  height: 144px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0d4f9b, #1f6fc4 55%, #0b3c7a);
+  color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.16);
+  font-family: var(--font-sans);
+}
+.sb-smartrip-word { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.sb-smartrip-sub { margin-top: 6px; font-size: 10px; opacity: 0.8; letter-spacing: 0.04em; }
+.sb-smartrip-swoosh {
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -40px;
+  height: 90px;
+  border-radius: 50%;
+  border-top: 10px solid #e23b3b;
+  box-shadow: inset 0 8px 0 rgba(255, 255, 255, 0.85);
+}
+.sb-smartrip-m {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+/* A round sticker with a little sunburst. */
+.sb-sticker {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #fff;
+  box-shadow: 0 0 0 4px #fff, 0 1px 1px rgba(0, 0, 0, 0.14), 0 6px 12px rgba(0, 0, 0, 0.16);
+}
+.sb-sticker-sun {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 34%, transparent 36%), repeating-conic-gradient(#fff 0 8deg, transparent 8deg 24deg);
+  -webkit-mask: radial-gradient(circle, #000 70%, transparent 71%);
+  mask: radial-gradient(circle, #000 70%, transparent 71%);
+}
+.sb-sticker-text {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+  max-width: 80%;
+}

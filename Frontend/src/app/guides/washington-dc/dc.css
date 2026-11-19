@@ -1,0 +1,163 @@
+/* ============================================================
+   Washington, DC guide. The Metro for the way in and the way out (a
+   bronze pylon on the coffered vault, the platform-edge lights);
+   in between, the year, with the page changing colour and the
+   weather changing as each season scrolls past.
+   Scoped under .dc-page; the scrapbook layer is in ../shared.
+   ============================================================ */
+
+/* ---------- Arrival ---------- */
+/* The Metro's coffered vault, flattened into a pattern: square coffers in
+   warm concrete, each recessed, lit from below (light lower edge, shadowed
+   upper edge). Faded out behind the pylon. */
+.dc-coffers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: #dcd4c6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Crect width='88' height='88' fill='%23ddd5c7'/%3E%3Cpath d='M10 10H78L66 22H22Z' fill='%23b9b0a1'/%3E%3Cpath d='M10 10V78L22 66V22Z' fill='%23c7beaf'/%3E%3Cpath d='M78 10V78L66 66V22Z' fill='%23d3cbbd'/%3E%3Cpath d='M10 78H78L66 66H22Z' fill='%23ece6da'/%3E%3Crect x='22' y='22' width='44' height='44' fill='%23cfc6b7'/%3E%3Cpath d='M0 0H88V1H0ZM0 0V88H1V0Z' fill='%23c4bbac'/%3E%3C/svg%3E");
+  background-size: 88px 88px;
+  background-position: center;
+  opacity: 0.7;
+  -webkit-mask-image: radial-gradient(ellipse 42% 52% at 50% 45%, rgba(0, 0, 0, 0.25) 30%, #000 80%);
+  mask-image: radial-gradient(ellipse 42% 52% at 50% 45%, rgba(0, 0, 0, 0.25) 30%, #000 80%);
+}
+
+/* The pylon floats. */
+@keyframes dc-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.5deg); }
+}
+.dc-float.is-floating { animation: dc-float 6s ease-in-out infinite; }
+.py-bar { transition: opacity 260ms ease-out; }
+
+/* ---------- Platform edge ---------- */
+/* A strip of granite with lights set into it. While a train is coming in,
+   they blink in a wave along the platform. */
+.dc-edge {
+  position: relative;
+  height: 30px;
+  background: linear-gradient(180deg, #8f8a83, #b8b2a8 30%, #a39d93 70%, #6f6a63);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.dc-edge-lights {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 12px;
+}
+.dc-edge-light {
+  width: 22px;
+  height: 9px;
+  border-radius: 999px;
+  background: #f4e9cf;
+  opacity: 0.35;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+.dc-edge.is-arriving .dc-edge-light {
+  animation: dc-blink 2.6s ease-in-out infinite;
+}
+@keyframes dc-blink {
+  0%, 50%, 100% { opacity: 0.35; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25); }
+  14%, 30% { opacity: 1; box-shadow: 0 0 10px 3px rgba(255, 228, 160, 0.75); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dc-float.is-floating, .dc-edge.is-arriving .dc-edge-light { animation: none; }
+  .dc-edge-light { opacity: 0.8; }
+  .py-bar { transition: none; }
+}
+
+/* A strip of masking tape with the byline, stuck over the platform. */
+.dc-tape {
+  padding: 6px 20px 8px;
+  background: rgba(240, 230, 196, 0.94);
+  box-shadow: 0 2px 6px rgba(40, 30, 15, 0.18);
+  clip-path: polygon(0 10%, 3% 0, 97% 4%, 100% 0, 99% 90%, 100% 100%, 2% 96%, 0 100%);
+}
+
+/* ---------- Postcard ---------- */
+.dc-postcard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 24px;
+  padding: 28px 28px 34px;
+  background: #fbf7ec;
+  box-shadow: 0 1px 1px rgba(30, 25, 15, 0.08), 0 12px 26px rgba(30, 25, 15, 0.12);
+}
+.sb-page .dc-postcard p {
+  font-family: var(--font-hand), "Bradley Hand", cursive;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 1.25;
+  color: #24398c;
+}
+.dc-postcard-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 26px;
+  padding-left: 22px;
+  border-left: 1.5px solid rgba(60, 50, 40, 0.25);
+}
+.dc-postcard-stamp {
+  width: 58px;
+  height: 68px;
+  padding: 6px;
+  background: #3b6fb6;
+  color: #fbf7ec;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1.3;
+  text-align: center;
+  outline: 4px dotted #fbf7ec;
+  outline-offset: -2px;
+}
+.dc-postcard-line {
+  width: 100%;
+  border-bottom: 1.5px solid rgba(60, 50, 40, 0.3);
+}
+@media (max-width: 560px) {
+  .dc-postcard { grid-template-columns: 1fr; }
+  .dc-postcard-side { display: none; }
+}
+
+/* ---------- Seasons ---------- */
+.dc-seasons {
+  transition: background-color 900ms ease;
+}
+/* A brown Metro station sign: white Helvetica on bronze, a thin rule above. */
+.dc-sign {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 28px 14px;
+  background: linear-gradient(180deg, #4a3322, #3a2718);
+  color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+.dc-sign::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 8px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.55);
+}
+.dc-sign-name {
+  font-family: var(--font-sans), Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.dc-sign-months {
+  font-family: var(--font-sans), Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  opacity: 0.75;
+}
