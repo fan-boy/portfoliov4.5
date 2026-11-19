@@ -39,24 +39,15 @@
 .sb-tape-tr { right: -18px; top: 6px; transform: rotate(38deg); }
 .sb-tape-top { left: 50%; top: -11px; transform: translateX(-50%) rotate(-3deg); }
 
-/* A photo print: white border, layered shadow, a few degrees off. */
+/* A photo print: white border, layered shadow, a few degrees off. Not a link, so it doesn't react to hover. */
 .sb-print-wrap {
   transform: rotate(var(--tilt));
-  transition: transform 350ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .sb-print {
   position: relative;
   padding: 9px 9px 9px;
   background: #fdfcf8;
   box-shadow: 0 1px 1px rgba(30, 25, 15, 0.08), 0 4px 8px rgba(30, 25, 15, 0.08), 0 14px 24px rgba(30, 25, 15, 0.08);
-}
-@media (hover: hover) and (pointer: fine) {
-  .sb-hoverable:hover {
-    transform: rotate(calc(var(--tilt) * 0.3)) translateY(-4px);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sb-print-wrap { transition: none; }
 }
 
 /* The MetroCard: a photo of the real card. The photo has white showing

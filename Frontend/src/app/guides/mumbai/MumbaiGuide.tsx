@@ -123,9 +123,6 @@ function Arrival({ reduce }: { reduce: boolean }) {
           <Hand size={28}>{INTRO.byline}</Hand>
         </p>
       </div>
-      <p className="pointer-events-none absolute inset-x-0 bottom-6 m-0 text-center font-mono text-[12px] opacity-50" style={{ color: INK }} aria-hidden="true">
-        ↓
-      </p>
     </section>
   );
 }

@@ -192,7 +192,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
           >
             <p id="guides" className="text-sm text-fonttertiary uppercase tracking-wider mb-2">Guides</p>
-            <p className="text-sm text-fontmuted mb-6 sm:mb-8">Cities I&apos;ve lived in, written up the way I&apos;d tell a friend.</p>
+            <p className="text-sm text-fontmuted mb-6 sm:mb-8">Places I know well, written up the way I&apos;d tell a friend.</p>
 
             {/* The guides as fridge magnets, stuck straight onto the page. */}
             <div>

@@ -82,22 +82,20 @@ export function SampleStamp() {
 
 /**
  * A photo print taped to the page: white border, a couple of degrees off,
- * tape over two corners. Straightens up a little on hover.
+ * tape over two corners.
  */
 export function TapedPrint({
   seed,
   children,
   className = "",
-  hover = true,
 }: {
   seed: string;
   children: React.ReactNode;
   className?: string;
-  hover?: boolean;
 }) {
   const tilt = tiltFor(seed, 2.4);
   return (
-    <div className={`sb-print-wrap ${hover ? "sb-hoverable" : ""} ${className}`} style={{ ["--tilt" as string]: `${tilt}deg` }}>
+    <div className={`sb-print-wrap ${className}`} style={{ ["--tilt" as string]: `${tilt}deg` }}>
       <div className="sb-print">
         {children}
         <Tape className="sb-tape-tl" />

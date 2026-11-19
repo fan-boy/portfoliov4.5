@@ -371,9 +371,8 @@ export default function Home() {
               ============================================ */}
           <section className="w-full pb-32" aria-labelledby="other-formats">
             <div className="max-w-5xl mx-auto px-6">
-              <div className="border-b border-gray-100 pb-4 mb-4 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+              <div className="border-b border-gray-100 pb-4 mb-4">
                 <p id="other-formats" className="m-0 text-sm text-fonttertiary uppercase tracking-wider">Same work, other formats</p>
-                <p className="m-0 text-sm text-fontmuted">Experiments</p>
               </div>
               <TrinketLedge />
             </div>

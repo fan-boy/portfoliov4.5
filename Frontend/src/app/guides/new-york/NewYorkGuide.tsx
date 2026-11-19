@@ -152,9 +152,6 @@ function Arrival({ reduce }: { reduce: boolean }) {
           </Hand>
         </p>
       </div>
-      <p className="pointer-events-none absolute inset-x-0 bottom-6 m-0 text-center font-mono text-[12px] opacity-50" style={{ color: INK }} aria-hidden="true">
-        ↓
-      </p>
     </section>
   );
 }
@@ -415,16 +412,17 @@ function DayRide() {
   return (
     <section ref={sectionRef} className="relative" style={{ height: `${DAY.length * 70}vh` }} aria-label="One perfect day">
       <div className="sticky top-0 flex h-[100svh] flex-col justify-center gap-10 overflow-hidden pt-24">
-        <div className="mx-auto flex w-full max-w-5xl items-baseline justify-between px-6">
+        <div className="mx-auto w-full max-w-5xl px-6">
           <h2 className="m-0 text-sm uppercase tracking-wider text-fonttertiary">One perfect day</h2>
-          <p className="m-0 font-mono text-[13px] tabular-nums text-fontmuted" aria-live="polite">
-            Stop {stop + 1} of {DAY.length}
+          {/* The strip map already shows where you are; this tells screen readers. */}
+          <p className="sr-only" aria-live="polite">
+            Stop {stop + 1} of {DAY.length}: {current.name}
           </p>
         </div>
 
         {/* The stop: doors part onto the photo. */}
         <div className="mx-auto grid w-full max-w-5xl grid-cols-[1.35fr_1fr] items-center gap-12 px-6">
-          <TapedPrint seed={current.name} hover={false}>
+          <TapedPrint seed={current.name}>
           <div className="relative overflow-hidden">
             <AnimatePresence initial={false} mode="popLayout">
               <motion.div key={stop} initial={{ opacity: 1 }} exit={{ opacity: 1 }} className="relative">
@@ -517,7 +515,7 @@ function DayList() {
               <Hand size={23} className="leading-[1.15] text-pretty">
                 {d.note}
               </Hand>
-              <TapedPrint seed={d.name} hover={false} className="mt-4 max-w-[420px]">
+              <TapedPrint seed={d.name} className="mt-4 max-w-[420px]">
                 <Frame place={d} sizes="80vw" />
               </TapedPrint>
             </div>
