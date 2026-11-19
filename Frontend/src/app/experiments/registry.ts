@@ -83,6 +83,12 @@ export const studies: Study[] = [
     blurb: 'The Empire State Building painting itself in, wash by wash. All SVG filters.',
     made: '2026-09-13',
   },
+  {
+    slug: 'new-york-sign-maker',
+    title: 'New York sign maker',
+    blurb: 'Type anything and lay it in subway mosaic tiles, like the 1904 station tablets. Download it as a PNG.',
+    made: '2026-11-19',
+  },
 ];
 
 export function getChallenge(slug: string): Challenge | undefined {

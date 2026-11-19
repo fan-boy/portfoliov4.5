@@ -81,7 +81,8 @@ function textMask(line: string, capHeight: number): boolean[][] {
   return rows.map((r) => r.slice(first, last + 1));
 }
 
-function layout(lines: string[], capHeight: number, palette: TabletPalette, speed: number) {
+/** Lays a tablet out: every tile's position, colour and the moment it gets set. */
+export function layoutTablet(lines: string[], capHeight: number, palette: TabletPalette, speed = 1) {
   const masks = lines.map((l) => textMask(l, capHeight));
   const textW = Math.max(...masks.map((m) => m[0]?.length ?? 0));
   const textH = masks.length * capHeight + (masks.length - 1) * LINE_GAP;
@@ -150,7 +151,33 @@ function layout(lines: string[], capHeight: number, palette: TabletPalette, spee
   return { cols, rows, cells, total };
 }
 
+export type TabletPlan = ReturnType<typeof layoutTablet>;
+
 const easeOut = (p: number) => 1 - Math.pow(1 - p, 3);
+
+/**
+ * Paints a laid-out tablet at `cell` px per tile into ctx, from (0, 0), as it
+ * looks `elapsed` ms after the tiles started going down (Infinity: finished).
+ */
+export function paintTablet(ctx: CanvasRenderingContext2D, plan: TabletPlan, cell: number, elapsed: number) {
+  // The grout bed goes down first.
+  ctx.globalAlpha = Math.min(1, elapsed / 220);
+  ctx.fillStyle = GROUT;
+  ctx.fillRect(0, 0, plan.cols * cell, plan.rows * cell);
+  const gap = Math.max(0.6, cell * 0.12);
+  for (const c of plan.cells) {
+    const p = (elapsed - c.t) / SET_MS;
+    if (p <= 0) continue;
+    const e = p >= 1 ? 1 : easeOut(p);
+    const size = (cell - gap) * (0.55 + 0.45 * e);
+    const cx = (c.x + 0.5 + c.dx) * cell;
+    const cy = (c.y + 0.5 + c.dy) * cell;
+    ctx.globalAlpha = e;
+    ctx.fillStyle = `rgb(${c.rgb[0] | 0},${c.rgb[1] | 0},${c.rgb[2] | 0})`;
+    ctx.fillRect(cx - size / 2, cy - size / 2, size, size);
+  }
+  ctx.globalAlpha = 1;
+}
 
 export default function MosaicTablet({
   lines,
@@ -178,13 +205,13 @@ export default function MosaicTablet({
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [width, setWidth] = useState(0);
-  const [plan, setPlan] = useState<ReturnType<typeof layout> | null>(null);
+  const [plan, setPlan] = useState<TabletPlan | null>(null);
   const startRef = useRef<number | null>(null);
   const key = lines.join("|");
 
   // The text is measured on a canvas, so the layout waits for the browser.
   useEffect(() => {
-    setPlan(layout(key.split("|"), capHeight, palette, speed));
+    setPlan(layoutTablet(key.split("|"), capHeight, palette, speed));
   }, [key, capHeight, palette, speed]);
 
   useLayoutEffect(() => {
@@ -206,23 +233,7 @@ export default function MosaicTablet({
       const dpr = window.devicePixelRatio || 1;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, plan.cols * cell, plan.rows * cell);
-      // The grout bed goes down first.
-      ctx.globalAlpha = Math.min(1, elapsed / 220);
-      ctx.fillStyle = GROUT;
-      ctx.fillRect(0, 0, plan.cols * cell, plan.rows * cell);
-      const gap = Math.max(0.6, cell * 0.12);
-      for (const c of plan.cells) {
-        const p = (elapsed - c.t) / SET_MS;
-        if (p <= 0) continue;
-        const e = p >= 1 ? 1 : easeOut(p);
-        const size = (cell - gap) * (0.55 + 0.45 * e);
-        const cx = (c.x + 0.5 + c.dx) * cell;
-        const cy = (c.y + 0.5 + c.dy) * cell;
-        ctx.globalAlpha = e;
-        ctx.fillStyle = `rgb(${c.rgb[0] | 0},${c.rgb[1] | 0},${c.rgb[2] | 0})`;
-        ctx.fillRect(cx - size / 2, cy - size / 2, size, size);
-      }
-      ctx.globalAlpha = 1;
+      paintTablet(ctx, plan, cell, elapsed);
     };
   }, [plan, cell]);
 

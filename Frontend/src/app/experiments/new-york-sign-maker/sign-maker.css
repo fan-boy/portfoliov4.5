@@ -1,0 +1,111 @@
+/* New York sign maker. The wall and tablet come from the New York guide;
+   this file is just the form. */
+
+.sm-textarea {
+  width: 100%;
+  min-height: 7.5rem;
+  padding: 14px 16px;
+  resize: vertical;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  background: #fff;
+  color: #1d2026;
+  /* Set like the tablet: capitals, a little tracked out. */
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  transition: border-color 150ms ease-out;
+}
+.sm-textarea:hover { border-color: rgba(0, 0, 0, 0.22); }
+.sm-textarea:focus-visible {
+  outline: 2px solid var(--sm-field);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+/* A radio option drawn as a pill; the real input stays in the DOM for keyboards and screen readers. */
+.sm-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  color: #3b3f46;
+  font-size: 15px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 150ms ease-out, background-color 150ms ease-out, color 150ms ease-out;
+}
+.sm-choice:hover { border-color: rgba(0, 0, 0, 0.24); }
+.sm-choice:has(input:checked) {
+  border-color: #1d2026;
+  color: #1d2026;
+  background: #f4f1ea;
+}
+.sm-choice:has(input:focus-visible) {
+  outline: 2px solid var(--sm-field);
+  outline-offset: 2px;
+}
+.sm-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.sm-button {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  color: #1d2026;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 150ms ease-out, background-color 150ms ease-out, transform 120ms ease-out;
+}
+.sm-button:hover { border-color: rgba(0, 0, 0, 0.28); }
+.sm-button:active:not(:disabled) { transform: scale(0.97); }
+.sm-button:focus-visible { outline: 2px solid var(--sm-field); outline-offset: 2px; }
+.sm-button:disabled { opacity: 0.45; cursor: not-allowed; }
+/* The primary button is painted in the sign's own field and letter colours. */
+.sm-button-primary {
+  border-color: var(--sm-field);
+  background: var(--sm-field);
+  color: var(--sm-letter);
+  transition: border-color 150ms ease-out, background-color 200ms ease-out, transform 120ms ease-out;
+}
+.sm-button-primary:hover {
+  border-color: color-mix(in oklch, var(--sm-field) 85%, black);
+  background: color-mix(in oklch, var(--sm-field) 85%, black);
+}
+
+/* Replaying the tiling belongs to the preview, so it sits on the wall under the sign. */
+.sm-replay {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(253, 252, 248, 0.85);
+  color: #1d2026;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 150ms ease-out;
+}
+.sm-replay:hover { opacity: 1; }
+.sm-replay:focus-visible { opacity: 1; outline: 2px solid #1d2026; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sm-button, .sm-choice, .sm-textarea { transition: none; }
+}

@@ -547,6 +547,9 @@ function Exit({ reduce }: { reduce: boolean }) {
         <Link href="/guides/mumbai" className="font-mono text-[13px] underline-offset-4 opacity-60 transition-opacity duration-150 hover:opacity-100 focus-visible:underline" style={{ color: INK }}>
           Next guide: Mumbai →
         </Link>
+        <Link href="/experiments/new-york-sign-maker" className="font-mono text-[13px] underline-offset-4 opacity-60 transition-opacity duration-150 hover:opacity-100 focus-visible:underline" style={{ color: INK }}>
+          Make your own sign →
+        </Link>
         {CREDITS.length > 0 && (
           <details className="mt-6 max-w-2xl font-mono text-[11px] leading-relaxed" style={{ color: INK }}>
             <summary className="cursor-pointer text-center opacity-60 transition-opacity duration-150 hover:opacity-100">Photo credits</summary>
